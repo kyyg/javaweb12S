@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.javaweb12S.dao.MemberDAO">
+	
+	<select id="totRecCnt" resultType="int">
+    select count(*) from member <if test="mid != ''"> where mid like concat('%',#{mid},'%') </if>;
+  </select>
+	
+	<select id="getMemberIdCheck" resultType="com.spring.javaweb12S.vo.MemberVO">
+		select * from member where mid = #{mid};
+	</select>  
+  
+	<select id="getMemberNickCheck" resultType="com.spring.javaweb12S.vo.MemberVO">
+		select * from member where nickName = #{nickName};
+	</select>
+	
+	<select id="getMemberList" resultType="com.spring.javaweb12S.vo.MemberVO">
+  	select * from member <if test="mid != ''"> where mid like concat('%',#{mid},'%') </if> order by idx desc limit #{startIndexNo},#{pageSize};
+  </select>
+  
+  <select id="getEmailSearch" resultType="com.spring.javaweb12S.vo.MemberVO">
+		select * from member where email = #{email};
+	</select>
+  
+  
+  
+  <insert id="setMemberJoinOk">
+    insert into member values (default,#{vo.mid},#{vo.pwd},#{vo.nickName},#{vo.name},#{vo.tel},#{vo.address},#{vo.email},default,default,default,default,default,default,default);
+  </insert>
+  
+  
+  
+  <update id="setMemberVisitProcess">
+  	update member set visitCnt=visitCnt+1, todayCnt=todayCnt+1, point=point+10, lastDate=now() where mid = #{vo.mid};
+  </update>
+  
+  <update id="setMemberPwdUpdate">
+    update member set pwd = #{pwd} where mid = #{mid};
+  </update>
+  
+  <update id="setMemberUpdateOk">
+    update member set nickName=#{vo.nickName},name=#{vo.name},tel=#{vo.tel},address=#{vo.address},email=#{vo.email} where mid=#{vo.mid};
+  </update>
+  
+  <update id="setMemberDeleteOk">
+    update member set userDel = 'OK' where mid = #{mid};
+  </update>
+  
+</mapper>

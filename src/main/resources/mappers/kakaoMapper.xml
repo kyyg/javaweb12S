@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.javaweb12S.dao.AdminDAO">
+  
+  <select id="getKakaoAddressName" resultType="com.spring.javaweb12S.vo.KakaoAddressVO">
+    select * from kakaoAddress where address = #{address};
+  </select>
+  
+  <select id="getKakaoAddressList" resultType="com.spring.javaweb12S.vo.KakaoAddressVO">
+    select * from kakaoAddress order by address;
+  </select>
+  
+  
+  <insert id="setKakaoAddressInput">
+    insert into kakaoAddress values (#{address}, #{latitude}, #{longitude});
+  </insert>
+  
+  
+  <delete id="setKakaoAddressDelete">
+  	delete from kakaoAddress where address = #{address};
+  </delete>
+</mapper>

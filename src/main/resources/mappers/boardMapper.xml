@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.javaweb12S.dao.BoardDAO">
+
+  <select id="totRecCnt" resultType="int">
+    select count(*) from board;
+  </select>
+  
+  <select id="getBoardList" resultType="com.spring.javaweb12S.vo.BoardVO">
+    select * from board <if test='part != "전체"'> where part = #{part} </if> order by idx desc limit #{startIndexNo},#{pageSize};
+  </select>
+  
+  <select id="getBoardContent" resultType="com.spring.javaweb12S.vo.BoardVO">
+    select * from board where idx = #{idx};
+  </select>
+  
+  <select id="getPrevNext" resultType="com.spring.javaweb12S.vo.BoardVO">
+    select idx,title from board where idx in (
+		  (select idx from board where <![CDATA[idx < #{idx}]]> order by idx desc limit 1),
+		  (select idx from board where <![CDATA[idx > #{idx}]]> limit 1));
+  </select>
+   
+  <select id="totRecCntSearch" resultType="int">
+    select count(*) from board where ${search} like concat('%',#{searchString},'%');
+  </select>
+  
+  <select id="getBoardListSearch" resultType="com.spring.javaweb12S.vo.BoardVO">
+    select * from board where ${search} like concat('%',#{searchString},'%') order by idx desc limit #{startIndexNo},#{pageSize};
+  </select>
+  
+  <select id="getBoardGoodCheck" resultType="com.spring.javaweb12S.vo.GoodVO">
+  	select * from good where partIdx=#{partIdx} and part=#{part} and mid=#{mid};
+  </select>
+  
+  <select id="getMaxGroupId" resultType="String">
+  	select max(groupId) from boardReply where boardIdx = #{boardIdx};
+  </select>
+  
+  <select id="setBoardReply" resultType="com.spring.javaweb12S.vo.BoardReplyVO">
+  	select * from boardReply where boardIdx=#{idx} order by groupId, idx;
+  </select>
+  
+  <select id="getBoardReplyIdx" resultType="com.spring.javaweb12S.vo.BoardReplyVO">
+  	select * from boardReply where idx = #{replyIdx};
+  </select>
+  
+  <select id="getUserBoard" resultType="com.spring.javaweb12S.vo.BoardVO">
+  	select * from board where mid = #{mid};
+  </select>
+  
+  
+  
+  <insert id="setBoardInput">
+    insert into board values (default,#{vo.mid},#{vo.nickName},#{vo.title},#{vo.email},#{vo.content},default,#{vo.openSw},default,default,default,#{vo.part},#{vo.pwd},default);
+  </insert>
+  
+  <insert id="setGoodDBInput">
+    insert into good values (default,#{goodVo.part},#{goodVo.partIdx},#{goodVo.mid});
+  </insert>
+  
+  <insert id="setBoardReplyInput">
+    insert into boardReply values (default,#{replyVO.boardIdx},#{replyVO.mid},#{replyVO.nickName},default,#{replyVO.hostIp},#{replyVO.content},#{replyVO.groupId},#{replyVO.level});
+  </insert>
+  
+  
+  
+  
+  
+  
+  <update id="setBoardReadNum">
+    update board set readNum = readNum + 1 where idx = #{idx};
+  </update>
+  
+  <update id="boardGoodFlagCheck">
+    update board set good = good + #{gFlag} where idx = #{idx};
+  </update>
+  
+  <update id="setBoardUpdate">
+    update board set title=#{vo.title},email=#{vo.email},content=#{vo.content},openSw=#{vo.openSw},wDate=now(),fixed=#{vo.fixed},part=#{vo.part},pwd=#{vo.pwd} where idx = #{vo.idx};
+  </update>
+  
+  <update id="setBoardGoodPlus">
+  	update  board set good = good + 1 where idx = #{idx};
+  </update>
+  
+  <update id="setGoodPlusMinus">
+  	update  board set good = good + #{goodCnt} where idx = #{idx};
+  </update>
+  
+  <update id="setGoodUpdate">
+  	 update  board set good = good + #{item}  where idx = #{idx};
+  </update>
+  
+  <update id="setBoardReplyUpdate">
+  	 update  boardReply set content=#{content}, hostIp=#{hostIp} where idx = #{idx};
+  </update>
+  
+  <update id="setAdminBoardAnswerChange">
+  	 update board set answer=#{answer} where idx = #{idx};
+  </update>
+
+  
+  
+  
+  
+  
+  <delete id="setBoardDelete">
+    delete from board where idx = #{idx};
+  </delete>
+  
+  <delete id="setGoodDBDelete">
+    delete from good where idx = #{idx};
+  </delete>
+  
+  
+  <delete id="setBoardReplyDelete">
+<!-- 	  <if test="<![CDATA[level >= 1]]>"> -->
+	  <if test="level >= 1">
+	  	delete from boardReply where idx = #{replyIdx};
+	  </if>
+	  <if test="level lt 1">
+	  	delete from boardReply where boardIdx=#{boardIdx} and groupId=#{groupId};
+	  </if>
+  </delete>
+  
+  
+  
+</mapper>
