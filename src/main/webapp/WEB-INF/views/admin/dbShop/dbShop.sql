@@ -220,3 +220,15 @@ drop table dbPoint;
 7/12  상품구매      +150
 7/15  상품구매              -200
 7/16  리뷰적립      +500
+
+create table onedayClass(
+	idx int not null auto_increment,
+  mid varchar(20) not null,		
+  className varchar(100) not null,	
+  store varchar(50) not null,	
+	wDate datetime default now(),
+	memberNum int not null,
+	qrCodeName varchar(100) not null,
+	primary key(idx,mid)	
+);
+

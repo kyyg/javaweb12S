@@ -91,6 +91,7 @@ nav li {
 	  <li class="nav-item dropdown">
     <c:if test="${sLevel == 0}">
 			<a class="nav-link" href="${ctp}/admin/adminMain" style="color: white; background-color: black;">ADMIN PAGE</a>
+			<a class="nav-link" href="${ctp}/admin/index" style="color: white; background-color: black;">ADMIN PAGE2</a>
     </c:if>
 		</li>
   <c:if test="${level <= 4}">
@@ -116,7 +117,7 @@ nav li {
   	
 
 	<div class="text-center text-dark ml-4" class="title">
-		<h2><b><a href="${ctp}/" style="decoration:none;">Starry Starry Days</a></b></h2>
+		<h1><a href="${ctp}/" style="decoration:none;" class=text-center><b><i>Our<br/>Starry<br/>Night</a></i></b></h1>
 	</div>
 
   <p></br></p>
@@ -125,7 +126,7 @@ nav li {
 <nav id="mainnav" class="navbar-light bg-white">
   <ul class="nav justify-content-center">
 	 <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn mr-5" href="#"><a href="#">Starry Day</a></div>
+	    <div class="nav-link dropbtn mr-5" href="#"><a href="#">ABOUT</a></div>
 	  </li>
 	   <li class="nav-item dropdown">
 	    <div class="nav-link dropbtn ml-4 mr-5 text-center">&nbsp;<a href="${ctp}/dbShop/dbProductList">STORE</a></div>
@@ -137,7 +138,11 @@ nav li {
 	   </div>
 	  </li>
 	  <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn ml-3 mr-5"><a href="${ctp}/dbShop/dbOnedayClass">ONEDAY CLASS</a></div>
+	    <div class="nav-link dropbtn ml-3 mr-5">&nbsp;&nbsp;EVENT</div>
+	    <div class="dropdown-menu dropdown-content">
+	      <a class="dropdown-item text-center" href="${ctp}/dbShop/dbOnedayClass">원데이클래스</a>
+	      <a class="dropdown-item text-center" href="${ctp}/schedule/schedule">출석이벤트</a>
+	   </div>
 	   </li>
 	  <li class="nav-item dropdown">
 	    <div class="nav-link dropbtn ml-3">SERVICE</div>

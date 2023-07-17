@@ -37,6 +37,7 @@ import com.spring.javaweb12S.service.DbShopService;
 import com.spring.javaweb12S.service.MemberService;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbCartVO;
+import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOptionVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
@@ -374,7 +375,6 @@ public class DbShopController {
 		// 등록된지 10일 이내인 상품들 가져오기
 		List<DbProductVO> newVOS = dbShopService.getNewProductName();
 		model.addAttribute("newVOS", newVOS);
-		System.out.println("newVOS : " + newVOS);
 		return "dbShop/dbProductList";
 	}
 
@@ -820,6 +820,7 @@ public class DbShopController {
 		return "1";
 	}
 
+	
 	// 반품 / 환불 신청 새창폼
 	@RequestMapping(value = "/orderCancelChild", method = RequestMethod.GET)
 	public String orderCancelChildGet(HttpSession session, Model model, int idx) {
@@ -891,13 +892,43 @@ public class DbShopController {
 		return "dbShop/userReview";
 	}
 	
-	// 원데이클래스 신청폼
+	// 원데이클래스 신청폼(3개월 간 구매액이 10만원 이상인 회원만 신청가능)
 	@RequestMapping(value = "/dbOnedayClass", method = RequestMethod.GET)
 	public String dbOnedayClassGet(Model model) {
-
+		List<MemberVO> vos = dbShopService.getClassValidMember();
+		model.addAttribute("vos",vos); // 이벤트 해당 회원 아이디들
+		return "dbShop/dbOnedayClass";
+	}
+	
+	// 원데이클래스 예약(QR)
+	@RequestMapping(value = "/dbOnedayClassInput", method = RequestMethod.POST)
+	public String dbOnedayClassInputPost(Model model, HttpServletRequest request,
+			String mid, String className, String store, String wDate, int memberNum,String classTemp
+			) {
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/data/qrCode/");
+		String qrCodeName = dbShopService.onedayClassInput(mid, className, store, wDate, memberNum,classTemp, realPath); // 이미지 만들기
+		
 		return "dbShop/dbOnedayClass";
 	}
 
+	// 원데이클래스 회원별 예약한 목록
+	@RequestMapping(value = "/dbMyOnedayClass", method = RequestMethod.GET)
+	public String dbMyOnedayClassGet(Model model, HttpSession session) {
+		String mid = (String) session.getAttribute("sMid");
+		 List<DbOnedayClassVO> vos =  dbShopService.getMyOnedayClass(mid);
+		 model.addAttribute("vos",vos);
+		return "dbShop/dbMyOnedayClass";
+	}
+	
+	// 원데이클래스 회원별 예약한 목록
+	@RequestMapping(value = "/qrCodeWin", method = RequestMethod.GET)
+	public String qrCodeWinGet(Model model, HttpSession session, int idx) {
+		String mid = (String) session.getAttribute("sMid");
+		DbOnedayClassVO vo = dbShopService.getOnedayClassOne(idx);
+		model.addAttribute("vo",vo);
+		return "dbShop/dbQrCodeNew";
+	}
+	
 	
 	
 	

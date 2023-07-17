@@ -41,7 +41,7 @@
 <body>
 <p><br/></p>
 <div class="container">
-  <h2 class="text-center">공지 글 쓰 기(관리자)</h2>
+  <h4 class="text-center">공지 작성</h4>
   <form name="myform" method="post">
     <table class="table table-bordered">
       <tr>

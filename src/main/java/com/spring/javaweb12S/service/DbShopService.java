@@ -7,12 +7,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbCartVO;
+import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOptionVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbPointVO;
 import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
+import com.spring.javaweb12S.vo.MemberVO;
 import com.spring.javaweb12S.vo.WishVO;
 
 public interface DbShopService {
@@ -149,7 +151,17 @@ public interface DbShopService {
 
 	public int productModifyOk(MultipartFile file, DbProductVO vo);
 
+	public String onedayClassInput(String mid, String store, String wDate, String className, int memberNum, String classTemp, String realPath);
 
+	public List<DbOnedayClassVO> getMyOnedayClass(String mid);
+
+	public List<MemberVO> getClassValidMember();
+
+	public DbOnedayClassVO getOnedayClassOne(int idx);
+
+	public List<DbReviewVO> getAllReviewList();
+
+	public void setOptionUpdate(int idx, String optionName, int optionPrice, int optionStock);
 
 
 	 

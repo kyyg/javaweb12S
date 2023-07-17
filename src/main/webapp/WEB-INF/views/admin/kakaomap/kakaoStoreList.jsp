@@ -10,8 +10,8 @@
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
   <script>
    function addressSearch() {
-   	var address = myform.address.value;
-   	if(address == "") {
+   	var store_name = myform.store_name.value;
+   	if(store_name == "") {
    		alert("검색할 지점을 선택하세요");
    		return false;
    	}
@@ -19,8 +19,8 @@
    }
    
    function addressDelete() {
-   	var address = myform.address.value;
-   	if(address == "") {
+   	var store_name = myform.store_name.value;
+   	if(store_name == "") {
    		alert("삭제할 지점을 선택하세요");
    		return false;
    	}
@@ -30,7 +30,7 @@
    	$.ajax({
    		type  : "post",
    		url   : "${ctp}/admin/kakaomap/kakaoAddressDelete",
-   		data  : {address : address},
+   		data  : {store_name : store_name},
    		success:function() {
    			alert("DB에 저장된 지역명이 삭제되었습니다.");
    			location.href = "${ctp}/admin/kakaomap/kakaoStoreList";
@@ -48,11 +48,11 @@
 	<hr/>
 	<div>
 	  <form name="myform">
-	    <select name="address" id="address">
+	    <select name="store_name" id="store_name">
 	    <h3 class="text-center">등록된 매장 검색 / 삭제</h3>
 	      <option value="">매장 선택</option>
 	      <c:forEach var="aVO" items="${vos}">
- 	        <option value="${aVO.address}" <c:if test="${aVO.address == vo.address}">selected</c:if>>${aVO.address}</option>
+ 	        <option value="${aVO.store_name}" <c:if test="${aVO.store_name == vo.store_name}">selected</c:if>>${aVO.store_name}</option>
 	      </c:forEach>
 	    </select>
 	    <input type="button" value="매장 검색" onclick="addressSearch()"/>
@@ -65,14 +65,14 @@
 	<script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = { 
-	        center: new kakao.maps.LatLng(${vo.latitude}, ${vo.longitude}), // 지도의 중심좌표
+	        center: new kakao.maps.LatLng(${vo.lat}, ${vo.lng}), // 지도의 중심좌표
 	        level: 3 // 지도의 확대 레벨
 	    };
 	
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 	
 	// 마커가 표시될 위치입니다 
-	var markerPosition  = new kakao.maps.LatLng(${vo.latitude}, ${vo.longitude}); 
+	var markerPosition  = new kakao.maps.LatLng(${vo.lat}, ${vo.lng}); 
 	
 	// 마커를 생성합니다
 	var marker = new kakao.maps.Marker({

@@ -1,5 +1,6 @@
 package com.spring.javaweb12S.service;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +22,23 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageConfig;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.spring.javaweb12S.dao.DbShopDAO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbCartVO;
+import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOptionVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbPointVO;
 import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
+import com.spring.javaweb12S.vo.MemberVO;
 import com.spring.javaweb12S.vo.WishVO;
 
 @Service
@@ -558,6 +568,73 @@ public class DbShopServiceImpl implements DbShopService {
 		}
 		return res;
 	}
+
+	// 원데이클래스 예약 저장, 큐알코드 생성
+	@Override
+	public String onedayClassInput(String mid, String className, String store, String wDate, int memberNum, String classTemp, String realPath) {
+	// qr코드명은 "" 만들어준다.
+			String qrCodeName = "";
+			
+			try {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				UUID uid = UUID.randomUUID();
+				String strUid = uid.toString().substring(0,4);
+				qrCodeName = sdf.format(new Date()) + "_" + strUid;
+				
+				File file = new File(realPath);
+				if(!file.exists()) file.mkdirs();
+				
+				String qrTemp = new String(classTemp.getBytes("UTF-8"), "ISO-8859-1");
+				
+				// qr코드 만들기
+				int qrCodeColor = 0xFF000000; 		// qr코드 전경색(글자색) - 검정
+				int qrCodeBackColor = 0xFFFFFFFF; // qr코드 배경색(바탕색) - 흰색
+				
+				QRCodeWriter qrCodeWriter = new QRCodeWriter();	// QR 코드 객체 생성
+				BitMatrix bitMatrix = qrCodeWriter.encode(qrTemp, BarcodeFormat.QR_CODE, 200, 200);
+				
+				MatrixToImageConfig matrixToImageConfig = new MatrixToImageConfig(qrCodeColor, qrCodeBackColor);
+				BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix, matrixToImageConfig);
+				
+				// ImageIO객체를 이용하면 byte배열단위로 변환없이 바로 파일을 write 시킬 수 있다.
+				ImageIO.write(bufferedImage, "png", new File(realPath + qrCodeName + ".png"));
+				
+				// 생성된 QR코드의 정보를 DB에 저장한다.
+				String QrCodeName = qrCodeName + ".png";
+				dbShopDAO.setOnedayClassInput(mid, className, store, wDate, memberNum,classTemp,QrCodeName);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (WriterException e) {
+				e.printStackTrace();
+			}
+			return "";
+	}
+
+	@Override
+	public List<DbOnedayClassVO> getMyOnedayClass(String mid) {
+		return dbShopDAO.getMyOnedayClass(mid);
+	}
+
+	@Override
+	public List<MemberVO> getClassValidMember() {
+		return dbShopDAO.getClassValidMember();
+	}
+
+	@Override
+	public DbOnedayClassVO getOnedayClassOne(int idx) {
+		return dbShopDAO.getOnedayClassOne(idx);
+	}
+
+	@Override
+	public List<DbReviewVO> getAllReviewList() {
+		return dbShopDAO.getAllReviewList();
+	}
+
+	@Override
+	public void setOptionUpdate(int idx, String optionName, int optionPrice, int optionStock) {
+		dbShopDAO.setOptionUpdate(idx, optionName,optionPrice,optionStock);
+	}
+
 
 
 

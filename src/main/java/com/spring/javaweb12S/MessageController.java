@@ -84,7 +84,7 @@ public class MessageController {
 			model.addAttribute("url", "/member/memberLogin");
 		}
 		else if(msgFlag.equals("adminNo")) {
-			model.addAttribute("msg", "관리자가 아니시군요. 확인해 보세요.");
+			model.addAttribute("msg", "관리자만 사용할 수 있는 메뉴입니다.");
 			model.addAttribute("url", "/");
 		}
 		else if(msgFlag.equals("memberNo")) {
@@ -249,11 +249,39 @@ public class MessageController {
 		}
 		else if(msgFlag.equals("productModifyOk")) {
 			model.addAttribute("msg", "상품이 수정되었습니다.");
-			model.addAttribute("url", "dbShop/dbProduct");
+			model.addAttribute("url", "dbShop/dbShopList");
 		}
 		else if(msgFlag.equals("productModifyNo")) {
 			model.addAttribute("msg", "상품 수정에 실패하였습니다.");
 			model.addAttribute("url", "dbShop/productModify");
+		}
+		else if(msgFlag.equals("noticeInputOk")) {
+			model.addAttribute("msg", "공지가 등록되었습니다.");
+			model.addAttribute("url", "admin/adminNoticeList");
+		}
+		else if(msgFlag.equals("noticeInputNo")) {
+			model.addAttribute("msg", "공지 등록에 실패하였습니다.");
+			model.addAttribute("url", "admin/adminNoticeInput");
+		}
+		else if(msgFlag.equals("noticeUpdateOk")) {
+			model.addAttribute("msg", "공지가 수정되었습니다.");
+			model.addAttribute("url", "admin/adminNoticeList");
+		}
+		else if(msgFlag.equals("noticeUpdateNo")) {
+			model.addAttribute("msg", "공지 수정에 실패하였습니다.");
+			model.addAttribute("url", "admin/noticeUpdate");
+		}
+		else if(msgFlag.equals("noticeDeleteOk")) {
+			model.addAttribute("msg", "공지를 삭제하였습니다.");
+			model.addAttribute("url", "admin/adminNoticeList");
+		}
+		else if(msgFlag.equals("noticeDeleteOk")) {
+			model.addAttribute("msg", "공지를 삭제하였습니다.");
+			model.addAttribute("url", "admin/adminNoticeList");
+		}
+		else if(msgFlag.equals("noticeDeleteNo")) {
+			model.addAttribute("msg", "공지 삭제에 실패하였습니다.");
+			model.addAttribute("url", "admin/noticeDelete");
 		}
 		
 		

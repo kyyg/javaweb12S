@@ -7,12 +7,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbCartVO;
+import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOptionVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbPointVO;
 import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
+import com.spring.javaweb12S.vo.MemberVO;
 import com.spring.javaweb12S.vo.WishVO;
 
 public interface DbShopDAO {
@@ -158,6 +160,23 @@ public interface DbShopDAO {
 	public List<DbReviewVO> getUserReivew(@Param("mid") String mid);
 
 	public int productModifyOk(@Param("vo")DbProductVO vo);
+
+	public void setOnedayClassInput(@Param("mid")String mid, @Param("className") String className, @Param("store")String store, @Param("wDate")String wDate, @Param("memberNum")int memberNum, @Param("classTemp")String classTemp,
+			@Param("qrCodeName")String qrCodeName);
+
+	public List<DbOnedayClassVO> getMyOnedayClass(@Param("mid") String mid);
+
+	public List<MemberVO> getClassValidMember();
+
+	public DbOnedayClassVO getOnedayClassOne(@Param("idx") int idx);
+
+	public List<DbReviewVO> getAllReviewList();
+
+	public void setOptionUpdate(@Param("idx")int idx, @Param("optionName")String optionName, @Param("optionPrice")int optionPrice, @Param("optionStock")int optionStock);
+
+	
+
+
 	
 	
 

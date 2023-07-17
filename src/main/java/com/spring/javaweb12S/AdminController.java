@@ -24,8 +24,11 @@ import com.spring.javaweb12S.service.NoticeService;
 import com.spring.javaweb12S.vo.BoardReplyVO;
 import com.spring.javaweb12S.vo.BoardVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
+import com.spring.javaweb12S.vo.DbOnedayClassVO;
+import com.spring.javaweb12S.vo.DbOptionVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
+import com.spring.javaweb12S.vo.DbReviewVO;
 import com.spring.javaweb12S.vo.GoodVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 import com.spring.javaweb12S.vo.MemberVO;
@@ -57,6 +60,22 @@ public class AdminController {
 	@RequestMapping(value = "/adminMain", method = RequestMethod.GET)
 	public String adminMain() {
 		return "admin/adminMain";
+	}
+	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String indexGet() {
+		return "admin/index";
+	}
+	
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginGet() {
+		return "admin/login";
+	}
+	
+	@RequestMapping(value = "/cards", method = RequestMethod.GET)
+	public String cardsGet() {
+		return "admin/cards";
 	}
 	
 	@RequestMapping(value = "/adminLeft", method = RequestMethod.GET)
@@ -495,21 +514,21 @@ public class AdminController {
 	// kakaomap 클릭한 위치에 마커표시하기(DB저장)
 	@ResponseBody
 	@RequestMapping(value = "/kakaomap/kakaoRegistration", method = RequestMethod.POST)
-	public String storeRegistrationPost(String address, double latitude, double longitude) {
-		adminService.setKakaoAddressInput(address,latitude,longitude);
+	public String storeRegistrationPost(String store_name, double lat, double lng, String detail_address,String rode_address,String store_tel) {
+		adminService.setKakaoAddressInput(store_name,lat,lng,detail_address,rode_address,store_tel);
 		return "1";
 	}
 	
 	// 카카오맵 저장한거 보기, 삭제하기...
 	@RequestMapping(value = "/kakaomap/kakaoStoreList", method = RequestMethod.GET)
 	public String storeListGet(Model model,
-			@RequestParam(name="address", defaultValue = "그라운드시소 명동", required=false) String address) {
-		KakaoAddressVO vo = adminService.getKakaoAddressName(address);
+			@RequestParam(name="store_name", defaultValue = "공원", required=false) String store_name) {
+		KakaoAddressVO vo = adminService.getKakaoAddressName(store_name);
 		List<KakaoAddressVO> vos = adminService.getKakaoAddressList();
 		
 		model.addAttribute("vo", vo);
 		model.addAttribute("vos", vos);
-		model.addAttribute("address", address);
+		model.addAttribute("store_name", store_name);
 		
 		return "admin/kakaomap/kakaoStoreList";
 	}
@@ -521,6 +540,85 @@ public class AdminController {
 		adminService.setKakaoAddressDelete(address);
 		return "";
 	}
+	
+	// 관리자 리뷰 화면
+	@RequestMapping(value = "/adminReviewList", method = RequestMethod.GET)
+	public String adminReviewListGet(Model model) {
+		List<DbReviewVO> vos = dbShopService.getAllReviewList();
+		model.addAttribute("vos",vos);
+		return "admin/dbShop/adminReviewList";
+	}
+	
+	// 관리자 리뷰  다중 삭제
+	@ResponseBody
+	@RequestMapping(value = "/reviewDelete", method = RequestMethod.POST)
+	public String reviewDeletePost(Model model, String idxs) {
+		String[] idxMulti = idxs.split("/");
+		for (int i = 0; i < idxMulti.length; i++) {
+			adminService.setReviewDelete(Integer.parseInt(idxMulti[i]));
+		}
+		return "1";
+	}
+	
+	// 관리자 문의 다중 삭제
+	@ResponseBody
+	@RequestMapping(value = "/boardDelete", method = RequestMethod.POST)
+	public String boardDeletePost(Model model, String idxs) {
+		String[] idxMulti = idxs.split("/");
+		for (int i = 0; i < idxMulti.length; i++) {
+			adminService.setBoardDelete(Integer.parseInt(idxMulti[i]));
+		}
+		return "1";
+	}
+	
+	// 관리자 문의 다중 삭제
+	@ResponseBody
+	@RequestMapping(value = "/noticeDelete", method = RequestMethod.POST)
+	public String noticeDeletePost(Model model, String idxs) {
+		String[] idxMulti = idxs.split("/");
+		for (int i = 0; i < idxMulti.length; i++) {
+			adminService.setNoticeDelete(Integer.parseInt(idxMulti[i]));
+		}
+		return "1";
+	}
+	
+	// 관리자 문의 다중 삭제
+	@ResponseBody
+	@RequestMapping(value = "/onedayClassDelete", method = RequestMethod.POST)
+	public String onedayClassDeletePost(Model model, String idxs) {
+		String[] idxMulti = idxs.split("/");
+		for (int i = 0; i < idxMulti.length; i++) {
+			adminService.setOnedayClassDelete(Integer.parseInt(idxMulti[i]));
+		}
+		return "1";
+	}
+	
+	// 관리자 원데이클래스 화면
+	@RequestMapping(value = "/adminOnedayClass", method = RequestMethod.GET)
+	public String adminOnedayClassGet(Model model) {
+		List<DbOnedayClassVO> vos = adminService.getAllOnedayClassList();
+		model.addAttribute("vos",vos);
+		return "admin/dbShop/adminOnedayClass";
+	}
+	
+	// 관리자 상품 옵션 새창보기
+	@RequestMapping(value = "/adminOptionNew", method = RequestMethod.GET)
+	public String adminOptionNewGet(Model model, int idx) {
+		int productIdx = idx;
+		List<DbOptionVO> vos = dbShopService.getOptionList(productIdx);
+		model.addAttribute("vos",vos);
+		System.out.println("adminOptionNew : " + vos);
+		return "admin/dbShop/adminOptionNew";
+	}
+	
+	// 관리자 옵션내역 수정
+	@ResponseBody
+	@RequestMapping(value = "/optionUpdate", method = RequestMethod.POST)
+	public String optionUpdatePost(int idx, String optionName, int optionPrice, int optionStock) {
+		dbShopService.setOptionUpdate(idx,optionName,optionPrice,optionStock);
+		return "1";
+	}
+	
 	
 	
 	

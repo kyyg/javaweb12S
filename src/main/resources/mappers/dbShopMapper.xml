@@ -256,7 +256,25 @@
 		select * from dbReview where mid = #{mid};
 	</select>
 	
+	<select id="getMyOnedayClass" resultType="com.spring.javaweb12S.vo.DbOnedayClassVO">
+		select * from dbOnedayClass where mid = #{mid} order by idx desc;
+	</select>
 	
+	<select id="getClassValidMember" resultType="com.spring.javaweb12S.vo.MemberVO">
+		select mem.mid as validMember from member mem
+		join dbbaesong bs on mem.mid = bs.mid
+		where bs.orderDate >= date_sub(now(), interval 3 month)
+		group by mem.mid
+		having sum(bs.orderTotalPrice) >= 1000;
+	</select>
+	
+	<select id="getOnedayClassOne" resultType="com.spring.javaweb12S.vo.DbOnedayClassVO">
+		select * from dbOnedayClass where idx = #{idx};
+	</select>
+	
+	<select id="getAllReviewList" resultType="com.spring.javaweb12S.vo.DbReviewVO">
+		select * from dbReview order by idx desc;
+	</select>
 	
 	
 	
@@ -307,6 +325,13 @@
   	insert into dbReview values (default, #{vo.productIdx},#{vo.productName}, #{vo.mid},#{vo.title},#{vo.content},#{vo.fSName},#{vo.score},default);
   </insert>
   
+  <insert id="setOnedayClassInput">
+  	insert into dbOnedayClass values (default, #{mid},#{className},#{store},#{wDate},#{memberNum},#{qrCodeName});
+  </insert>
+  
+  
+  
+  
   
   
   
@@ -349,6 +374,10 @@
   
   <update id="productModifyOk">
   	update dbProduct set productName=#{vo.productName},detail=#{vo.detail},mainPrice=#{vo.mainPrice},fSName=#{vo.fSName} where idx=#{vo.idx};
+  </update>
+  
+  <update id="setOptionUpdate">
+  	update dbOption set optionName=#{optionName},optionPrice=#{optionPrice},optionStock=#{optionStock} where idx = #{idx};
   </update>
   
   

@@ -3,20 +3,20 @@
 <mapper namespace="com.spring.javaweb12S.dao.AdminDAO">
   
   <select id="getKakaoAddressName" resultType="com.spring.javaweb12S.vo.KakaoAddressVO">
-    select * from kakaoAddress where address = #{address};
+    select * from kakaoAddress where store_name = #{store_name};
   </select>
   
   <select id="getKakaoAddressList" resultType="com.spring.javaweb12S.vo.KakaoAddressVO">
-    select * from kakaoAddress order by address;
+    select * from kakaoAddress order by store_name;
   </select>
   
   
   <insert id="setKakaoAddressInput">
-    insert into kakaoAddress values (#{address}, #{latitude}, #{longitude});
+    insert into kakaoAddress values (#{lat}, #{lng}, #{store_name},#{detail_address},#{rode_address},#{store_tel});
   </insert>
   
   
   <delete id="setKakaoAddressDelete">
-  	delete from kakaoAddress where address = #{address};
+  	delete from kakaoAddress where store_name = #{store_name};
   </delete>
 </mapper>

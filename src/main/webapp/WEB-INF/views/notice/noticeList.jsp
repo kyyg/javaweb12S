@@ -36,7 +36,7 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
 <div class="container">
-  <h2 class="text-center">공지 게시판</h2>
+  <h2 class="text-center">공지</h2>
   <table class="table table-borderless">
     <tr>
      <%--  <td><c:if test="${sLevel == 0}"><a href="${ctp}/notice/noticeInput" class="btn btn-outline-dark btn-sm">공지 작성</a></c:if></td> --%>
@@ -66,7 +66,7 @@
 	    <c:if test="${vo.fixed == 'on'}">
 	     <tr  class="table-dark text-dark">
 	       <td><span class="badge badge-danger">공지</span></td>
-	       <td class="text-left">
+	       <td class="text-center">
 	         <a href="${ctp}/notice/noticeContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}"><b>${vo.title}</b></a>
 	       </td>
 	       <td>${vo.nickName}</td>
@@ -86,7 +86,7 @@
   	  <c:set var="curScrStartNo" value="${vo.idx}" />
 	     <tr>
 	       <td>${curScrStartNo}</td>
-	       <td class="text-left">
+	       <td class="text-center" style="width:50%">
 	         <a href="${ctp}/notice/noticeContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}">${vo.title}</a>
 	       </td>
 	       <td>${vo.nickName}</td>

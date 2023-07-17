@@ -10,7 +10,7 @@
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<body style="background-color:black; font-size:0.8em;">
+<body style="background-color:#476cd9; font-size:0.8em;">
 <p><br/></p>
 <div class="w3-animate-right">
 <div class="text-center card-hover" id="accordion">
@@ -20,7 +20,7 @@
 	<br/>
 
   <div class="card">
-    <div class="card-header bg-white m-0 p-2">
+    <div class="card-header bg-blue m-0 p-2" >
       <a class="card-link" data-toggle="collapse" href="#collapse1">
         회원 관리
       </a>

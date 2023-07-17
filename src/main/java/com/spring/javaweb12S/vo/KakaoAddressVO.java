@@ -5,7 +5,11 @@ import lombok.Data;
 @Data
 public class KakaoAddressVO {
 
-	private String address;
-	private double latitude;
-	private double longitude;
+
+	private double lat;
+	private double lng;
+	private String store_name;
+	private String detail_address;
+	private String rode_address;
+	private String store_tel;
 }

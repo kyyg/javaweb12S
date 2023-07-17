@@ -22,7 +22,8 @@ public class MemberVO {
 	private String lastDate;
 	private int todayCnt;
 	
-	private String hobbys;
 	private int deleteDiff;
+	
+	private String validMember;
 	
 }

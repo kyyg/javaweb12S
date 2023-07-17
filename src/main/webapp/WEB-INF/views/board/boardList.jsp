@@ -43,7 +43,7 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
 <div class="container">
-  <h2 class="text-center">문의 게시판</h2>
+  <h2 class="text-center">문의</h2>
   <table class="table table-borderless">
       <tr>
       <td style="width:20%" class="text-left">
