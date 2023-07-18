@@ -29,6 +29,7 @@ import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOptionVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
+import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
 import com.spring.javaweb12S.vo.GoodVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
@@ -64,16 +65,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
-	public String aboutGet(Model model,
-			@RequestParam(name="store_name", defaultValue = "공원", required=false) String store_name) {
-		
-		KakaoAddressVO vo = adminService.getKakaoAddressName(store_name);
-		List<KakaoAddressVO> vos = adminService.getKakaoAddressList();
-		
-		model.addAttribute("vo", vo);
-		model.addAttribute("vos", vos);
-		model.addAttribute("store_name", store_name);
-		
+	public String aboutGet() {
 		return "admin/about";
 	}
 	
@@ -109,6 +101,7 @@ public class AdminController {
 		model.addAttribute("weekCancel",weekCancel);
 		model.addAttribute("weekBoard",weekBoard);
 		model.addAttribute("weekClass",weekClass);
+		
 		return "admin/index";
 	}
 	
@@ -663,6 +656,23 @@ public class AdminController {
 		dbShopService.setOptionUpdate(idx,optionName,optionPrice,optionStock);
 		return "1";
 	}
+	
+	
+	// 오시는길 페이지
+	@RequestMapping(value = "/offlineStore", method = RequestMethod.GET)
+	public String offlineStoreGet(Model model,
+			@RequestParam(name="store_name", defaultValue = "공원", required=false) String store_name) {
+		
+		KakaoAddressVO vo = adminService.getKakaoAddressName(store_name);
+		List<KakaoAddressVO> vos = adminService.getKakaoAddressList();
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("vos", vos);
+		model.addAttribute("store_name", store_name);
+		return "admin/offlineStore";
+	}
+	
+	
 	
 	
 	

@@ -164,6 +164,8 @@ public interface DbShopService {
 	public void setOptionUpdate(int idx, String optionName, int optionPrice, int optionStock);
 
 
+
+
 	 
 	 
 }

@@ -90,8 +90,8 @@ nav li {
   <ul class="nav justify-content-end">
 	  <li class="nav-item dropdown">
     <c:if test="${sLevel == 0}">
-			<a class="nav-link" href="${ctp}/admin/adminMain" style="color: white; background-color: black;">ADMIN PAGE</a>
-			<a class="nav-link" href="${ctp}/admin/index" style="color: white; background-color: black;">ADMIN PAGE2</a>
+			<a class="nav-link" href="${ctp}/admin/index" style="color: white; background-color: black;">ADMIN</a>
+			<a class="nav-link" href="${ctp}/admin/adminMain"></a>
     </c:if>
 		</li>
   <c:if test="${level <= 4}">
@@ -149,7 +149,7 @@ nav li {
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item text-center" href="${ctp}/notice/noticeList">NOTICE</a>
 	      <a class="dropdown-item text-center" href="${ctp}/board/boardList">Q&A</a>
-	      <a class="dropdown-item text-center" href="${ctp}/board/boardList">Offline Store</a>
+	      <a class="dropdown-item text-center" href="${ctp}/admin/offlineStore">Offline Store</a>
 	   </div>
 	   </li>
 	</ul>

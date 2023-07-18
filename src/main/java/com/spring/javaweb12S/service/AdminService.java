@@ -8,6 +8,7 @@ import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
+import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 
 public interface AdminService {
@@ -51,5 +52,9 @@ public interface AdminService {
 	public int getWeekBoard();
 
 	public int getWeekClass();
+
+	public List<DbProductVO> getNewProduct();
+
+	public List<DbProductVO> getNewProduct3();
 
 }

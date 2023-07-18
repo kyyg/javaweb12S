@@ -9,6 +9,16 @@
   <meta charset="UTF-8">
   <title>dbProduct.jsp(상품등록)</title>
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
+	<style>
+		#menu {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  width: 225px;
+		  height: 1000px;
+		  background-color: #476cd9;
+		}
+	</style>
   <script src="${ctp}/ckeditor/ckeditor.js"></script>
   <script>
     'use strict';
@@ -83,6 +93,103 @@
 </head>
 <body>
 <br/>
+<div class="menu" id="menu">
+	<div class="text-center card-hover" id="accordion">
+  <h5 class="text-white"><a href="${ctp}/admin/index">관리자</a></h5>
+  <hr/>
+  <p><a href="${ctp}/" target="_top" class="text-white">메인화면으로</a></p>
+	<br/>
+
+  <div class="card">
+    <div class="card-header bg-blue m-0 p-2" >
+      <a class="card-link" data-toggle="collapse" href="#collapse1">
+        회원 관리
+      </a>
+    </div>
+    <div id="collapse1" class="collapse" data-parent="#accordion">	<!-- 처음부터 메뉴 보이게 하려면?  class="collapse show" -->
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/admin/adminMemberList" target="adminContent">회원 리스트</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header bg-white m-0 p-2">
+      <a class="card-link" data-toggle="collapse" href="#collapse2">
+        주문 관리
+      </a>
+    </div>
+    <div id="collapse2" class="collapse" data-parent="#accordion">	
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/admin/adminOrder" target="adminContent">전체 주문목록</a>
+      </div>
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/admin/adminCancelOrder" target="adminContent">취소/환불 목록</a>
+      </div>
+    </div>
+  </div>
+  
+    <div class="card">
+    <div class="card-header bg-white m-0 p-2">
+      <a class="card-link" data-toggle="collapse" href="#collapse3">
+        상품관리
+      </a>
+    </div>
+    <div id="collapse3" class="collapse" data-parent="#accordion">	
+     <div class="card-body m-2 p-1">
+        <a href="${ctp}/dbShop/dbCategory" target="adminContent">상품분류등록</a>
+      </div>
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/dbShop/dbProduct" target="adminContent">상품등록관리</a>
+      </div>
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/dbShop/dbShopList" target="adminContent">상품등록조회</a>
+      </div>
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/dbShop/dbOption" target="adminContent">옵션등록관리</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-header bg-white m-0 p-2">
+      <a class="card-link" data-toggle="collapse" href="#collapse4">
+        게시판 관리
+      </a>
+    </div>
+    <div id="collapse4" class="collapse" data-parent="#accordion">	<!-- 처음부터 메뉴 보이게 하려면?  class="collapse show" -->
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/admin/adminNoticeList" target="adminContent">공지 게시판</a>
+      </div>
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/admin/adminBoardList" target="adminContent">문의 게시판</a>
+      </div>
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/admin/adminReviewList" target="adminContent">리뷰 게시판</a>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="card">
+    <div class="card-header bg-white m-0 p-2">
+      <a class="card-link" data-toggle="collapse" href="#collapse5">
+        오프라인매장 관리
+      </a>
+    </div>
+    <div id="collapse5" class="collapse" data-parent="#accordion">	<!-- 처음부터 메뉴 보이게 하려면?  class="collapse show" -->
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/admin/kakaomap/storeRegistration" target="adminContent">매장 등록</a>
+      </div>
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/admin/kakaomap/kakaoStoreList" target="adminContent">매장 확인/삭제</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 <div class="container">
   <div id="product">
     <h3>상품등록</h3>

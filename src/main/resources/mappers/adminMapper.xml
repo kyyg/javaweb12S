@@ -64,7 +64,13 @@
 		select count(*) from dbOnedayClass where WDate between date_sub(now(), interval 7 day) and now();
 	</select>
 
-
+	<select id="getNewProduct" resultType="com.spring.javaweb12S.vo.DbProductVO">
+		select * from dbProduct order by idx desc; 
+	</select>
+	
+	<select id="getNewProduct3" resultType="com.spring.javaweb12S.vo.DbProductVO">
+		select * from dbProduct order by idx desc limit 3; 
+	</select>
 
 
 

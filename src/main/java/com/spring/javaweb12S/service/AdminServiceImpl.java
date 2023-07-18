@@ -12,6 +12,7 @@ import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
+import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 
 @Service
@@ -118,6 +119,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int getWeekClass() {
 		return adminDAO.getWeekClass();
+	}
+
+	@Override
+	public List<DbProductVO> getNewProduct() {
+		return adminDAO.getNewProduct();
+	}
+
+	@Override
+	public List<DbProductVO> getNewProduct3() {
+		return adminDAO.getNewProduct3();
 	}
 	
 	

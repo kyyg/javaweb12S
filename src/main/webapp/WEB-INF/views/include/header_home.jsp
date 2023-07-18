@@ -10,9 +10,7 @@
 
 <style>
 .item {
-		width: 250px;
-		height: 300px;
-		margin: 30px;
+		margin: 20px;
 	}
 	.item:hover {
 		transform: scale(1.05);
@@ -70,7 +68,7 @@ display : grid;
 	  <!-- The slideshow -->
 	  <div class="carousel-inner text-center" style="z-index:0">
 	    <div class="carousel-item active" style="z-index:0">
-	      <img src="${ctp}/images/crs0.jpg" class="w3-round" width="70%" width="800px"; height="700px">
+	      <img src="${ctp}/images/crs0.jpg" class="w3-circle" width="70%" width="800px"; height="700px">
 	      <div class="carousel-caption" style="width:100%">
 	      </div>   
 	    </div>
@@ -94,43 +92,71 @@ display : grid;
 <p><br/></p>
 <p><br/></p>
 <p><br/></p>
-
-   <div class="owl-carousel owl-theme" style="">
-		<div class="item"><img src="${ctp}/images/crs1.jpg" /></div>
-		<div class="item"><img src="${ctp}/images/crs1.jpg" /></div>
-		<div class="item"><img src="${ctp}/images/crs1.jpg" /></div>
-   </div>
-
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
 <div class="container text-center">
-	<span>
-		<iframe width="1200" height=700" src="https://www.youtube.com/embed/0Z2_08ryoQc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
-	</span>
+	<div class="owl-carousel owl-theme">
+		<c:forEach var="vo" items="${newVOS}">
+    	<div class="item">
+    		<a href="${ctp}/dbShop/dbProductContent?idx=${vo.idx}">
+	    		<img src="${ctp}/dbShop/product/${vo.FSName}" class="w3-round" width=350px; height=230px;><br/>
+    		</a>
+    	</div>
+		</c:forEach>
+	</div>
+</div>
+<p><br/></p>
+<p><br/></p>
+<div class="container text-center" style="width:1000px; margin:0 auto;">
+	<h3 class="mb-5">NEW ITEM</h3>
+	<table> 
+		<tr>
+		<c:forEach var="vo" items="${newVOS3}">
+			<td class="mr-5">
+		 		<img src="${ctp}/dbShop/product/${vo.FSName}" class="w3-round mb-2" width=300px; height=300px; /><br/>
+		 		<span class="text-center">${vo.productName}</span><br/>
+		 		<span class="text-center">${vo.mainPrice}원</span><br/>
+			</td>
+			<td class="mr-5 pr-5"></td>
+  	</c:forEach>
+		</tr>		
+	</table>
+</div>
+<p><br/></p>
+<p><br/></p>
+
+<div class="container text-center" style="width:1000px; margin:0 auto;">
+	<h3 class="mb-5">BEST ITEM</h3>
+	<table> 
+		<tr>
+		<c:forEach var="vo" items="${newVOS3}">
+			<td class="mr-5">
+		 		<img src="${ctp}/dbShop/product/${vo.FSName}" class="w3-round mb-2" width=300px; height=300px; /><br/>
+		 		<span class="text-center">${vo.productName}</span><br/>
+		 		<span class="text-center">${vo.mainPrice}원</span><br/>
+			</td>
+			<td class="mr-5 pr-5"></td>
+  	</c:forEach>
+		</tr>		
+	</table>
 </div>
 <p><br/></p>
 <p><br/></p>
 <p><br/></p>
+
+
 <script>
-		$('.owl-carousel').owlCarousel({
-		    stagePadding: 100,
-		    loop:true,
-		    margin:0,
-		    nav:true,
-		    autoplay:true,
-		    autoplayTimeout:2000,
-		    autoplayHoverPause:true,
-		    responsive:{
-		        0:{
-		            items:1
-		        },
-		        600:{
-		            items:3
-		        },
-		        1000:{
-		            items:6
-		        }
-		    }
-		})
+var owl = $('.owl-carousel');
+owl.owlCarousel({
+    items:4,
+    loop:true,
+    margin:10,
+    autoplay:true,
+    autoplayTimeout:2000,
+    autoplayHoverPause:true
+});
+$('.play').on('click',function(){
+    owl.trigger('play.owl.autoplay',[2000])
+})
+$('.stop').on('click',function(){
+    owl.trigger('stop.owl.autoplay')
+})
 	</script>
