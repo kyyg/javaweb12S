@@ -10,6 +10,19 @@
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
   <style>
 	</style>
+	<script>
+	'use strict'
+	
+	// 새창띄우기
+/*  	window.addEventListener("DOMContentLoaded", function() {
+ 		  let url = "${ctp}/dbShop/eventNew";
+ 		  let winName = "winName";
+ 		  let opt = "width=" + 350 + ", height=" + 400 + ", left=" + 150 + ", top=" + 100;
+ 		  window.open(url, winName, opt);
+ 		}); */
+    	
+
+	</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />

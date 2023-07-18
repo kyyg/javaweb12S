@@ -65,6 +65,13 @@ public class DbShopController {
 	BoardService boardService;
 
 	/* 아래로 관리자에서의 처리부분들 */
+	
+	// 관리자 상품 옵션 새창보기
+	@RequestMapping(value = "/eventNew", method = RequestMethod.GET)
+	public String eventNewGet() {
+		return "dbShop/eventNew";
+	}
+	
 
 	// 대/중 분류 폼 보기
 	@RequestMapping(value = "/dbCategory", method = RequestMethod.GET)

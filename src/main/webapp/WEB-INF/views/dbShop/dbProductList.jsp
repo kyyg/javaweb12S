@@ -9,6 +9,7 @@
 <head>
   <meta charset="UTF-8">
   <title>dbProductList.jsp</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
 	<script src="https://kit.fontawesome.com/607fa85cf6.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -125,7 +126,7 @@
        <div style="text-align:center">
          <a href="${ctp}/dbShop/dbProductContent?idx=${vo.idx}">
          	<c:if test="${vo.productStatus == '품절'}">
-           	<img src="${ctp}/dbShop/product/${vo.FSName}" width="330px" height="330px" style="opacity:40%" />
+           	<img src="${ctp}/dbShop/product/${vo.FSName}" class="w3-grayscale-max" width="330px" height="330px" style="opacity:40%" />
             	<div class="mt-2"><font size="2">${vo.productName}<span class="badge badge-danger ml-1">품절</span></font></div>
            </c:if>
          	<c:if test="${vo.productStatus != '품절'}">

@@ -126,7 +126,7 @@ nav li {
 <nav id="mainnav" class="navbar-light bg-white">
   <ul class="nav justify-content-center">
 	 <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn mr-5" href="#"><a href="#">ABOUT</a></div>
+	    <div class="nav-link dropbtn mr-5" ><a href="${ctp}/admin/about">ABOUT</a></div>
 	  </li>
 	   <li class="nav-item dropdown">
 	    <div class="nav-link dropbtn ml-4 mr-5 text-center">&nbsp;<a href="${ctp}/dbShop/dbProductList">STORE</a></div>
@@ -149,7 +149,7 @@ nav li {
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item text-center" href="${ctp}/notice/noticeList">NOTICE</a>
 	      <a class="dropdown-item text-center" href="${ctp}/board/boardList">Q&A</a>
-	      <%-- <a class="dropdown-item text-center" href="${ctp}/pds/pdsList">pds</a> --%>
+	      <a class="dropdown-item text-center" href="${ctp}/board/boardList">Offline Store</a>
 	   </div>
 	   </li>
 	</ul>

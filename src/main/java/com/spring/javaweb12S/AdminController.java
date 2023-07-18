@@ -63,6 +63,20 @@ public class AdminController {
 		return "admin/adminMain";
 	}
 	
+	@RequestMapping(value = "/about", method = RequestMethod.GET)
+	public String aboutGet(Model model,
+			@RequestParam(name="store_name", defaultValue = "공원", required=false) String store_name) {
+		
+		KakaoAddressVO vo = adminService.getKakaoAddressName(store_name);
+		List<KakaoAddressVO> vos = adminService.getKakaoAddressList();
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("vos", vos);
+		model.addAttribute("store_name", store_name);
+		
+		return "admin/about";
+	}
+	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String indexGet(Model model) {
 		// 3D 도넛 차트
@@ -74,6 +88,27 @@ public class AdminController {
 		List<ChartVO> vos2 = adminService.getChart3();
 		model.addAttribute("chart3VOS",vos2);
 		
+		// 새로운 주문 / 새로운 취소 / 새로운 문의글 / 재고관리 (3건씩)
+		List<DbBaesongVO> order4VOS = adminService.getOrder4(); 
+		List<DbOrderCancelVO> cancelorder4VOS = adminService.getCancelOrder4(); 
+		List<BoardVO> baord4VOS = adminService.getBoard4(); 
+		List<DbOnedayClassVO> class4VOS = adminService.getclass4(); 
+		
+		model.addAttribute("order4VOS",order4VOS);
+		model.addAttribute("cancelorder4VOS",cancelorder4VOS);
+		model.addAttribute("baord4VOS",baord4VOS);
+		model.addAttribute("class4VOS",class4VOS);
+		
+		// 주간 주문량 / 반품환불 / 문의 / 클래스
+		int weekOrder = adminService.getWeekOrder();
+		int weekCancel = adminService.getWeekCancel();
+		int weekBoard = adminService.getWeekBoard();
+		int weekClass = adminService.getWeekClass();
+		
+		model.addAttribute("weekOrder",weekOrder);
+		model.addAttribute("weekCancel",weekCancel);
+		model.addAttribute("weekBoard",weekBoard);
+		model.addAttribute("weekClass",weekClass);
 		return "admin/index";
 	}
 	
@@ -628,8 +663,6 @@ public class AdminController {
 		dbShopService.setOptionUpdate(idx,optionName,optionPrice,optionStock);
 		return "1";
 	}
-	
-	
 	
 	
 	

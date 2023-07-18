@@ -4,14 +4,15 @@
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
 	<link rel="stylesheet" href="${ctp}/css/owl.carousel.min.css">
 	<link rel="stylesheet" href="${ctp}/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<script src="${ctp}/js/owl.carousel.js"></script> 
 	<script src="${ctp}/js/owl.carousel.min.js"></script>
 
 <style>
 .item {
-		width: 200px;
-		height: 200px;
-		margin: 3px;
+		width: 250px;
+		height: 300px;
+		margin: 30px;
 	}
 	.item:hover {
 		transform: scale(1.05);
@@ -69,11 +70,11 @@ display : grid;
 	  <!-- The slideshow -->
 	  <div class="carousel-inner text-center" style="z-index:0">
 	    <div class="carousel-item active" style="z-index:0">
-	      <img src="${ctp}/images/crs0.jpg" width="80%" height="700px">
+	      <img src="${ctp}/images/crs0.jpg" class="w3-round" width="70%" width="800px"; height="700px">
 	      <div class="carousel-caption" style="width:100%">
 	      </div>   
 	    </div>
-	    <div class="carousel-item">
+	   <%--  <div class="carousel-item">
 	      <img src="${ctp}/images/crs1.jpg" width="80%" height="700px">
 	      <div class="carousel-caption" style="width:100%">
 	      </div>   
@@ -82,24 +83,19 @@ display : grid;
 	      <img src="${ctp}/images/crs2.jpg" width="80%" height="700px">
 	      <div class="carousel-caption" style="width:100%">
 	      </div>   
-	    </div>
+	    </div> --%>
 	  </div>
 	  <!-- Left and right controls -->
 	  <a class="carousel-control-prev" href="#demo" data-slide="prev">
 	    <span class="carousel-control-prev-icon"></span>
 	  </a>
-	  <a class="carousel-control-next" href="#demo" data-slide="next">
-	    <span class="carousel-control-next-icon"></span>
-	  </a>
-	  <a class="carousel-control-next" href="#demo" data-slide="next">
-	    <span class="carousel-control-next-icon"></span>
 	  </a>
 	</div>
 <p><br/></p>
 <p><br/></p>
 <p><br/></p>
 
-   <div class="owl-carousel owl-theme">
+   <div class="owl-carousel owl-theme" style="">
 		<div class="item"><img src="${ctp}/images/crs1.jpg" /></div>
 		<div class="item"><img src="${ctp}/images/crs1.jpg" /></div>
 		<div class="item"><img src="${ctp}/images/crs1.jpg" /></div>

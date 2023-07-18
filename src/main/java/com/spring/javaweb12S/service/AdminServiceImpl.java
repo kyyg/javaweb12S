@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.javaweb12S.dao.AdminDAO;
+import com.spring.javaweb12S.vo.BoardVO;
 import com.spring.javaweb12S.vo.ChartVO;
+import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
+import com.spring.javaweb12S.vo.DbOrderCancelVO;
+import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 
 @Service
@@ -74,6 +78,46 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<ChartVO> getChart3() {
 		return adminDAO.getChart3();
+	}
+
+	@Override
+	public List<DbBaesongVO> getOrder4() {
+		return adminDAO.getOrder4();
+	}
+
+	@Override
+	public List<DbOrderCancelVO> getCancelOrder4() {
+		return adminDAO.getCancelOrder4();
+	}
+
+	@Override
+	public List<BoardVO> getBoard4() {
+		return adminDAO.getBoard4();
+	}
+
+	@Override
+	public List<DbOnedayClassVO> getclass4() {
+		return adminDAO.getclass4();
+	}
+
+	@Override
+	public int getWeekOrder() {
+		return adminDAO.getWeekOrder();
+	}
+
+	@Override
+	public int getWeekCancel() {
+		return adminDAO.getWeekCancel();
+	}
+
+	@Override
+	public int getWeekBoard() {
+		return adminDAO.getWeekBoard();
+	}
+
+	@Override
+	public int getWeekClass() {
+		return adminDAO.getWeekClass();
 	}
 	
 	

@@ -68,8 +68,8 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                       주간 신규 주문</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">${weekOrder}</div>
+                                        신규 주문</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -86,8 +86,8 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        주간 취소/환불</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">${weekCancel}</div>
+                                        신규 취소/환불</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">215,000</div>
                                 </div>
                                 <div class="col-auto">
                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -103,11 +103,11 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">주간 클래스 예약
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">신규 클래스 예약
                                     </div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${weekClass}</div>
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">2</div>
                                         </div>
                                         <div class="col">
                                         </div>
@@ -128,8 +128,8 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                        주간 문의글</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">${weekBoard}</div>
+                                        새 문의글</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -144,8 +144,8 @@
             <!-- Content Row -->
 
 
-		<div class="row container-fluid pb-5 mb-5 mt-5" style="width:1500px; margin:0 auto;" >
-			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
+		<div class="row container pb-5 mb-5 mt-5" style="width:1200px;" >
+			<table style="width:400px; height:200px" class="table table-borderless table-hover mr-5">
 				<tr class="table-dark text-dark">
 					<td colspan="4">
 						<b>최근 주문 건</b> <a href="${ctp}/admin/adminOrder" class="badge badge-info text-right" >더보기</a> 
@@ -175,7 +175,7 @@
 			</table>
 			
 			
-			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
+			<table style="width:500px; height:200px" class="table table-borderless table-hover mr-5">
 				<tr class="table-dark text-dark">
 					<td colspan="4">
 						<b>최근 반품/환불 건</b> <a href="${ctp}/admin/adminCancelOrder" class="badge badge-info text-right" >더보기</a> 
@@ -205,36 +205,36 @@
 			</table>
 			
 			
-			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
+			<table style="width:400px; height:200px" class="table table-borderless table-hover mr-5">
 				<tr class="table-dark text-dark">
 					<td colspan="4">
-						<b>최근 예약 건</b> <a href="${ctp}/admin/adminOnedayClass" class="badge badge-info text-right" >더보기</a> 
+						<b>최근 문의 건</b> <a href="${ctp}/admin/adminBoardList" class="badge badge-info text-right" >더보기</a> 
 					</td>
 				</tr>			
 				<tr>
-					<td>${fn:substring(class4VOS[0].WDate,0,10)}</td>
-					<td>${class4VOS[0].mid}</td>
-					<td>${class4VOS[0].className}</td>
-					<td>${class4VOS[0].store}</td>
+					<td>${fn:substring(baord4VOS[0].WDate,0,10)}</td>
+					<td>${baord4VOS[0].mid}</td>
+					<td>${baord4VOS[0].title}</td>
+					<td>${baord4VOS[0].answer}</td>
 				</tr>
 				<tr><td class="p-0 m-0"></td></tr>			
 				<tr>
-					<td>${fn:substring(class4VOS[1].WDate,0,10)}</td>
-					<td>${class4VOS[1].mid}</td>
-					<td>${class4VOS[1].className}</td>
-					<td>${class4VOS[1].store}</td>
+					<td>${fn:substring(baord4VOS[1].WDate,0,10)}</td>
+					<td>${baord4VOS[1].mid}</td>
+					<td>${baord4VOS[1].title}</td>
+					<td>${baord4VOS[1].answer}</td>
 				</tr>			
 				<tr><td class="p-0 m-0"></td></tr>			
 				<tr>
-					<td>${fn:substring(class4VOS[2].WDate,0,10)}</td>
-					<td>${class4VOS[2].mid}</td>
-					<td>${class4VOS[2].className}</td>
-					<td>${class4VOS[2].store}</td>
+					<td>${fn:substring(baord4VOS[2].WDate,0,10)}</td>
+					<td>${baord4VOS[2].mid}</td>
+					<td>${baord4VOS[2].title}</td>
+					<td>${baord4VOS[2].answer}</td>
 				</tr>			
 				<tr><td class="p-0 m-0"></td></tr>			
 			</table>
 			
-			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
+			<table style="width:500px; height:200px" class="table table-borderless table-hover mr-5">
 				<tr class="table-dark text-dark">
 					<td colspan="4">
 						<b>최근 문의 건</b> <a href="${ctp}/admin/adminBoardList" class="badge badge-info text-right" >더보기</a> 
@@ -312,7 +312,7 @@
       chart.draw(data, google.charts.Bar.convertOptions(options));
     }
   </script>
-	  <span class="ml-5" id="donutchart" style="width: 700px; height: 400px; background-color:#eee;"></span> &nbsp;&nbsp;
+	  <span class="ml-5" id="donutchart" style="width: 700px; height: 400px;"></span> &nbsp;&nbsp;
 	  <span class="ml-5" id="columnchart_material" style="width: 700px; height: 400px;"></span>
       
 

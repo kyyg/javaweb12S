@@ -2,8 +2,12 @@ package com.spring.javaweb12S.service;
 
 import java.util.List;
 
+import com.spring.javaweb12S.vo.BoardVO;
 import com.spring.javaweb12S.vo.ChartVO;
+import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
+import com.spring.javaweb12S.vo.DbOrderCancelVO;
+import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 
 public interface AdminService {
@@ -31,5 +35,21 @@ public interface AdminService {
 	public List<ChartVO> getChart2();
 
 	public List<ChartVO> getChart3();
+
+	public List<DbBaesongVO> getOrder4();
+
+	public List<DbOrderCancelVO> getCancelOrder4();
+
+	public List<BoardVO> getBoard4();
+
+	public List<DbOnedayClassVO> getclass4();
+
+	public int getWeekOrder();
+
+	public int getWeekCancel();
+
+	public int getWeekBoard();
+
+	public int getWeekClass();
 
 }

@@ -32,6 +32,38 @@
 		order by month(cl.cancelDate);
 	</select>
 
+	<select id="getOrder4" resultType="com.spring.javaweb12S.vo.DbBaesongVO">
+		select * from dbbaesong order by idx desc limit 3;
+	</select>
+	
+	<select id="getCancelOrder4" resultType="com.spring.javaweb12S.vo.DbOrderCancelVO">
+		select * from dbOrderCancel order by idx desc limit 3;
+	</select>
+	
+	<select id="getBoard4" resultType="com.spring.javaweb12S.vo.BoardVO">
+		select * from board order by idx desc limit 3;
+	</select>
+	
+	<select id="getclass4" resultType="com.spring.javaweb12S.vo.DbOnedayClassVO">
+		select * from dbOnedayClass order by idx desc limit 3;
+	</select>
+
+	<select id="getWeekOrder" resultType="int">
+		select count(*) from dbOrder where orderDate between date_sub(now(), interval 7 day) and now();
+	</select>
+	
+	<select id="getWeekCancel" resultType="int">
+		select count(*) from dbOrderCancel where cancelDate between date_sub(now(), interval 7 day) and now();
+	</select>
+	
+	<select id="getWeekBoard" resultType="int">
+		select count(*) from board where WDate between date_sub(now(), interval 7 day) and now();
+	</select>
+	
+	<select id="getWeekClass" resultType="int">
+		select count(*) from dbOnedayClass where WDate between date_sub(now(), interval 7 day) and now();
+	</select>
+
 
 
 
