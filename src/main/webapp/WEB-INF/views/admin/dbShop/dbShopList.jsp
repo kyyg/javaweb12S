@@ -104,7 +104,7 @@
         let url = "${ctp}/admin/adminOptionNew?idx="+idx;
         let winName = "winName";
         let winWidth = 800;
-        let winHeight = 500;
+        let winHeight = 300;
         let x = (screen.width/2) - (winWidth/2);
         let y = (screen.height/2) - (winHeight/2);
         let opt="width="+winWidth+", height="+winHeight+", left="+x+", top="+y;
@@ -112,7 +112,10 @@
     	
     }
     
-    
+    function searchProduct(){
+   	  let searchString = document.getElementById("searchString").value;
+   	  location.href = "${ctp}/dbShop/dbShopList?sort=${sort}&searchString="+searchString;
+     }
 	</script>
 </head>
 <body id="page-top">
@@ -152,7 +155,12 @@
 	  </h3>
   </div>
   <hr/>
-  
+    	<form name="myform" method="post">
+		 		<div class="text-right">
+					<input type="text" name="searchString" id="searchString" value="" class="mt-1" size="12"/>
+					<a href="javascript:searchProduct()">검색</a>
+				</div>
+			</form>
     <table class="table table-borderless">
       <tr>
       <td class="text-left">

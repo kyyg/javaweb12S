@@ -221,9 +221,9 @@ public class DbShopController {
 			@RequestParam(name = "pag", defaultValue = "1", required = false) int pag,
 			@RequestParam(name = "pageSize", defaultValue = "20", required = false) int pageSize,
 			@RequestParam(name = "sort", defaultValue = "신상품순", required = false) String sort,
-			@RequestParam(name = "searchStirng", defaultValue = "", required = false) String searchStirng) {
+			@RequestParam(name = "searchString", defaultValue = "", required = false) String searchString) {
 
-		PageVO pageVO = pageProcess.totRecCnt(pag, pageSize, "product", part, "");
+		PageVO pageVO = pageProcess.totRecCnt(pag, pageSize, "product", part, searchString);
 
 		// 대/중분류명을 가져온다.
 		List<DbProductVO> middleTitleVOS = dbShopService.getMiddleTitle();
@@ -235,9 +235,11 @@ public class DbShopController {
 
 		// 전체 상품리스트 가져오기
 		List<DbProductVO> productVOS = dbShopService.getDbShopList(pageVO.getStartIndexNo(), pageSize, part, sort,
-				searchStirng);
+				searchString);
 		model.addAttribute("productVOS", productVOS);
 		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("searchString", searchString);
+		model.addAttribute("vosSize", productVOS.size());
 
 		return "admin/dbShop/dbShopList";
 	}

@@ -7,7 +7,30 @@
 		select * from dbOnedayClass order by idx desc;
 	</select>
 
+	<select id="getChart1" resultType="com.spring.javaweb12S.vo.ChartVO">
+		select productName, sum(totalPrice) as proTotalSum
+		from dborder
+		where orderdate >= date_sub(now(), interval 6 month)
+		group by productName
+		order by proTotalSum desc limit 4;
+	</select>
 
+	<select id="getChart2" resultType="com.spring.javaweb12S.vo.ChartVO">
+		select month(orderDate) as salesMonth, sum(orderTotalPrice) as salesMonthPrice
+		from dbbaesong bs
+		where orderDate >= DATE_SUB(now(), interval 3 month)
+		group by month(orderDate)
+		order by month(orderDate);
+	</select>
+
+	<select id="getChart3" resultType="com.spring.javaweb12S.vo.ChartVO">
+		select month(cl.cancelDate) as cancelMonth, sum(od.totalPrice) as cancelMonthPrice
+		from dbOrder od
+		join dbordercancel cl on od.idx = cl.cancelIdx
+		where cl.cancelDate >= date_sub(now(), interval 3 month)
+		group by month(cl.cancelDate)
+		order by month(cl.cancelDate);
+	</select>
 
 
 

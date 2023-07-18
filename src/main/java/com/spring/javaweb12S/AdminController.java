@@ -23,6 +23,7 @@ import com.spring.javaweb12S.service.MemberService;
 import com.spring.javaweb12S.service.NoticeService;
 import com.spring.javaweb12S.vo.BoardReplyVO;
 import com.spring.javaweb12S.vo.BoardVO;
+import com.spring.javaweb12S.vo.ChartVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOptionVO;
@@ -63,7 +64,16 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String indexGet() {
+	public String indexGet(Model model) {
+		// 3D 도넛 차트
+		List<ChartVO> vos = adminService.getChart1();
+		model.addAttribute("chart1VOS",vos);
+		// 바 차트(월별 매출 / 월별 취소)
+		List<ChartVO> vos1 = adminService.getChart2();
+		model.addAttribute("chart2VOS",vos1);
+		List<ChartVO> vos2 = adminService.getChart3();
+		model.addAttribute("chart3VOS",vos2);
+		
 		return "admin/index";
 	}
 	

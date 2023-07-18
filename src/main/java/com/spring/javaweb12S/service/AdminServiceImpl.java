@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.javaweb12S.dao.AdminDAO;
+import com.spring.javaweb12S.vo.ChartVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 
@@ -58,6 +59,21 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void setOnedayClassDelete(int idx) {
 		adminDAO.setOnedayClassDelete(idx);
+	}
+
+	@Override
+	public List<ChartVO> getChart1() {
+		return adminDAO.getChart1();
+	}
+
+	@Override
+	public List<ChartVO> getChart2() {
+		return adminDAO.getChart2();
+	}
+
+	@Override
+	public List<ChartVO> getChart3() {
+		return adminDAO.getChart3();
 	}
 	
 	

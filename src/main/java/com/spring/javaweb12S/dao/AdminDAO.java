@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.javaweb12S.vo.ChartVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 	
@@ -26,5 +27,11 @@ public interface AdminDAO {
 	public List<DbOnedayClassVO> getAllOnedayClassList();
 
 	public void setOnedayClassDelete(@Param("idx") int idx);
+
+	public List<ChartVO> getChart1();
+
+	public List<ChartVO> getChart2();
+
+	public List<ChartVO> getChart3();
 
 }
