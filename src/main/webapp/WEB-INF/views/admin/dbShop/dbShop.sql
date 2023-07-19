@@ -195,6 +195,8 @@ create table dbReview(
 	fSName varchar(200) not null,		/* 상품의 기본사진(1장이상 처리시에는 '/'로 구분 저장한다. */
 	score int not null, 
 	wDate datetime default now(),
+	bestReview char(2) default 'NO', /* 관리자가 베스트 여부 설정기능 */
+	blockReview char(2) default 'NO', /* 관리자가 리뷰 차단 */
 	primary key(idx),
 	foreign key(productIdx) references dbProduct(idx) on update cascade on delete cascade
 );

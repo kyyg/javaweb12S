@@ -19,33 +19,9 @@ public class MessageController {
 			@RequestParam(name="pageSize", defaultValue = "5", required=false) int pageSize,
 			Model model) {
 		
-		if(msgFlag.equals("guestInputOk")) {
-			model.addAttribute("msg", "게시글이 등록되었습니다.");
-			model.addAttribute("url", "/guest/guestList");
-		}
-		else if(msgFlag.equals("guestInputNo")) {
-			model.addAttribute("msg", "게시글이 등록 실패~~~");
-			model.addAttribute("url", "/guest/guestInput");
-		}
-		else if(msgFlag.equals("guestAdminOk")) {
-			model.addAttribute("msg", "관리자 인증 성공");
-			model.addAttribute("url", "/guest/guestList");
-		}
-		else if(msgFlag.equals("guestAdminNo")) {
-			model.addAttribute("msg", "관리자만 사용할 수 있는 메뉴입니다.");
-			model.addAttribute("url", "/guest/adminLogin");
-		}
-		else if(msgFlag.equals("adminLogout")) {
+		if(msgFlag.equals("adminLogout")) {
 			model.addAttribute("msg", "관리자 로그아웃");
 			model.addAttribute("url", "/");
-		}
-		else if(msgFlag.equals("guestDeleteOk")) {
-			model.addAttribute("msg", "방명록의 글이 삭제 되었습니다.");
-			model.addAttribute("url", "/guest/guestList");
-		}
-		else if(msgFlag.equals("guestDeleteNo")) {
-			model.addAttribute("msg", "방명록의 글이 삭제 실패~~~");
-			model.addAttribute("url", "/guest/guestList");
 		}
 		else if(msgFlag.equals("mailSendOk")) {
 			model.addAttribute("msg", "메일 전송 완료!!!");
@@ -64,11 +40,11 @@ public class MessageController {
 			model.addAttribute("url", "/member/memberJoin");
 		}
 		else if(msgFlag.equals("memberJoinOk")) {
-			model.addAttribute("msg", "회원가입완료!!!");
+			model.addAttribute("msg", "회원가입 완료되었습니다.");
 			model.addAttribute("url", "/member/memberLogin");
 		}
 		else if(msgFlag.equals("memberJoinNo")) {
-			model.addAttribute("msg", "회원가입 실패~~");
+			model.addAttribute("msg", "회원가입 실패하였습니다.");
 			model.addAttribute("url", "/member/memberJoin");
 		}
 		else if(msgFlag.equals("memberLoginOk")) {
@@ -76,7 +52,7 @@ public class MessageController {
 			model.addAttribute("url", "/");
 		}
 		else if(msgFlag.equals("memberLoginNo")) {
-			model.addAttribute("msg", mid + "로그인 실패~~");
+			model.addAttribute("msg", "아이디와 비밀번호를 다시 확인해주세요.");
 			model.addAttribute("url", "/member/memberLogin");
 		}
 		else if(msgFlag.equals("memberLogout")) {

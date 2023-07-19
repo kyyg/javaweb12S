@@ -161,8 +161,7 @@ public interface DbShopDAO {
 
 	public int productModifyOk(@Param("vo")DbProductVO vo);
 
-	public void setOnedayClassInput(@Param("mid")String mid, @Param("className") String className, @Param("store")String store, @Param("wDate")String wDate, @Param("memberNum")int memberNum, @Param("classTemp")String classTemp,
-			@Param("qrCodeName")String qrCodeName);
+	public void setOnedayClassInput(@Param("idx") int idx, @Param("QrCodeName") String QrCodeName);
 
 	public List<DbOnedayClassVO> getMyOnedayClass(@Param("mid") String mid);
 
@@ -173,6 +172,8 @@ public interface DbShopDAO {
 	public List<DbReviewVO> getAllReviewList();
 
 	public void setOptionUpdate(@Param("idx")int idx, @Param("optionName")String optionName, @Param("optionPrice")int optionPrice, @Param("optionStock")int optionStock);
+
+	public void setOnedayClassApplication(@Param("mid")String mid, @Param("className")String className, @Param("store")String store, @Param("wDate")String wDate, @Param("memberNum")int memberNum);
 
 	
 

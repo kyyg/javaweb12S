@@ -151,7 +151,7 @@ public interface DbShopService {
 
 	public int productModifyOk(MultipartFile file, DbProductVO vo);
 
-	public String onedayClassInput(String mid, String store, String wDate, String className, int memberNum, String classTemp, String realPath);
+	public String onedayClassInput(int idx, String mid, String store, String WDate, String className, int memberNum, String classTemp, String realPath);
 
 	public List<DbOnedayClassVO> getMyOnedayClass(String mid);
 
@@ -162,6 +162,8 @@ public interface DbShopService {
 	public List<DbReviewVO> getAllReviewList();
 
 	public void setOptionUpdate(int idx, String optionName, int optionPrice, int optionStock);
+
+	public void setOnedayClassApplication(String mid, String className, String store, String wDate, int memberNum);
 
 
 

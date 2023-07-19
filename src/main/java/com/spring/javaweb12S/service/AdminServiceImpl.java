@@ -130,6 +130,11 @@ public class AdminServiceImpl implements AdminService {
 	public List<DbProductVO> getNewProduct3() {
 		return adminDAO.getNewProduct3();
 	}
+
+	@Override
+	public void setBestReview(int idx, String bestReview) {
+		adminDAO.setBestReview(idx, bestReview);
+	}
 	
 	
 }

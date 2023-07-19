@@ -57,4 +57,6 @@ public interface AdminService {
 
 	public List<DbProductVO> getNewProduct3();
 
+	public void setBestReview(int idx, String bestReview);
+
 }

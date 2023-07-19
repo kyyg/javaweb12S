@@ -476,7 +476,7 @@ public class AdminController {
 			String conditionOrderStatus,String startJumun, String endJumun
 			) {
 
-		String mid = (String) session.getAttribute("sMid");
+		String mid = (String) session.getAttribute("sMid"); 
 		int level = (int) session.getAttribute("sLevel");
 		if(level == 0) mid = "전체";
 		
@@ -670,6 +670,19 @@ public class AdminController {
 		model.addAttribute("vos", vos);
 		model.addAttribute("store_name", store_name);
 		return "admin/offlineStore";
+	}
+	
+	
+	// 베스트 리뷰 등록
+	@ResponseBody
+	@RequestMapping(value = "/bestReviewChange", method = RequestMethod.POST)
+	public String bestReviewChangePost(Model model,int idx,String mid, String productName) {
+		
+		String productIdx = productName;
+		adminService.setBestReview(idx, "OK"); // 베스트 리뷰 상태  변경
+		dbShopService.setGetPoint(productIdx, 1000, mid, "베스트리뷰 선정"); // 해당 회원 포인트1000 db에 내역 저장
+		dbShopService.setMemberPlusPoint(mid, 1000); // 해당 회원 멤버 포인트 지급
+		return "1";
 	}
 	
 	

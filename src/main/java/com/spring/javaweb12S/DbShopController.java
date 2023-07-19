@@ -909,16 +909,29 @@ public class DbShopController {
 		return "dbShop/dbOnedayClass";
 	}
 	
-	// 원데이클래스 예약(QR)
-	@RequestMapping(value = "/dbOnedayClassInput", method = RequestMethod.POST)
-	public String dbOnedayClassInputPost(Model model, HttpServletRequest request,
+	// 원데이클래스 회원 이벤트 신청
+	@ResponseBody
+	@RequestMapping(value = "/dbOnedayClassApplication", method = RequestMethod.POST)
+	public String dbOnedayClassInputPost(String mid, String className, String store, String wDate, int memberNum) {
+		
+		// QR코드 빼고 이벤트 신청내역을 저장시킨다.
+		dbShopService.setOnedayClassApplication(mid, className, store, wDate, memberNum);
+		return "1";
+	}
+	
+	
+	// 원데이클래스 관리자가 이벤트 당첨처리(QR)
+	@ResponseBody
+	@RequestMapping(value = "/onedayClassConfirm", method = RequestMethod.POST)
+	public String onedayClassConfirmPost(Model model, HttpServletRequest request, int idx,
 			String mid, String className, String store, String wDate, int memberNum,String classTemp
 			) {
 		String realPath = request.getSession().getServletContext().getRealPath("/resources/data/qrCode/");
-		String qrCodeName = dbShopService.onedayClassInput(mid, className, store, wDate, memberNum,classTemp, realPath); // 이미지 만들기
+		String qrCodeName = dbShopService.onedayClassInput(idx, mid, className, store, wDate, memberNum,classTemp, realPath); // 이미지 만들기
 		
-		return "dbShop/dbOnedayClass";
+		return "1";
 	}
+	
 
 	// 원데이클래스 회원별 예약한 목록
 	@RequestMapping(value = "/dbMyOnedayClass", method = RequestMethod.GET)
@@ -929,7 +942,7 @@ public class DbShopController {
 		return "dbShop/dbMyOnedayClass";
 	}
 	
-	// 원데이클래스 회원별 예약한 목록
+	// 원데이클래스 회원별 예약한 목록에서 큐알코드 새창으로 크게 보기
 	@RequestMapping(value = "/qrCodeWin", method = RequestMethod.GET)
 	public String qrCodeWinGet(Model model, HttpSession session, int idx) {
 		String mid = (String) session.getAttribute("sMid");

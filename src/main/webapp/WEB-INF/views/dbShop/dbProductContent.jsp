@@ -422,21 +422,63 @@
 	
 	<!-- 리뷰 항목 -->
 	<section id="target-section3" class="text-center">
+	
+	
 	<hr/>
 	<h2 class="text-center mb-5">Review</h2>
-<!-- 	<div class="w3-row w3-border w3-round" style="width:1000px;">
-	  <div class="w3-col w3-border s4 w3-light w3-center" style="height:100px"><p>별점 평점</p></div>
-	  <div class="w3-col w3-border s4 w3-light w3-center" style="height:100px"><p>별점 많은순 그래프?</p></div>
-	  <div class="w3-col w3-border s4 w3-light w3-center" style="height:100px"><p>베스트 후기 포인트 드림여</p></div>
-	</div> -->
-	
-	<div class="w3-panel w3-border w3-round pt-4" style="width:1000px; height:100px; background-color:#eee; margin:0 auto;">
+	<div class="w3-panel w3-border w3-round pt-4 pb-4" style="width:1100px; height:100px; background-color:#eee; margin:0 auto;">
     악의 적인 리뷰는 사전 안내 없이 삭제 될 수 있습니다.<br/>
 		상품과 관련이 없는 사진의 경우 삭제 될 수 있습니다.<br/>
+		베스트 리뷰에 선정된 리뷰에는 1000point가 지급됩니다.<br/>
+		<p><br/></p>
   </div>
- 	<table class="table-borderless" style="width:1000px; margin:0 auto;">
+  
+  
+ <c:forEach var="vo" items="${reviewVOS}">
+ <c:if test="${vo.bestReview == 'OK'}">
+ 	<div class="w3-panel w3-border w3-round mt-4" style="width:1100px; margin:0 auto;">
+ 	<table class="table-borderless mb-5" style="width:1000px; margin:0 auto;">
+ 		<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3 text-center"><b>BEST REVIEW</b></td></tr>
+ 		<tr><td colspan="3" class="p-0 m-0 mb-4 pb-3" style="border-bottom :solid 1px lightgray"></td></tr>
+	 		<tr class="text-dark" style="background-color:#fff;">
+	 			<td style="width:20%"; class="text-center">
+	 				<img src="${ctp}/images/mu.jpg" class="w3-circle" alt="mu" style="width:70px">
+	 			</td>
+	 			<td colspan="1" class="text-left pt-3 pb-2" style="width:60%";>
+	 				<b>
+		 				<c:if test="${vo.score == 1}">💙🤍🤍🤍🤍 &nbsp;<span class="badge badge-danger">베스트 리뷰에 선정된 리뷰입니다.</span><br/></c:if>
+		 				<c:if test="${vo.score == 2}">💙💙🤍🤍🤍 &nbsp;<span class="badge badge-danger">베스트 리뷰에 선정된 리뷰입니다.</span><br/></c:if>
+		 				<c:if test="${vo.score == 3}">💙💙💙🤍🤍 &nbsp;<span class="badge badge-danger">베스트 리뷰에 선정된 리뷰입니다.</span><br/></c:if>
+		 				<c:if test="${vo.score == 4}">💙💙💙💙🤍 &nbsp;<span class="badge badge-danger">베스트 리뷰에 선정된 리뷰입니다.</span><br/></c:if>
+		 				<c:if test="${vo.score == 5}">💙💙💙💙💙 &nbsp;<span class="badge badge-danger">베스트 리뷰에 선정된 리뷰입니다.</span><br/></c:if>
+	 				</b>
+	 				<b>${vo.mid}</b> &nbsp;&nbsp; <font color="brown"> ${fn:substring(vo.WDate,0,10)}</font><br/>
+	 				<span class="badge badge-light mr-2 mb-2">옵션</span><font size="2">${vo.productName}</font><br/>
+	 				<b>${vo.title}</b><br/>
+	 				${vo.content}
+				<td class="mt-3 mb-3" style="width:20%";>	
+ 					<c:set var="fSNames" value="${fn:split(vo.FSName,'/')}"/>
+ 						<img src="${ctp}/review/${fSNames[0]}" width="100px" class="w3-round" onclick="imagesClick('${vo.idx}')" /><br/>
+ 				</td>
+ 			</tr>
+		 	</div>
+	 	<tr><td colspan="3" class="m-0 p-0"><div id="demo${vo.idx}"  style="display:none">
+	 		<c:forEach var="fSName" items="${fSNames}" varStatus="st">
+ 				<img src="${ctp}/review/${fSName}" width="300px" height="300"/>
+ 			</c:forEach>
+ 			<br/>
+ 			<input type="button" value="이미지 접기" onclick="imagesUp('${vo.idx}')" class="btn btn-outline-dark btn-sm text-right mt-3"/>
+ 			<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3" style="border-bottom :solid 1px lightgray"></td></tr>
+	 	</div></td></tr>
+ 	</table>
+ 	</div>
+ 	</c:if>
+ </c:forEach>
+ 
+ <c:forEach var="vo" items="${reviewVOS}">
+ <c:if test="${vo.bestReview == 'NO'}">
+ 	<table class="table-borderless" style="width:1100px; margin:0 auto;">
  		<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3 pb-3 mb-3" style="border-bottom :solid 1px lightgray"></td></tr>
- 		<c:forEach var="vo" items="${reviewVOS}">
 	 		<tr class="text-dark" style="background-color:#fff;">
 	 			<td style="width:20%"; class="text-center">
 	 				<img src="${ctp}/images/mu.jpg" class="w3-circle" alt="mu" style="width:70px">
@@ -461,15 +503,25 @@
 		 	</div>
 	 	<tr><td colspan="3" class="m-0 p-0"><div id="demo${vo.idx}"  style="display:none">
 	 		<c:forEach var="fSName" items="${fSNames}" varStatus="st">
- 				<img src="${ctp}/review/${fSName}" width="200px" height="200"/>
+ 				<img src="${ctp}/review/${fSName}" width="300px" height="300"/>
  			</c:forEach>
  			<br/>
  			<input type="button" value="이미지 접기" onclick="imagesUp('${vo.idx}')" class="btn btn-outline-dark btn-sm text-right mt-3"/>
  			<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3" style="border-bottom :solid 1px lightgray"></td></tr>
 	 	</div></td></tr>
- 		</c:forEach>
  	</table>
+ 	</c:if>
+ </c:forEach>
+ 	
+ 	
+ 	
+ 	
 	</section>
+	
+	
+	
+	
+	
 	<input type="button" class="button-fixed btn btn-outline-dark text-dark" id="scrollButton" value="top" />
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>

@@ -322,11 +322,11 @@
  </insert>
   
   <insert id="setReviewInput">
-  	insert into dbReview values (default, #{vo.productIdx},#{vo.productName}, #{vo.mid},#{vo.title},#{vo.content},#{vo.fSName},#{vo.score},default);
+  	insert into dbReview values (default, #{vo.productIdx},#{vo.productName}, #{vo.mid},#{vo.title},#{vo.content},#{vo.fSName},#{vo.score},default,default,default);
   </insert>
   
-  <insert id="setOnedayClassInput">
-  	insert into dbOnedayClass values (default, #{mid},#{className},#{store},#{wDate},#{memberNum},#{qrCodeName});
+  <insert id="setOnedayClassApplication">
+  	insert into dbOnedayClass(idx,mid,className,store,wDate,memberNum,appDate) values (default, #{mid},#{className},#{store},#{wDate},#{memberNum},default);
   </insert>
   
   
@@ -380,6 +380,9 @@
   	update dbOption set optionName=#{optionName},optionPrice=#{optionPrice},optionStock=#{optionStock} where idx = #{idx};
   </update>
   
+  <update id="setOnedayClassInput">
+  	update dbOnedayClass set qrCodeName = #{QrCodeName} where idx = #{idx};
+  </update>
   
   
   

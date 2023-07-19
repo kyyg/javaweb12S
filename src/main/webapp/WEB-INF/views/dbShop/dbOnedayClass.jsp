@@ -135,7 +135,6 @@ margin-bottom:10px;
   'use strict';
   
   function onedayClassCheck(){
-	  let classTemp;
 		let mid = $("#mid").val();
 		let store = $("#store").val();
 		let wDate = $("#wDate").val();
@@ -146,31 +145,22 @@ margin-bottom:10px;
    		alert("모든 정보를 기입해주세요.");
    		return false;
    	}
-  	
-	 // qr코드내역
-		classTemp  = "["+className+"]\n";
-		classTemp  += "아이디 : " + mid + ",\n";
-		classTemp  += "매장명 : " + store + ",\n";
-		classTemp  += "날짜 : " + wDate + ",\n";
-		classTemp  += "인원수 : " + memberNum + "명\n";
-		classTemp  += "반드시 QR코드를 지참하여 오시기 바랍니다.";
-				
-		let query = {
-			mid : mid,
-			className : className,
-			store : store,
-			wDate : wDate,
-			memberNum : memberNum,
-			classTemp : classTemp
-		}
-		
+   	
 		$.ajax({
 			type : "post",
-			url  : "${ctp}/dbShop/dbOnedayClassInput",
-			data : query,
-			success:function() {
-				alert("원데이 클래스 예약이 완료되었습니다.\n반드시 QR코드를 지참하여 오시기 바랍니다.");
+			url  : "${ctp}/dbShop/dbOnedayClassApplication",
+			data : {
+				mid : mid,
+				className : className,
+				store : store,
+				wDate : wDate,
+				memberNum : memberNum
+			},
+			success:function(res) {
+				if(res == "1"){
+				alert("이벤트 신청이 완료 되었습니다.");
 				location.reload();
+				}
 			},
 			error:function(){
 				alert("전송오류우웅!");
@@ -242,7 +232,7 @@ margin-bottom:10px;
 			<td colspan="2">
 				<c:forEach var="vo" items="${vos}">
 					<c:if test="${vo.validMember == sMid}">
-	   				<input type="button" class="btn btn-outline-dark form-control mt-3" value="예약하기" onclick="onedayClassCheck()" />
+	   				<input type="button" class="btn btn-outline-dark form-control mt-3" value="이벤트 응모하기" onclick="onedayClassCheck()" />
 	   			</c:if>
 					<c:if test="${vo.validMember != sMid}">
 	   			</c:if>
@@ -254,14 +244,14 @@ margin-bottom:10px;
    <input type="hidden" id="mid" name="mid" value="${sMid}">
   </div>
 <div id="content" style="color:white;">
-<b>명화비누 제작 원데이 클래스 이벤트(2023.06~)</b><br/>
+<b>명화비누 제작 원데이 클래스 이벤트</b><br/>
 <br/>
 매주 주말 1시<br/>
 소요시간 : 2시간<br/>
 <br/>
 3개월간 총 구매금액이 10만원 이상인 회원들을 대상으로 열리는 이벤트 입니다.<br/>
-방문 시 예약한 날짜/장소에 QR코드를 지참하여 참석하셔야 합니다.<br/>
-본 페이지에서 예약 후 예약확정문자를 발송해 드립니다.<br/>
+당첨 시 지정하신 날짜/장소에 QR코드를 지참하여 참석하셔야 합니다.<br/>
+본 페이지에서 응모 후 예약확정문자를 발송해 드립니다.<br/>
 숙성CP비누로 당일날은 가져 갈 수 없고, 보온 및 건조기간을 거쳐 한달 뒤 발송됩니다.<br/>
 본 이벤트는 무료입니다.<br/>
 </div>

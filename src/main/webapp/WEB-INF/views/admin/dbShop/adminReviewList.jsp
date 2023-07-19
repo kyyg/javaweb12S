@@ -49,8 +49,6 @@
 	    idxs += checkIdxs[i].value + "/";
 	  }
 	}
-  //console.log(idxs);
-  //alert(idxs);
       
   let query = {
   	idxs   : idxs
@@ -73,6 +71,39 @@
      alert("전송 오류");
     }
   })  
+	}
+	
+	// 베스트 리뷰 변경
+	function bestReviewChange(idx,mid,productName){
+ 		let ans = confirm("선택하신 리뷰를 베스트 리뷰로 등록하시겠습니까?");
+	  if(!ans){
+	      location.reload();
+	      return false;
+	  }  
+	  	      
+	  let query = {
+	  	idx   : idx,
+	  	mid : mid,
+	  	productName : productName
+	  }
+	    $.ajax({
+	    type : "post",
+	    url : "${ctp}/admin/bestReviewChange",
+	    data : query,
+	    success : function(res){
+	        if(res == "1"){
+	         alert("베스트 리뷰가 등록되었습니다.")
+	         location.reload();
+	        }
+	        else{
+	        	alert("등록에 실패했습니다.");
+	        	location.reload();
+	        }
+	    },
+	    error : function(){
+	     alert("전송 오류");
+	    }
+	  })  
 	}
 	
   </script>
@@ -101,14 +132,19 @@
 <div class="container">
 	<hr/><h3 class="text-center"> 리뷰 관리</h3><hr/>
 	 <!-- 리뷰 항목 -->
-	<div class="text-right mb-2" style="width:1000px;">
+	<div class="text-right mb-2" style="width:1100px;">
 	</div>
- 	 	<table class="table-borderless" style="width:1000px; margin:0 auto;">
-		<div class=""><input type="button" value="삭제" onclick="idxDelete()" class="btn btn-outline-dark"/></div>
- 		<tr><td colspan="4" class="p-0 m-0 mt-2 pt-3 pb-3 mb-3" style="border-bottom :solid 1px lightgray"></td></tr>
+ 	 	<table class="table-borderless" style="width:1100px; margin:0 auto;">
+		<div class="">
+			<input type="button" value="리뷰 삭제" onclick="idxDelete()" class="btn btn-outline-dark"/>
+		</div>
+	 		<tr><td colspan="4" class="p-0 m-0 mt-2 pt-3 pb-3 mb-3" style="border-bottom :solid 1px lightgray"></td></tr>
  		<c:forEach var="vo" items="${vos}">
 	 		<tr class="text-dark" style="background-color:#fff;">
-	 			<td><input type="checkbox" name="idxChecked" id="idxChecked" value="${vo.idx}" class="ml-5 mt-5"/></td>
+	 			<td>
+		 			<input type="checkbox" name="idxChecked" id="idxChecked" value="${vo.idx}" class="ml-5 mt-5"/>
+		 			<input type="button" id="bestReview" onclick="bestReviewChange('${vo.idx}','${vo.mid}','${vo.productName}')"  value="베스트 리뷰 선정" class="btn btn-outline-info btn-sm" />
+		 		</td>
 	 			<td style="width:20%"; class="text-center">
 	 				<img src="${ctp}/images/mu.jpg" class="w3-circle" alt="mu" style="width:70px">
 	 			</td>

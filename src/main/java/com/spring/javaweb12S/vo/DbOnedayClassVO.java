@@ -11,6 +11,7 @@ public class DbOnedayClassVO {
 	private String store;
 	private String WDate;
 	private int memberNum;
+	private String appDate;
 	
 	private String classTemp;
 	private String qrCodeName; // 생성된 QR코드 파일이름

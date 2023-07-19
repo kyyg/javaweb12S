@@ -37,22 +37,29 @@
 	<table class="table-hover table-borderless text-center" style="width:1000px; margin:0 auto; ">
 		<tr class="table-dark text-dark">
 			<td>번호</td>
+			<td>응모날짜</td>
 			<td>예약날짜</td>
 			<td>아이디</td>
 			<td>클래스명</td>
 			<td>매장명</td>
 			<td>인원수</td>
-			<td>QR코드</td>
+			<td>당첨QR코드</td>
 		</tr>
 		<c:forEach var="vo" items="${vos}" varStatus="st">
-		<tr>
-			<td>${st.count}</td>			
-			<td>${fn:substring(vo.WDate,0,10)}</td>			
-			<td>${vo.mid}</td>			
-			<td>${vo.className}</td>			
-			<td>${vo.store}</td>			
-			<td>${vo.memberNum}</td>			
-			<td><img src="${ctp}/qrCode/${vo.qrCodeName}" width="70px" onclick="qrCodeNew('${vo.idx}')"/>
+		<tr style="height:100px">
+			<td style="height:100px">${st.count}</td>			
+			<td style="height:100px">${fn:substring(vo.appDate,0,10)}</td>			
+			<td style="height:100px">${fn:substring(vo.WDate,0,10)}</td>			
+			<td style="height:100px" >${vo.mid}</td>			
+			<td style="height:100px">${vo.className}</td>			
+			<td style="height:100px">${vo.store}</td>			
+			<td style="height:100px">${vo.memberNum}</td>			
+			<td style="height:100px">
+				<c:if test="${vo.qrCodeName != null}">			
+				<img src="${ctp}/qrCode/${vo.qrCodeName}" width="70px" onclick="qrCodeNew('${vo.idx}')"/>
+				</c:if>
+				<c:if test="${vo.qrCodeName == null}"></c:if>
+			</td>
 		</tr>
 		<tr><td class="p-0 m-0"></td></tr>
 		</c:forEach>

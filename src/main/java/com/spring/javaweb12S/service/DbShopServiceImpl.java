@@ -571,7 +571,7 @@ public class DbShopServiceImpl implements DbShopService {
 
 	// 원데이클래스 예약 저장, 큐알코드 생성
 	@Override
-	public String onedayClassInput(String mid, String className, String store, String wDate, int memberNum, String classTemp, String realPath) {
+	public String onedayClassInput(int idx, String mid, String className, String store, String wDate, int memberNum, String classTemp, String realPath) {
 	// qr코드명은 "" 만들어준다.
 			String qrCodeName = "";
 			
@@ -601,7 +601,7 @@ public class DbShopServiceImpl implements DbShopService {
 				
 				// 생성된 QR코드의 정보를 DB에 저장한다.
 				String QrCodeName = qrCodeName + ".png";
-				dbShopDAO.setOnedayClassInput(mid, className, store, wDate, memberNum,classTemp,QrCodeName);
+				dbShopDAO.setOnedayClassInput(idx, QrCodeName);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (WriterException e) {
@@ -633,6 +633,11 @@ public class DbShopServiceImpl implements DbShopService {
 	@Override
 	public void setOptionUpdate(int idx, String optionName, int optionPrice, int optionStock) {
 		dbShopDAO.setOptionUpdate(idx, optionName,optionPrice,optionStock);
+	}
+
+	@Override
+	public void setOnedayClassApplication(String mid, String className, String store, String wDate, int memberNum) {
+		dbShopDAO.setOnedayClassApplication(mid, className,store, wDate,memberNum);
 	}
 
 

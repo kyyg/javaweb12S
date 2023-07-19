@@ -14,5 +14,7 @@ public class DbReviewVO {
 	private String fSName;
 	private int score;
 	private String wDate;
+	private String bestReview;
+	private String blockReview;
 	
 }

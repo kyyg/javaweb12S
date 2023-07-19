@@ -56,6 +56,44 @@
   }
 })  
 	}
+	
+	function eventGo(idx,WDate,mid,className,store,memberNum){
+		let classTemp = "";
+		let wDate = WDate;
+		// qr코드내역
+		classTemp  = "이벤트 당첨을 축하드립니다.";
+		classTemp  = "["+className+"]\n";
+		classTemp  += "아이디 : " + mid + ",\n";
+		classTemp  += "매장명 : " + store + ",\n";
+		classTemp  += "예약날짜 : " + wDate + ",\n";
+		classTemp  += "인원수 : " + memberNum + "명\n";
+		classTemp  += "반드시 QR코드를 지참하여 오시기 바랍니다.";
+				
+		let query = {
+			idx : idx,
+			mid : mid,
+			className : className,
+			store : store,
+			wDate : wDate,
+			memberNum : memberNum,
+			classTemp : classTemp
+		}
+		
+	$.ajax({
+		  type : "post",
+		  url : "${ctp}/dbShop/onedayClassConfirm",
+		  data : query,
+		  success : function(res){
+			  if(res == "1"){
+			   alert("이벤트 당첨 처리 되었습니다.");
+			   location.reload();
+			  }
+		  },
+		  error : function(){
+		   alert("전송 오류");
+		  }
+		})  
+	}
     
   </script>
 </head>
@@ -90,23 +128,37 @@
 		<tr class="table-dark text-dark pt-2 pb-2">
 			<td></td>
 			<td>번호</td>
+			<td>응모날짜</td>
 			<td>예약날짜</td>
 			<td>아이디</td>
 			<td>클래스명</td>
 			<td>매장명</td>
 			<td>인원수</td>
 			<td>QR코드</td>
+			<td>승인</td>
 		</tr>
 		<c:forEach var="vo" items="${vos}" varStatus="st">
 		<tr>
-			<td><input type="checkbox" name="idxChecked" id="idxChecked" value="${vo.idx}"/></td>
-			<td>${st.count}</td>			
-			<td>${fn:substring(vo.WDate,0,10)}</td>			
-			<td>${vo.mid}</td>			
-			<td>${vo.className}</td>			
-			<td>${vo.store}</td>			
-			<td>${vo.memberNum}</td>			
-			<td><img src="${ctp}/qrCode/${vo.qrCodeName}" width="70px"/>
+			<td style="height:100px"><input type="checkbox" name="idxChecked" id="idxChecked" value="${vo.idx}"/></td>
+			<td style="height:100px">${st.count}</td>			
+			<td style="height:100px">${fn:substring(vo.appDate,0,10)}</td>	
+			<td style="height:100px">${fn:substring(vo.WDate,0,10)}</td>			
+			<td style="height:100px">${vo.mid}</td>			
+			<td style="height:100px">${vo.className}</td>			
+			<td style="height:100px">${vo.store}</td>			
+			<td style="height:100px">${vo.memberNum}</td>			
+			<td style="height:100px">
+				<c:if test="${vo.qrCodeName != null}">			
+					<img src="${ctp}/qrCode/${vo.qrCodeName}" width="70px" onclick="qrCodeNew('${vo.idx}')"/>
+				</c:if>
+				<c:if test="${vo.qrCodeName == null}"></c:if>
+			</td>
+			<td>
+				<c:if test="${vo.qrCodeName == null}">
+					<input type="button" value="당첨 승인" class="btn btn-outline-dark btn-sm" onclick="eventGo('${vo.idx}','${vo.WDate}','${vo.mid}','${vo.className}','${vo.store}','${vo.memberNum}')" />
+				</c:if>
+				<c:if test="${vo.qrCodeName != null}"></c:if>
+			</td>
 		</tr>
 		<tr><td class="p-0 m-0"></td></tr>
 		</c:forEach>

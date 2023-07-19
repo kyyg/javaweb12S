@@ -74,6 +74,11 @@
 
 
 
+	<update id="setBestReview">
+		update dbReview set bestReview = #{bestReview} where idx = #{idx};
+	</update>
+
+
   
   <delete id="setReviewDelete">
   	delete from dbReview where idx = #{idx};
@@ -90,6 +95,7 @@
   <delete id="setOnedayClassDelete">
   	delete from dbOnedayClass where idx = #{idx};
   </delete>
+  
   
   
   

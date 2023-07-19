@@ -59,4 +59,6 @@ public interface AdminDAO {
 
 	public List<DbProductVO> getNewProduct3();
 
+	public void setBestReview(@Param("idx") int idx, @Param("bestReview") String bestReview);
+
 }
