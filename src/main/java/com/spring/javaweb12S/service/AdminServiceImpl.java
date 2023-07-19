@@ -13,6 +13,7 @@ import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbProductVO;
+import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 
 @Service
@@ -134,6 +135,21 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void setBestReview(int idx, String bestReview) {
 		adminDAO.setBestReview(idx, bestReview);
+	}
+
+	@Override
+	public EventVO getEventToday(EventVO vo) {
+		return adminDAO.getEventToday(vo);
+	}
+
+	@Override
+	public void setEventInput(EventVO vo) {
+		adminDAO.setEventInput(vo);
+	}
+
+	@Override
+	public List<EventVO> getEventList(String mid) {
+		return adminDAO.getEventList(mid);
 	}
 	
 	

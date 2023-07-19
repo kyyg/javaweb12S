@@ -9,6 +9,7 @@ import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbProductVO;
+import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 
 public interface AdminService {
@@ -58,5 +59,11 @@ public interface AdminService {
 	public List<DbProductVO> getNewProduct3();
 
 	public void setBestReview(int idx, String bestReview);
+
+	public EventVO getEventToday(EventVO vo);
+
+	public void setEventInput(EventVO vo);
+
+	public List<EventVO> getEventList(String mid);
 
 }

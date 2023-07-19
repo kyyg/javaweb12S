@@ -333,7 +333,9 @@
   	insert into dbOnedayClass(idx,mid,className,store,wDate,memberNum,appDate) values (default, #{mid},#{className},#{store},#{wDate},#{memberNum},default);
   </insert>
   
-  
+  <insert id="setEventInput">
+	  insert into event values (#{vo.mid},default);
+	</insert>
   
   
   

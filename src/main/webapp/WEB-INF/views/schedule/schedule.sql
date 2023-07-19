@@ -38,3 +38,18 @@ select sDate,count(*) from schedule2 where mid='hkd1234' and date_format(sDate, 
 select sDate,part from schedule2 where mid='hkd1234' and date_format(sDate, '%Y-%m')='2023-07' order by sDate, part;
 
 select * from schedule2 where mid='hkd1234' and date_format(sDate, '%Y-%m-%d')='2023-7-13';
+
+create table event (
+	mid 	varchar(20) not null,
+	ymd   datetime	not null default now(),			/* 출석 이벤트 등록한 날짜 */
+	foreign key (mid) references member(mid)
+);
+
+drop table event;
+delete from event;
+
+select * from event;
+select mid,date_format(ymd, '%Y-%c-%e') from event;
+select mid,date_format(ymd, '%Y-%c-%e') as ymd from event where mid='admin' order by ymd;
+select * from event where date_format(ymd, '%Y-%c-%e')='2023-07-19';
+select * from event where mid='admin' and substring(ymd,1,10) = date_format('2023-07-19', '%Y-%c-%d');

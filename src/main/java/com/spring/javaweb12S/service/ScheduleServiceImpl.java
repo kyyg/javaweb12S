@@ -12,6 +12,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.spring.javaweb12S.dao.ScheduleDAO;
+import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.ScheduleVO;
 
 @Service
@@ -140,5 +141,12 @@ public class ScheduleServiceImpl implements ScheduleService {
 	public void setScheduleDeleteOk(int idx) {
 		scheduleDAO.setScheduleDeleteOk(idx);
 	}
+
+	@Override
+	public List<EventVO> getEventList(String mid) {
+		return scheduleDAO.getEventList(mid);
+	}
+
+
 
 }

@@ -38,6 +38,7 @@ import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbPointVO;
 import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
+import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.MemberVO;
 import com.spring.javaweb12S.vo.WishVO;
 
@@ -653,6 +654,11 @@ public class DbShopServiceImpl implements DbShopService {
 	@Override
 	public void setReviewDelete(int idx) {
 		dbShopDAO.setReviewDelete(idx);
+	}
+
+	@Override
+	public void setEventInput(EventVO vo) {
+		dbShopDAO.setEventInput(vo);
 	}
 
 

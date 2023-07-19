@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
@@ -9,16 +9,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>schedule.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp"></jsp:include>
+  <script>
+    'use strict';
+    
+    function eventCheck(ymd) {
+    	$.ajax({
+    		type : "post",
+    		url  : "${ctp}/schedule/eventToday",
+    		data : {
+    			mid : '${sMid}',
+    			ymd : ymd
+    		},
+    		success:function(res){
+    			if(res=="1"){
+    				alert("출석체크가 되었습니다.");
+    				location.reload();
+    			} 
+    			else alert("이미 출석체크 하셨습니다.");
+    		},
+    		error: function() {
+    			alert("전송오류!!");
+    		}
+    	});
+    }
+  </script>
   <style>
-    #td1,#td8,#td15,#td22,#td29,#td36 {color:red}
-    #td7,#td14,#td21,#td28,#td35 {color:blue}
+    #td1,#td8,#td15,#td22,#td29,#td36 {color:black}
+    #td7,#td14,#td21,#td28,#td35 {color:black}
     .today {
-      background-color: pink;
+      background-color: skyblue;
       color: #fff;
       font-weight: bolder;
     }
     td {
-      text-align: left;
+      text-align: center;
       vertical-align: top;
     }
   </style>
@@ -27,6 +51,11 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
 <div class="container">
+<hr/>
+<div class="text-center"><h3>출석체크 이벤트</h3></div>
+<div class="text-center"><h6>한달 간 출석도장 20개를 찍으시면 3000point를 드립니다.</h6></div>
+<hr/>
+
   <div class="text-center">
     <button type="button" onclick="location.href='${ctp}/schedule/schedule?yy=${yy-1}&mm=${mm}';" class="btn btn-secondary btn-sm" title="이전년도">◁◁</button>
     <button type="button" onclick="location.href='${ctp}/schedule/schedule?yy=${yy}&mm=${mm-1}';" class="btn btn-secondary btn-sm" title="이전월">◀</button>
@@ -39,13 +68,13 @@
   <div class="text-center">
     <table class="table table-bordered" style="height:450px">
       <tr class="text-center" style="background-color:#eee">
-        <th style="width:13%; color:red; vertical-align:middle">일</th>
+        <th style="width:13%; vertical-align:middle">일</th>
         <th style="width:13%; vertical-align:middle">월</th>
         <th style="width:13%; vertical-align:middle">화</th>
         <th style="width:13%; vertical-align:middle">수</th>
         <th style="width:13%; vertical-align:middle">목</th>
         <th style="width:13%; vertical-align:middle">금</th>
-        <th style="width:13%; color:blue; vertical-align:middle">토</th>
+        <th style="width:13%; vertical-align:middle">토</th>
       </tr>
       <tr>
         <c:set var="cnt" value="${1}"/>
@@ -58,31 +87,14 @@
         <!-- 해당월에 대한 날짜를 마지막일자까지 반복 출력한다.(단, gap이 7이되면 줄바꿈한다.) -->
         <c:forEach begin="1" end="${lastDay}" varStatus="st">
           <c:set var="todaySw" value="${toYear==yy && toMonth==mm && toDay==st.count ? 1 : 0}"/>
-          <td id="td${cnt}" ${todaySw==1 ? 'class=today' : ''} style="font-size:0.9em">
+          <td id="td${cnt}" ${todaySw==1 ? 'class=today' : ''} style="font-size:0.9em; " class="text-center">
             <c:set var="ymd" value="${yy}-${mm+1}-${st.count}"/>
-            <a href="scheduleMenu?ymd=${ymd}">
-            	${st.count}<br/>
-            	
-            	<!-- 해당날짜에 일정이 있으면 part를 출력하게 한다. -->
-            	<c:set var="tempPart" value=""/>
-            	<c:set var="tempCnt" value="0"/>
-            	<c:set var="tempSw" value="0"/>
-            	
-              <c:forEach var="vo" items="${vos}">
-                <c:if test="${fn:substring(vo.SDate,8,10)==st.count}">
-                  <c:if test="${vo.part != tempPart}">
-                    <c:if test="${tempSw != 0}">
-	                    - ${tempPart}(${tempCnt})건<br/>
-	                    <c:set var="tempCnt" value="0"/>
-                    </c:if>
-                    <c:set var="tempPart" value="${vo.part}"/>                  
-                  </c:if>
-                  <c:set var="tempSw" value="1"/>
-                  <c:set var="tempCnt" value="${tempCnt + 1}"/>
-                </c:if>
-            	</c:forEach>
-            	<c:if test="${tempCnt != 0}">- ${tempPart}(${tempCnt})건</c:if>
-            </a>
+            <c:if test="${todaySw==1}"><a href="javascript:eventCheck('${ymd}')">${st.count}</a></c:if>
+            <c:if test="${todaySw!=1}">${st.count}</c:if>
+            <br/>
+            <c:forEach var="vo" items="${vos}">
+              <c:if test="${vo.ymd == ymd}"><img src="${ctp}/images/event.gif" width="70px"/></c:if>
+            </c:forEach>
           </td>
           <c:if test="${cnt % 7 == 0}"></tr><tr></c:if>  <!-- 한주가 꽉차면 줄바꾸기 한다. -->
           <c:set var="cnt" value="${cnt + 1}"/>

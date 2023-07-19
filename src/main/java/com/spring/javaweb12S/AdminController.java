@@ -31,6 +31,7 @@ import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
+import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.GoodVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 import com.spring.javaweb12S.vo.MemberVO;
@@ -688,5 +689,4 @@ public class AdminController {
 	
 	
 	
-	
-	}
+}

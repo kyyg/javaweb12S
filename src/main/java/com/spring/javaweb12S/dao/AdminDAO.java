@@ -11,6 +11,7 @@ import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbProductVO;
+import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 	
 public interface AdminDAO {
@@ -60,5 +61,11 @@ public interface AdminDAO {
 	public List<DbProductVO> getNewProduct3();
 
 	public void setBestReview(@Param("idx") int idx, @Param("bestReview") String bestReview);
+
+	public EventVO getEventToday(@Param("vo") EventVO vo);
+
+	public void setEventInput(@Param("vo") EventVO vo);
+
+	public List<EventVO> getEventList(@Param("mid") String mid);
 
 }

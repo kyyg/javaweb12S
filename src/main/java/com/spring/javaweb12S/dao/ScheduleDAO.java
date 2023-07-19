@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.ScheduleVO;
 
 public interface ScheduleDAO {
@@ -19,5 +20,8 @@ public interface ScheduleDAO {
 	public void setScheduleDeleteOk(@Param("vo") ScheduleVO vo);
 
 	public void setScheduleDeleteOk(@Param("idx") int idx);
+
+	public List<EventVO> getEventList(@Param("mid") String mid);
+
 
 }

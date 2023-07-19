@@ -71,6 +71,16 @@
 	<select id="getNewProduct3" resultType="com.spring.javaweb12S.vo.DbProductVO">
 		select * from dbProduct order by idx desc limit 3; 
 	</select>
+	
+	<select id="getEventToday" resultType="com.spring.javaweb12S.vo.EventVO">
+	  select * from event where mid=#{vo.mid} and substring(ymd,1,10)=date_format(#{vo.ymd}, '%Y-%m-%d');
+	</select>
+	
+	<select id="getEventList" resultType="com.spring.javaweb12S.vo.EventVO">
+		select mid,date_format(ymd, '%Y-%c-%e') as ymd from event where mid=#{mid} order by ymd;
+	</select>
+	
+	
 
 
 
