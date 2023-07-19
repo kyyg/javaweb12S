@@ -194,6 +194,8 @@
 	          <option value="구매확정"  ${conditionOrderStatus == '구매확정' ? 'selected' : ''}>구매확정</option>
 	          <option value="반품요청"  ${conditionOrderStatus == '반품요청' ? 'selected' : ''}>반품요청</option>
 	          <option value="반품요청"  ${conditionOrderStatus == '환불요청' ? 'selected' : ''}>환불요청</option>
+	          <option value="반품"  ${conditionOrderStatus == '반품' ? 'selected' : ''}>반품</option>
+	          <option value="환불"  ${conditionOrderStatus == '환불' ? 'selected' : ''}>환불</option>
 	        </select>
 	        <input type="button" class="btn btn-outline-dark btn-sm" value="조회하기" onclick="myOrderStatus()"/>
 	      </td>
@@ -229,7 +231,7 @@
         <td style="text-align:center;">${fn:substring(vo.orderDate,0,10)}</td>
         <td style="text-align:center;">${vo.mid}</td>
         <td style="text-align:center;">${vo.name}</td>
-        <td style="text-align:center;"><img src="${ctp}/data/dbShop/product/${vo.thumbImg}" class="thumb" width="50px"/></td>
+        <td style="text-align:center;"><img src="${ctp}/data/dbShop/product/${vo.thumbImg}" class="thumb" width="30px"/></td>
         <td align="center">${vo.productName}</td>
 	      <td>${vo.optionName} / <fmt:formatNumber value="${vo.optionPrice}"/>원 / ${vo.optionNum}개<br/></td>      
 	      <td><fmt:formatNumber value="${vo.totalPrice}"/>원</td>

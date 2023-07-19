@@ -587,7 +587,7 @@ public class AdminController {
 		return "admin/dbShop/adminReviewList";
 	}
 	
-	// 관리자 리뷰  다중 삭제
+	// 관리자 리뷰 다중 삭제
 	@ResponseBody
 	@RequestMapping(value = "/reviewDelete", method = RequestMethod.POST)
 	public String reviewDeletePost(Model model, String idxs) {

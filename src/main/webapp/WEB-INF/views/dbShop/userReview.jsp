@@ -22,7 +22,45 @@
 	function imagesUp(idx){
 		$("#demo"+idx).slideUp(500);
 	}
+
+	// 선택한 것만 삭제하기
+	function idxDelete(){
+	 	let ans = confirm("선택하신 리뷰를 삭제하시겠습니까?");
+	  if(!ans){
+	      location.reload();
+	      return false;
+	  }  
+	  let idxs = "";
+	  let checkIdxs = document.getElementsByName("idxChecked");
 	
+	  for (let i = 0; i < checkIdxs.length; i++) {
+		  if (checkIdxs[i].checked) {
+		    idxs += checkIdxs[i].value + "/";
+		  }
+		}
+	   let query = {
+	  	idxs   : idxs
+	  }
+	    $.ajax({
+	    type : "post",
+	    url : "${ctp}/dbShop/reviewDelete",
+	    data : query,
+	    success : function(res){
+	        if(res == "1"){
+	         alert("리뷰가 삭제 되었습니다.")
+	         location.reload();
+	        }
+	        else{
+	        	alert("삭제에 실패했습니다.");
+	        	location.reload();
+	        }
+	    },
+	    error : function(){
+	     alert("전송 오류");
+	    }
+	  })   
+	}
+  	
   </script>
 </head>
 <body>
@@ -34,10 +72,16 @@
 	 <!-- 리뷰 항목 -->
 	<div class="text-right mb-2" style="width:1000px;">
 	</div>
+		
  	 	<table class="table-borderless" style="width:1000px; margin:0 auto;">
- 		<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3 pb-3 mb-3" style="border-bottom :solid 1px lightgray"></td></tr>
- 		<c:forEach var="vo" items="${VOS}">
+ 		<tr>
+ 			<td><input type="button" value="삭제" class="btn btn-outline-danger btn-sm" onclick="idxDelete()" /></td>
+ 		</tr>
+ 		<tr><td colspan="5" class="p-0 m-0 pb-3 mb-3" style="border-bottom :solid 1px lightgray"></td></tr>
+ 		<c:forEach var="vo" items="${VOS}" varStatus="st">
 	 		<tr class="text-dark" style="background-color:#fff;">
+	 			<td><input type="checkbox" name="idxChecked" id="idxChecked" value="${vo.idx}" class="mr-5"/></td>
+	 			<td>${st.count}</td>
 	 			<td style="width:20%"; class="text-center">
 	 				<img src="${ctp}/images/mu.jpg" class="w3-circle" alt="mu" style="width:70px">
 	 			</td>
@@ -50,7 +94,9 @@
 		 				<c:if test="${vo.score == 5}">💙💙💙💙💙<br/></c:if>
 	 				</b>
 	 				<b>${vo.mid}</b> &nbsp;&nbsp; <font color="brown"> ${fn:substring(vo.WDate,0,10)}</font><br/>
-	 				<span class="badge badge-light mr-2 mb-2">옵션</span><font size="2">${vo.productName}</font><br/>
+	 				<span class="badge badge-warning mr-2 mb-2">상품</span><font size="2">
+	 				<a href="${ctp}/dbShop/dbProductContent?idx=${vo.productIdx}">${vo.productName}</a>
+	 				</font><br/>
 	 				<b>${vo.title}</b><br/>
 	 				${vo.content}
 				<td class="mt-3 mb-3" style="width:20%";>	
@@ -59,13 +105,13 @@
  				</td>
  			</tr>
 		 	</div>
-	 	<tr><td colspan="3" class="m-0 p-0 text-center"><div id="demo${vo.idx}"  style="display:none">
+	 	<tr><td colspan="5" class="m-0 p-0 text-center"><div id="demo${vo.idx}"  style="display:none">
 	 		<c:forEach var="fSName" items="${fSNames}" varStatus="st">
- 				<img src="${ctp}/review/${fSName}" width="200px" height="200"/>
+ 				<img src="${ctp}/review/${fSName}" width="300px" height="300"/>
  			</c:forEach>
  			<br/>
  			<input type="button" value="이미지 접기" onclick="imagesUp('${vo.idx}')" class="btn btn-outline-dark btn-sm text-right mt-3"/>
- 			<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3" style="border-bottom :solid 1px lightgray"></td></tr>
+ 			<tr><td colspan="5" class="p-0 m-0 mt-2 pt-3" style="border-bottom :solid 1px lightgray"></td></tr>
 	 	</div></td></tr>
  		</c:forEach>
  	</table>

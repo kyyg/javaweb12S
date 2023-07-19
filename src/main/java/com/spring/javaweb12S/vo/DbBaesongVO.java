@@ -13,6 +13,7 @@ public class DbBaesongVO {
   private String address;
   private String tel;
   private String orderStatus;
+  private int usingPoint;
   
   // 배송 필드
   private String message;

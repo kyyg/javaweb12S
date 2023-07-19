@@ -76,6 +76,7 @@
 	    <th>주문상태</th>
 	  </tr>
 	  <c:forEach var="vo" items="${vos}" varStatus="st">
+	  	<c:if test="${vo.status == '배송중' || vo.status == '배송완료'}">
 	    <tr>
 		  	<td><input type="checkbox" value="${vo.baesongIdx}" name="idxChecked" id="idxChecked" /></td>
 	      <td>${st.count}</td>
@@ -83,6 +84,8 @@
 	      <td>${vo.totalPrice}</td>
 	      <td>${vo.status}</td>
 	    </tr>
+	    </c:if>
+	  	<c:if test="${vo.status != '배송중' && vo.status != '배송완료'}"></c:if>
 	  </c:forEach>
 	  <tr>
 	    <td colspan="4" class="text-center">

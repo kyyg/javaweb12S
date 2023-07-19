@@ -640,6 +640,21 @@ public class DbShopServiceImpl implements DbShopService {
 		dbShopDAO.setOnedayClassApplication(mid, className,store, wDate,memberNum);
 	}
 
+	@Override
+	public void setMemberMinusPoint(String mid, int usingPoint) {
+		dbShopDAO.setMemberMinusPoint( mid, usingPoint);
+	}
+
+	@Override
+	public void setUsingPoint(String mid, int point, String orderIdx, String pointMemo) {
+		dbShopDAO.setUsingPoint(mid, point, orderIdx, pointMemo);
+	}
+
+	@Override
+	public void setReviewDelete(int idx) {
+		dbShopDAO.setReviewDelete(idx);
+	}
+
 
 
 

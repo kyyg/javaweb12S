@@ -249,11 +249,11 @@
 	</select>
 	
 	<select id="getProductReview" resultType="com.spring.javaweb12S.vo.DbReviewVO">
-		select rv.* from dbreview rv,dbproduct pro where rv.productIdx = pro.idx and pro.idx=#{idx};
+		select rv.* from dbreview rv,dbproduct pro where rv.productIdx = pro.idx and pro.idx=#{idx} order by idx desc;
 	</select>
 	
 	<select id="getUserReivew" resultType="com.spring.javaweb12S.vo.DbReviewVO">
-		select * from dbReview where mid = #{mid};
+		select * from dbReview where mid = #{mid} order by idx desc;
 	</select>
 	
 	<select id="getMyOnedayClass" resultType="com.spring.javaweb12S.vo.DbOnedayClassVO">
@@ -306,7 +306,7 @@
   </insert>
   
   <insert id="setDbBaesong">
-    insert into dbBaesong values (default,#{baesongVO.oIdx},#{baesongVO.orderIdx},default,#{baesongVO.orderTotalPrice},#{baesongVO.mid},#{baesongVO.name},#{baesongVO.address},#{baesongVO.tel},#{baesongVO.message},#{baesongVO.payment},#{baesongVO.payMethod},default);
+    insert into dbBaesong values (default,#{baesongVO.oIdx},#{baesongVO.orderIdx},default,#{baesongVO.orderTotalPrice},#{baesongVO.mid},#{baesongVO.name},#{baesongVO.address},#{baesongVO.tel},#{baesongVO.message},#{baesongVO.payment},#{baesongVO.payMethod},default,#{baesongVO.usingPoint});
   </insert> 
   
  <insert id="setWishDBInput">
@@ -319,6 +319,10 @@
   
  <insert id="setGetPoint">
  		insert into dbPoint values (default,#{mid}, #{orderIdx},default,#{pointMemo},#{point},default);
+ </insert>
+ 
+ <insert id="setUsingPoint">
+ 		insert into dbPoint values (default,#{mid}, #{orderIdx},default,#{pointMemo},default,#{point});
  </insert>
   
   <insert id="setReviewInput">
@@ -366,6 +370,10 @@
   
   <update id="setMemberPlusPoint">
   	update Member set point = point+#{point} where mid = #{mid};
+  </update>
+  
+  <update id="setMemberMinusPoint">
+  	update Member set point = point+-#{usingPoint} where mid = #{mid};
   </update>
   
   <update id="setOrderReviewChange">
@@ -416,7 +424,9 @@
   	delete from wish where idx = #{idx};
   </delete> 
   
-
+  <delete id="setReviewDelete">
+  	delete from dbReview where idx = #{idx};
+  </delete>
   
   
 	

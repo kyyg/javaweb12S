@@ -647,6 +647,9 @@ public class DbShopController {
 		System.out.println("baesongVo : " + baesongVO);
 
 		dbShopService.setDbBaesong(baesongVO); // 배송내용을 배송테이블(dbBaesong)에 저장
+		// 포인트 사용시 포인트 차감 및 포인트 페이지에 기재
+		dbShopService.setMemberMinusPoint(baesongVO.getMid(), baesongVO.getUsingPoint()); // 멤버 포인트 차감
+		dbShopService.setUsingPoint(baesongVO.getMid(), baesongVO.getUsingPoint(),baesongVO.getOrderIdx(),"주문 시 사용"); // 포인트 페이지에 차감 기재
 
 		return "redirect:/message/payment2Ok";
 	}
@@ -684,6 +687,10 @@ public class DbShopController {
 		baesongVO.setTel(payMentVO.getBuyer_tel());
 
 		dbShopService.setDbBaesong(baesongVO); // 배송내용을 배송테이블(dbBaesong)에 저장
+		// 포인트 사용시 포인트 차감 및 포인트 페이지에 기재
+		//dbShopService.setMemberMinusPoint(baesongVO.getMid(), baesongVO.getUsingPoint()); // 멤버 포인트 차감
+		//dbShopService.setUsingPoint(baesongVO.getMid(), baesongVO.getUsingPoint(),baesongVO.getOrderIdx(),"주문 시 사용"); // 포인트 페이지에 차감 기재
+
 
 		payMentVO.setImp_uid(receivePayMentVO.getImp_uid());
 		payMentVO.setMerchant_uid(receivePayMentVO.getMerchant_uid());
@@ -952,6 +959,17 @@ public class DbShopController {
 	}
 	
 	
+	
+//회원 리뷰 다중 삭제
+	@ResponseBody
+	@RequestMapping(value = "/reviewDelete", method = RequestMethod.POST)
+	public String reviewDeletePost(Model model, String idxs) {
+		String[] idxMulti = idxs.split("/");
+		for (int i = 0; i < idxMulti.length; i++) {
+			dbShopService.setReviewDelete(Integer.parseInt(idxMulti[i]));
+		}
+		return "1";
+	}
 	
 	
 	

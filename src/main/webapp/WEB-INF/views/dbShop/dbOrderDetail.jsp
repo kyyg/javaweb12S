@@ -61,10 +61,6 @@
 				</tr>
 				<tr><td class="p-0 m-0"></td></tr>
 			</c:forEach>
-			<tr>
-				<td class="text-center" style="background-color:#eee; width:20%" ><b>최종 결제 금액</b></td>
-				<td colspan="2" class="text-right mr-5"><font size="4px">${vo.orderTotalPrice}원</font></td>
-			</tr>
 		</table>
 		
 				<table class="table table-bordered mb-5">
@@ -78,6 +74,16 @@
 			<tr>
 				<th>카드/무통장입급 번호</th>
 				<td>${vo.payMethod}</td>
+			</tr>
+						<tr>
+				<c:if test="${vo.usingPoint != 0}">
+					<td colspan="2" class="text-right">포인트 사용 금액 : ${vo.usingPoint}point</td>
+				</c:if>
+				<c:if test="${vo.usingPoint == 0}"></c:if>
+			</tr>
+			<tr>
+				<td class="text-center" style="background-color:#eee; width:20%" ><b>최종 결제 금액</b></td>
+				<td colspan="2" class="text-right mr-5"><font size="4px">${vo.orderTotalPrice}원</font></td>
 			</tr>
 		</table>
 </div>

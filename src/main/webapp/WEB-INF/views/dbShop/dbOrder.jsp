@@ -293,8 +293,8 @@
 	  <input type="hidden" name="mid" value="${sMid}"/>
 	  <input type="hidden" name="payment" id="payment"/>			<!-- 결재종류 : 카드/계좌이체 등. -->
 	  <input type="hidden" name="payMethod" id="payMethod"/>	<!-- 결재방법중에서 카드번호/계좌번호 등. -->
-	  <input type="hidden" name="amount" id="amount" value="100" />	<!-- 결재방법중에서 카드번호/계좌번호 등. -->
-	  <input type="hidden" name="usingPoint" id="usingPoint" />	<!-- 포인트 사용금액 -->
+	  <input type="hidden" name="amount" id="amount" value="10" />	<!-- 결재방법중에서 카드번호/계좌번호 등. -->
+	  <input type="hidden" name="usingPoint" id="usingPoint" value="0" />	<!-- 포인트 사용금액 -->
 	  
 	  <input type="hidden" name="name" value="${memberVO.name}"/>	<!-- 결재창으로 넘겨줄 모델명 -->
 	  <%-- <input type="hidden" name="amount" value="${orderTotalPrice}"/> --%>	<!-- 결재창으로 넘겨줄 결제금액(실제금액이라 여기선 테스트로) -->

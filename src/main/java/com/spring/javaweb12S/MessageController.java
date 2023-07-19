@@ -212,8 +212,12 @@ public class MessageController {
 			model.addAttribute("url", "dbShop/dbProductList");
 		}
 		else if(msgFlag.equals("payment2Ok")) {
-			model.addAttribute("msg", "결제가 완료되었습니다.(DB저장)");
+			model.addAttribute("msg", "결제가 완료되었습니다.");
 			model.addAttribute("url", "dbShop/dbProductList");
+		}
+		else if(msgFlag.equals("paymentResultOk")) {
+			model.addAttribute("msg", "결제가 정상적으로 완료되었습니다.");
+			model.addAttribute("url", "/dbShop/paymentResultOk");
 		}
 		else if(msgFlag.equals("reviewInputOk")) {
 			model.addAttribute("msg", "리뷰가 등록되었습니다.");

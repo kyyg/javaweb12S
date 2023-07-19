@@ -298,7 +298,7 @@
       var data = google.visualization.arrayToDataTable([
           ['month', '${chart2VOS[0].salesMonth}월', '${chart2VOS[1].salesMonth}월', '${chart2VOS[2].salesMonth}월'],
           ['월별 매출액', ${chart2VOS[0].salesMonthPrice}, ${chart2VOS[1].salesMonthPrice}, ${chart2VOS[2].salesMonthPrice}],
-          ['월별 환불/반품액', ${chart3VOS[0].cancelMonthPrice}, ${chart3VOS[1].cancelMonthPrice}, ${chart3VOS[2].cancelMonthPrice}]
+          ['월별 환불/액반품', ${chart3VOS[0].cancelMonthPrice}, ${chart3VOS[1].cancelMonthPrice}, ${chart3VOS[2].cancelMonthPrice}]
         ]);
 
         var options = {

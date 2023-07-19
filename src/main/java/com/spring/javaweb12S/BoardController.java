@@ -244,7 +244,7 @@ public class BoardController {
 	
 	
 	
-	// 댓글 달기...
+	// 문의 답변 달기
 	@ResponseBody
 	@RequestMapping(value = "/boardReplyInput", method = RequestMethod.POST)
 	public String boardReplyInputPost(BoardReplyVO replyVO) {

@@ -165,6 +165,12 @@ public interface DbShopService {
 
 	public void setOnedayClassApplication(String mid, String className, String store, String wDate, int memberNum);
 
+	public void setMemberMinusPoint(String mid, int usingPoint);
+
+	public void setUsingPoint(String mid, int point, String orderIdx, String pointMemo);
+
+	public void setReviewDelete(int idx);
+
 
 
 

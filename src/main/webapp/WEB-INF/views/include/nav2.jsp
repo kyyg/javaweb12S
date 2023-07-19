@@ -18,7 +18,7 @@
 <div class="container">
   <div class="text-center">
 	  <a href="${ctp}/dbShop/dbMyOrder" id="nav">주문내역</a>
-	  <a href="${ctp}/dbShop/dbMyOnedayClass" id="nav">원데이클래스 예약내역</a>
+	  <a href="${ctp}/dbShop/dbMyOnedayClass" id="nav">이벤트 참여내역</a>
 	  <a href="${ctp}/member/memberPwdCheck" id="nav">개인정보수정</a>
 	  <a href="${ctp}/dbShop/dbPoint" id="nav">포인트 내역</a>
 	  <a href="${ctp}/dbShop/dbWishList" id="nav">위시리스트</a>

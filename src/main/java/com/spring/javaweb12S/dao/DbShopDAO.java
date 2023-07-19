@@ -175,6 +175,12 @@ public interface DbShopDAO {
 
 	public void setOnedayClassApplication(@Param("mid")String mid, @Param("className")String className, @Param("store")String store, @Param("wDate")String wDate, @Param("memberNum")int memberNum);
 
+	public void setMemberMinusPoint(@Param("mid") String mid, @Param("usingPoint") int usingPoint);
+
+	public void setUsingPoint(@Param("mid") String mid, @Param("point") int point, @Param("orderIdx") String orderIdx, @Param("pointMemo") String pointMemo);
+
+	public void setReviewDelete(@Param("idx") int idx);
+
 	
 
 

@@ -186,7 +186,9 @@
         </td>
         <td style="text-align:center;"><img src="${ctp}/data/dbShop/product/${vo.thumbImg}" class="thumb" width="50px"/></td>
         <td align="left">
-	        <span style="color:orange;font-weight:bold;">${vo.productName}</span> &nbsp; &nbsp;<br/> <%-- <fmt:formatNumber value="${vo.mainPrice}"/>원<br/> --%>
+	        <span style="color:orange;font-weight:bold;">
+	        <a href="${ctp}/dbShop/dbProductContent?idx=${vo.productIdx}">${vo.productName}</a>
+	        </span> &nbsp; &nbsp;<br/>
 	            ${vo.optionName} / <fmt:formatNumber value="${vo.optionPrice}"/>원 / ${vo.optionNum}개<br/>
 	      <td><fmt:formatNumber value="${vo.totalPrice}"/>원</td>
 	      <td><font color="brown">${vo.status}</font><br/></td>
