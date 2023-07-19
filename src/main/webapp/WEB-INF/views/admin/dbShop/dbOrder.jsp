@@ -95,13 +95,14 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <p><br/></p>
 <div class="container">
 	<h2 class="text-center">주문 / 결제</h2>
 	<div class="text-center">(배송지 정보를 확인후 결제처리합니다.)</div>
 	<br/>
 	<table class="table-bordered text-center" style="margin:auto; width:90%">
-	  <tr class="table-dark text-dark">
+	  <tr class="table-primary text-dark">
 	    <th colspan="2">상 품</th>
 	    <th>총상품금액</th>
 	  </tr>

@@ -22,6 +22,7 @@
 
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script>
   'use strict';
@@ -130,7 +131,11 @@
 <!-- Main Content -->
 <div id="content">
 <div class="container">
-	<hr/><h3 class="text-center"> 리뷰 관리</h3><hr/>
+	<hr/>
+		<div class="w3-bottombar w3-indigo w3-padding text-center" style="margin-bottom:20px;">
+	   		<span style="font-size:23px;">리뷰 게시판</span>
+	   </div>
+<hr/>
 	 <!-- 리뷰 항목 -->
 	<div class="text-right mb-2" style="width:1100px;">
 	</div>

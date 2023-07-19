@@ -19,7 +19,7 @@
 <link
     href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -186,7 +186,7 @@
   <c:set var="cnt" value="0"/>
   <div class="row mt-4">
       <table class="table table-borderless table-hover text-center">
-      	<tr class="text-dark table-dark">
+      	<tr class="text-dark table-primary">
       		<th>고유번호</th>
       		<th>대분류</th>
       		<th>중분류</th>

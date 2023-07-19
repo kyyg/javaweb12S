@@ -22,6 +22,7 @@
 
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script>
 
@@ -148,7 +149,9 @@
   <c:if test="${conditionDate=='30'}"><c:set var="condition" value="한달 이내 조회"/></c:if>
   <c:if test="${conditionDate=='90'}"><c:set var="condition" value="석달 이내 조회"/></c:if>
   <hr/> 
-  <h3 class="text-center">환불 / 반품 목록</h3>
+		<div class="w3-bottombar w3-indigo w3-padding text-center" style="margin-bottom:20px;">
+	   		<span style="font-size:23px;">주문 반품 / 환불 조회</span>
+	   </div>
   <hr/>
   <table>
   	<tr>
@@ -165,7 +168,7 @@
   <p><br/></p>
   <table class="table table-hover table-bordered">
   	<form name="myform">
-	    <tr style="text-align:center;background-color:#ccc;">
+	    <tr style="text-align:center;" class="table-primary">
 	      <th><input type="checkbox" id="allcheck" onClick="allCheck()" class="m-2"/></th>
 	      <th>주문번호</th>
 	      <th>주문날짜</th>

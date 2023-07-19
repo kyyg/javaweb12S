@@ -22,6 +22,7 @@
 
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script>
 //다중삭제
@@ -121,11 +122,13 @@
     
 <div class="containe-fluid mr-2 ml-2">
 <hr/>
- <h3 class="text-center">이벤트(원데이 클래스) 내역</h3>
+		<div class="w3-bottombar w3-indigo w3-padding text-center" style="margin-bottom:20px;">
+	   		<span style="font-size:23px;">이벤트 예약자 목록 조회(원데이 클래스)</span>
+	   </div>
 <hr/>
 	<table class="table-hover table-borderless text-center" style="width:1600px; margin:0 auto; ">
 	 <input type="button" value="선택삭제" class="btn btn-outline-dark btn-sm ml-5 mb-3" onclick="idxDelete()" />
-		<tr class="table-dark text-dark pt-2 pb-2">
+		<tr class="table-primary text-dark pt-2 pb-2">
 			<td></td>
 			<td>번호</td>
 			<td>응모날짜</td>

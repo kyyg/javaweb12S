@@ -276,7 +276,9 @@
 		select * from dbReview order by idx desc;
 	</select>
 	
-	
+	<select id="getEventNum" resultType="int">
+		select count(*) from event where mid = #{mid};
+	</select>
 	
 	
 	

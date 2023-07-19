@@ -30,12 +30,28 @@ public class ScheduleController {
 	@Autowired
 	DbShopService dbShopService;
 	
+	// 출석이벤트 포인트 지급을 위한 전역변수
+	private int sw = 0;
+	
 	@RequestMapping(value = "/schedule", method=RequestMethod.GET)
 	public String scheduleGet(Model model, HttpSession session) {
 		String mid = (String) session.getAttribute("sMid");
-		scheduleService.getSchedule();
+		
+		// 출석이벤트 20개 달성 시 3000포인트 지급 
+		int eventNum = dbShopService.getEventNum(mid);
+		 if (eventNum == 2) {
+       if (sw == 0) {
+           sw = 1;
+           dbShopService.setMemberPlusPoint(mid, 100); // 나중에 3000으로 고칠것
+           return "redirect:/message/event20Success";
+       } 
+		}
+		
+		scheduleService.getSchedule(); // 달력 변수들
+		
 		List<EventVO> vos = adminService.getEventList(mid);
 		model.addAttribute("vos", vos);
+		model.addAttribute("vosSize", vos.size());
 		return "schedule/schedule";
 	}
 	

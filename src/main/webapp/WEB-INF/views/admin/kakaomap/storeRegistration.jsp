@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>storeRegistration.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   	<style>
 		#menu {
 		  position: fixed;
@@ -153,7 +154,7 @@
 	<div class="w3-row-padding w3-margin-bottom">
 	 <!-- Header -->
 	 <header style="padding-top:22px">
-		<div class="w3-bottombar w3-light-gray w3-padding" style="margin-bottom:20px;">
+		<div class="w3-bottombar w3-indigo w3-padding" style="margin-bottom:20px;">
 	   		<span style="font-size:23px;">오프라인 매장 등록</span>
 	   </div>
 	 </header>

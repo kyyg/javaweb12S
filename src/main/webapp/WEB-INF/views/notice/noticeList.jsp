@@ -8,6 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>noticeList.jsp</title>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
   <script>
     'use strict';
@@ -64,7 +65,7 @@
     
 	<c:forEach var="vo" items="${vos}" varStatus="st">
 	    <c:if test="${vo.fixed == 'on'}">
-	     <tr  class="table-dark text-dark">
+	     <tr  class="table-primary text-dark">
 	       <td><span class="badge badge-danger">공지</span></td>
 	       <td class="text-center">
 	         <a href="${ctp}/notice/noticeContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}"><b>${vo.title}</b></a>

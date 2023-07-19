@@ -153,9 +153,11 @@
 <div class="container">
 	<hr/>
 	<div>
+		<div class="w3-bottombar w3-indigo w3-padding" style="margin-bottom:20px;">
+	   		<span style="font-size:23px;">오프라인 매장 검색 / 삭제</span>
+	   </div>
 	  <form name="myform">
 	    <select name="store_name" id="store_name">
-	    <h3 class="text-center">등록된 매장 검색 / 삭제</h3>
 	      <option value="">매장 선택</option>
 	      <c:forEach var="aVO" items="${vos}">
  	        <option value="${aVO.store_name}" <c:if test="${aVO.store_name == vo.store_name}">selected</c:if>>${aVO.store_name}</option>

@@ -24,6 +24,7 @@
 
     <!-- Custom styles for this template-->
     <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 </head>
 
@@ -146,7 +147,7 @@
 
 		<div class="row container-fluid pb-5 mb-5 mt-5" style="width:1500px; margin:0 auto;" >
 			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
-				<tr class="table-dark text-dark">
+				<tr class="w3-indigo text-dark">
 					<td colspan="4">
 						<b>최근 주문 건</b> <a href="${ctp}/admin/adminOrder" class="badge badge-info text-right" >더보기</a> 
 					</td>
@@ -176,7 +177,7 @@
 			
 			
 			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
-				<tr class="table-dark text-dark">
+				<tr class="w3-indigo text-dark">
 					<td colspan="4">
 						<b>최근 반품/환불 건</b> <a href="${ctp}/admin/adminCancelOrder" class="badge badge-info text-right" >더보기</a> 
 					</td>
@@ -206,7 +207,7 @@
 			
 			
 			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
-				<tr class="table-dark text-dark">
+				<tr class="w3-indigo text-dark">
 					<td colspan="4">
 						<b>최근 예약 건</b> <a href="${ctp}/admin/adminOnedayClass" class="badge badge-info text-right" >더보기</a> 
 					</td>
@@ -235,7 +236,7 @@
 			</table>
 			
 			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
-				<tr class="table-dark text-dark">
+				<tr class="w3-indigo text-dark">
 					<td colspan="4">
 						<b>최근 문의 건</b> <a href="${ctp}/admin/adminBoardList" class="badge badge-info text-right" >더보기</a> 
 					</td>

@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>adminOptionNew.jsp</title>
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
   </style>
   <script>
@@ -53,7 +54,7 @@
 	<hr/>
 		<c:if test="${!empty vos}">
 			<table class="table-borderless">
-				<tr class="table-dark text-dark">
+				<tr class="table-primary text-dark">
 					<td style="width:10%"></td>
 					<td style="width:30%">옵션명</td>
 					<td style="width:20%">옵션가격</td>

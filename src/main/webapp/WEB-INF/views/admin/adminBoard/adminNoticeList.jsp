@@ -22,6 +22,7 @@
 
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script>
   'use strict';
@@ -104,7 +105,9 @@
 <div id="content">
 <div class="container">
 
-<h2 class="text-center">공지 게시판</h2>
+		<div class="w3-bottombar w3-indigo w3-padding text-center" style="margin-bottom:20px;">
+	   		<span style="font-size:23px;">공지 게시판</span>
+	   </div>
   <table class="table table-borderless">
     <tr>
       <td>
@@ -136,7 +139,7 @@
     
 	<c:forEach var="vo" items="${vos}" varStatus="st">
 	    <c:if test="${vo.fixed == 'on'}">
-	     <tr  class="table-dark text-dark">	
+	     <tr  class="table-primary text-dark">	
 	       <td></td>
 	       <td><span class="badge badge-danger">공지</span></td>
 	       <td class="text-left">

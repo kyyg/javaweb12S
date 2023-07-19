@@ -9,9 +9,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <title>dbProductContent.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
   	'use strict';
@@ -263,7 +263,7 @@
 		</c:if>
 	</tr>
 	<tr>
-		<td>가격</td>
+		<td></td>
 		<td class="text-right"><h3><fmt:formatNumber value="${productVO.mainPrice}"/>원</h3></td>
 	</tr>	
 	<tr>
@@ -275,6 +275,15 @@
 				</c:forEach>
 			</td>
 	</tr>	
+	<tr>
+		<td colspan="2" class="text-center">		
+		<div class="w3-panel w3-border pt-2" style="background-color:#eee;">
+  		<p>
+  		배송비 2,500원 <br/>
+			50,000원 이상 주문 시 배송비 무료!</td>
+  		</p>
+		</div>
+	</tr>
 </table>
  
  <!-- 상품주문을 위한 옵션정보 출력 -->
@@ -426,11 +435,15 @@
 	
 	<hr/>
 	<h2 class="text-center mb-5">Review</h2>
-	<div class="w3-panel w3-border w3-round pt-4 pb-4" style="width:1100px; height:100px; background-color:#eee; margin:0 auto;">
-    악의 적인 리뷰는 사전 안내 없이 삭제 될 수 있습니다.<br/>
-		상품과 관련이 없는 사진의 경우 삭제 될 수 있습니다.<br/>
-		베스트 리뷰에 선정된 리뷰에는 1000point가 지급됩니다.<br/>
-		<p><br/></p>
+	<div class="w3-panel w3-border w3-round w3-primary pt-4 pb-4" style="width:1100px; height:100px; background-color:#eee; margin:0 auto;">
+    <table>
+    <tr class="table-primary text-dark">
+	    악의 적인 리뷰는 사전 안내 없이 삭제 될 수 있습니다.<br/>
+			상품과 관련이 없는 사진의 경우 삭제 될 수 있습니다.<br/>
+			베스트 리뷰에 선정된 리뷰에는 1000point가 지급됩니다.<br/>
+			<p><br/></p>
+		</tr>
+		</table>
   </div>
   
   

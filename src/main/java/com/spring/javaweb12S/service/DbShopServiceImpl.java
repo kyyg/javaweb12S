@@ -661,6 +661,11 @@ public class DbShopServiceImpl implements DbShopService {
 		dbShopDAO.setEventInput(vo);
 	}
 
+	@Override
+	public int getEventNum(String mid) {
+		return dbShopDAO.getEventNum(mid);
+	}
+
 
 
 

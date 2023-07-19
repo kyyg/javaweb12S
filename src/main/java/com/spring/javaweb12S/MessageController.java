@@ -263,6 +263,10 @@ public class MessageController {
 			model.addAttribute("msg", "공지 삭제에 실패하였습니다.");
 			model.addAttribute("url", "admin/noticeDelete");
 		}
+		else if(msgFlag.equals("event20Success")) {
+			model.addAttribute("msg", "이달의 출석 이벤트를 달성하여 3000포인트가 지급되었습니다!");
+			model.addAttribute("url", "/");
+		}
 		
 		
 		return "include/message";

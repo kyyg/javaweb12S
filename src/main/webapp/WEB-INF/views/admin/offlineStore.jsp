@@ -53,7 +53,9 @@
 <div class="container" style="height:800px;" style="margin:0 auto; margin-top:20px;">
 <div class="container">
 	<div>
-    <h2 class="text-center text-dark">오시는 길</h2>
+		<div class="w3-bottombar w3-indigo w3-padding text-center" style="margin-bottom:20px;">
+	   		<span style="font-size:23px;">오시는 길</span>
+	   </div>
     <hr/>
 	  <form name="myform">
 	    <select name="store_name" id="store_name">

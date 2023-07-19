@@ -24,7 +24,7 @@
 
     <!-- Custom styles for this template-->
     <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
-
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">table-primary
 
 </head>
 
@@ -101,7 +101,11 @@
             <div id="content">
 <div class="container-fluid">
   <h2 class="text-center">
-    <c:if test="${empty mid}">전체 회원 리스트</c:if>
+    <c:if test="${empty mid}">
+   		<div class="w3-bottombar w3-indigo w3-padding" style="margin-bottom:20px;">
+   		<span style="font-size:23px;">전체 회원 리스트</span>
+	   </div>
+    </c:if>
     <c:if test="${!empty mid}"><font color='blue'><b>${mid}</b></font> 회원 리스트(총<font color='red'>${pageVO.totRecCnt}</font>건)</c:if>
   </h2>
   <br/>
@@ -122,7 +126,7 @@
   </form>
   
   <table class="table table-hover text-center">
-    <tr class="table-dark text-dark">
+    <tr class="table table-primary text-dark">
       <th>번호</th>
       <th>아이디</th>
       <th>이름</th>

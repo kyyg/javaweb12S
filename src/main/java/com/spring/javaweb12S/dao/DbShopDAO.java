@@ -184,6 +184,8 @@ public interface DbShopDAO {
 
 	public void setEventInput(@Param("vo") EventVO vo);
 
+	public int getEventNum(@Param("mid") String mid);
+
 	
 
 

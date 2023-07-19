@@ -22,6 +22,7 @@
 
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script>
 
@@ -154,7 +155,9 @@
     
 <div class="containe-fluid mr-2 ml-2">
   <hr/> 
-  <h3 class="text-center">전체 주문 목록</h3>
+		<div class="w3-bottombar w3-indigo w3-padding text-center" style="margin-bottom:20px;">
+	   		<span style="font-size:23px;">전체 주문 목록 조회</span>
+	   </div>
   <hr/>
   <c:set var="condition" value="전체 조회"/>
   <c:if test="${conditionDate=='1'}"><c:set var="condition" value="오늘날짜조회"/></c:if>
@@ -204,7 +207,7 @@
 	    </tr>
   </table>
   <table class="table table-hover table-borderless">
-    <tr style="text-align:center;background-color:#ccc;">
+    <tr style="text-align:center;" class="table-primary">
       <th></th>
       <th>주문번호</th>
       <th>주문일시</th>

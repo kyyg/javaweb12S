@@ -174,6 +174,8 @@ public interface DbShopService {
 
 	public void setEventInput(EventVO vo);
 
+	public int getEventNum(String mid);
+
 
 
 
