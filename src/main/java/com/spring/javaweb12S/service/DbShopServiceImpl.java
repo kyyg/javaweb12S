@@ -40,6 +40,7 @@ import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
 import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.MemberVO;
+import com.spring.javaweb12S.vo.PointSaveVO;
 import com.spring.javaweb12S.vo.WishVO;
 
 @Service
@@ -666,6 +667,15 @@ public class DbShopServiceImpl implements DbShopService {
 		return dbShopDAO.getEventNum(mid);
 	}
 
+	@Override
+	public PointSaveVO getPointSave(String mid, String pointMemo) {
+		return dbShopDAO.getPointSave(mid, pointMemo);
+	}
+
+	@Override
+	public void setPointSave(String mid, String pointMemo, int point) {
+		dbShopDAO.setPointSave(mid, pointMemo, point);
+	}
 
 
 

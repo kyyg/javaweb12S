@@ -15,6 +15,7 @@ import com.spring.javaweb12S.service.AdminService;
 import com.spring.javaweb12S.service.DbShopService;
 import com.spring.javaweb12S.service.ScheduleService;
 import com.spring.javaweb12S.vo.EventVO;
+import com.spring.javaweb12S.vo.PointSaveVO;
 import com.spring.javaweb12S.vo.ScheduleVO;
 
 @Controller
@@ -30,23 +31,12 @@ public class ScheduleController {
 	@Autowired
 	DbShopService dbShopService;
 	
-	// 출석이벤트 포인트 지급을 위한 전역변수
-	private int sw = 0;
+
 	
 	@RequestMapping(value = "/schedule", method=RequestMethod.GET)
 	public String scheduleGet(Model model, HttpSession session) {
 		String mid = (String) session.getAttribute("sMid");
-		
-		// 출석이벤트 20개 달성 시 3000포인트 지급 
-		int eventNum = dbShopService.getEventNum(mid);
-		 if (eventNum == 2) {
-       if (sw == 0) {
-           sw = 1;
-           dbShopService.setMemberPlusPoint(mid, 100); // 나중에 3000으로 고칠것
-           return "redirect:/message/event20Success";
-       } 
-		}
-		
+
 		scheduleService.getSchedule(); // 달력 변수들
 		
 		List<EventVO> vos = adminService.getEventList(mid);
@@ -55,10 +45,11 @@ public class ScheduleController {
 		return "schedule/schedule";
 	}
 	
-	// 일일출석 이벤트 체크하기
+	// 일일출석 이벤트 체크하기, 20개 달성시 3000포인트 지급
 	@ResponseBody
 	@RequestMapping(value = "/eventToday", method = RequestMethod.POST)
 	public String eventTodayPost(EventVO vo) {
+		
 		String ymd = vo.getYmd().toString();
 		String yy = ymd.split("-")[0];
 		String mm = ymd.split("-")[1];
@@ -67,12 +58,26 @@ public class ScheduleController {
 		if(dd.length() == 1) dd = "0" + dd;
 		ymd = yy + "-" + mm + "-" + dd;
 		vo.setYmd(ymd);
+		
 		EventVO vo2 = adminService.getEventToday(vo);
-		//System.out.println("vo2값 : " + vo2);
 		if(vo2 != null) return "0";
-		dbShopService.setEventInput(vo); // 이벤트 등록
-		return "1";
+		
+		dbShopService.setEventInput(vo); // 오늘날짜로 출석이벤트 등록
+		
+		// 이번달 db에 찍힌 도장 개수를 가져온다 
+		int eventNum = dbShopService.getEventNum(vo.getMid());
+		
+		// 이번달 찍힌 도장의 개수가 20개 라면 이벤트 달성 포인트(3000)를 지급해 준다.
+		// DBpoint테이블에는 이벤트 지급내역저장, member테이블의 point는 출석지급포인트 3000을 누적처리
+		if(eventNum == 2) {
+			String pointMemo = vo.getYmd().substring(0,7) + " 출석이벤트";
+		  dbShopService.setGetPoint("이벤트", 3000, vo.getMid(), pointMemo); // 이벤트 포인트 현황 저장(이곳에서는 출석포인트 3000와 내역을 저장)
+			dbShopService.setMemberPlusPoint(vo.getMid(), 3000); // 멤버 포인트 지급, 나중에 3000으로 고칠것
+			return "2";
+		}
+		else return "1";
 	}
+		
 	
 	
 	@RequestMapping(value = "/scheduleMenu", method=RequestMethod.GET)

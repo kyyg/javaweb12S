@@ -25,13 +25,18 @@
     				alert("출석체크가 되었습니다.");
     				location.reload();
     			} 
+    			else if(res=="2") {
+    				alert("출석이벤트를 달성하여 3000 포인트를 지급해드렸습니다.");
+    				location.reload();
+    			}
     			else alert("이미 출석체크 하셨습니다.");
     		},
     		error: function() {
-    			alert("전송오류!!");
+    			alert("전숑오류오류오류..겐");
     		}
     	});
     }
+    
   </script>
   <style>
     #td1,#td8,#td15,#td22,#td29,#td36 {color:#7c638f}

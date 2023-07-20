@@ -125,7 +125,7 @@
   	</table>
   </form>
   
-  <table class="table table-hover text-center">
+  <table class="table table-hover text-center w3-striped">
     <tr class="table table-primary text-dark">
       <th>번호</th>
       <th>아이디</th>

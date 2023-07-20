@@ -277,8 +277,10 @@
 	</select>
 	
 	<select id="getEventNum" resultType="int">
-		select count(*) from event where mid = #{mid};
+		select count(*) from event where mid = #{mid} and extract(month from ymd) = extract(month from current_date);
 	</select>
+
+	
 	
 	
 	
@@ -338,6 +340,8 @@
   <insert id="setEventInput">
 	  insert into event values (#{vo.mid},default);
 	</insert>
+  
+
   
   
   

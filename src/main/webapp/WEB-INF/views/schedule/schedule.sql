@@ -45,6 +45,17 @@ create table event (
 	foreign key (mid) references member(mid)
 );
 
+/*
+create table pointSave(
+	idx int not null auto_increment primary key,
+	mid varchar(20) not null,
+	pointMemo varchar(100) not null,
+	point int not null,
+	wDate datetime not null default now(),
+	foreign key(mid) references member(mid)
+);
+*/
+
 drop table event;
 delete from event;
 

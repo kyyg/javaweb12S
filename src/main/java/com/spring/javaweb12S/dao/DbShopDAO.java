@@ -16,6 +16,7 @@ import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
 import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.MemberVO;
+import com.spring.javaweb12S.vo.PointSaveVO;
 import com.spring.javaweb12S.vo.WishVO;
 
 public interface DbShopDAO {
@@ -185,6 +186,11 @@ public interface DbShopDAO {
 	public void setEventInput(@Param("vo") EventVO vo);
 
 	public int getEventNum(@Param("mid") String mid);
+
+	public PointSaveVO getPointSave(@Param("mid") String mid, @Param("pointMemo")String pointMemo);
+
+	public void setPointSave(@Param("mid") String mid, @Param("pointMemo") String pointMemo, @Param("point") int point);
+
 
 	
 

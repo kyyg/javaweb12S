@@ -21,7 +21,7 @@
    function addressSearch() {
    	var store_name = myform.store_name.value;
    	if(store_name == "") {
-   		alert("검색할 지점을 선택하세요");
+   		alert("검색할 매장을 선택하세요");
    		return false;
    	}
    	myform.submit();
@@ -30,7 +30,7 @@
    function addressDelete() {
    	var store_name = myform.store_name.value;
    	if(store_name == "") {
-   		alert("삭제할 지점을 선택하세요");
+   		alert("삭제할 매장을 선택하세요");
    		return false;
    	}
    	var ans = confirm("선택하신 지역명을 DB에서 삭제하시겠습니까?");
@@ -41,7 +41,7 @@
    		url   : "${ctp}/admin/kakaomap/kakaoAddressDelete",
    		data  : {store_name : store_name},
    		success:function() {
-   			alert("DB에 저장된 지역명이 삭제되었습니다.");
+   			alert("DB에 저장된 매장명이 삭제되었습니다.");
    			location.href = "${ctp}/admin/kakaomap/kakaoStoreList";
    		},
    		error : function() {
@@ -54,7 +54,7 @@
 <div class="container">
 	<div>
 		<div class="w3-bottombar w3-indigo w3-padding text-center" style="margin-bottom:20px;">
-	   		<span style="font-size:23px;">오시는 길</span>
+	   		<span style="font-size:23px;">오프라인 매장 안내</span>
 	   </div>
     <hr/>
 	  <form name="myform">

@@ -131,10 +131,10 @@ nav li {
 	   <li class="nav-item dropdown">
 	    <div class="nav-link dropbtn ml-4 mr-5 text-center">&nbsp;<a href="${ctp}/dbShop/dbProductList">STORE</a></div>
 	    <div class="dropdown-menu dropdown-content">
-	      <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=디지털">DIGITAL</a>
-		    <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=프레임">FRAME</a>
-		    <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=리빙">LIVING</a>
-		    <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=북">BOOK</a>
+	      <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=디지털">디지털</a>
+		    <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=프레임">프레임</a>
+		    <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=리빙">리빙</a>
+		    <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=북">책</a>
 	   </div>
 	  </li>
 	  <li class="nav-item dropdown">
@@ -147,9 +147,10 @@ nav li {
 	  <li class="nav-item dropdown">
 	    <div class="nav-link dropbtn ml-3">SERVICE</div>
 	    <div class="dropdown-menu dropdown-content">
-	      <a class="dropdown-item text-center" href="${ctp}/notice/noticeList">NOTICE</a>
-	      <a class="dropdown-item text-center" href="${ctp}/board/boardList">Q&A</a>
-	      <a class="dropdown-item text-center" href="${ctp}/admin/offlineStore">Offline Store</a>
+	      <a class="dropdown-item text-center" href="${ctp}/notice/noticeList">공지 게시판</a>
+	      <a class="dropdown-item text-center" href="${ctp}/board/boardList">문의 게시판</a>
+	      <a class="dropdown-item text-center" href="${ctp}/admin/offlineStore">오프라인 매장</a>
+	      <a class="dropdown-item text-center" href="${ctp}/admin/offlineStore">입점 문의</a>
 	   </div>
 	   </li>
 	</ul>

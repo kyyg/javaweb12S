@@ -17,26 +17,14 @@
 <jsp:include page="/WEB-INF/views/include/nav2.jsp" />
 <hr/>
  
- <span class="w3-panel w3-round w3-teal w3-display-container" style="width:300px; height:200px">
-    <p class="w3-display-middle">w3-rousdasdnd</p>
- </span>
- <span class="w3-panel w3-round w3-teal w3-display-container" style="width:200px; height:200px">
-    <p class="w3-display-middle">w3-rousdasdnd</p>
- </span>
- 
- 
- 
   <table class="table table-bordered text-center">
   	<tr>
   		<td class="pb-5 pt-5" style="background-color:#e4dbea; width:35%">
-  			< <span class="w3-panel w3-round w3-teal w3-display-container" style="width:300px; height:200px">
-    <p class="w3-display-middle">w3-rousdasdnd</p>
- </span>
+  			<style="color=#7c638f";>${vo.nickName}님</style><br/>
+  			<style="font-size=10px; color=#fff;">${strLevel}</style>
   		</td>
   		<td class="pb-5 pt-5" style="width:20%">
-  		<span class="w3-panel w3-round w3-teal w3-display-container" style="width:200px; height:200px">
-    <p class="w3-display-middle">w3-rousdasdnd</p>
- </span>
+  			${vo.point} <span class="badge badge-info">Point</span><br/>
   		</td>
   		<td class="pb-5 pt-5" style="width:15%">
   			총 결제 금액(12개월)<br/>
