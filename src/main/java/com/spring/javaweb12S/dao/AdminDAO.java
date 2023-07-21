@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Param;
 
 import com.spring.javaweb12S.vo.BoardVO;
 import com.spring.javaweb12S.vo.ChartVO;
+import com.spring.javaweb12S.vo.ContactReplyVO;
+import com.spring.javaweb12S.vo.ContactVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
@@ -69,6 +71,14 @@ public interface AdminDAO {
 	public List<EventVO> getEventList(@Param("mid") String mid);
 
 	public int totRecCntAdmin(String part);
+
+	public List<ContactVO> getAllContactList(@Param("part")String part);
+
+	public void getContactReply(@Param("vo") ContactReplyVO vo);
+
+	public void setAdminContactPartChange(@Param("contactIdx") int contactIdx);
+
+	public void setAdminContactReplyUpdate(@Param("reIdx")int reIdx, @Param("reContent") String reContent);
 	
 	
 

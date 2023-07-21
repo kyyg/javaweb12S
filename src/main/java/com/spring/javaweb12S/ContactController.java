@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.spring.javaweb12S.pagination.PageProcess;
@@ -58,13 +59,39 @@ public class ContactController {
 		ContactVO vo = contactService.getContactContent(idx);
 		
 		// 해당 문의글의 답변글 가져오기
-		//ContactReplyVO reVO = contactService.getContactReply(idx);
+		ContactReplyVO reVO = contactService.getContactReply(idx);
 		
 		model.addAttribute("vo", vo);
-		//model.addAttribute("reVO", reVO);
+		model.addAttribute("reVO", reVO);
 		
 		return "contact/contactContent";
 	}
+	
+ //문의 내용 삭제처리
+	@RequestMapping(value = "/contactDelete", method = RequestMethod.GET)
+	public String contactDeleteGet(int idx,
+			@RequestParam(name="fSName", defaultValue="", required=false) String fSName,Model model) {
+			contactService.setContactDelete(idx, fSName);
+		
+		return "redirect:/message/contactDeleteOk";
+	}
+	
+	//문의 내용 삭제처리
+	@RequestMapping(value = "/contactUpdate", method = RequestMethod.GET)
+	public String contactUpdateGet(int idx, Model model) {
+		ContactVO vo = contactService.getContactContent(idx);
+		model.addAttribute("vo",vo);
+		return "contact/contactUpdate";
+	}
+	
+	@RequestMapping(value = "/contactUpdate", method = RequestMethod.POST)
+	public String contactUpdatePost(MultipartFile file,  ContactVO vo, Model model) {
+		contactService.setContactUpdate(file, vo);
+		
+		//model.addAttribute("idx",vo.getIdx());
+		return "redirect:/message/contactUpdateOk";
+	}
+	
 	
 	
 

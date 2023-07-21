@@ -10,34 +10,7 @@
 	<title>inquiryUpdate.jsp</title>
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
     <script type="text/javascript">
-    var sel_files = [];
 
-    $(document).ready(function() {
-        $("#file").on("change", handleImgsFileSelect);
-    }); 
-
-    function handleImgsFileSelect(e) {
-        var files = e.target.files;		// 파일의 정보를 담아온다.
-        var filesArr = Array.prototype.slice.call(files);	// 여러개의 파일일경우는 배열로 저장되어 있다. 각 파일객체별로 잘라서 정보를 filesArr배열에 담는다.
-        $(".imgs_wrap").html('');	// 기존에 존재하는것들 clear시킨후 아래쪽에서 append시켜준다.
-
-        filesArr.forEach(function(f) {
-            if(!f.type.match("image.*")) {
-                alert("확장자는 이미지 확장자만 가능합니다.");
-                return;
-            }
-
-            sel_files.push(f);
-
-            var reader = new FileReader();
-            
-            reader.onload = function(e) {
-                var img_html = "<img src=\"" + e.target.result + "\" /> &nbsp;";
-                $(".imgs_wrap").append(img_html);
-            }
-            reader.readAsDataURL(f);
-        });
-    }
  
 		function fCheck() {
 			var title = myForm.title.value;
@@ -82,7 +55,6 @@
 <p><br/></p>
 <div class="container">
 	<form name="myForm" method="post" enctype="Multipart/form-data">
-		<h2 style="font-weight: 600">1:1 문의 작성하기</h2>
 		<br/>
 		<table class="table table-bordered">
 			<tr> 
@@ -93,47 +65,38 @@
 				<th>분류</th>
 				<td>
 					<select name="part" class="form-control" style="width: 200px;">
-						<option value="배송지연/불만" ${vo.part == '배송지연/불만' ? 'selected' : ''}>배송지연/불만</option>
-						<option value="반품문의"	   ${vo.part == '반품문의' ? 		 'selected' : ''}>반품문의</option>
-						<option value="환불문의"		 ${vo.part == '환불문의' ? 		 'selected' : ''}>환불문의</option>
-						<option value="회원정보문의"	 ${vo.part == '회원정보문의' ?  'selected' : ''}>회원정보문의</option>
-						<option value="기타문의"		 ${vo.part == '기타문의' ? 		 'selected' : ''}>기타문의</option>
+						<option value="상품 입점" ${vo.part == '상품 입점' ? 'selected' : ''}>상품 입점</option>
+						<option value="원데이클래스 제휴"	   ${vo.part == '원데이클래스 제휴' ? 		 'selected' : ''}>원데이클래스 제휴</option>
 					</select>
 				</td>
 			</tr>
 			<tr> 
-				<th>주문번호</th>
-				<td><input type="text" name="jumunNo" value="${vo.jumunNo}" class="form-control" maxlength="100"/></td>
-			</tr>
-			<tr> 
 				<th>내용</th>
 				<td>
-					<b>1:1문의 작성 전 확인해주세요!</b><br/><br/>
-					현재 문의량이 많아 답변이 지연되고 있습니다. 문의 남겨주시면 2일 이내 순차적으로 답변 드리겠습니다.<br/>
-					제품 하자 혹은 이상으로 반품(환불)이 필요한 경우 사진과 함께 구체적인 내용을 남겨주세요.<br/><br/>
-					<textarea name="content" rows="5" class="form-control">${vo.content}</textarea>
+					<textarea name="content" rows="10" class="form-control">${vo.content}</textarea>
 				</td>
 			</tr>
 			<tr> 
-				<th>이미지</th>
+				<th>파일첨부</th>
 				<td>
-					<!-- multiple로 처리할 경우 jsp에서는 여러개의 파일 업로드는 가능하지만, 파일명을 알아오지 못한다. 따라서 이곳에서는 한개 파일만 업로드하는것으로 처리한다. -->
-					<!-- <input type="file" multiple="multiple" name="file" id="file" accept=".zip,.jpg,.gif,.png"/><br/><br/> -->
 					<input type="file" name=file id="file" accept=".zip,.jpg,.gif,.png"/><br/><br/>
-					- 파일 형식은 zip / jpg / gif / png만 허용합니다.(<font color="red">사진을 변경하시면 기존 사진은 삭제됩니다.</font>)
+					(<font color="red">사진을 변경하시면 기존 사진은 삭제됩니다.</font>)
 				</td>
 			</tr>
 			<tr>
-			  <th class="m-0 p-0"></th>
-			  <td class="m-0 p-0">
-				  <span class="imgs_wrap"><c:if test="${!empty vo.FSName}"><img src="${ctp}/inquiry/${vo.FSName}" width="200px"/></c:if></span>
-			  </td>
+			  <th>첨부된 파일</th>
+				 <td>
+		        <c:set var="fNames" value="${fn:split(vo.FName,'/')}"/>
+		        <c:set var="fSNames" value="${fn:split(vo.FSName,'/')}"/>
+		        <c:forEach var="fName" items="${fNames}" varStatus="st">
+		          <a href="${ctp}/contact/${fSNames[st.index]}" download="${fName}">${fName}</a><br/>
+		        </c:forEach>
+    	  </td>
 			</tr>
 			<tr>
 			  <td colspan='2' class="text-center">
-			    <input type="button" value="수 정" onclick="fCheck()" class="btn btn-secondary w-25"/> &nbsp;
-			    <input type="reset" value="다시입력" class="btn btn-secondary w-25"/> &nbsp;
-			    <input type="button" value="돌아가기" onclick="location.href='${ctp}/inquiry/inquiryList?pag=${pag}';" class="btn btn-secondary w-25"/>
+			    <input type="button" value="수정" onclick="fCheck()" class="btn btn-outline-dark w-25"/> &nbsp;
+			    <input type="button" value="돌아가기" onclick="location.href='${ctp}/contact/contactList';" class="btn btn-outline-dark w-25"/>
 			  </td>
 			</tr>
 		</table>

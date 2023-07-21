@@ -1,14 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<% pageContext.setAttribute("newLine", "\n"); %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>adInquiryReply.jsp</title>
-	<jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title></title>
+
+ <!-- Custom fonts for this template-->
+<link href="../resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link
+    href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 	<script>
 		/*
 		$(document).ready(function() {
@@ -21,8 +35,8 @@
 			});
 		});
 		*/
-		function inquiryReply() {
-			var inquiryIdx = "${vo.idx}";
+		function contactReply() {
+			var contactIdx = "${vo.idx}";
 			var reContent = replyForm.reContent.value;
 			if(reContent == "") {
 				alert("답변을 입력하세요!");
@@ -30,16 +44,18 @@
 				return false;
 			}
 			var query = {
-					inquiryIdx : inquiryIdx,
+					contactIdx : contactIdx,
 					reContent : reContent
 			}
 			$.ajax({
-				url : "${ctp}/admin/adInquiryReplyInput",
+				url : "${ctp}/admin/adminContactReplyInput",
 				type : "post",
 				data : query,
-				success : function(data) {
-					alert("답변글이 등록되었습니다.");
+				success : function(res) {
+					if(res == "1"){
+					alert("답변이 등록되었습니다.");
 					location.reload();
+					}
 				}
 			});
 		}
@@ -51,15 +67,16 @@
 			
 			//var idx = ${vo.idx};
 			var reIdx = '${reVO.reIdx}';
-			var inquiryIdx = '${reVO.inquiryIdx}';
+			var contactIdx = '${reVO.contactIdx}';
 			var query = {
 					//idx : idx,
 					reIdx : reIdx,
-					inquiryIdx : inquiryIdx
+					contactIdx : contactIdx
 			}
 			$.ajax({
 				type : "post",
-				url  : "${ctp}/admin/adInquiryReplyDelete",
+				url  : "${ctp}/admin/adminContactReplyDelete",
+				
 				data : query,
 				success:function() {
 					alert("삭제 되었습니다.");
@@ -69,11 +86,11 @@
 		}
 		
 		// 답변글 수정폼 호출하기(replySw값을 1을 보내어서 그 값이 1이면 textarea창의 readonly속성을 풀어준다.)
-		/* 
-		function updateReplyCheck() {
-			location.href = "${ctp}/admin/adInquiryReply?idx=${vo.idx}&replySw=U";
-		}
-		 */
+		 
+/* 		function updateReplyCheck() {
+			location.href = "${ctp}/admin/adminContactReply?idx=${vo.idx}&replySw=U";
+		} */
+		 
 		
 		// 답변글 수정하기
 		function updateReplyCheck() {
@@ -85,13 +102,15 @@
 			}
 			$.ajax({
 				type : "post",
-				url  : "${ctp}/admin/adInquiryReplyUpdate",
+				url  : "${ctp}/admin/adminContactReplyUpdate",
 				data : query,
-				success:function() {
+				success:function(res) {
+					if(res == "1"){
 					alert("수정되었습니다.");
+					location.reload();
+					}
 					// location.reload();	// 수정버튼을 다시 readonly 처리위해서는 location.reload가 아닌, 해당 프로그램을 다시 호출해야한다. 즉, location.href처리한다.
 					// location.href = "${ctp}/admin/adInquiryReply?idx=${vo.idx}";
-					location.reload();
 				}
 			});
 		}
@@ -100,25 +119,40 @@
 		function deleteCheck() {
 			var ans = confirm("삭제하시겠습니까?");
 			if(!ans) return false;
-			location.href="${ctp}/admin/adInquiryDelete?idx=${vo.idx}&fSName=${vo.FSName}&reIdx=${reVO.reIdx}&pag=${pag}";
+			location.href="${ctp}/admin/adminContactDelete?idx=${vo.idx}&fSName=${vo.FSName}&reIdx=${reVO.reIdx}";
 		}
 	</script>
 	<style>
 	  th {background-color: #ccc; text-align:center;}
 	</style>
 </head>
+<body id="page-top">
+<!-- Page Wrapper -->
+<div id="wrapper">
+<jsp:include page="/WEB-INF/views/include/sidebar.jsp" />
+</head>
 <body>
 <p><br/></p>
-<div class="container">
-  <h3>1:1문의 상세보기</h3>
-	<table class="table table-bordered">
+  <!-- Content Wrapper -->
+<div id="content-wrapper" class="d-flex flex-column">
+<!-- Topbar -->
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
+    <h3 class="text-center"></h3>
+    <!-- Topbar Navbar -->
+</nav>
+<!-- End of Topbar -->
+<!-- Main Content -->
+<div id="content">
+	<div class="container">
+
+<table class="table table-bordered">
 		<tr>
-			<th>제목</th>
+			<th style="width:20%">제목</th>
 			<td colspan="3">[${vo.part}] ${vo.title}</td>
-		</tr>
-		<tr>
-			<th>작성ID</th>
-			<td colspan="3">${vo.mid}</td>
 		</tr>
 		<tr>
 			<th>상태</th>
@@ -133,29 +167,31 @@
 		</tr>
 		<tr>
 			<th>작성일</th>
-			<td style="width:200px">${fn:substring(vo.WDate,0,10)}</td>
-			<th>주문번호</th>
-			<td>
-				<c:if test="${!empty vo.jumunNo}">${vo.jumunNo}</c:if>
-				<c:if test="${empty vo.jumunNo}">없음</c:if>	
+			<td>${fn:substring(vo.WDate,0,10)}</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="height:200px">
+	      <p>${fn:replace(vo.content,newLine,"<br/>")}</p>
 			</td>
 		</tr>
 		<tr>
-			<td colspan="4" class="view-content">
-	      <c:if test="${!empty vo.FSName}"><img src="${ctp}/inquiry/${vo.FSName}" width="400px"/><br/></c:if>
-	      <br/>
-	      <p>${fn:replace(vo.content,newLine,"<br/>")}<br/></p>
-		    <hr/>
-			</td>
+		 <th>첨부파일</th>
+		 <td>
+        <c:set var="fNames" value="${fn:split(vo.FName,'/')}"/>
+        <c:set var="fSNames" value="${fn:split(vo.FSName,'/')}"/>
+        <c:forEach var="fName" items="${fNames}" varStatus="st">
+          <a href="${ctp}/contact/${fSNames[st.index]}" download="${fName}">${fName}</a><br/>
+        </c:forEach>
+      </td>
 		</tr>
 	</table>
 	
 	
 	<div style="text-align: right">
 		<c:if test="${sMid==vo.mid || sLevel == 0}">	<!-- 작성글이 자신의 글이거나 관리자라면 삭제처리할수 있다. -->
-			<input type="button" value="삭제" onclick="deleteCheck()" class="btn btn-danger btn-sm"/>
+			<input type="button" value="삭제" onclick="deleteCheck()" class="btn btn-outline-dark btn-sm"/>
 		</c:if>
-		<input type="button" value="목록" onclick="location.href='${ctp}/admin/adInquiryList.ad?pag=${pageVo.pag}'" class="btn btn-secondary btn-sm"/>
+		<input type="button" value="목록으로" onclick="location.href='${ctp}/admin/adminContactList'" class="btn btn-outline-dark btn-sm"/>
 	</div>
 	
 	<hr/>
@@ -164,7 +200,6 @@
 		<form name="replyForm">
 			<label for="reContent"><h5>답변내용</h5></label>
 			<c:if test="${empty sReplySw || sReplySw != '1'}">	<!-- 답변서 작성되어 있고, 수정가능상태는 readonly로 처리후 '수정'버튼 누르면 'readonly'해제후 '수정완료'버튼으로 바꾼다. -->
-				<%-- <textarea name="reContent" rows="5"  id="reContent" readonly="readonly" class="form-control" >${reVO.reContent}</textarea> --%>
 				<textarea name="reContent" rows="5"  id="reContent" class="form-control bg-light" >${reVO.reContent}</textarea>
 				<div style="text-align: right">		<!-- 수정을 위해서는 현재 답변글의 글번호(reIdx)를 넘겨야하지만, 현재는 답변글이 항상 1개이기에 넘기지않아도 알수 있다. -->
 					<input type="button" value="수정" id="updateBtn" onclick="updateReplyCheck()" class="btn btn-secondary btn-sm mt-2"/>
@@ -184,14 +219,29 @@
 	<!-- 답변서가 작성되어 있지 않을때 수행하는 곳 -->
 	<c:if test="${empty reVO.reContent}">
 		<form name="replyForm">
-			<label for="reContent">답변글 작성하기</label>
-			<textarea name="reContent" rows="5" class="form-control" placeholder="답변글 작성하기"></textarea>
+			<label for="reContent"></label>
+			<textarea name="reContent" rows="5" class="form-control" placeholder="답변 작성해주세요."></textarea>
 			<div style="text-align: right">
-				<input type="button" value="등록" onclick="inquiryReply()" class="btn btn-secondary btn-sm mt-2"/>
+				<input type="button" value="등록" onclick="contactReply()" class="btn btn-outline-dark btn-sm mt-2"/>
 			</div>
 		</form>
 	</c:if>
+
 </div>
-<p><br/></p>
+</div>
+<!-- End of Content Wrapper -->
+<!-- End of Page Wrapper -->
+<!-- Bootstrap core JavaScript-->
+<script src="../resources/vendor/jquery/jquery.min.js"></script>
+<script src="../resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="../resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="../resources/js/sb-admin-2.min.js"></script>
+<!-- Page level plugins -->
+<script src="../resources/vendor/chart.js/Chart.min.js"></script>
+<!-- Page level custom scripts -->
+<script src="../resources/js/demo/chart-area-demo.js"></script>
+<script src="../resources/js/demo/chart-pie-demo.js"></script>
 </body>
 </html>

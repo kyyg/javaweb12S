@@ -268,8 +268,20 @@ public class MessageController {
 			model.addAttribute("url", "contact/contactList");
 		}
 		else if(msgFlag.equals("contactInputNo")) {
-			model.addAttribute("msg", "제휴 문의 등록이 실패하였습니다.");
+			model.addAttribute("msg", "제휴 문의 등록를 실패하였습니다.");
 			model.addAttribute("url", "contact/contactInput");
+		}
+		else if(msgFlag.equals("adminContactReplyOk")) {
+			model.addAttribute("msg", "제휴 문의 답변이 등록되었습니다.");
+			model.addAttribute("url", "contact/contactInput");
+		}
+		else if(msgFlag.equals("contactDeleteOk")) {
+			model.addAttribute("msg", "제휴 문의가 삭제되었습니다.");
+			model.addAttribute("url", "contact/contactList");
+		}
+		else if(msgFlag.equals("contactUpdateOk")) {
+			model.addAttribute("msg", "제휴 문의가 수정되었습니다.");
+			model.addAttribute("url", "contact/contactList");
 		}
 
 		

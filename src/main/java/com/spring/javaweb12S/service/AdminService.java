@@ -4,10 +4,11 @@ import java.util.List;
 
 import com.spring.javaweb12S.vo.BoardVO;
 import com.spring.javaweb12S.vo.ChartVO;
+import com.spring.javaweb12S.vo.ContactReplyVO;
+import com.spring.javaweb12S.vo.ContactVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
-import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
@@ -65,5 +66,13 @@ public interface AdminService {
 	public void setEventInput(EventVO vo);
 
 	public List<EventVO> getEventList(String mid);
+
+	public List<ContactVO> getAllContactList(String part);
+
+	public void getContactReply(ContactReplyVO vo);
+
+	public void setAdminContactPartChange(int contactIdx);
+
+	public void setAdminContactReplyUpdate(int reIdx,String reContent);
 
 }

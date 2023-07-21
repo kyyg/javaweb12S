@@ -17,4 +17,8 @@ public ContactVO getContactContent(@Param("idx") int idx);
 
 public ContactReplyVO getContactReply(@Param("idx") int idx);
 
+public void setContactDelete(@Param("idx") int idx);
+
+public void setContactUpdate(@Param("vo") ContactVO vo);
+
 }

@@ -134,6 +134,31 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
+
+		<!-- Heading -->
+    <div class="sidebar-heading">
+        Contact
+    </div>
+		<!-- Nav Item - Pages Collapse Menu -->
+		    <li class="nav-item">
+		        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages6"
+		            aria-expanded="true" aria-controls="collapsePages2">
+		            <i class="fas fa-fw fa-folder"></i>
+		            <span>제휴 문의</span>
+		        </a>
+		        <div id="collapsePages6" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+		            <div class="bg-white py-2 collapse-inner rounded">
+		                <h6 class="collapse-header">제휴 문의</h6>
+		                <a class="collapse-item" href="${ctp}/admin/adminContactList">제휴문의 목록</a>
+		            </div>
+		        </div>
+		    </li>
+
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
     <!-- Heading -->
     <div class="sidebar-heading">
         Offline Store

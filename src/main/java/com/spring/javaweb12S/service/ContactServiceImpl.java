@@ -1,9 +1,11 @@
 package com.spring.javaweb12S.service;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,6 +16,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.spring.javaweb12S.common.JavawebProvide;
 import com.spring.javaweb12S.dao.ContactDAO;
 import com.spring.javaweb12S.vo.ContactReplyVO;
 import com.spring.javaweb12S.vo.ContactVO;
@@ -72,7 +75,7 @@ public class ContactServiceImpl implements ContactService {
 		return fileName;
 	}
 
-	// 메인 상품 서버 저장하기
+	//  서버 저장하기
 	private void writeFile(MultipartFile fName, String saveFileName) throws IOException {
 		byte[] data = fName.getBytes();
 		
@@ -101,6 +104,55 @@ public class ContactServiceImpl implements ContactService {
 	@Override
 	public ContactReplyVO getContactReply(int idx) {
 		return contactDAO.getContactReply(idx);
+	}
+
+
+
+	@Override
+	public void setContactDelete(int idx, String fSName) {
+		// 올려진 사진이 있으면 먼저 지우고 DB의 내용을 삭제처리한다.
+			HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+			String realPath = request.getSession().getServletContext().getRealPath("/resources/data/contact/");
+			File deleteFile = new File(realPath + fSName);
+			if(deleteFile.exists()) deleteFile.delete();
+			
+			contactDAO.setContactDelete(idx);
+	}
+
+
+
+	
+		
+	
+	
+	@Override
+	public void setContactUpdate(MultipartFile file, ContactVO vo) {
+  // 사진을 변경처리 했다면 사진작업 처리후 DB에 갱신작업처리한다.
+		try {
+			String oFileName = file.getOriginalFilename();
+			if(oFileName != null && !oFileName.equals("")) {
+				// 기존에 존재하는 파일을 삭제
+				HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+				String realPath = request.getSession().getServletContext().getRealPath("/resources/data/contact/");
+				File deleteFile = new File(realPath + vo.getFSName());
+				if(deleteFile.exists()) deleteFile.delete();
+				
+				// 새로 업로드되는 파일의 이름을 부여후 저장시키고, vo에 set시킨다.
+				UUID uid = UUID.randomUUID();
+				String saveFileName = uid + "_" + oFileName;
+				JavawebProvide ps = new JavawebProvide();
+				ps.writeFile(file, saveFileName,"contact");
+				vo.setFName(oFileName);
+				vo.setFSName(saveFileName);
+			}
+			else {
+				vo.setFName(vo.getFName());
+				vo.setFSName(vo.getFSName());
+			}
+			contactDAO.setContactUpdate(vo);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

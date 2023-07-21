@@ -80,6 +80,21 @@
 		select mid,date_format(ymd, '%Y-%c-%e') as ymd from event where mid=#{mid} order by ymd;
 	</select>
 	
+	<select id="getAllContactList" resultType="com.spring.javaweb12S.vo.ContactVO">
+		<if test='part == "전체"'>
+		select * from contact order by idx desc;
+		</if>
+		<if test='part != "전체"'>
+		select * from contact where reply = #{part} order by idx desc;
+		</if>
+	</select>
+	
+	
+	
+	<insert id="getContactReply">
+		insert into contactReply values (default, #{vo.contactIdx},default,#{vo.reContent});
+	</insert>
+	
 	
 
 
@@ -87,6 +102,16 @@
 	<update id="setBestReview">
 		update dbReview set bestReview = #{bestReview} where idx = #{idx};
 	</update>
+	
+	<update id="setAdminContactPartChange">
+		update contact set reply = '답변완료' where idx = #{contactIdx};
+	</update>
+	
+	<update id="setAdminContactReplyUpdate">
+		update contactReply set reContent = #{reContent} where reIdx=#{reIdx} ;
+	</update>
+
+
 
 
   

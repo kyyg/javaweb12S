@@ -36,6 +36,19 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <p><br/></p>
 <div class="container">
+
+	<table class="table table-borderless pb-0">
+		<tr>
+			<td colspan="2">
+				<div style="align:right" class="text-right">
+					<c:if test="${empty reVO.reContent}">
+						<span><input type="button" value="수정" onclick="updateCheck()" class="btn btn-outline-dark"/></span>
+						<span><input type="button" value="삭제" onclick="deleteCheck()" class="btn btn-outline-dark"/></span>
+					</c:if>
+				</div>
+			</td>
+		</tr>
+	</table>
 	<table class="table table-bordered">
 		<tr>
 			<th>제목</th>
@@ -57,25 +70,26 @@
 			<td>${fn:substring(vo.WDate,0,10)}</td>
 		</tr>
 		<tr>
-			<td colspan="4">
-	      <c:if test="${!empty vo.FSName}"><img src="${ctp}/contact/${vo.FSName}" width="400px"/><br/></c:if>
-	      <br/>
-	      <p>${fn:replace(vo.content,newLine,"<br/>")}<br/></p>
-	    	<hr/>
+			<td colspan="4" style="height:200px">
+	      <p>${fn:replace(vo.content,newLine,"<br/>")}</p>
 			</td>
+		</tr>
+		<tr>
+		 <th>첨부파일</th>
+		 <td>
+        <c:set var="fNames" value="${fn:split(vo.FName,'/')}"/>
+        <c:set var="fSNames" value="${fn:split(vo.FSName,'/')}"/>
+        <c:forEach var="fName" items="${fNames}" varStatus="st">
+          <a href="${ctp}/contact/${fSNames[st.index]}" download="${fName}">${fName}</a><br/>
+        </c:forEach>
+      </td>
 		</tr>
 	</table>
 	
 	<!-- 관리자가 답변을 달았을때는 현재글을 수정/삭제 처리 못하도록 하고 있다. -->
  	<div style="text-align: right" class="row">
 		<span class="col"></span>
-		<c:if test="${empty reVO.reContent}">
-			  <input type="button" value="수 정" onclick="updateCheck()" class="btn btn-outline-dark col"/>
-				<span class="col"></span>
-				<input type="button" value="삭 제" onclick="deleteCheck()" class="btn btn-outline-dark col"/>
-				<span class="col"></span>
-		</c:if>
-		<input type="button" value="목록으로" onclick="location.href='${ctp}/contact/contactList';" class="btn btn-outline-dark col"/>
+		<input type="button" value="목록으로" onclick="location.href='${ctp}/contact/contactList';" class="btn btn-outline-dark col form-control"/>
 		<span class="col"></span>
 	</div>
 	

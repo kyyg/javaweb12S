@@ -18,5 +18,23 @@
 	<insert id="setContactInput">
 		insert into contact values (default, #{vo.mid},#{vo.title},#{vo.part},default,#{vo.content},#{vo.fName},#{vo.fSName},default);
 	</insert>
+	
+	
+	  <update id="setContactUpdate">
+    <if test="vo.FName == ''">  <!-- 앞에서 vo의 FName를 받았기에 이곳에서는 필요없음 -->
+      update contact set title=#{vo.title},part=#{vo.part},wDate=now(),content=#{vo.content} where idx=#{vo.idx};
+    </if>
+    <if test="vo.FName != ''">
+      update contact set title=#{vo.title},part=#{vo.part},wDate=now(),content=#{vo.content},fName=#{vo.FName},FSName=#{vo.FSName} where idx=#{vo.idx};
+    </if>
+  </update>
+	
+	
+	
+	
+	
+	<delete id="setContactDelete">
+		delete from contact where idx = #{idx};
+	</delete>
   
 </mapper>

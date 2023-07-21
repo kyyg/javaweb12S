@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.spring.javaweb12S.dao.AdminDAO;
 import com.spring.javaweb12S.vo.BoardVO;
 import com.spring.javaweb12S.vo.ChartVO;
+import com.spring.javaweb12S.vo.ContactReplyVO;
+import com.spring.javaweb12S.vo.ContactVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
@@ -150,6 +152,26 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<EventVO> getEventList(String mid) {
 		return adminDAO.getEventList(mid);
+	}
+
+	@Override
+	public List<ContactVO> getAllContactList(String part) {
+		return adminDAO.getAllContactList(part);
+	}
+
+	@Override
+	public void getContactReply(ContactReplyVO vo) {
+		adminDAO.getContactReply(vo);
+	}
+
+	@Override
+	public void setAdminContactPartChange(int contactIdx) {
+		adminDAO.setAdminContactPartChange(contactIdx);
+	}
+
+	@Override
+	public void setAdminContactReplyUpdate(int reIdx,String reContent) {
+		adminDAO.setAdminContactReplyUpdate(reIdx,reContent);
 	}
 	
 	

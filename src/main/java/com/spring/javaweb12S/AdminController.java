@@ -18,20 +18,21 @@ import com.spring.javaweb12S.pagination.PageProcess;
 import com.spring.javaweb12S.pagination.PageVO;
 import com.spring.javaweb12S.service.AdminService;
 import com.spring.javaweb12S.service.BoardService;
+import com.spring.javaweb12S.service.ContactService;
 import com.spring.javaweb12S.service.DbShopService;
 import com.spring.javaweb12S.service.MemberService;
 import com.spring.javaweb12S.service.NoticeService;
 import com.spring.javaweb12S.vo.BoardReplyVO;
 import com.spring.javaweb12S.vo.BoardVO;
 import com.spring.javaweb12S.vo.ChartVO;
+import com.spring.javaweb12S.vo.ContactReplyVO;
+import com.spring.javaweb12S.vo.ContactVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
 import com.spring.javaweb12S.vo.DbOptionVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
-import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
-import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.GoodVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 import com.spring.javaweb12S.vo.MemberVO;
@@ -55,6 +56,9 @@ public class AdminController {
 	
 	@Autowired
 	DbShopService dbShopService;
+	
+	@Autowired
+	ContactService contactService;
 	
 	@Autowired
 	PageProcess pageProcess;
@@ -685,6 +689,66 @@ public class AdminController {
 		dbShopService.setMemberPlusPoint(mid, 1000); // 해당 회원 멤버 포인트 지급
 		return "1";
 	}
+	
+	// 관리자 제휴 문의 목록
+	@RequestMapping(value = "/adminContactList", method = RequestMethod.GET)
+	public String adminContactListGet(Model model,
+			@RequestParam(name="part", defaultValue = "전체", required=false) String part
+			) {
+		List<ContactVO> vos = adminService.getAllContactList(part);
+		model.addAttribute("vos",vos);
+		model.addAttribute("part",part);
+		System.out.println("vos : " + vos);
+		System.out.println("part : "+ part);
+		return "admin/contact/adminContactList";
+	}
+	
+	// 관리자 제휴 문의 상세보기
+	@RequestMapping(value = "/adminContactReply", method = RequestMethod.GET)
+	public String adminContactReplyGet(int idx, Model model) {
+		ContactVO vo = contactService.getContactContent(idx);
+		
+		// 해당 문의글의 답변글 가져오기
+		ContactReplyVO reVO = contactService.getContactReply(idx);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("reVO", reVO);
+		
+		return "admin/contact/adminContactReply";
+	}
+	
+	
+	// 관리자 제휴 문의 답변 달기
+	@RequestMapping(value = "/adminContactReplyInput", method = RequestMethod.POST)
+	public String adminContactReplyInputPost(ContactReplyVO vo) {
+		 // 답변등록
+		 adminService.getContactReply(vo);
+		 // 답변 등록 후 문의글 reply를 답변완료로 변경
+		 adminService.setAdminContactPartChange(vo.getContactIdx());
+		return "1";
+	}
+	
+	// 관리자 제휴 문의 답변 달기
+	@RequestMapping(value = "/adminContactReplyUpdate", method = RequestMethod.POST)
+	public String adminContactReplyUpdatePost(int reIdx,String reContent) {
+		// 답변수정
+		adminService.setAdminContactReplyUpdate(reIdx,reContent);
+		return "1";
+	}
+	
+	/*
+	 * // 문의 삭제허기워기
+	 * 
+	 * @RequestMapping(value = "/adminContactDelete", method = RequestMethod.POST)
+	 * public String adminContactDeletePost(Model model, int idx, String fSName, int
+	 * reIdx, int pag) { adminService.setContactReplyDelete(reIdx); // 관리자가 답변글을
+	 * 삭제했을때 처리루틴 inquiryService.setInquiryDelete(idx, fSName); return
+	 * "redirect:/message/AdminContactDeleteOk"; }
+	 */
+	
+	
+	
+	
 	
 	
 	
