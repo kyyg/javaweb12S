@@ -3,6 +3,7 @@ package com.spring.javaweb12S.pagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.javaweb12S.dao.AdminDAO;
 import com.spring.javaweb12S.dao.BoardDAO;
 import com.spring.javaweb12S.dao.DbShopDAO;
 import com.spring.javaweb12S.dao.MemberDAO;
@@ -28,6 +29,10 @@ public class PageProcess {
 	@Autowired
 	DbShopDAO dbShopDAO;
 	
+	@Autowired
+	AdminDAO adminDAO;
+	
+	
 	public PageVO totRecCnt(int pag, int pageSize, String section, String part, String searchString) {
 		PageVO pageVO = new PageVO();
 		
@@ -51,6 +56,7 @@ public class PageProcess {
 			int proudctIdx = Integer.parseInt(searchString);
 			totRecCnt = dbShopDAO.totRecCnt3(mid,proudctIdx);
 		}
+
 		
 		int totPage = (totRecCnt % pageSize)==0 ? totRecCnt /pageSize : (totRecCnt / pageSize) + 1;
 		int startIndexNo = (pag - 1) * pageSize;

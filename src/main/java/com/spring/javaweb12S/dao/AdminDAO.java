@@ -68,4 +68,8 @@ public interface AdminDAO {
 
 	public List<EventVO> getEventList(@Param("mid") String mid);
 
+	public int totRecCntAdmin(String part);
+	
+	
+
 }

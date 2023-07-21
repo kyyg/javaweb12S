@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.javaweb12S.dao.ContactDAO">
+
+	<select id="setContactList" resultType="com.spring.javaweb12S.vo.ContactVO">
+		select * from contact where mid = #{mid} order by idx desc;
+	</select>
+	
+	<select id="getContactContent" resultType="com.spring.javaweb12S.vo.ContactVO">
+		select * from contact where idx = #{idx};
+	</select>
+	
+	<select id="getContactReply" resultType="com.spring.javaweb12S.vo.ContactReplyVO">
+		select * from contactReply where contactIdx = #{idx};
+	</select>
+	
+	
+	<insert id="setContactInput">
+		insert into contact values (default, #{vo.mid},#{vo.title},#{vo.part},default,#{vo.content},#{vo.fName},#{vo.fSName},default);
+	</insert>
+  
+</mapper>

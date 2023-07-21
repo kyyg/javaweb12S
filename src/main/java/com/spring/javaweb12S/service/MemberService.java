@@ -26,5 +26,11 @@ public interface MemberService {
 	
 	public MemberVO getEmailSearch(String email);
 
+	public MemberVO getMemberNickNameEmailCheck(String nickName, String email);
+
+	public void setKakaoMemberInputOk(String mid, String pwd, String nickName, String email);
+
+	public void setMemberUserDelCheck(String mid);
+	
 
 }

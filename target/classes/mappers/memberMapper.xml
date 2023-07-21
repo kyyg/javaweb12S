@@ -21,11 +21,19 @@
   <select id="getEmailSearch" resultType="com.spring.javaweb12S.vo.MemberVO">
 		select * from member where email = #{email};
 	</select>
+	
+	<select id="getMemberNickNameEmailCheck" resultType="com.spring.javaweb12S.vo.MemberVO">
+  	select * from member where nickName = #{nickName} and email = #{email};
+  </select>
   
   
   
   <insert id="setMemberJoinOk">
     insert into member values (default,#{vo.mid},#{vo.pwd},#{vo.nickName},#{vo.name},#{vo.tel},#{vo.address},#{vo.email},default,default,default,default,default,default,default);
+  </insert>
+  
+  <insert id="setKakaoMemberInputOk">
+  	insert into member values (default,#{mid},#{pwd},#{nickName},'','010- - ','/ / / /',#{email},default,default,default,default,default,default,default);
   </insert>
   
   
@@ -44,6 +52,10 @@
   
   <update id="setMemberDeleteOk">
     update member set userDel = 'OK' where mid = #{mid};
+  </update>
+  
+  <update id="setMemberUserDelCheck">
+  	update member set userDel='NO' where mid = #{mid};
   </update>
   
 </mapper>

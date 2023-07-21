@@ -263,9 +263,13 @@ public class MessageController {
 			model.addAttribute("msg", "공지 삭제에 실패하였습니다.");
 			model.addAttribute("url", "admin/noticeDelete");
 		}
-		else if(msgFlag.equals("event20Success")) {
-			model.addAttribute("msg", "이달의 출석 이벤트를 달성하여 3000포인트가 지급되었습니다!");
-			model.addAttribute("url", "/");
+		else if(msgFlag.equals("contactInputOk")) {
+			model.addAttribute("msg", "제휴 문의가 등록되었습니다.");
+			model.addAttribute("url", "contact/contactList");
+		}
+		else if(msgFlag.equals("contactInputNo")) {
+			model.addAttribute("msg", "제휴 문의 등록이 실패하였습니다.");
+			model.addAttribute("url", "contact/contactInput");
 		}
 
 		
