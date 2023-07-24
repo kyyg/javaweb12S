@@ -391,10 +391,7 @@ public class DbShopController {
 
 	// 진열된 상품클릭시 해당상품의 상세정보 보여주기(사용자(고객)화면에서 보여주기)
 	@RequestMapping(value = "/dbProductContent", method = RequestMethod.GET)
-	public String dbProductContentGet(int idx, Model model, HttpSession session,
-			@RequestParam(name = "pag", defaultValue = "1", required = false) int pag,
-			@RequestParam(name = "pageSize", defaultValue = "5", required = false) int pageSize,
-			@RequestParam(name = "sort", defaultValue = "최신등록순", required = false) String sort) {
+	public String dbProductContentGet(int idx, Model model, HttpSession session) {
 		String mid = (String) session.getAttribute("sMid");
 
 		DbProductVO productVO = dbShopService.getDbShopProduct(idx); // 상품의 상세정보 불러오기
@@ -404,20 +401,40 @@ public class DbShopController {
 		model.addAttribute("optionVOS", optionVOS);
 		model.addAttribute("mainVO", mainVO); 
 
+		
+		// 최근 본 상품
+		// 세션에 떠 있는것을 잡아오자
+		session.setAttribute("sProductFSName", productVO.getFSName());
+		session.setAttribute("sProductIdx", String.valueOf(productVO.getIdx())); // Integer를 String으로 변환하여 저장
+
+		List<String> proList2 = (List<String>) session.getAttribute("proList2");
+		if (proList2 == null) {
+		    proList2 = new ArrayList<>();
+		    session.setAttribute("proList2", proList2);
+		}
+
+		// 이 부분은 페이지를 클릭할 때마다 실행되며, proList2에 값을 추가하고 최대 4개의 값을 유지합니다.
+		String sProductFSName = (String) session.getAttribute("sProductFSName");
+		String sProductIdx = (String) session.getAttribute("sProductIdx");
+		String imageIdx = sProductFSName + "/" + sProductIdx;
+		proList2.add(imageIdx);
+
+		// proList2에 4개 이상의 값이 저장되었다면, 가장 오래된 값을 지우고 최대 4개의 값만 유지합니다.
+		if (proList2.size() > 4) {
+		    proList2.remove(0);
+		}
+		
 		// productVO의 idx에 달린 리뷰들을 가져오자
 		List<DbReviewVO> reviewVOS = dbShopService.getProductReview(productVO.getIdx());
-
-		// PageVO pageVO = pageProcess.totRecCnt(pag, pageSize, "review", mid,
-		// "productVO.getIdx()");
 		model.addAttribute("reviewVOS", reviewVOS);
-		
 
-		// System.out.println("productVO : " + productVO);
 		// DB에서 현재 게시글에 '좋아요'가 체크되어있는지를 알아오자.
 		WishVO wishVO = dbShopService.getwishCheck(productVO.getIdx(), mid);
 		model.addAttribute("wishVO", wishVO);
 		return "dbShop/dbProductContent";
 	}
+	
+	
 
 	// 상품상세정보보기창에서 장바구니 / 주문하기 각각 처리
 	@RequestMapping(value = "/dbProductContent", method = RequestMethod.POST)

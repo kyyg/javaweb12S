@@ -1,3 +1,4 @@
+<%@page import="org.springframework.http.StreamingHttpOutputMessage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -182,6 +183,17 @@
     window.open(url,winName,opt);
  	}
    	
+ 	
+ 	
+ 	 document.addEventListener("DOMContentLoaded", function () {
+ 	    // 세션에서 상품 이름을 가져옵니다.
+ 	    const productName = '<%= session.getAttribute("productName") %>';
+
+ 	    // "productList" div에 상품 이름을 출력합니다.
+ 	    document.getElementById("productList").html = productName;
+ 	  });
+    
+ 	
   </script>
   <style>
  	.button-fixed {
@@ -581,14 +593,26 @@
  	</table>
  	</c:if>
  
- 
- 
  </c:if>
  </c:forEach>
 
  
 	</section>
-
+	
+	
+ <div id="productList" class="text-center pt-2" style="position: fixed; left: 20px; top: 60%; transform: translateY(-50%); width:100px; height:400px; background-color:#eee;">
+	<div class="text-center mb-3">
+	  <font size="1">[최근 본 상품]</font>
+	</div>
+	<c:forEach var="item" items="${proList2}">
+	  <c:set var="vo" value="${fn:split(item, '/')}" />
+	  <div class="mb-3">
+	    <a href="${ctp}/dbShop/dbProductContent?idx=${vo[1]}">
+	      <img src="${ctp}/dbShop/product/${vo[0]}" width="70px" height="70px"/>
+	    </a>
+	  </div>
+	</c:forEach>
+  </div>
 	
 	<input type="button" class="button-fixed btn btn-outline-dark text-dark" id="scrollButton" value="top" />
 <p><br/></p>
