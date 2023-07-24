@@ -16,5 +16,12 @@ public class DbReviewVO {
 	private String wDate;
 	private String bestReview;
 	private String blockReview;
+	private int reportNum;
+	
+	
+	private int reviewIdx;
+	private String reportMemo1; 
+	private String reportMemo2; 
+	private String reportDate; 
 	
 }

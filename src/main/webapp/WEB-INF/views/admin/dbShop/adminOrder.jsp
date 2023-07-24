@@ -249,6 +249,7 @@
 	      		<option value="환불요청/${vo.idx}" ${vo.status=="환불요청" ? "selected" : ""}>환불요청</option>
 	      		<option value="반품/${vo.idx}" ${vo.status=="반품" ? "selected" : ""}>반품</option>
 	      		<option value="환불/${vo.idx}" ${vo.status=="환불" ? "selected" : ""}>환불</option>
+	      		<option value="처리 불가/${vo.idx}" ${vo.status=="처리 불가" ? "selected" : ""}>처리 불가</option>
 	      	</select>
 	      </font><br/></td>
 	      <td><input type="button" value="배송처리" onclick="shippingConfirm('${vo.productIdx}','${vo.optionName}','${vo.optionNum}','${vo.idx}')" class="btn btn-outline-dark btn-sm"></td>

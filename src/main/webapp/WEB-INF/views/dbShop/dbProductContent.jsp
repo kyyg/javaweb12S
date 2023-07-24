@@ -171,7 +171,17 @@
    		$("#demo"+idx).slideUp(500);
    	}
    	
-   	  
+ 	function reportReview(idx){
+    let url = "${ctp}/dbShop/reviewReportChild?idx="+idx;
+    let winName = "winName";
+    let winWidth = 800;
+    let winHeight = 400;
+    let x = (screen.width/2) - (winWidth/2);
+    let y = (screen.height/2) - (winHeight/2);
+    let opt="width="+winWidth+", height="+winHeight+", left="+x+", top="+y;
+    window.open(url,winName,opt);
+ 	}
+   	
   </script>
   <style>
  	.button-fixed {
@@ -255,6 +265,12 @@
 <div class="col pr-5">
 <table class="table table-borderless">
 	<tr>
+		<td colspan="2">
+		<a href="${ctp}/dbShop/dbProductList">전체</a>
+		> 
+		<a href='${ctp}/dbShop/dbProductList?part=${mainVO.categoryMainName}'>${mainVO.categoryMainName}</a></td>
+	</tr>
+	<tr>
 		<c:if test="${productVO.productStatus == '품절'}">
 			<td colspan="2" class="text-right"><h3><b>${productVO.productName}<span class="badge badge-danger ml-1">품절</span></b></h3><hr/></td>
 		</c:if>
@@ -276,11 +292,11 @@
 			</td>
 	</tr>	
 	<tr>
-		<td colspan="2" class="text-center">		
+		<td colspan="2" class="text-left">		
 		<div class="w3-panel w3-border pt-2" style="background-color:#eee;">
   		<p>
-  		배송비 2,500원 <br/>
-			50,000원 이상 주문 시 배송비 무료!</td>
+  		* 배송비 2,500원 <br/>
+			* 50,000원 이상 주문 시 배송비 무료!</td>
   		</p>
 		</div>
 	</tr>
@@ -296,7 +312,12 @@
         	</c:if>
         	<c:if test="${!empty optionVOS}">
 		        <c:forEach var="vo" items="${optionVOS}">
-		          <option value="${vo.idx}/${vo.optionName}/${vo.optionPrice}">${vo.optionName}</option>
+		        	<c:if test="${vo.optionStock == 0}">
+		         	 <option value="${vo.idx}/${vo.optionName}/${vo.optionPrice}" disabled>${vo.optionName}[품절]</option>
+		          </c:if>
+		        	<c:if test="${vo.optionStock > 0}">
+		         	 <option value="${vo.idx}/${vo.optionName}/${vo.optionPrice}">${vo.optionName}</option>
+		          </c:if>
 		        </c:forEach>
      	   </c:if>
       </select>
@@ -489,12 +510,14 @@
  </c:forEach>
  
  <c:forEach var="vo" items="${reviewVOS}">
+ <c:if test="${vo.reportNum != 5}">
  <c:if test="${vo.bestReview == 'NO'}">
  	<table class="table-borderless" style="width:1100px; margin:0 auto;">
  		<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3 pb-3 mb-3" style="border-bottom :solid 1px lightgray"></td></tr>
+ 		<tr><td colspan="3" class="text-right pr-0 mt-2 pt-2"><input type="button" value="신고" onclick="reportReview('${vo.idx}')" class="btn btn-outline-danger btn-sm" /></td></tr>
 	 		<tr class="text-dark" style="background-color:#fff;">
 	 			<td style="width:20%"; class="text-center">
-	 				<img src="${ctp}/images/mu.jpg" class="w3-circle" alt="mu" style="width:70px">
+	 				<img src="${ctp}/images/member.png" class="w3-circle" alt="mu" style="width:100px">
 	 			</td>
 	 			<td colspan="1" class="text-left pt-3 pb-2" style="width:60%";>
 	 				<b>
@@ -524,16 +547,48 @@
 	 	</div></td></tr>
  	</table>
  	</c:if>
+ </c:if>
+ <c:if test="${vo.reportNum == 5}">
+ <c:if test="${vo.bestReview == 'NO'}">
+ 	<table class="table-borderless" style="width:1100px; margin:0 auto;">
+ 		<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3 pb-3 mb-3" style="border-bottom :solid 1px lightgray"></td></tr>
+	 		<tr class="text-dark" style="background-color:#fff;">
+	 			<td style="width:20%"; class="text-center">
+	 				<img src="${ctp}/images/member.png" class="w3-circle" alt="mu" style="width:100px">
+	 			</td>
+	 			<td colspan="1" class="text-left pt-3 pb-2" style="width:60%";>
+	 				<b>
+		 				<c:if test="${vo.score == 1}">💙🤍🤍🤍🤍<br/></c:if>
+		 				<c:if test="${vo.score == 2}">💙💙🤍🤍🤍<br/></c:if>
+		 				<c:if test="${vo.score == 3}">💙💙💙🤍🤍<br/></c:if>
+		 				<c:if test="${vo.score == 4}">💙💙💙💙🤍<br/></c:if>
+		 				<c:if test="${vo.score == 5}">💙💙💙💙💙<br/></c:if>
+	 				</b>
+	 				<b>${vo.mid}</b> &nbsp;&nbsp; <font color="brown"> ${fn:substring(vo.WDate,0,10)}</font><br/>
+	 				<span class="badge badge-light mr-2 mb-2">옵션</span><font size="2">${vo.productName}</font><br/>
+	 				<b></b><br/>
+	 				<font color="red">신고로 숨겨진 리뷰입니다.</font>
+				<td class="mt-3 mb-3" style="width:20%";>	
+ 				</td>
+ 			</tr>
+		 	</div>
+	 	<tr><td colspan="3" class="m-0 p-0"><div id="demo${vo.idx}"  style="display:none">
+	 		<c:forEach var="fSName" items="${fSNames}" varStatus="st">
+ 			</c:forEach>
+ 			<br/>
+ 			<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3" style="border-bottom :solid 1px lightgray"></td></tr>
+	 	</div></td></tr>
+ 	</table>
+ 	</c:if>
+ 
+ 
+ 
+ </c:if>
  </c:forEach>
- 	
- 	
- 	
- 	
+
+ 
 	</section>
-	
-	
-	
-	
+
 	
 	<input type="button" class="button-fixed btn btn-outline-dark text-dark" id="scrollButton" value="top" />
 <p><br/></p>

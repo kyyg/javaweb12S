@@ -82,7 +82,6 @@
     }
   
   function cancelStatusChange(){
-  	// 선택한 체크박스 값 가져온다 - 변경할 리스트박스 값을 가져온다 - 두개를 보내서 두번 변경시킨다.
    	let ans = confirm("선택한 주문의 상태를 변경하시겠습니까?");
   	if(!ans){
   		location.reload();
@@ -113,6 +112,18 @@
 					alert("전송오류");					
 				}
   	}); 
+  }
+  
+  // 반품,환불 불가처리 새창
+  function cancelNew(idx){
+    let url = "${ctp}/admin/adminCancleNew?idx="+idx;
+    let winName = "winName";
+    let winWidth = 800;
+    let winHeight = 300;
+    let x = (screen.width/2) - (winWidth/2);
+    let y = (screen.height/2) - (winHeight/2);
+    let opt="width="+winWidth+", height="+winHeight+", left="+x+", top="+y;
+    window.open(url,winName,opt);
   }
   
   </script>
@@ -189,16 +200,21 @@
 		      <td>${vo.optionName} / <fmt:formatNumber value="${vo.optionPrice}"/>원 / ${vo.optionNum}개<br/></td>
 	      </tr>
 	      <tr>
-		      <td style="text-align:center;"></td>
+		      <td style="text-align:center;">
+		      <c:if test = "${vo.cancelStatus == '반품요청' || vo.cancelStatus == '환불요청'}">
+		      <input type="button" value="승인불가" onclick="cancelNew('${vo.idx}')"  class="btn btn-danger"/>
+		      </c:if>
+		      <c:if test = "${vo.cancelStatus != '반품요청' || vo.cancelStatus != '환불요청'}"></c:if>
+		      </td>
 		      <td style="text-align:center;">
 		      <c:if test="${vo.cancelStatus == '반품요청' || vo.cancelStatus == '환불요청'}">
 		      	<font color="red"><b>${vo.cancelStatus}</b></font>
 		      </c:if>
 		      <c:if test="${vo.cancelStatus != '반품요청' && vo.cancelStatus != '환불요청'}">
-		      	<font color="green">${vo.cancelStatus}완료</font>
+		      	<font color="green">처리 완료</font>
 		      </c:if>
 		      </td>
-		      <td colspan="5"> [취소사유] ${vo.cancelMemo}</td>
+		      <td colspan="5"> [사유] ${vo.cancelMemo}</td>
 		    </tr>
 		    <tr><td colspan="7" class="p-0 m-0"></td></tr>
 		    <tr><td colspan="7"></td></tr>

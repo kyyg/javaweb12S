@@ -89,6 +89,26 @@
 		</if>
 	</select>
 	
+	<select id="getOrderCancelOne" resultType="com.spring.javaweb12S.vo.DbOrderCancelVO">
+		select * from dbOrderCancel where idx = #{idx};
+	</select>
+	
+	<select id="getOrderCancelsOne" resultType="com.spring.javaweb12S.vo.DbOrderCancelVO">
+		select * from dbOrderCancel where cancelIdx = #{idx};
+	</select>
+	
+	<select id="getAllOptionList" resultType="com.spring.javaweb12S.vo.DbOptionVO">
+	<![CDATA[select pro.productName, op.* from dbOption op, dbproduct pro where pro.idx = op.productIdx and op.optionStock <= 10;]]>
+	</select>
+	
+	<select id="getReportReview" resultType="com.spring.javaweb12S.vo.DbReviewVO">
+		select rv.*, rp.*, rp.idx as reportIdx 
+		from dbreview rv, reportReview rp 
+		where rv.idx = rp.reviewIdx and rv.reportNum=5 order by rv.idx desc; 
+	</select>
+	
+	
+	
 	
 	
 	<insert id="getContactReply">
@@ -109,6 +129,18 @@
 	
 	<update id="setAdminContactReplyUpdate">
 		update contactReply set reContent = #{reContent} where reIdx=#{reIdx} ;
+	</update>
+	
+	<update id="setOrderCancelNo">
+		update dbOrdercancel set cancelStatus = #{cancelStatus}, reason1 = #{reason1}, reason2 = #{reason2} where idx=#{idx} ;
+	</update>
+	
+	<update id="setOrderCancelNo2">
+		update dbOrder set status = #{orderStatus} where idx=#{cancelIdx} ;
+	</update>
+
+	<update id="setReportreviewRestore">
+		update dbReview set reportNum=0 where idx = #{idx};
 	</update>
 
 

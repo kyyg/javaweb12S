@@ -283,7 +283,18 @@ public class MessageController {
 			model.addAttribute("msg", "제휴 문의가 수정되었습니다.");
 			model.addAttribute("url", "contact/contactList");
 		}
-
+		else if(msgFlag.equals("qnaInputOk")) {
+			model.addAttribute("msg", "QnA에 글이 등록되었습니다.");
+			model.addAttribute("url", "/qna/qnaList");
+		}
+		else if(msgFlag.equals("qnaUpdateOk")) {
+			model.addAttribute("msg", "QnA에 글이 수정되었습니다.");
+			model.addAttribute("url", "/qna/qnaList");
+		}
+		else if(msgFlag.equals("qnaDelete")) {
+			model.addAttribute("msg", "QnA에 글이 삭제되었습니다.");
+			model.addAttribute("url", "/qna/qnaList");
+		}
 		
 		
 		return "include/message";

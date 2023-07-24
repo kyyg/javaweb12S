@@ -19,6 +19,9 @@ public class DbOrderVO {
   private String status;
   private String reviewConfirm;
   
+  private String reason1;
+  private String reason2;
+  
   private int cartIdx;  // 장바구니 고유번호.
   private int maxIdx;   // 주문번호를 구하기위한 기존 최대 비밀번호필드
   private int baesong;  // 배송비저장필드

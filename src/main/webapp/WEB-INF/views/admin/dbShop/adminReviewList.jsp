@@ -161,7 +161,11 @@
 		 				<c:if test="${vo.score == 4}">💙💙💙💙🤍<br/></c:if>
 		 				<c:if test="${vo.score == 5}">💙💙💙💙💙<br/></c:if>
 	 				</b>
-	 				<b>${vo.mid}</b> &nbsp;&nbsp; <font color="brown"> ${fn:substring(vo.WDate,0,10)}</font><br/>
+	 				<b>${vo.mid}</b> &nbsp;&nbsp; <font color="brown"> ${fn:substring(vo.WDate,0,10)}</font>
+	 				<c:if test="${vo.bestReview == 'OK'}">
+	 					<span class="badge badge-danger">베스트 리뷰</span>
+	 				</c:if>
+	 				<br/>
 	 				<span class="badge badge-light mr-2 mb-2">옵션</span><font size="2">
 	 					<a href="${ctp}/dbShop/dbProductContent?idx=${vo.productIdx}">${vo.productName}</a>
 	 				</font><br/> 

@@ -197,6 +197,7 @@ create table dbReview(
 	wDate datetime default now(),
 	bestReview char(2) default 'NO', /* 관리자가 베스트 여부 설정기능 */
 	blockReview char(2) default 'NO', /* 관리자가 리뷰 차단 */
+	reportNum int not null default 0,
 	primary key(idx),
 	foreign key(productIdx) references dbProduct(idx) on update cascade on delete cascade
 );
@@ -233,4 +234,19 @@ create table onedayClass(
 	qrCodeName varchar(100) not null,
 	primary key(idx,mid)	
 );
+
+
+create table reportReview(
+	 idx int not null auto_increment,
+	 reviewIdx int not null, /* 신고된 원본 리뷰 번호 */
+	 mid varchar(20) not null, /* 신고자 아이디 */
+	 reportMemo1 varchar(100) not null, /* 신고 이유 */
+	 reportMemo2 varchar(100) not null, /* 신고 이유 */
+	 reportDate datetime not null default now(),
+	 primary key(idx),
+	 foreign key(reviewIdx) references dbReview(idx)
+);
+
+drop table reportReview;
+
 

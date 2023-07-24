@@ -29,6 +29,7 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.spring.javaweb12S.dao.DbShopDAO;
+import com.spring.javaweb12S.vo.CategoryMainVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbCartVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
@@ -41,6 +42,7 @@ import com.spring.javaweb12S.vo.DbReviewVO;
 import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.MemberVO;
 import com.spring.javaweb12S.vo.PointSaveVO;
+import com.spring.javaweb12S.vo.ReportReviewVO;
 import com.spring.javaweb12S.vo.WishVO;
 
 @Service
@@ -677,9 +679,40 @@ public class DbShopServiceImpl implements DbShopService {
 		dbShopDAO.setPointSave(mid, pointMemo, point);
 	}
 
+	@Override
+	public void setOptionStockPlus(int productIdx,String optionName, int optionNum) {
+		dbShopDAO.setOptionStockPlus(productIdx,optionName, optionNum);
+	}
 
+	@Override
+	public DbOrderCancelVO getOrderCancelsOne(int idx) {
+		return dbShopDAO.getOrderCancelsOne(idx);
+	}
 
-	 
+	@Override
+	public CategoryMainVO getProductContentCate(String categoryMainCode) {
+		return dbShopDAO.getProductContentCate(categoryMainCode);
+	}
+
+	@Override
+	public DbReviewVO getReviewOne(int idx) {
+		return dbShopDAO.getReviewOne(idx);
+	}
+
+	@Override
+	public void setReportReview(ReportReviewVO vo) {
+		dbShopDAO.setReportReview(vo);
+	}
+
+	@Override
+	public void setReportReviewNum(int idx) {
+		dbShopDAO.setReportReviewNum(idx);
+	}
+
+	@Override
+	public ReportReviewVO getExistReportReview(int reviewIdx, String mid) {
+		return dbShopDAO.getExistReportReview(reviewIdx, mid);
+	}
 	 
 	
 }

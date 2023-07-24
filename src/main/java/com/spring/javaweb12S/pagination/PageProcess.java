@@ -9,6 +9,7 @@ import com.spring.javaweb12S.dao.DbShopDAO;
 import com.spring.javaweb12S.dao.MemberDAO;
 import com.spring.javaweb12S.dao.NoticeDAO;
 import com.spring.javaweb12S.dao.PdsDAO;
+import com.spring.javaweb12S.dao.QnaDAO;
 
 @Service
 public class PageProcess {
@@ -31,7 +32,9 @@ public class PageProcess {
 	
 	@Autowired
 	AdminDAO adminDAO;
-	
+
+	@Autowired
+	QnaDAO qnaDAO;
 	
 	public PageVO totRecCnt(int pag, int pageSize, String section, String part, String searchString) {
 		PageVO pageVO = new PageVO();
@@ -55,6 +58,9 @@ public class PageProcess {
 			String mid = part;
 			int proudctIdx = Integer.parseInt(searchString);
 			totRecCnt = dbShopDAO.totRecCnt3(mid,proudctIdx);
+		}
+		else if(section.equals("qna")) {
+			totRecCnt = qnaDAO.totRecCnt();
 		}
 
 		

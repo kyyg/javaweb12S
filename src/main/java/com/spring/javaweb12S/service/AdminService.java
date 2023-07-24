@@ -8,8 +8,10 @@ import com.spring.javaweb12S.vo.ContactReplyVO;
 import com.spring.javaweb12S.vo.ContactVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
+import com.spring.javaweb12S.vo.DbOptionVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbProductVO;
+import com.spring.javaweb12S.vo.DbReviewVO;
 import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 
@@ -74,5 +76,17 @@ public interface AdminService {
 	public void setAdminContactPartChange(int contactIdx);
 
 	public void setAdminContactReplyUpdate(int reIdx,String reContent);
+
+	public void setOrderCancelNo(int idx, String cancelStatus, String reason1, String reason2);
+
+	public void setOrderCancelNo2(int cancelIdx, String orderStatus);
+
+	public DbOrderCancelVO getOrderCancelOne(int idx);
+
+	public List<DbOptionVO> getAllOptionList();
+
+	public List<DbReviewVO> getReportReview();
+
+	public void setReportreviewRestore(int idx);
 
 }

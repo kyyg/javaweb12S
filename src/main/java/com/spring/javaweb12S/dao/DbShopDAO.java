@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.javaweb12S.vo.CategoryMainVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbCartVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
@@ -17,6 +18,7 @@ import com.spring.javaweb12S.vo.DbReviewVO;
 import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.MemberVO;
 import com.spring.javaweb12S.vo.PointSaveVO;
+import com.spring.javaweb12S.vo.ReportReviewVO;
 import com.spring.javaweb12S.vo.WishVO;
 
 public interface DbShopDAO {
@@ -190,6 +192,20 @@ public interface DbShopDAO {
 	public PointSaveVO getPointSave(@Param("mid") String mid, @Param("pointMemo")String pointMemo);
 
 	public void setPointSave(@Param("mid") String mid, @Param("pointMemo") String pointMemo, @Param("point") int point);
+
+	public void setOptionStockPlus(@Param("productIdx") int productIdx, @Param("optionName") String optionName,@Param("optionNum") int optionNum);
+
+	public DbOrderCancelVO getOrderCancelsOne(@Param("idx") int idx);
+
+	public CategoryMainVO getProductContentCate(@Param("categoryMainCode") String categoryMainCode);
+
+	public DbReviewVO getReviewOne(@Param("idx") int idx);
+
+	public void setReportReview(@Param("vo") ReportReviewVO vo);
+
+	public void setReportReviewNum(@Param("idx") int idx);
+
+	public ReportReviewVO getExistReportReview(@Param("reviewIdx")int reviewIdx,@Param("mid") String mid);
 
 
 	

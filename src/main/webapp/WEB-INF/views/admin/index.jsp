@@ -143,13 +143,35 @@
             <div class="row">
 
             <!-- Content Row -->
+            
+            
+    <div class="row container-fluid pb-5 mb-5 mt-5" style="width:1100px; margin:0 auto;" >
+			<table style="width:600px; height:200px" class="table table-bordered text-dark text-center">
+ 			<tr class="w3-blue text-dark">
+ 				<td colspan="3" class="text-center"><font color="white"><b>옵션 품절 / 재고 현황(10개 미만)</b></font></td>
+ 			</tr>
+				<tr>
+					<td>상품명</td>
+					<td>옵션명</td>
+					<td>옵션 개수</td>
+				</tr>
+		  	<c:forEach var="vo" items="${optionVOS}"> 
+					<tr style="height:15px;">
+						<td style="height:15px;">${vo.productName}</td>
+						<td style="height:15px;">${vo.optionName}</td>
+						<td style="height:15px;"><font color="red">${vo.optionStock}</font></td>
+					</tr>
+		  	</c:forEach>
+			</table>
+    </div>
+            
 
 
 		<div class="row container-fluid pb-5 mb-5 mt-5" style="width:1500px; margin:0 auto;" >
 			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
 				<tr class="w3-indigo text-dark">
 					<td colspan="4">
-						<b>최근 주문 건</b> <a href="${ctp}/admin/adminOrder" class="badge badge-info text-right" >더보기</a> 
+						<b>최근 주문</b> <a href="${ctp}/admin/adminOrder" class="badge badge-info text-right" >더보기</a> 
 					</td>
 				</tr>			
 				<tr>
@@ -179,7 +201,7 @@
 			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
 				<tr class="w3-indigo text-dark">
 					<td colspan="4">
-						<b>최근 반품/환불 건</b> <a href="${ctp}/admin/adminCancelOrder" class="badge badge-info text-right" >더보기</a> 
+						<b>최근 반품/환불</b> <a href="${ctp}/admin/adminCancelOrder" class="badge badge-info text-right" >더보기</a> 
 					</td>
 				</tr>			
 				<tr>
@@ -209,7 +231,7 @@
 			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
 				<tr class="w3-indigo text-dark">
 					<td colspan="4">
-						<b>최근 예약 건</b> <a href="${ctp}/admin/adminOnedayClass" class="badge badge-info text-right" >더보기</a> 
+						<b>최근 제휴문의</b> <a href="${ctp}/admin/adminOnedayClass" class="badge badge-info text-right" >더보기</a> 
 					</td>
 				</tr>			
 				<tr>
@@ -238,7 +260,7 @@
 			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
 				<tr class="w3-indigo text-dark">
 					<td colspan="4">
-						<b>최근 문의 건</b> <a href="${ctp}/admin/adminBoardList" class="badge badge-info text-right" >더보기</a> 
+						<b>최근 상품/회원 문의</b> <a href="${ctp}/admin/adminBoardList" class="badge badge-info text-right" >더보기</a> 
 					</td>
 				</tr>			
 				<tr>

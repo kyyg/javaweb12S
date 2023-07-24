@@ -10,9 +10,11 @@ import com.spring.javaweb12S.vo.ContactReplyVO;
 import com.spring.javaweb12S.vo.ContactVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
+import com.spring.javaweb12S.vo.DbOptionVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbProductVO;
+import com.spring.javaweb12S.vo.DbReviewVO;
 import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 	
@@ -79,6 +81,18 @@ public interface AdminDAO {
 	public void setAdminContactPartChange(@Param("contactIdx") int contactIdx);
 
 	public void setAdminContactReplyUpdate(@Param("reIdx")int reIdx, @Param("reContent") String reContent);
+
+	public void setOrderCancelNo(@Param("idx")int idx, @Param("cancelStatus")String cancelStatus, @Param("reason1")String reason1,@Param("reason2") String reason2);
+
+	public void setOrderCancelNo2(@Param("cancelIdx")int cancelIdx, @Param("orderStatus")String orderStatus);
+
+	public DbOrderCancelVO getOrderCancelOne(@Param("idx") int idx);
+
+	public List<DbOptionVO> getAllOptionList();
+
+	public List<DbReviewVO> getReportReview();
+
+	public void setReportreviewRestore(@Param("idx") int idx);
 	
 	
 

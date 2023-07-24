@@ -17,13 +17,13 @@
 <div class="w3-container w3-center w3-animate-right">
 <div class="container">
   <div class="text-center">
-	  <a href="${ctp}/dbShop/dbMyOrder" id="nav">주문내역</a>
-	  <a href="${ctp}/dbShop/dbMyOnedayClass" id="nav">이벤트 참여내역</a>
-	  <a href="${ctp}/member/memberPwdCheck" id="nav">개인정보수정</a>
-	  <a href="${ctp}/dbShop/dbPoint" id="nav">포인트 내역</a>
-	  <a href="${ctp}/dbShop/dbWishList" id="nav">위시리스트</a>
-	  <a href="${ctp}/dbShop/userReview" id="nav">리뷰 관리</a>
-	  <a href="${ctp}/board/userBoard" id="nav">문의글 관리</a>
+	  <a href="${ctp}/dbShop/dbMyOrder" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">주문내역</a>
+	  <a href="${ctp}/member/memberPwdCheck" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">개인정보수정</a>
+	  <a href="${ctp}/dbShop/dbMyOnedayClass" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">이벤트 참여내역</a>
+	  <a href="${ctp}/dbShop/dbPoint" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">포인트 내역</a>
+	  <a href="${ctp}/dbShop/dbWishList" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">위시리스트</a>
+	  <a href="${ctp}/dbShop/userReview" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">리뷰 관리</a>
+	  <a href="${ctp}/board/userBoard" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">문의글 관리</a>
   </div>
 </div>
 </div>

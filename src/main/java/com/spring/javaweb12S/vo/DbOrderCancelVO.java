@@ -12,6 +12,8 @@ public class DbOrderCancelVO {
 	private String cancelDate;
 	private String cancelMemo;
 	private String cancelStatus;
+	private String reason1;
+	private String reason2;
 	
 	// 관리자 취소 목록에서 불러오기위한 필드
 	private String orderDate;

@@ -24,6 +24,9 @@ public class DbBaesongVO {
   private String status;
   private String reviewConfirm;
   
+  private String reason1;
+  private String reason2;
+  
   // 아래는 주문테이블에서 사용된 필드리스트이다.
 	private int baesongIdx;
 	private int productIdx;

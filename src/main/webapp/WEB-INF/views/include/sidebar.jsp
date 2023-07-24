@@ -126,7 +126,8 @@
 		                <h6 class="collapse-header">게시판</h6>
 		                <a class="collapse-item" href="${ctp}/admin/adminNoticeList">공지 관리</a>
 		                <a class="collapse-item" href="${ctp}/admin/adminBoardList">문의 관리</a>
-		                <a class="collapse-item" href="${ctp}/admin/adminReviewList">리뷰 관리</a>
+		                <a class="collapse-item" href="${ctp}/admin/adminReviewList">일반 리뷰 관리</a>
+		                <a class="collapse-item" href="${ctp}/admin/adminReportReviewList">신고 리뷰 관리</a>
 		            </div>
 		        </div>
 		    </li>

@@ -12,9 +12,11 @@ import com.spring.javaweb12S.vo.ContactReplyVO;
 import com.spring.javaweb12S.vo.ContactVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
+import com.spring.javaweb12S.vo.DbOptionVO;
 import com.spring.javaweb12S.vo.DbOrderCancelVO;
 import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbProductVO;
+import com.spring.javaweb12S.vo.DbReviewVO;
 import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 
@@ -172,6 +174,36 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void setAdminContactReplyUpdate(int reIdx,String reContent) {
 		adminDAO.setAdminContactReplyUpdate(reIdx,reContent);
+	}
+
+	@Override
+	public void setOrderCancelNo(int idx, String cancelStatus, String reason1, String reason2) {
+		adminDAO.setOrderCancelNo(idx, cancelStatus, reason1, reason2);
+	}
+
+	@Override
+	public void setOrderCancelNo2(int cancelIdx, String orderStatus) {
+		adminDAO.setOrderCancelNo2(cancelIdx, orderStatus);
+	}
+
+	@Override
+	public DbOrderCancelVO getOrderCancelOne(int idx) {
+		return adminDAO.getOrderCancelOne(idx);
+	}
+
+	@Override
+	public List<DbOptionVO> getAllOptionList() {
+		return adminDAO.getAllOptionList();
+	}
+
+	@Override
+	public List<DbReviewVO> getReportReview() {
+		return adminDAO.getReportReview();
+	}
+
+	@Override
+	public void setReportreviewRestore(int idx) {
+		adminDAO.setReportreviewRestore(idx);
 	}
 	
 	

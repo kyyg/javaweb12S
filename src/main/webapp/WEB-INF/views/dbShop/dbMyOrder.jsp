@@ -96,6 +96,41 @@
     	location.href="${ctp}/dbShop/dbReviewForm?idx="+idx;
     }
     
+    function cReason(idx){
+        let url = "${ctp}/dbShop/orderCancelReason?idx="+idx;
+        let winName = "winName";
+        let winWidth = 800;
+        let winHeight = 400;
+        let x = (screen.width/2) - (winWidth/2);
+        let y = (screen.height/2) - (winHeight/2);
+        let opt="width="+winWidth+", height="+winHeight+", left="+x+", top="+y;
+        window.open(url,winName,opt);
+    }
+    
+    function userOrderCancel(idx,productIdx,optionName,optionNum){
+    	let ans = confirm("해당 주문을 취소 하시겠습니까?")
+      	if(!ans){
+      		location.reload();
+      		return false;
+      	}
+     	$.ajax({
+    		type : "post",
+    		url : "${ctp}/dbShop/userOrderCancel",
+    		data : {
+    			idx : idx,
+    			productIdx : productIdx,
+    			optionName : optionName,
+    			optionNum : optionNum
+    		},
+    		success : function(res){
+    			alert("주문이 취소되었습니다.");
+    			location.reload();
+    		},
+    		error:function(){
+					alert("전송 오류");    			
+    		}
+    	}); 
+    }
     
   </script>
 </head>
@@ -149,6 +184,7 @@
 	          <option value="구매확정"  ${conditionOrderStatus == '구매확정' ? 'selected' : ''}>구매확정</option>
 	          <option value="반품"  ${conditionOrderStatus == '반품' ? 'selected' : ''}>반품</option>
 	          <option value="환불"  ${conditionOrderStatus == '환불' ? 'selected' : ''}>환불</option>
+	          <option value="승인 불가"  ${conditionOrderStatus == '승인 불가' ? 'selected' : ''}>승인 불가</option>
 	        </select>
 	        <input type="button" class="btn btn-outline-dark btn-sm" value="조회하기" onclick="myOrderStatus()"/>
 	      </td>
@@ -193,11 +229,17 @@
 	      <td><fmt:formatNumber value="${vo.totalPrice}"/>원</td>
 	      <td><font color="brown">${vo.status}</font><br/></td>
 	      <td>
+	      <c:if test="${vo.status == '결제완료'}">	<input type="button" value="결제 취소" class="btn btn-outline-info btn-sm" onclick="userOrderCancel('${vo.idx}','${vo.productIdx}','${vo.optionName}','${vo.optionNum}')" /></c:if>
+	      
 	      <c:if test="${vo.status == '배송완료'}">
 	      	<input type="button" value="구매확정" class="btn btn-outline-dark btn-sm" onclick="orderNewWin('${vo.orderIdx}','${vo.totalPrice}')"/>
 	      	<input type="button" value="반품/환불" class="btn btn-outline-danger btn-sm" onclick="orderCancel('${vo.idx}')" />
 	      </c:if>
 	      <c:if test="${vo.status != '배송완료'}"></c:if>
+	      
+	      <c:if test="${vo.status == '승인 불가'}">
+	      	<input type="button" class="btn btn-danger" value="승인 불가 사유" onclick="cReason('${vo.idx}')" />
+	      </c:if>
 	      <c:if test="${vo.status == '구매확정'}">
 	      	<c:if test="${vo.reviewConfirm == 'NO'}">
 	      		<input type="button" value="리뷰작성" class="btn btn-outline-info btn-sm" onclick="reviewCheck('${vo.idx}')" />
@@ -206,6 +248,8 @@
 	      </c:if>
 	      <c:if test="${vo.status != '구매확정'}"></c:if>
 				</td>
+				
+				
       </tr>
       <tr><td colspan="7" class="p-0 m-0"></td></tr>
     </c:forEach>

@@ -16,48 +16,43 @@
 <div class="container">
 <jsp:include page="/WEB-INF/views/include/nav2.jsp" />
 <hr/>
- 
- <span class="w3-panel w3-round w3-teal w3-display-container" style="width:300px; height:200px">
-    <p class="w3-display-middle">w3-rousdasdnd</p>
- </span>
- <span class="w3-panel w3-round w3-teal w3-display-container" style="width:200px; height:200px">
-    <p class="w3-display-middle">w3-rousdasdnd</p>
- </span>
- 
- 
- 
-  <table class="table table-bordered text-center">
+  <table class="table table-bordereless text-center" style="border-radious:10px;">
   	<tr>
-  		<td class="pb-5 pt-5" style="background-color:#e4dbea; width:35%">
-  			< <span class="w3-panel w3-round w3-teal w3-display-container" style="width:300px; height:200px">
-    <p class="w3-display-middle">w3-rousdasdnd</p>
- </span>
+  		<td class="pb-5 pt-5" style="width:15%; background-color:#eee">
+  			<img src="${ctp}/images/member.png">
   		</td>
-  		<td class="pb-5 pt-5" style="width:20%">
-  		<span class="w3-panel w3-round w3-teal w3-display-container" style="width:200px; height:200px">
-    <p class="w3-display-middle">w3-rousdasdnd</p>
- </span>
-  		</td>
-  		<td class="pb-5 pt-5" style="width:15%">
-  			총 결제 금액(12개월)<br/>
+  		<td class="pb-5 pt-5 text-left" style="width:25%; background-color:#eee">
+  			<font size="5" >${sMid}님</font><br/>
+  				총 결제 금액(12개월)<br/>
    			<c:if test="${empty yearPay}" >0원</c:if>
    			<c:if test="${!empty yearPay}" ><fmt:formatNumber value="${yearPay}" pattern='#,###'/></c:if>원
   		</td>
-  		<td class="pb-5 pt-5" style="width:15%">위시리스트</td>
-  		<td class="pb-5 pt-5" style="width:15%"></td>
+  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="orange">${part1}</font><br/>입금전</td>
+  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="orange">${part2}</font><br/>결제완료</td>
+  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="orange">${part3}</font><br/>배송중</td>
+  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="orange">${part4}</font><br/>배송완료</td>
+  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="orange">${part5}</font><br/>구매확정</td>
   	</tr>
   </table>
   
-  
-  <table class="table table-bordered text-center">
+  <table class="table-bordered text-center mt-5" style="width:100%; border-radious:10px;background-color:#fff;">
   	<tr>
-  		<td class="pb-5 pt-5">입금전 <font size="5" color="orange">${part1}</font></td>
-  		<td class="pb-5 pt-5">결제완료 <font size="5" color="orange">${part2}</font></td>
-  		<td class="pb-5 pt-5">배송중 <font size="5" color="orange">${part3}</font></td>
-  		<td class="pb-5 pt-5">배송완료 <font size="5" color="orange">${part4}</font></td>
-  		<td class="pb-5 pt-5">구매확정 <font size="5" color="orange">${part5}</font></td>
+  		<td class="pb-5 pt-5" style="width:25%; height:150px;"><a href="${ctp}/dbShop/dbMyOrder"><font size="4"><b>주문내역</b></font></a></td>
+  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/member/memberPwdCheck"><font size="4"><b>개인정보수정</b></font></a></td>
+  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/dbShop/dbMyOnedayClass"><font size="4"><b>이벤트 참여내역</b></font></a></td>
+  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/dbShop/dbPoint"><font size="4"><b>포인트 내역</b></font></a></td>
   	</tr>
   </table>
+  <table class="table-bordered text-center" style="width:100%;background-color:#fff;">
+  	<tr>
+  		<td class="pb-5 pt-5" style="width:25%; height:150px;"><a href="${ctp}/dbShop/dbWishList"><font size="4"><b>위시리스트</b></font></a></a></td>
+  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/dbShop/userReview"><font size="4"><b>리뷰 관리</b></font></a></td>
+  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/board/userBoard"><font size="4"><b>문의글 관리</b></font></a></td>
+  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/board/userBoard"><font size="4"><b>회원탈퇴</b></font></a></td>
+  	</tr>
+  </table>
+  
+  
   
   <c:if test="${!empty sImsiPwd}">
     <hr/>

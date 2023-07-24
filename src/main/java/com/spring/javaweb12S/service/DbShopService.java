@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.spring.javaweb12S.vo.CategoryMainVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbCartVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
@@ -17,6 +18,7 @@ import com.spring.javaweb12S.vo.DbReviewVO;
 import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.MemberVO;
 import com.spring.javaweb12S.vo.PointSaveVO;
+import com.spring.javaweb12S.vo.ReportReviewVO;
 import com.spring.javaweb12S.vo.WishVO;
 
 public interface DbShopService {
@@ -180,6 +182,20 @@ public interface DbShopService {
 	public PointSaveVO getPointSave(String mid, String pointMemo);
 
 	public void setPointSave(String mid, String pointMemo, int point);
+
+	public void setOptionStockPlus(int productIdx, String optionName, int optionNum);
+
+	public DbOrderCancelVO getOrderCancelsOne(int idx);
+
+	public CategoryMainVO getProductContentCate(String categoryMainCode);
+
+	public DbReviewVO getReviewOne(int idx);
+
+	public void setReportReview(ReportReviewVO vo);
+
+	public void setReportReviewNum(int idx);
+
+	public ReportReviewVO getExistReportReview(int reviewIdx, String mid);
 
 
 

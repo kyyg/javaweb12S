@@ -9,6 +9,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>schedule.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp"></jsp:include>
+  <style>
+	  #loadingImage {
+	    /* position 속성을 absolute로 설정하여 부모 요소를 기준으로 위치를 결정합니다. */
+	    position: absolute;
+	    /* top과 left 값을 50%로 설정하여 부모 요소의 중앙에 배치합니다. */
+	    top: 80%;
+	    left: 50%;
+	    /* transform 속성을 사용하여 요소의 크기를 50%로 줄이고, 정확한 중앙 위치를 조정합니다. */
+	    transform: translate(-50%, -50%);
+	  }
+	</style>
   <script>
     'use strict';
     
@@ -22,20 +33,36 @@
     		},
     		success:function(res){
     			if(res=="1"){
-    				alert("출석체크가 되었습니다.");
-    				location.reload();
+    				//alert("출석체크가 되었습니다.");
+    				//location.reload();
+    				showImage();
+    				
     			} 
     			else if(res=="2") {
     				alert("출석이벤트를 달성하여 3000 포인트를 지급해드렸습니다.");
     				location.reload();
     			}
-    			else alert("이미 출석체크 하셨습니다.");
+    			else{
+    				//alert("이미 출석체크 하셨습니다.");
+    				//location.reload();
+    				showImage();
+    			}
     		},
     		error: function() {
     			alert("전숑오류오류오류..겐");
     		}
     	});
     }
+  
+      function showImage() {
+  	    // 이미지를 보여줍니다.
+        document.getElementById("loadingImage").style.display = "block";
+
+        // 3초 후에 페이지를 리로드합니다.
+        setTimeout(function() {
+          location.reload();
+        }, 2000); // 3000ms (3초) 후에 리로드합니다.
+      }
     
   </script>
   <style>
@@ -116,6 +143,9 @@
     </table>
   </div>
 </div>
+  <div id="loadingImage" style="display: none;">
+      <img src="${ctp}/images/kk.gif"/>
+    </div>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>

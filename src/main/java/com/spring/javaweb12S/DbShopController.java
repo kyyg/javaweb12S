@@ -35,6 +35,7 @@ import com.spring.javaweb12S.pagination.PageVO;
 import com.spring.javaweb12S.service.BoardService;
 import com.spring.javaweb12S.service.DbShopService;
 import com.spring.javaweb12S.service.MemberService;
+import com.spring.javaweb12S.vo.CategoryMainVO;
 import com.spring.javaweb12S.vo.DbBaesongVO;
 import com.spring.javaweb12S.vo.DbCartVO;
 import com.spring.javaweb12S.vo.DbOnedayClassVO;
@@ -46,6 +47,7 @@ import com.spring.javaweb12S.vo.DbPointVO;
 import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
 import com.spring.javaweb12S.vo.MemberVO;
+import com.spring.javaweb12S.vo.ReportReviewVO;
 import com.spring.javaweb12S.vo.WishVO;
 
 @Controller
@@ -374,8 +376,8 @@ public class DbShopController {
 		model.addAttribute("sort", sort);
 
 		// 전체 상품리스트 가져오기
-		List<DbProductVO> productVOS = dbShopService.getDbShopList(pageVO.getStartIndexNo(), pageSize, part, sort,
-				searchString);
+		List<DbProductVO> productVOS = dbShopService.getDbShopList(pageVO.getStartIndexNo(), pageSize, part, sort, searchString);
+		System.out.println("productVOS : " + productVOS);
 		model.addAttribute("productVOS", productVOS);
 		model.addAttribute("pageVO", pageVO);
 		model.addAttribute("searchString", searchString);
@@ -397,8 +399,10 @@ public class DbShopController {
 
 		DbProductVO productVO = dbShopService.getDbShopProduct(idx); // 상품의 상세정보 불러오기
 		List<DbOptionVO> optionVOS = dbShopService.getDbShopOption(idx); // 옵션의 모든 정보 불러오기
+		CategoryMainVO mainVO = dbShopService.getProductContentCate(productVO.getCategoryMainCode());
 		model.addAttribute("productVO", productVO);
 		model.addAttribute("optionVOS", optionVOS);
+		model.addAttribute("mainVO", mainVO); 
 
 		// productVO의 idx에 달린 리뷰들을 가져오자
 		List<DbReviewVO> reviewVOS = dbShopService.getProductReview(productVO.getIdx());
@@ -406,6 +410,7 @@ public class DbShopController {
 		// PageVO pageVO = pageProcess.totRecCnt(pag, pageSize, "review", mid,
 		// "productVO.getIdx()");
 		model.addAttribute("reviewVOS", reviewVOS);
+		
 
 		// System.out.println("productVO : " + productVO);
 		// DB에서 현재 게시글에 '좋아요'가 체크되어있는지를 알아오자.
@@ -960,7 +965,7 @@ public class DbShopController {
 	
 	
 	
-//회원 리뷰 다중 삭제
+	//회원 리뷰 다중 삭제
 	@ResponseBody
 	@RequestMapping(value = "/reviewDelete", method = RequestMethod.POST)
 	public String reviewDeletePost(Model model, String idxs) {
@@ -968,6 +973,51 @@ public class DbShopController {
 		for (int i = 0; i < idxMulti.length; i++) {
 			dbShopService.setReviewDelete(Integer.parseInt(idxMulti[i]));
 		}
+		return "1";
+	}
+	
+	// 배송전 회원 결제 취소
+	@ResponseBody
+	@RequestMapping(value = "/userOrderCancel", method = RequestMethod.POST)
+	public String userOrderCancelPost(Model model, int idx, int productIdx, String optionName, int optionNum) {
+		// order 주문취소로 바꾸고
+		dbShopService.setOrderStatusChange(idx, "결제취소");
+		// 옵션의 개수를 다시 증가시켜준다.
+		dbShopService.setOptionStockPlus(productIdx,optionName,optionNum);
+		return "1";
+	}
+	
+	
+	// 회원 환불,반품 불가능 사유 새창
+	@RequestMapping(value = "/orderCancelReason", method = RequestMethod.GET)
+	public String orderCancelReasonGet(int idx, Model model) {
+		DbOrderCancelVO vo = dbShopService.getOrderCancelsOne(idx);
+		model.addAttribute("vo", vo);
+		return "dbShop/orderCancelReason";
+	}
+	
+	
+	// 리뷰 신고 새창
+	@RequestMapping(value = "/reviewReportChild", method = RequestMethod.GET)
+	public String reviewReportChildGet(int idx, Model model) {
+		DbReviewVO vo = dbShopService.getReviewOne(idx);
+		model.addAttribute("vo", vo);
+		return "dbShop/reviewReportChild";
+	}
+	
+	// 리뷰 신고 새창 신고 제출
+	@ResponseBody
+	@RequestMapping(value = "/reviewReportChild", method = RequestMethod.POST)
+	public String reviewReportChildPost(ReportReviewVO vo, Model model) {
+		// 같은 리뷰를 여러번 신고할수 없다.
+		ReportReviewVO rpVO = dbShopService.getExistReportReview(vo.getIdx(), vo.getMid());
+		if(rpVO != null) {
+			return "0";
+		} 
+		// 신고 테이블에 넣고
+		dbShopService.setReportReview(vo);
+		// 리뷰 테이블의 리포트넘을 증가시킨다.
+		dbShopService.setReportReviewNum(vo.getIdx());
 		return "1";
 	}
 	

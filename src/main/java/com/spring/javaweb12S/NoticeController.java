@@ -202,7 +202,12 @@ public class NoticeController {
 	}
 	
 
-
+	// about페이지
+	@RequestMapping(value = "/about", method = RequestMethod.GET)
+	public String aboutGet() {
+		return "notice/about";
+	}
+	
 	
 	
 	

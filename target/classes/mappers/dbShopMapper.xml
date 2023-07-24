@@ -280,6 +280,25 @@
 		select count(*) from event where mid = #{mid} and extract(month from ymd) = extract(month from current_date);
 	</select>
 
+	<select id="getOrderCancelsOne" resultType="com.spring.javaweb12S.vo.DbOrderCancelVO">
+		select * from dbOrderCancel where cancelIdx = #{idx};
+	</select>
+	
+	<select id="getProductContentCate" resultType="com.spring.javaweb12S.vo.CategoryMainVO">
+		select main.categoryMainName
+		from categorymain main
+		join dbproduct pro on main.categoryMainCode=pro.categoryMainCode
+		where pro.categoryMainCode = #{categoryMainCode}
+		group by main.categoryMainName;
+	</select>
+	
+	<select id="getReviewOne" resultType="com.spring.javaweb12S.vo.DbReviewVO">
+		select * from dbReview where idx = #{idx};
+	</select>
+	
+	<select id="getExistReportReview" resultType="com.spring.javaweb12S.vo.ReportReviewVO">
+		select * from reportReview where reviewIdx = #{reviewIdx} and mid = #{mid};
+	</select>
 	
 	
 	
@@ -318,7 +337,7 @@
   </insert> 
   
  <insert id="setOrderCancel">
-  	insert into dbOrderCancel values (default, #{vo.mid},#{vo.orderIdx},#{vo.cancelIdx},default,#{vo.cancelMemo},#{vo.cancelStatus});
+  	insert into dbOrderCancel values (default, #{vo.mid},#{vo.orderIdx},#{vo.cancelIdx},default,#{vo.cancelMemo},#{vo.cancelStatus},null,null);
   </insert> 
   
  <insert id="setGetPoint">
@@ -330,7 +349,7 @@
  </insert>
   
   <insert id="setReviewInput">
-  	insert into dbReview values (default, #{vo.productIdx},#{vo.productName}, #{vo.mid},#{vo.title},#{vo.content},#{vo.fSName},#{vo.score},default,default,default);
+  	insert into dbReview values (default, #{vo.productIdx},#{vo.productName}, #{vo.mid},#{vo.title},#{vo.content},#{vo.fSName},#{vo.score},default,default,default,default);
   </insert>
   
   <insert id="setOnedayClassApplication">
@@ -339,6 +358,10 @@
   
   <insert id="setEventInput">
 	  insert into event values (#{vo.mid},default);
+	</insert>
+  
+  <insert id="setReportReview">
+	  insert into reportReview values (default, #{vo.idx}, #{vo.mid}, #{vo.reportMemo1}, #{vo.reportMemo2},default);
 	</insert>
   
 
@@ -399,6 +422,18 @@
   <update id="setOnedayClassInput">
   	update dbOnedayClass set qrCodeName = #{QrCodeName} where idx = #{idx};
   </update>
+  
+  <update id="setOptionStockPlus">
+  	update dbOption set optionStock = optionStock + #{optionNum} where productIdx = #{productIdx} and optionName = #{optionName};
+  </update>
+  
+  <update id="setReportReviewNum">
+  	update dbReview set reportNum = reportNum + 1 where idx = #{idx};
+  </update>
+  
+  
+  
+  
   
   
   

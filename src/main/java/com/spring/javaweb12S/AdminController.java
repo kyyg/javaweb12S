@@ -68,12 +68,7 @@ public class AdminController {
 	public String adminMain() {
 		return "admin/adminMain";
 	}
-	
-	@RequestMapping(value = "/about", method = RequestMethod.GET)
-	public String aboutGet() {
-		return "admin/about";
-	}
-	
+		
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String indexGet(Model model) {
 		// 3D 도넛 차트
@@ -106,6 +101,10 @@ public class AdminController {
 		model.addAttribute("weekCancel",weekCancel);
 		model.addAttribute("weekBoard",weekBoard);
 		model.addAttribute("weekClass",weekClass);
+		
+		// 재고현황
+		List<DbOptionVO> optionVOS = adminService.getAllOptionList(); 
+		model.addAttribute("optionVOS",optionVOS);
 		
 		return "admin/index";
 	}
@@ -747,8 +746,47 @@ public class AdminController {
 	 */
 	
 	
+	// 관리자 환불,반품 불가능 처리 새창
+	@RequestMapping(value = "/adminCancleNew", method = RequestMethod.GET)
+	public String adminCancleNewGet(int idx, Model model) {
+		DbOrderCancelVO vo = adminService.getOrderCancelOne(idx);
+		model.addAttribute("vo", vo);
+		return "admin/dbShop/adminCancleNew";
+	}
 	
 	
+	// 관리자 환불,반품 새창에서 처리처리
+	@ResponseBody
+	@RequestMapping(value = "/adminOrderCancelNO", method = RequestMethod.POST)
+	public String adminOrderCancelNOPost(int idx, int cancelIdx, String reason1, String reason2) {
+		// 캔슬 db에서 불가처리 해주고
+		adminService.setOrderCancelNo(idx,"승인 불가", reason1,reason2);
+		// order에도 처리불가로 바꿔야 한다.(사용자)
+		adminService.setOrderCancelNo2(cancelIdx,"승인 불가");
+		return "1";
+	}
+	
+	
+	// 관리자 신고 리뷰 창
+	@RequestMapping(value = "/adminReportReviewList", method = RequestMethod.GET)
+	public String adminReportReviewListGet(Model model) {
+		List<DbReviewVO> vos = adminService.getReportReview();
+		model.addAttribute("vos", vos);
+		return "admin/dbShop/adminReportReviewList";
+	}
+	
+	
+	// 관리자 신고 리뷰 복원처리..
+	@ResponseBody
+	@RequestMapping(value = "/reviewRestore", method = RequestMethod.POST)
+	public String reviewRestorePost(String idxs) {
+		String[] idxMulti = idxs.split("/");
+		for (int i = 0; i < idxMulti.length; i++) {
+			// 신고횟수를 다시 0으로 초기화 해준다.
+			adminService.setReportreviewRestore(Integer.parseInt(idxMulti[i]));
+		}
+		return "1";
+	}
 	
 	
 	

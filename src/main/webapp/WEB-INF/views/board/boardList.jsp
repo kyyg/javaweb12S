@@ -44,7 +44,7 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
 <div class="container">
-  <h2 class="text-center">문의</h2>
+  <h2 class="text-center">이벤트 후기</h2>
   <table class="table table-borderless">
       <tr>
       <td style="width:20%" class="text-left">
@@ -80,11 +80,11 @@
       <th>작성자</th>
       <th>작성날짜</th>
       <th>조회수</th>
-      <th>답변여부</th>
+      <th></th>
     </tr>
 	<c:forEach var="vo" items="${vos}" varStatus="st">
     <c:if test="${vo.fixed == 'on'}">
-     <tr  class="table-primary text-dark">
+     <tr class="table-primary text-dark">
        <td><span class="badge badge-danger">공지</span></td>
        <td></td>
        <td class="text-left">
@@ -98,7 +98,6 @@
          </c:if>
        </td>
        <td>${vo.readNum}</td>
-       <td></td>
 	     </tr>
 	   </c:if>
 	 </c:forEach>
@@ -129,13 +128,12 @@
 	         </c:if>
 	       </td>
 	       <td>${vo.readNum}</td>
-	       <td>${vo.answer}</td>
 		     </tr>
 		    </c:if>
 	  </c:forEach>
     <tr><td colspan="8" class="m-0 p-0"></td></tr>
   </table>
-  <div class="text-right"><c:if test="${sLevel < 3}"><a href="${ctp}/board/boardInput" class="btn btn-outline-dark btn-sm">문의 작성</a></c:if></div>
+  <div class="text-right"><c:if test="${sLevel < 3}"><a href="${ctp}/board/boardInput" class="btn btn-outline-dark btn-sm">후기 작성</a></c:if></div>
   
   
   <!-- 블록 페이징 처리 -->

@@ -126,7 +126,7 @@ nav li {
 <nav id="mainnav" class="navbar-light bg-white">
   <ul class="nav justify-content-center">
 	 <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn mr-5" ><a href="${ctp}/admin/about">ABOUT</a></div>
+	    <div class="nav-link dropbtn mr-5" ><a href="${ctp}/notice/about">ABOUT</a></div>
 	  </li>
 	   <li class="nav-item dropdown">
 	    <div class="nav-link dropbtn ml-4 mr-5 text-center">&nbsp;<a href="${ctp}/dbShop/dbProductList">STORE</a></div>
@@ -140,15 +140,16 @@ nav li {
 	  <li class="nav-item dropdown">
 	    <div class="nav-link dropbtn ml-3 mr-5">&nbsp;&nbsp;EVENT</div>
 	    <div class="dropdown-menu dropdown-content">
-	      <a class="dropdown-item text-center" href="${ctp}/dbShop/dbOnedayClass">원데이클래스</a>
 	      <a class="dropdown-item text-center" href="${ctp}/schedule/schedule">출석이벤트</a>
+	      <a class="dropdown-item text-center" href="${ctp}/dbShop/dbOnedayClass">원데이클래스</a>
+	      <a class="dropdown-item text-center" href="${ctp}/board/boardList">후기 게시판</a>
 	   </div>
 	   </li>
 	  <li class="nav-item dropdown">
 	    <div class="nav-link dropbtn ml-3">SERVICE</div>
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item text-center" href="${ctp}/notice/noticeList">공지 게시판</a>
-	      <a class="dropdown-item text-center" href="${ctp}/board/boardList">문의 게시판</a>
+	      <a class="dropdown-item text-center" href="${ctp}/qna/qnaList">문의 게시판</a>
 	      <a class="dropdown-item text-center" href="${ctp}/admin/offlineStore">오프라인 매장</a>
 	      <a class="dropdown-item text-center" href="${ctp}/contact/contactList">제휴 문의</a>
 	   </div>
