@@ -212,6 +212,12 @@ public interface DbShopDAO {
 
 	public void setShippingList(@Param("vo") DbShippingListVO vo);
 
+	public void setShippingDelete(@Param("idx") int idx);
+
+	public DbShippingListVO getShipping(@Param("idx") int idx);
+
+	public void setMemberShippingModify(@Param("vo") DbShippingListVO vo);
+
 
 	
 

@@ -304,6 +304,10 @@
 		select * from dbShippingList where mid = #{mid};
 	</select>
 	
+	<select id="getShipping" resultType="com.spring.javaweb12S.vo.DbShippingListVO">
+		select * from dbShippingList where idx = #{idx};
+	</select>
+	
 	
 	
 	
@@ -439,7 +443,9 @@
   	update dbReview set reportNum = reportNum + 1 where idx = #{idx};
   </update>
   
-  
+  <update id="setMemberShippingModify">
+  	update dbShippingList set shippingName=#{vo.shippingName}, mid=#{vo.mid}, name=#{vo.name},tel=#{vo.tel}, address=#{vo.address},email=#{vo.email} where idx = #{vo.idx};
+  </update>
   
   
   
@@ -479,6 +485,9 @@
   	delete from dbReview where idx = #{idx};
   </delete>
   
+  <delete id="setShippingDelete">
+  	delete from dbShippingList where idx = #{idx};
+  </delete>
   
 	
 </mapper>

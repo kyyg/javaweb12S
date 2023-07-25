@@ -70,12 +70,7 @@ public class DbShopController {
 
 	/* 아래로 관리자에서의 처리부분들 */
 	
-	// 관리자 상품 옵션 새창보기
-	@RequestMapping(value = "/eventNew", method = RequestMethod.GET)
-	public String eventNewGet() {
-		return "dbShop/eventNew";
-	}
-	
+
 
 	// 대/중 분류 폼 보기
 	@RequestMapping(value = "/dbCategory", method = RequestMethod.GET)
@@ -1077,6 +1072,32 @@ public class DbShopController {
 		
 		return "dbShop/memberShppingList";
 	}
+	
+	// 마이페이지 배송지 삭제
+	@ResponseBody
+	@RequestMapping(value = "/shippingDelete", method = RequestMethod.POST)
+	public String shippingDeletePost(int idx) {
+		dbShopService.setShippingDelete(idx);
+		return "1";
+	}
+	
+	// 마이페이지 배송지 삭제
+	@RequestMapping(value = "/memberShippingModify", method = RequestMethod.GET)
+	public String shippingModifyGet(int idx, Model model) {
+		 DbShippingListVO vo = dbShopService.getShipping(idx);
+		 model.addAttribute("vo",vo);
+		 
+		return "dbShop/memberShippingModify";
+	}
+	
+	// 마이페이지 배송지 수정
+	@ResponseBody
+	@RequestMapping(value = "/memberShippingModify", method = RequestMethod.POST)
+	public String shippingModifyPost(DbShippingListVO vo, Model model) {
+		dbShopService.setMemberShippingModify(vo);
+		return "1";
+	}
+	
 	
 	
 	

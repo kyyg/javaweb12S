@@ -29,6 +29,11 @@
     	window.close();
     }
     
+    function eventCk(){
+    	let todayIsDone = document.getElementById("todayIsDone").value;
+    	location.href = "${ctp}/eventCheck?todayIsDone="+todayIsDone;
+    	window.close();
+    }
   </script>
 </head>
 <body style="background-color:skyblue">
@@ -48,7 +53,13 @@
 		<tr>
 			<td>
 				<input type="button" value="이벤트 대상 확인하기" onclick="eventGo()" class="btn btn-outline-light"/>
-				<input type="button" value="닫기" class="btn btn-outline-light" onclick="closeNew()">		
+				<!-- <input type="button" value="닫기" class="btn btn-outline-light" onclick="closeNew()">		 -->
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="checkbox" name="todayIsDone" id="todayIsDone"> <font color="white">24시간 동안 그만 보기</font>
+				<input type="button" name="close" id="close" value="닫기" class="btn btn-outline-dark btn-sm text-light" onclick="eventCk()" />
 			</td>
 		</tr>
 	</table>

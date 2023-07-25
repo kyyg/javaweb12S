@@ -202,6 +202,12 @@ public interface DbShopService {
 
 	public void setShippingList(DbShippingListVO vo);
 
+	public void setShippingDelete(int idx);
+
+	public DbShippingListVO getShipping(int idx);
+
+	public void setMemberShippingModify(DbShippingListVO vo);
+
 
 
 

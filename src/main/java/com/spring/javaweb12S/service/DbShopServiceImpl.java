@@ -724,6 +724,21 @@ public class DbShopServiceImpl implements DbShopService {
 	public void setShippingList(DbShippingListVO vo) {
 		dbShopDAO.setShippingList(vo);
 	}
+
+	@Override
+	public void setShippingDelete(int idx) {
+		dbShopDAO.setShippingDelete(idx);
+	}
+
+	@Override
+	public DbShippingListVO getShipping(int idx) {
+		return dbShopDAO.getShipping(idx);
+	}
+
+	@Override
+	public void setMemberShippingModify(DbShippingListVO vo) {
+		dbShopDAO.setMemberShippingModify(vo);
+	}
 	 
 	
 }

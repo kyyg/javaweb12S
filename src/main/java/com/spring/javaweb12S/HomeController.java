@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.javaweb12S.service.AdminService;
@@ -31,7 +32,7 @@ public class HomeController {
 	AdminService adminService;
 	
 	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model,HttpServletRequest request) {
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -46,10 +47,41 @@ public class HomeController {
 		model.addAttribute("newVOS",newVOS);
 		model.addAttribute("newVOS3",newVOS3);
 		
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null) {
+			for(int i=0; i<cookies.length; i++) {
+				if(cookies[i].getName().equals("cEvent")) {
+					request.setAttribute("event", cookies[i].getValue());
+					break;
+				}
+			}
+		}
+		
 		return "home";
 	}
 	
 	
+	// 이벤트 새창 닫기를 누르면 쿠키를 저장할라구...
+	@RequestMapping(value = "/eventCheck", method = RequestMethod.GET)
+	public String eventCheckGet(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(name="todayIsDone", defaultValue = "", required=false) String todayIsDone
+			) {
+		
+		if(todayIsDone.equals("on")) {
+			Cookie cookie = new Cookie("cEvent", "새창고만해");
+			cookie.setMaxAge(60*60*24*1);
+			response.addCookie(cookie);
+		}
+		return "home";
+	}
+	
+	
+	// 페이지 처음 들어오면 이벤트 새창
+	@RequestMapping(value = "/eventNew", method = RequestMethod.GET)
+	public String eventNewGet(HttpServletRequest request) {
+
+		return "dbShop/eventNew";
+	}
 	
 	
 	@RequestMapping(value = "/imageUpload")
