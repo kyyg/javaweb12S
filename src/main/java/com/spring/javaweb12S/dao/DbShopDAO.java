@@ -15,6 +15,7 @@ import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbPointVO;
 import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
+import com.spring.javaweb12S.vo.DbShippingListVO;
 import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.MemberVO;
 import com.spring.javaweb12S.vo.PointSaveVO;
@@ -206,6 +207,10 @@ public interface DbShopDAO {
 	public void setReportReviewNum(@Param("idx") int idx);
 
 	public ReportReviewVO getExistReportReview(@Param("reviewIdx")int reviewIdx,@Param("mid") String mid);
+
+	public List<DbShippingListVO> getUserShippingList(@Param("mid") String mid);
+
+	public void setShippingList(@Param("vo") DbShippingListVO vo);
 
 
 	

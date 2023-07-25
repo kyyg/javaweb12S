@@ -214,7 +214,14 @@ margin-bottom:10px;
     	  <td colspan="2" class="search__sub__title">예약날짜</td>
       </tr>
       <tr>
-          <td colspan="2"><input class="search__input" id="wDate" name="wDate" type="date" /></td>
+	      <td colspan="2">
+	       <select name="wDate" id="wDate" class="form-control">
+	       	<option>2주 토요일 1시</option>
+	       	<option>2주 일요일 1시</option>
+	       	<option>4주 토요일 1시</option>
+	       	<option>4주 일요일 1시</option>
+	       </select>
+	      </td>
       </tr>
       <tr>
           <td colspan="2" class="search__sub__title">인원</td>
@@ -245,7 +252,7 @@ margin-bottom:10px;
 <div id="content" style="color:white;">
 <b>명화비누 제작 원데이 클래스 이벤트</b><br/>
 <br/>
-매주 주말 1시<br/>
+매월 2/4주차 토요일,일요일 1시<br/>
 소요시간 : 2시간<br/>
 <br/>
 3개월간 총 구매금액이 10만원 이상인 회원들을 대상으로 열리는 이벤트 입니다.<br/>

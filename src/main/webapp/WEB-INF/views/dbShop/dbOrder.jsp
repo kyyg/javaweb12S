@@ -118,6 +118,30 @@
 		  document.getElementById("orderTotalPrice").value=realPrice;
 		  document.getElementById("usingPoint").value=0;
 	  }
+	  
+	  // 배송지 목록
+	  function shippingListNew(){
+	    let url = "${ctp}/dbShop/userShppingList";
+	    let winName = "winName";
+	    let winWidth = 800;
+	    let winHeight = 500;
+	    let x = (screen.width/2) - (winWidth/2);
+	    let y = (screen.height/2) - (winHeight/2);
+	    let opt="width="+winWidth+", height="+winHeight+", left="+x+", top="+y;
+	    window.open(url,winName,opt);  
+		}
+	  
+	  // 배송지 추가
+	  function shippingAddNew(){
+	    let url = "${ctp}/dbShop/userShppingAdd";
+	    let winName = "winName";
+	    let winWidth = 600;
+	    let winHeight = 570;
+	    let x = (screen.width/2) - (winWidth/2);
+	    let y = (screen.height/2) - (winHeight/2);
+	    let opt="width="+winWidth+", height="+winHeight+", left="+x+", top="+y;
+	    window.open(url,winName,opt); 
+	  }
   </script>
   <style>
     td, th {padding: 5px}
@@ -127,31 +151,39 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <p><br/></p>
 <div class="container">
-<div class="text-left">장바구니 > <b>결제</b> > 완료</div>
 <p><br/></p>
+<table class="table table-borderless text-center" style="margin: 0 auto; width:900px; padding-left:30px; margin-left:30px;">
+	<div class="text-left" style="padding-left:50px; margin-left:60px; margin-bottom:15px;">장바구니 > <b>결제</b> > 완료</div>
+	</table>
 <form name="myform" method="post">
-  <table class="table table-borderless text-center">
+  <table class="table table-borderless text-center" style="margin: 0 auto; width:900px">
+  	<tr>
+  		<td class="text-right" colspan="2">
+	  		<input type="button" value="배송지 목록" onclick="shippingListNew()" class="btn btn-outline-dark btn-sm" />
+	  		<input type="button" value="배송지 추가" onclick="shippingAddNew()" class="btn btn-outline-dark btn-sm" />
+  		</td>
+  	</tr>
     <tr class="table-dark text-dark">
       <th colspan="2">배송 정보</th>
     </tr>
     <tr>
-		  <th width="30%" class="text-center">구매자 성명</th>
-		  <td><input type="text" name="buyer_name" value="${memberVO.name}" readonly class="form-control"/></td>
+		  <th width="20%" class="text-center">성명</th>
+		  <td><input type="text" name="buyer_name" id="buyer_name" value="${memberVO.name}" class="form-control"/></td>
 		</tr>
     <tr>
 		  <th>메일</th>
-		  <td><input type="text" name="buyer_email" value="${memberVO.email}" class="form-control"/></td>
+		  <td><input type="text" name="buyer_email" id="buyer_email" value="${memberVO.email}" class="form-control"/></td>
 		</tr>
     <tr>
 		  <th>전화번호</th>
-		  <td><input type="text" name="buyer_tel" value="${memberVO.tel}" class="form-control"/></td>
+		  <td><input type="text" name="buyer_tel" id="buyer_tel" value="${memberVO.tel}" class="form-control"/></td>
 		</tr>
     <tr>
 		  <th>주소</th>
 		  <c:set var="addr" value="${fn:split(memberVO.address,'/')}"/>
 		  <td class="text-left">
-		    <input type="text" name="buyer_postcode" value="${addr[0]}"/><br/>
-		    <input type="text" name="buyer_addr" value="${addr[1]} ${addr[2]} ${addr[3]}" class="form-control"/>
+		    <input type="text" name="buyer_postcode" id="buyer_postcode" value="${addr[0]}" class="form-control" /><br/>
+		    <input type="text" name="buyer_addr" id="buyer_addr" value="${addr[1]} ${addr[2]} ${addr[3]}" class="form-control"/>
 		  </td>
 		</tr>
     <tr>
@@ -170,7 +202,7 @@
 	<p><br/></p>
 	
 <!-- 상품/옵션 내역 -->	
-	<table class="table-borderless text-center table-hover" style="margin:auto; width:100%">
+	<table class="table-borderless text-center table-hover" style="margin: 0 auto; width:900px">
 	  <tr class="table-dark text-dark">
 	    <th style="width:30%">상품 </th>
 	    <th>옵션 정보</th>
@@ -183,7 +215,7 @@
 	      <td align="left">
 	        <div class="text-left ml-4">
 	          <span font-weight:bold;"><b>${vo.productName}</b></span><br/>
-	       	<span class="badge badge-dark">옵션</span> : ${vo.optionName} / ${vo.optionNum}개 / ${vo.optionPrice}원 
+	       	<span class="badge badge-dark">옵션</span> ${vo.optionName} / ${vo.optionNum}개 / ${vo.optionPrice}원 
 	        <div>
 	      </td>
 	      <td>
@@ -200,7 +232,7 @@
 	<!--  결제 정보 --> 
 	
 	<!-- 포인트 사용  -->
-	<table class="table-borderless text-center table-hover" style="margin:auto; width:100%">
+	<table class="table-borderless text-center table-hover" style="margin: 0 auto; width:900px">
 	  <tr class="table-dark text-dark mb-2">
 	  	 <th colspan="2">할인 / 제휴</th>
 	  </tr>
@@ -208,13 +240,13 @@
 	  	<td>내 포인트 : ${memberVO.point} point </td>
 	  	<td class="text-right">
 		  	<input type="number" value="0" name="point" id="point"/>
-				<input type="button" value="포인트사용" name="pointUse" id="pointUse" onclick="pointUsing()" class="btn btn-outline-dark" />
+				<input type="button" value="포인트사용" name="pointUse" id="pointUse" onclick="pointUsing()" class="btn btn-outline-dark btn-sm" />
 	  	</td>
 	  </tr>
 	</table>
 	<p><br/></p>
 	
-	<table style="margin:auto; width:100%" class="text-right" style="background-color:#eee;">
+	<table style="margin: 0 auto; width:900px; background-color:#eee;" class="text-right">
 		<tr class="table-dark text-dark mb-2">
 	  	<th colspan="2" class="text-center">결제</th>
 	  </tr>
@@ -223,7 +255,7 @@
 	  <input type="hidden" value="${tempTotal}" id="temp1" />
 	  <input type="hidden" value="${tempbs}" id="bs1" />
 	  <tr>
-	  	<td style="width:80%">상품 금액 ${orderTotal}</td>
+	  	<td style="width:80%">상품 금액</td>
 	  	<td><fmt:formatNumber value="${tempTotal}" pattern='#,###원'/></td>
 	  </tr>
 	  <tr>
@@ -242,13 +274,13 @@
   </table>
 		
 	  <!-- Nav tabs -->
-		<ul class="nav nav-tabs mt-4" role="tablist">
+		<ul class="nav nav-tabs mt-4" role="tablist" style="margin: 0 auto; width:900px">
       <li class="nav-item"><a class="nav-link active form-control" data-toggle="tab" href="#card">카드결제</a></li>
 	    <li class="nav-item"><a class="nav-link form-control" data-toggle="tab" href="#bank">무통장입금</a></li>
 	  </ul>
 	
 	  <!-- Tab panes -->
-	  <div class="tab-content">
+	  <div class="tab-content" style="margin: 0 auto; width:900px">
 	    <div id="card" class="container tab-pane active"><br>
 	      <p>카드사 선택
 	        <select name="paymentCard" id="paymentCard">

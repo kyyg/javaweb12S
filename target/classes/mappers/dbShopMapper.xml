@@ -300,6 +300,10 @@
 		select * from reportReview where reviewIdx = #{reviewIdx} and mid = #{mid};
 	</select>
 	
+	<select id="getUserShippingList" resultType="com.spring.javaweb12S.vo.DbShippingListVO">
+		select * from dbShippingList where mid = #{mid};
+	</select>
+	
 	
 	
 	
@@ -362,6 +366,10 @@
   
   <insert id="setReportReview">
 	  insert into reportReview values (default, #{vo.idx}, #{vo.mid}, #{vo.reportMemo1}, #{vo.reportMemo2},default);
+	</insert>
+	
+	<insert id="setShippingList">
+		insert into dbShippingList values (default, #{vo.shippingName}, #{vo.mid}, #{vo.name},#{vo.tel},#{vo.address},#{vo.email});
 	</insert>
   
 

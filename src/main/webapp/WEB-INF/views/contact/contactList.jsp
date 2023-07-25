@@ -8,6 +8,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>contactList.jsp</title>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
 	<style>
 	  th, td {text-align: center};
@@ -26,7 +27,7 @@
 	</c:if>
 	<div class="section">
 		<table class="table table-hover">
-			<tr class="table-dark text-dark"> 
+			<tr class="text-dark table-primary"> 
 				<th class="text-center pl-5">제목</th>
 				<th class="text-center pl-5"></th>
 				<th>작성일</th>

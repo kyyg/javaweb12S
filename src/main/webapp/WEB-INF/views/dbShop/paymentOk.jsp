@@ -72,10 +72,10 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <p><br></p>
 <div class="container">
-  <h2>결제처리 연습</h2>
+  <h2>결제</h2>
   <hr/>
   <h3>현재 결제가 진행중입니다.</h3>
-  <p><img src="${ctp}/images/payment.gif" width="200px"/></p>
+<%--   <p><img src="${ctp}/images/payment.gif" width="200px"/></p> --%>
   <hr/>
 </div>
 <br/>

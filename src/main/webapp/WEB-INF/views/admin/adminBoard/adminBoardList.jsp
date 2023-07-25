@@ -143,19 +143,17 @@
 <div class="container">
 
 		<div class="w3-bottombar w3-indigo w3-padding text-center" style="margin-bottom:20px;">
-	   		<span style="font-size:23px;">문의 게시판</span>
+	   		<span style="font-size:23px;">이벤트 후기 게시판</span>
 	   </div>
   <table class="table table-borderless">
       <tr>
       <td style="width:20%" class="text-left">
         <form name="partForm">
           <select name="part" onchange="partCheck()" class="form-contorl">
-            <option ${pageVO.part=="전체" ? "selected" : ""}>전체</option>
-            <option ${pageVO.part=="상품" ? "selected" : ""}>상품</option>
-            <option ${pageVO.part=="배송" ? "selected" : ""}>배송</option>
-            <option ${pageVO.part=="취소" ? "selected" : ""}>취소</option>
-            <option ${pageVO.part=="환불" ? "selected" : ""}>환불</option>
-            <option ${pageVO.part=="기타" ? "selected" : ""}>기타</option>
+           <option ${pageVO.part=="전체" ? "selected" : ""}>전체</option>
+            <option ${pageVO.part=="원데이클래스" ? "selected" : ""}>원데이클래스</option>
+            <option ${pageVO.part=="전시회" ? "selected" : ""}>전시회</option>
+            <option ${pageVO.part=="기타" ? "selected" : ""}>취소</option>
           </select>
         </form>
       </td>
@@ -181,7 +179,6 @@
       <th>작성자</th>
       <th>작성날짜</th>
       <th>조회수</th>
-      <th>답변여부</th>
     </tr>
 	<c:forEach var="vo" items="${vos}" varStatus="st">
     <c:if test="${vo.fixed == 'on'}">
@@ -227,14 +224,6 @@
 	         </c:if>
 	       </td>
 	       <td>${vo.readNum}</td>
-	       <td>
-	       	<select name="answer" id="answer" onchange="changeAnswer(this)">
-	       		<option value="미답변/${vo.idx}" ${vo.answer=="미답변" ? "selected" : ""}><font color="red">미답변</font></option>
-	       		<option value="답변완료/${vo.idx}" ${vo.answer=="답변완료" ? "selected" : ""}>답변완료</option>
-	       	</select>
-	       
-	       
-	       </td>
 		     </tr>
 		    </c:if>
 	  </c:forEach>

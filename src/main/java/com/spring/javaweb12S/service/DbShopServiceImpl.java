@@ -39,6 +39,7 @@ import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbPointVO;
 import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
+import com.spring.javaweb12S.vo.DbShippingListVO;
 import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.MemberVO;
 import com.spring.javaweb12S.vo.PointSaveVO;
@@ -712,6 +713,16 @@ public class DbShopServiceImpl implements DbShopService {
 	@Override
 	public ReportReviewVO getExistReportReview(int reviewIdx, String mid) {
 		return dbShopDAO.getExistReportReview(reviewIdx, mid);
+	}
+
+	@Override
+	public List<DbShippingListVO> getUserShippingList(String mid) {
+		return dbShopDAO.getUserShippingList(mid);
+	}
+
+	@Override
+	public void setShippingList(DbShippingListVO vo) {
+		dbShopDAO.setShippingList(vo);
 	}
 	 
 	

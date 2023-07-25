@@ -260,14 +260,15 @@
 	<div class="images" id="images">
 	
 		<div class="col pl-5 mt-3 text-right" id="image1">
-			<img src="${ctp}/dbShop/product/${productVO.FSName}" width="500px" height="500px" "/>
+			<img src="${ctp}/dbShop/product/${productVO.FSName}" width=500px; height=500px;/>
 		</div>
 		
 		<div id="image2" class="mt-2 pl-5">
+		<span><img src="${ctp}/dbShop/product/${productVO.FSName}" onmouseover="document.getElementById('image1').innerHTML='<img src=${ctp}/dbShop/product/${productVO.FSName} width=500px; height=500px; />'" width="70px" height="70px" /></span>
 		<c:set var="FSName2" value="${fn:split(productVO.FSName2,'/')}" />
 			<c:if test='${FSName2 != null || FSName2 != ""}'>
 				<c:forEach  var="i" begin="0" end="${fn:length(FSName2)-1}">
-					<span><img src="${ctp}/dbShop/product/${FSName2[i]}" onmouseover="document.getElementById('image1').innerHTML='<img src=${ctp}/dbShop/product/${FSName2[i]} width=500px; height=500px; />'" onmouseout="document.getElementById('image1').innerHTML='<img src=${ctp}/dbShop/product/${productVO.FSName} width=500px; height=500px; />'"" width="70px" height="70px" /></span>
+					<span><img src="${ctp}/dbShop/product/${FSName2[i]}" onmouseover="document.getElementById('image1').innerHTML='<img src=${ctp}/dbShop/product/${FSName2[i]} width=500px; height=500px; />'" width="70px" height="70px" /></span>
 				</c:forEach>
 			</c:if>
 		</div>

@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>우리의 별이 빛나는 밤</title>
+  <title>별이 빛나는 밤</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
   <style>
 	</style>
@@ -15,11 +15,11 @@
 	
 	// 새창띄우기
 /*  	window.addEventListener("DOMContentLoaded", function() {
- 		  let url = "${ctp}/dbShop/eventNew";
- 		  let winName = "winName";
- 		  let opt = "width=" + 350 + ", height=" + 400 + ", left=" + 150 + ", top=" + 100;
- 		  window.open(url, winName, opt);
- 		}); */
+	  let url = "${ctp}/dbShop/eventNew";
+	  let winName = "winName";
+	  let opt = "width=" + 350 + ", height=" + 400 + ", left=" + 150 + ", top=" + 100;
+	  window.open(url, winName, opt);
+ 	}); */ 
     	
 
 	</script>

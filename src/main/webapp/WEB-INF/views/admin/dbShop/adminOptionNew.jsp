@@ -41,6 +41,26 @@
     	});   
     }
     
+    
+ // 옵션항목 삭제하기
+    function optionDelete(idx) {
+    	let ans = confirm("현재 선택한 옵션을 삭제하시겠습니까?");
+    	if(!ans) return false;
+    	
+    	$.ajax({
+    		type : "post",
+    		url  : "${ctp}/dbShop/optionDelete",
+    		data : {idx : idx},
+    		success:function() {
+    			alert("삭제되었습니다.");
+    			location.reload();
+    		},
+    		error : function() {
+    			alert("전송오류!");
+    		}
+    	});
+    }
+    
     function closeNew(){
     	 window.close();
     }
@@ -67,13 +87,16 @@
 						<td style="width:30%"><input type="text" value="${vo.optionName}" id="optionName${vo.idx}" name="optionName${vo.idx}" /></td>
 						<td style="width:20%"><input type="number" value="${vo.optionPrice}" id="optionPrice${vo.idx}" name="optionPrice${vo.idx}" /></td>
 						<td style="width:20%"><input type="number" value="${vo.optionStock}" id="optionStock${vo.idx}" name="optionStock${vo.idx}" /></td>
-						<td style="width:20%"><input type="button" value="수정" onclick="optionUpdate(${vo.idx})" class="btn btn-outline-dark" /></td>
+						<td style="width:20%" colspan="2" class="ml-2">
+							<input type="button" value="수정" onclick="optionUpdate(${vo.idx})" class="btn btn-outline-dark btn-sm" />
+							<input type="button" value="삭제" onclick="optionDelete(${vo.idx})" class="btn btn-outline-danger btn-sm" />
+						</td>
 					</tr>
 				</c:forEach>
 		</c:if>
 		<c:if test="${empty vos}">
 			<tr class="text-center">
-				<td colspan="5" class="text-center">
+				<td colspan="6" class="text-center">
 				옵션이 존재하지 않습니다.<br/>
 				</td>
 			</tr>

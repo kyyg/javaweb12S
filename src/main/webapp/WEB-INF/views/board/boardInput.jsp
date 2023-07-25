@@ -41,7 +41,6 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
 <div class="container">
-  <h2 class="text-center">문의 글 쓰 기</h2>
   <form name="myform" method="post">
     <table class="table table-bordered">
      <tr>
@@ -53,10 +52,8 @@
     		<td>
     			<select name="part" class="form-control">
     				<option value="">분류를 선택해주세요.</option>
-    				<option value="상품">상품</option>
-    				<option value="배송">배송</option>
-    				<option value="취소">취소</option>
-    				<option value="반품">반품</option>
+    				<option value="원데이클래스">원데이클래스</option>
+    				<option value="전시회">전시회</option>
     				<option value="기타">기타</option>
     			</select>
     		</td>
@@ -96,7 +93,7 @@
       </c:if>
       <tr>
         <td colspan="2" class="text-center">
-          <input type="button" value="글올리기" onclick="fCheck()" class="btn btn-outline-dark"/> &nbsp;
+          <input type="button" value="등록" onclick="fCheck()" class="btn btn-outline-dark"/> &nbsp;
           <input type="button" value="돌아가기" onclick="location.href='${ctp}/board/boardList';" class="btn btn-outline-dark"/>
         </td>
       </tr>

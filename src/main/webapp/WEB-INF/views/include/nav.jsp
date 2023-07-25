@@ -150,7 +150,7 @@ nav li {
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item text-center" href="${ctp}/notice/noticeList">공지 게시판</a>
 	      <a class="dropdown-item text-center" href="${ctp}/qna/qnaList">문의 게시판</a>
-	      <a class="dropdown-item text-center" href="${ctp}/admin/offlineStore">오프라인 매장</a>
+	      <a class="dropdown-item text-center" href="${ctp}/notice/offlineStore">오프라인 매장</a>
 	      <a class="dropdown-item text-center" href="${ctp}/contact/contactList">제휴 문의</a>
 	   </div>
 	   </li>

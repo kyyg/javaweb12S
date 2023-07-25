@@ -9,6 +9,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>title</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+  <script src="https://kit.fontawesome.com/607fa85cf6.js" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  function memberDelete() {
+	  let ans = confirm("회원 탈퇴하시겠습니까?");
+	  if(ans) {
+		  ans = confirm("탈퇴하시면 1개월간 같은 아이디로 재가입하실수 없습니다.\n탈퇴를 진행 하시겠습니까?");
+		  if(ans) location.href = "${ctp}/member/memberDelete";
+	  }
+  }
+</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
@@ -27,32 +38,32 @@
    			<c:if test="${empty yearPay}" >0원</c:if>
    			<c:if test="${!empty yearPay}" ><fmt:formatNumber value="${yearPay}" pattern='#,###'/></c:if>원
   		</td>
-  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="orange">${part1}</font><br/>입금전</td>
-  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="orange">${part2}</font><br/>결제완료</td>
-  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="orange">${part3}</font><br/>배송중</td>
-  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="orange">${part4}</font><br/>배송완료</td>
-  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="orange">${part5}</font><br/>구매확정</td>
+  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="skyblue">${part1}</font><br/>입금전</td>
+  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="skyblue">${part2}</font><br/>결제완료</td>
+  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="skyblue">${part3}</font><br/>배송중</td>
+  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="skyblue">${part4}</font><br/>배송완료</td>
+  		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="skyblue">${part5}</font><br/>구매확정</td>
   	</tr>
+  	<tr><td colspan="7" class="p-0 m-0"></td></tr>
   </table>
   
   <table class="table-bordered text-center mt-5" style="width:100%; border-radious:10px;background-color:#fff;">
   	<tr>
-  		<td class="pb-5 pt-5" style="width:25%; height:150px;"><a href="${ctp}/dbShop/dbMyOrder"><font size="4"><b>주문내역</b></font></a></td>
-  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/member/memberPwdCheck"><font size="4"><b>개인정보수정</b></font></a></td>
-  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/dbShop/dbMyOnedayClass"><font size="4"><b>이벤트 참여내역</b></font></a></td>
-  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/dbShop/dbPoint"><font size="4"><b>포인트 내역</b></font></a></td>
+  		<td class="pb-5 pt-5" style="width:25%; height:150px;"><a href="${ctp}/dbShop/dbMyOrder"><font size="4"><b><img src="${ctp}/images/order.jpg" width=50px;><br/>주문내역</b></font></a></td>
+  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/member/memberPwdCheck"><font size="4"><b><img src="${ctp}/images/member.jpg" width=50px;><br/>개인정보수정</b></font></a></td>
+  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/dbShop/dbMyOnedayClass"><font size="4"><b><img src="${ctp}/images/event.jpg" width=50px;><br/>이벤트 참여내역</b></font></a></td>
+  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/dbShop/dbPoint"><font size="4"><b><img src="${ctp}/images/point.jpg" width=50px;><br/>포인트 내역</b></font></a></td>
   	</tr>
   </table>
   <table class="table-bordered text-center" style="width:100%;background-color:#fff;">
   	<tr>
-  		<td class="pb-5 pt-5" style="width:25%; height:150px;"><a href="${ctp}/dbShop/dbWishList"><font size="4"><b>위시리스트</b></font></a></a></td>
-  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/dbShop/userReview"><font size="4"><b>리뷰 관리</b></font></a></td>
-  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/board/userBoard"><font size="4"><b>문의글 관리</b></font></a></td>
-  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/board/userBoard"><font size="4"><b>회원탈퇴</b></font></a></td>
+  		<td class="pb-5 pt-5" style="width:25%; height:150px;"><a href="${ctp}/dbShop/dbWishList"><font size="4"><b><img src="${ctp}/images/wish.jpg" width=50px;><br/>위시리스트</b></font></a></a></td>
+  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/dbShop/userReview"><font size="4"><b><img src="${ctp}/images/review.jpg" width=50px;><br/>리뷰</b></font></a></td>
+  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/board/userBoard"><font size="4"><b><img src="${ctp}/images/board.jpg" width=50px;><br/>제휴 문의</b></font></a></td>
+  		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/dbShop/memberShppingList"><font size="4"><b><img src="${ctp}/images/shipping.jpg" width=50px;><br/>배송지 관리</b></font></a></td>
   	</tr>
   </table>
-  
-  
+  <div class="text-right"><a href="javascript:memberDelete()"><font size="1">회원탈퇴</font></a></div>
   
   <c:if test="${!empty sImsiPwd}">
     <hr/>

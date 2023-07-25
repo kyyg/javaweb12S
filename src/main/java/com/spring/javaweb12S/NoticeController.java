@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.javaweb12S.pagination.PageProcess;
 import com.spring.javaweb12S.pagination.PageVO;
+import com.spring.javaweb12S.service.AdminService;
 import com.spring.javaweb12S.service.NoticeService;
+import com.spring.javaweb12S.vo.KakaoAddressVO;
 import com.spring.javaweb12S.vo.NoticeVO;
 
 @Controller
@@ -24,6 +26,9 @@ public class NoticeController {
 	
 	@Autowired
 	NoticeService noticeService;
+	
+	@Autowired
+	AdminService adminService;
 	
 	@Autowired
 	PageProcess pageProcess;
@@ -207,6 +212,24 @@ public class NoticeController {
 	public String aboutGet() {
 		return "notice/about";
 	}
+	
+	
+	// 오시는길 페이지
+	@RequestMapping(value = "/offlineStore", method = RequestMethod.GET)
+	public String offlineStoreGet(Model model,
+			@RequestParam(name="store_name", defaultValue = "공원", required=false) String store_name) {
+		
+		KakaoAddressVO vo = adminService.getKakaoAddressName(store_name);
+		List<KakaoAddressVO> vos = adminService.getKakaoAddressList();
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("vos", vos);
+		model.addAttribute("store_name", store_name);
+		return "notice/offlineStore";
+	}
+	
+	
+	
 	
 	
 	

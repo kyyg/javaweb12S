@@ -103,8 +103,8 @@
     function optionNew(idx){
         let url = "${ctp}/admin/adminOptionNew?idx="+idx;
         let winName = "winName";
-        let winWidth = 800;
-        let winHeight = 300;
+        let winWidth = 1000;
+        let winHeight = 500;
         let x = (screen.width/2) - (winWidth/2);
         let y = (screen.height/2) - (winHeight/2);
         let opt="width="+winWidth+", height="+winHeight+", left="+x+", top="+y;
@@ -141,7 +141,9 @@
 <div id="content">
 <div class="container-fluid">
   <hr/> 
-  <h3 class="text-center">전체 상품 목록</h3>
+		<div class="w3-bottombar w3-indigo w3-padding text-center" style="margin-bottom:20px;">
+	   		<span style="font-size:23px;">전체상품 목록</span>
+	   </div>
   <hr/>
 <div class="text-center">
 	  <span id="cate"><b><a href="${ctp}/dbShop/dbShopList">전체상품</a></b></span>

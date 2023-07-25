@@ -23,7 +23,8 @@
 	  <a href="${ctp}/dbShop/dbPoint" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">포인트 내역</a>
 	  <a href="${ctp}/dbShop/dbWishList" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">위시리스트</a>
 	  <a href="${ctp}/dbShop/userReview" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">리뷰 관리</a>
-	  <a href="${ctp}/board/userBoard" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">문의글 관리</a>
+	  <a href="${ctp}/board/userBoard" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">제휴 문의</a>
+	  <a href="${ctp}/dbShop/memberShppingList" id="nav" class="w3-button w3-indigo w3-round-xlarge p-3">배송지 관리</a>
   </div>
 </div>
 </div>

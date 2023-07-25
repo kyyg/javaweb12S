@@ -15,6 +15,9 @@
 <title></title>
 
  <!-- Custom fonts for this template-->
+ <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <link href="../resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link
     href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -71,7 +74,9 @@
 	<div class="container">
 
 	<div class="container">
-	<h3>제휴 문의</h3>
+		<div class="w3-bottombar w3-indigo w3-padding text-center" style="margin-bottom:20px;">
+	   		<span style="font-size:23px;">제휴 문의</span>
+	   </div>
 	<p><br/></p>
 	<form name="categoryForm" style="width:200px;" onchange="categoryCheck()">
 		<select class="form-control" name="part" style="margin-left: 50px;">

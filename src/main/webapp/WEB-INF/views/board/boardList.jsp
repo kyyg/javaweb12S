@@ -48,14 +48,12 @@
   <table class="table table-borderless">
       <tr>
       <td style="width:20%" class="text-left">
-        <form name="partForm">문의 분류
+        <form name="partForm">
           <select name="part" onchange="partCheck()" class="form-contorl">
             <option ${pageVO.part=="전체" ? "selected" : ""}>전체</option>
-            <option ${pageVO.part=="상품" ? "selected" : ""}>상품</option>
-            <option ${pageVO.part=="배송" ? "selected" : ""}>배송</option>
-            <option ${pageVO.part=="취소" ? "selected" : ""}>취소</option>
-            <option ${pageVO.part=="환불" ? "selected" : ""}>환불</option>
-            <option ${pageVO.part=="기타" ? "selected" : ""}>기타</option>
+            <option ${pageVO.part=="원데이클래스" ? "selected" : ""}>원데이클래스</option>
+            <option ${pageVO.part=="전시회" ? "selected" : ""}>전시회</option>
+            <option ${pageVO.part=="기타" ? "selected" : ""}>취소</option>
           </select>
         </form>
       </td>
@@ -80,7 +78,6 @@
       <th>작성자</th>
       <th>작성날짜</th>
       <th>조회수</th>
-      <th></th>
     </tr>
 	<c:forEach var="vo" items="${vos}" varStatus="st">
     <c:if test="${vo.fixed == 'on'}">
@@ -133,7 +130,7 @@
 	  </c:forEach>
     <tr><td colspan="8" class="m-0 p-0"></td></tr>
   </table>
-  <div class="text-right"><c:if test="${sLevel < 3}"><a href="${ctp}/board/boardInput" class="btn btn-outline-dark btn-sm">후기 작성</a></c:if></div>
+  <div class="text-right"><c:if test="${sLevel < 3}"><a href="${ctp}/board/boardInput" class="btn btn-outline-dark btn-sm">작성</a></c:if></div>
   
   
   <!-- 블록 페이징 처리 -->

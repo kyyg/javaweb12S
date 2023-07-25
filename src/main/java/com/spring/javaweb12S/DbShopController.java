@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -46,6 +47,7 @@ import com.spring.javaweb12S.vo.DbPayMentVO;
 import com.spring.javaweb12S.vo.DbPointVO;
 import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
+import com.spring.javaweb12S.vo.DbShippingListVO;
 import com.spring.javaweb12S.vo.MemberVO;
 import com.spring.javaweb12S.vo.ReportReviewVO;
 import com.spring.javaweb12S.vo.WishVO;
@@ -322,7 +324,7 @@ public class DbShopController {
 			vo.setProductIdx(vo.getProductIdx());
 			vo.setOptionName(optionName[i]);
 			vo.setOptionPrice(optionPrice[i]);
-			vo.setOptionPrice(optionStock[i]);
+			vo.setOptionStock(optionStock[i]);
 
 			dbShopService.setDbOptionInput(vo);
 		}
@@ -673,7 +675,7 @@ public class DbShopController {
 		dbShopService.setMemberMinusPoint(baesongVO.getMid(), baesongVO.getUsingPoint()); // 멤버 포인트 차감
 		dbShopService.setUsingPoint(baesongVO.getMid(), baesongVO.getUsingPoint(),baesongVO.getOrderIdx(),"주문 시 사용"); // 포인트 페이지에 차감 기재
 
-		return "redirect:/message/payment2Ok";
+		return "redirect:/message/paymentResultOk";
 	}
 
 //결제시스템 연습하기(결제창 호출후 결재 완료후에 처리하는 부분)
@@ -1036,6 +1038,44 @@ public class DbShopController {
 		// 리뷰 테이블의 리포트넘을 증가시킨다.
 		dbShopService.setReportReviewNum(vo.getIdx());
 		return "1";
+	}
+	
+	
+	// 주문하기 배송지 리스트 
+	@RequestMapping(value = "/userShppingList", method = RequestMethod.GET)
+	public String userShppingListGet(Model model,HttpSession session) {
+		
+		String mid = (String) session.getAttribute("sMid");
+		List<DbShippingListVO> vos = dbShopService.getUserShippingList(mid);
+		
+		model.addAttribute("vos", vos);
+		return "dbShop/userShppingList";
+	}
+	
+	// 주문하기 배송지 추가 폼
+	@RequestMapping(value = "/userShppingAdd", method = RequestMethod.GET)
+	public String userShppingAddGet(Model model,HttpSession session) {
+		return "dbShop/userShppingAdd";
+	}
+	
+	// 주문하기 배송지 추가..
+	@ResponseBody
+	@RequestMapping(value = "/userShppingAdd", method = RequestMethod.POST)
+	public String userShppingAddPost(DbShippingListVO vo, Model model) {
+		
+		dbShopService.setShippingList(vo);
+		return "1";
+	}
+	
+	// 회원 배송지 목록
+	@RequestMapping(value = "/memberShppingList", method = RequestMethod.GET)
+	public String memberShppingListGet(Model model,HttpSession session) {
+		String mid = (String) session.getAttribute("sMid");
+		List<DbShippingListVO> vos = dbShopService.getUserShippingList(mid);
+		
+		model.addAttribute("vos", vos);
+		
+		return "dbShop/memberShppingList";
 	}
 	
 	

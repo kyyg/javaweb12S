@@ -125,7 +125,26 @@
 		            <div class="bg-white py-2 collapse-inner rounded">
 		                <h6 class="collapse-header">게시판</h6>
 		                <a class="collapse-item" href="${ctp}/admin/adminNoticeList">공지 관리</a>
-		                <a class="collapse-item" href="${ctp}/admin/adminBoardList">문의 관리</a>
+		                <a class="collapse-item" href="${ctp}/admin/adminQnaList">문의 관리</a>
+		                <a class="collapse-item" href="${ctp}/admin/adminBoardList">이벤트 후기 관리</a>
+		            </div>
+		        </div>
+		    </li>
+		    
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Review
+    </div>
+		<!-- Nav Item - Pages Collapse Menu -->
+		    <li class="nav-item">
+		        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages7"
+		            aria-expanded="true" aria-controls="collapsePages7">
+		            <i class="fas fa-fw fa-folder"></i>
+		            <span>리뷰 관리</span>
+		        </a>
+		        <div id="collapsePages7" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+		            <div class="bg-white py-2 collapse-inner rounded">
+		                <h6 class="collapse-header">게시판</h6>
 		                <a class="collapse-item" href="${ctp}/admin/adminReviewList">일반 리뷰 관리</a>
 		                <a class="collapse-item" href="${ctp}/admin/adminReportReviewList">신고 리뷰 관리</a>
 		            </div>

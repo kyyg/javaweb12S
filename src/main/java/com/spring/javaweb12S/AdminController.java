@@ -22,6 +22,7 @@ import com.spring.javaweb12S.service.ContactService;
 import com.spring.javaweb12S.service.DbShopService;
 import com.spring.javaweb12S.service.MemberService;
 import com.spring.javaweb12S.service.NoticeService;
+import com.spring.javaweb12S.service.QnaService;
 import com.spring.javaweb12S.vo.BoardReplyVO;
 import com.spring.javaweb12S.vo.BoardVO;
 import com.spring.javaweb12S.vo.ChartVO;
@@ -37,6 +38,7 @@ import com.spring.javaweb12S.vo.GoodVO;
 import com.spring.javaweb12S.vo.KakaoAddressVO;
 import com.spring.javaweb12S.vo.MemberVO;
 import com.spring.javaweb12S.vo.NoticeVO;
+import com.spring.javaweb12S.vo.QnaVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -59,6 +61,9 @@ public class AdminController {
 	
 	@Autowired
 	ContactService contactService;
+	
+	@Autowired
+	QnaService qnaService;
 	
 	@Autowired
 	PageProcess pageProcess;
@@ -662,20 +667,6 @@ public class AdminController {
 	}
 	
 	
-	// 오시는길 페이지
-	@RequestMapping(value = "/offlineStore", method = RequestMethod.GET)
-	public String offlineStoreGet(Model model,
-			@RequestParam(name="store_name", defaultValue = "공원", required=false) String store_name) {
-		
-		KakaoAddressVO vo = adminService.getKakaoAddressName(store_name);
-		List<KakaoAddressVO> vos = adminService.getKakaoAddressList();
-		
-		model.addAttribute("vo", vo);
-		model.addAttribute("vos", vos);
-		model.addAttribute("store_name", store_name);
-		return "admin/offlineStore";
-	}
-	
 	
 	// 베스트 리뷰 등록
 	@ResponseBody
@@ -787,6 +778,20 @@ public class AdminController {
 		}
 		return "1";
 	}
+	
+	
+	// 관리자 신고 리뷰 창
+	@RequestMapping(value = "/adminQnaList", method = RequestMethod.GET)
+	public String adminQnaListGet(  		@RequestParam(name="pag", defaultValue = "1", required = false) int pag,
+			@RequestParam(name="pageSize", defaultValue = "20", required = false) int pageSize,
+			Model model) {
+  	PageVO pageVO = pageProcess.totRecCnt(pag, pageSize, "qna", "", "");
+		List<QnaVO> vos = qnaService.getQnaList(pageVO.getStartIndexNo(), pageSize);
+		model.addAttribute("vos", vos);
+		model.addAttribute("pageVO", pageVO);
+		return "admin/adminBoard/adminQnaList";
+	}
+	
 	
 	
 	

@@ -15,6 +15,7 @@ import com.spring.javaweb12S.vo.DbOrderVO;
 import com.spring.javaweb12S.vo.DbPointVO;
 import com.spring.javaweb12S.vo.DbProductVO;
 import com.spring.javaweb12S.vo.DbReviewVO;
+import com.spring.javaweb12S.vo.DbShippingListVO;
 import com.spring.javaweb12S.vo.EventVO;
 import com.spring.javaweb12S.vo.MemberVO;
 import com.spring.javaweb12S.vo.PointSaveVO;
@@ -196,6 +197,10 @@ public interface DbShopService {
 	public void setReportReviewNum(int idx);
 
 	public ReportReviewVO getExistReportReview(int reviewIdx, String mid);
+
+	public List<DbShippingListVO> getUserShippingList(String mid);
+
+	public void setShippingList(DbShippingListVO vo);
 
 
 

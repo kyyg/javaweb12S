@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -47,6 +48,9 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	
+	
 	
 	@RequestMapping(value = "/imageUpload")
 	public void imageUploadGet(MultipartFile upload, 

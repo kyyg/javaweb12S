@@ -249,4 +249,14 @@ create table reportReview(
 
 drop table reportReview;
 
-
+/* 회원 배송지 목록 */
+create table dbShippingList(
+ idx int not null auto_increment,
+ shippingName varchar(30) not null, 
+ mid varchar(20) not null,
+ tel varchar(20) not null,
+ address varchar(100) not null,
+ email varchar(50) not null,
+ primary key (idx),
+ foreign key(mid) references member(mid)
+);

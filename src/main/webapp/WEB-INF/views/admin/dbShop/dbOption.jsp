@@ -63,6 +63,10 @@
     			alert("빈칸 없이 상품 옵션가격을 모두 등록하셔야 합니다");
     			return false;
     		}
+    		else if($("#t"+i).length != 0 && document.getElementById("optionStock"+i).value=="") {
+    			alert("빈칸 없이 상품 옵션가격을 모두 등록하셔야 합니다");
+    			return false;
+    		}
     	}
     	if(document.getElementById("optionName").value=="") {
     		alert("상품 옵션이름을 등록하세요");
@@ -72,12 +76,19 @@
     		alert("상품 옵션가격을 등록하세요");
     		return false;
     	}
+    	else if(document.getElementById("optionStock").value=="") {
+    		alert("상품 옵션개수를 등록하세요");
+    		return false;
+    	}
     	else if(document.getElementById("productName").value=="") {
     		alert("상품명을 선택하세요");
     		return false;
     	}
     	else {
     		myform.submit();
+    		//let optionPrice = document.getElementById("optionPrice").value;
+    		//let optionStock = document.getElementById("optionStock").value=="";
+    		//alert("optionPrice : " + optionPrice + " / optionStock : " + optionStock);
     	}
     }
     
@@ -268,7 +279,7 @@
       <input type="text" name="optionPrice" id="optionPrice" class="form-control"/>
     </div>
     <div class="form-group">
-      <label for="optionPrice">상품옵션 재고</label>
+      <label for="optionStock">상품옵션 재고</label>
       <input type="text" name="optionStock" id="optionStock" class="form-control"/>
     </div>
     <div id="optionType"></div>
