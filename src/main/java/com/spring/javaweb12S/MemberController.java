@@ -228,8 +228,8 @@ public class MemberController {
 			@RequestParam(name="part2", defaultValue = "0", required=false) int part2,
 			@RequestParam(name="part3", defaultValue = "0", required=false) int part3,
 			@RequestParam(name="part4", defaultValue = "0", required=false) int part4,
-			@RequestParam(name="part5", defaultValue = "0", required=false) int part5,
-			@RequestParam(name="yearPay", defaultValue = "0", required=false) int yearPay
+			@RequestParam(name="part5", defaultValue = "0", required=false) int part5
+			//@RequestParam(name="yearPay", defaultValue = "0", required=false) int yearPay
 			) {
 		String mid = (String) session.getAttribute("sMid");
 		MemberVO vo = memberService.getMemberIdCheck(mid);
@@ -238,7 +238,7 @@ public class MemberController {
 	   List<DbBaesongVO> baesongVOS = dbShopService.getMemberMidSearch(vo.getMid());
 	   List<DbOrderVO> orderVOS = dbShopService.getMemberMidSearchOrder(vo.getMid());
 	   if(baesongVOS != null || orderVOS != null) {
-	  	 yearPay = dbShopService.getMemberMainPay(vo.getMid());
+	  	 //yearPay = dbShopService.getMemberMainPay(vo.getMid());
 	  	 part1 = dbShopService.getMemberMainPart("입금전", vo.getMid());
 	  	 part2 = dbShopService.getMemberMainPart("결제완료", vo.getMid()); 
 	  	 part3 = dbShopService.getMemberMainPart("배송중", vo.getMid()); 
@@ -247,17 +247,17 @@ public class MemberController {
 	  	 
 	   } 
 	   else {
-	  	 yearPay = 0;
+	  	 //yearPay = 0;
 	  	 part1 = 0;
 	  	 part2 = 0;
 	  	 part3 = 0;
 	  	 part4 = 0;
 	  	 part5 = 0;
 	   } 
-		 System.out.println(yearPay);
+		 //System.out.println(yearPay);
 		
 		model.addAttribute("vo", vo);
-	  model.addAttribute("yearPay", yearPay);
+	 // model.addAttribute("yearPay", yearPay);
 	  model.addAttribute("part1", part1);
 	  model.addAttribute("part2", part2);
 	  model.addAttribute("part3", part3);
@@ -324,7 +324,7 @@ public class MemberController {
 	
 		content = "<br><hr><h3>임시 비밀번호는 <font color='red'>"+content+"</font></h3><hr><br>";
 		content += "<p><img src=\"cid:mail.jpg\" width='500px'></p>";
-		content += "<p>방문하기 : <a href='https://www.naver.com/'>CJ Green프로젝트</a></p>";
+		content += "<p>방문하기 : <a href='https://49.142.157.251:9090/javaweb12S'>별 헤는 밤, 빛나는 밤</a></p>";
 		content += "<hr>";
 		messageHelper.setText(content, true);
 		

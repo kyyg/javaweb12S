@@ -68,7 +68,7 @@ display : grid;
 	  <!-- The slideshow -->
 	  <div class="carousel-inner text-center" style="z-index:0">
 	    <div class="carousel-item active" style="z-index:0">
-	      <img src="${ctp}/images/crs0.jpg" class="w3-circle" width="60%" width="500px"; height="700px">
+	      <img src="${ctp}/images/crs0.jpg" width="70%" width="600px"; height="700px">
 	      <div class="carousel-caption" style="width:100%">
 	      </div>   
 	    </div>

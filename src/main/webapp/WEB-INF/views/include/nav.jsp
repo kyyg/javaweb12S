@@ -5,7 +5,7 @@
   pageContext.setAttribute("level", level);
 %>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
-
+<link rel="stylesheet" href="${ctp}/font/font.css">
 <style>
 
 .a{
@@ -90,34 +90,34 @@ nav li {
   <ul class="nav justify-content-end">
 	  <li class="nav-item dropdown">
     <c:if test="${sLevel == 0}">
-			<a class="nav-link" href="${ctp}/admin/index" style="color: white; background-color: black;">ADMIN</a>
+			<a class="nav-link" href="${ctp}/admin/index" style="color: white; background-color: black;">관리자</a>
 			<a class="nav-link" href="${ctp}/admin/adminMain"></a>
     </c:if>
 		</li>
   <c:if test="${level <= 4}">
 	  <li class="nav-item dropdown">
-			<a class="nav-link" href="${ctp}/dbShop/dbCartList"><font color="black">CART</font></a>
+			<a class="nav-link" href="${ctp}/dbShop/dbCartList"><font color="black">장바구니</font></a>
 		</li>
 	  <li class="nav-item dropdown">
     <c:if test="${sLevel == 1 || sLevel == 0 }">
-			<a class="nav-link" href="${ctp}/member/memberMain"><font color="black">MY PAGE</font></a>
+			<a class="nav-link" href="${ctp}/member/memberMain"><font color="black">마이페이지</font></a>
     </c:if>
 		</li>
 	 </c:if>
 	 
 	  <li class="nav-item">
-        <c:if test="${level > 4}"><a class="nav-link" href="${ctp}/member/memberLogin"><font color="black">Login</font></a></c:if>
-        <c:if test="${level <= 4}"><a class="nav-link" href="${ctp}/member/memberLogout"><font color="black">Logout</font></a></c:if>
+        <c:if test="${level > 4}"><a class="nav-link" href="${ctp}/member/memberLogin"><font color="black">로그인</font></a></c:if>
+        <c:if test="${level <= 4}"><a class="nav-link" href="${ctp}/member/memberLogout"><font color="black">로그아웃</font></a></c:if>
     </li>  
     <li class="nav-item">
-      <c:if test="${level > 4}"><a class="nav-link" href="${ctp}/member/memberJoin"><font color="black">Join</font></a></c:if>
+      <c:if test="${level > 4}"><a class="nav-link" href="${ctp}/member/memberJoin"><font color="black">회원가입</font></a></c:if>
     </li>  
 	</ul>
 </nav>
   	
 
 	<div class="text-center text-dark ml-4" class="title">
-		<h1><a href="${ctp}/" style="decoration:none;" class=text-center><b><i>Our<br/>Starry<br/>Night</a></i></b></h1>
+		<a href="${ctp}/"><img src="${ctp}/images/title.jpg" width=500px; /></a>
 	</div>
 
   <p></br></p>
@@ -126,19 +126,19 @@ nav li {
 <nav id="mainnav" class="navbar-light bg-white">
   <ul class="nav justify-content-center">
 	 <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn mr-5" ><a href="${ctp}/notice/about">ABOUT</a></div>
+	    <div class="nav-link dropbtn mr-5" ><a href="${ctp}/notice/about">별,빛</a></div>
 	  </li>
 	   <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn ml-4 mr-5 text-center">&nbsp;<a href="${ctp}/dbShop/dbProductList">STORE</a></div>
+	    <div class="nav-link dropbtn ml-4 mr-5 text-center">&nbsp;&nbsp;<a href="${ctp}/dbShop/dbProductList">상점</a></div>
 	    <div class="dropdown-menu dropdown-content">
-	      <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=디지털">디지털</a>
-		    <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=프레임">프레임</a>
-		    <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=리빙">리빙</a>
+	      <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=디지털">전자기기</a>
+		    <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=프레임">액자</a>
+		    <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=리빙">소품</a>
 		    <a class="dropdown-item text-center" href="${ctp}/dbShop/dbProductList?part=북">책</a>
 	   </div>
 	  </li>
 	  <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn ml-3 mr-5">&nbsp;&nbsp;EVENT</div>
+	    <div class="nav-link dropbtn ml-3 mr-5">&nbsp;&nbsp;&nbsp;이벤트</div>
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item text-center" href="${ctp}/schedule/schedule">출석이벤트</a>
 	      <a class="dropdown-item text-center" href="${ctp}/dbShop/dbOnedayClass">원데이클래스</a>
@@ -146,7 +146,7 @@ nav li {
 	   </div>
 	   </li>
 	  <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn ml-3">SERVICE</div>
+	    <div class="nav-link dropbtn ml-3">&nbsp;고객센터</div>
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item text-center" href="${ctp}/notice/noticeList">공지 게시판</a>
 	      <a class="dropdown-item text-center" href="${ctp}/qna/qnaList">문의 게시판</a>

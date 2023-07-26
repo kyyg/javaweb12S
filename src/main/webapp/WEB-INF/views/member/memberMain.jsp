@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>title</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+    <link rel="stylesheet" href="${ctp}/font/font.css">
   <script src="https://kit.fontawesome.com/607fa85cf6.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
@@ -33,10 +34,10 @@
   			<img src="${ctp}/images/member.png">
   		</td>
   		<td class="pb-5 pt-5 text-left" style="width:25%; background-color:#eee">
-  			<font size="5" >${sMid}님</font><br/>
-  				총 결제 금액(12개월)<br/>
+  			<font size="5" >${sMid}님</font>
+  				<%-- 총 결제 금액(12개월)<br/>
    			<c:if test="${empty yearPay}" >0원</c:if>
-   			<c:if test="${!empty yearPay}" ><fmt:formatNumber value="${yearPay}" pattern='#,###'/></c:if>원
+   			<c:if test="${!empty yearPay}" ><fmt:formatNumber value="${yearPay}" pattern='#,###'/></c:if>원 --%>
   		</td>
   		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="skyblue">${part1}</font><br/>입금전</td>
   		<td class="pb-5 pt-5" style="width:12%"><font size="5" color="skyblue">${part2}</font><br/>결제완료</td>

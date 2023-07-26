@@ -4,7 +4,7 @@
 <table>
 	<tr class="ml-4" style="font-size:12px">
 		<td class="text-left ml-4 pl-4">
-		- <br/>
+		별 헤는 밤, 빛나는 밤 <br/>
 		충북 청주시 서원구 사직대로 109, 4층 402호<br/>
 		사업자등록번호. 000-00-00000<br/>
 		대표자 전선경<br/>

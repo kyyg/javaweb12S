@@ -10,8 +10,9 @@
   <meta charset="UTF-8">
   <title>dbProductList.jsp</title>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="${ctp}/font/font.css">
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
-	<script src="https://kit.fontawesome.com/607fa85cf6.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/fa3667321f.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<style>
 	
@@ -68,7 +69,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <p><br/></p>
-<div class="container ">
+<div class="container-fluid" style="width:1400px;">
 		<div class="text-center">
 		<c:if test="${searchString == ''}">
 		  <span id="category"><b><a href="${ctp}/dbShop/dbProductList">전체상품</a></b></span>
@@ -89,8 +90,8 @@
 		</c:if>
 	  </div>
 	  	<form name="myform" method="post">
-		 		<div class="text-right">
-					<input type="text" name="searchString" id="searchString" value="" class="mt-1" size="12"/>
+		 		<div class="text-right pr-3">
+					<input type="text" name="searchString" id="searchString" value="" class="mt-1" size="15"/>
 					<a href="javascript:searchProduct()"><i class="fa-solid fa-magnifying-glass"></i></a>
 				</div>
 			</form>
@@ -101,11 +102,11 @@
       <td class="text-left">
         <!-- 한페이지 분량처리 -->
         <select name="pageSize" id="pageSize" onchange="pageCheck()">
-          <option <c:if test="${pageVO.pageSize == 3}">selected</c:if>>3</option>
-          <option <c:if test="${pageVO.pageSize == 9}">selected</c:if>>9</option>
+          <option <c:if test="${pageVO.pageSize == 4}">selected</c:if>>4</option>
+          <option <c:if test="${pageVO.pageSize == 8}">selected</c:if>>8</option>
           <option <c:if test="${pageVO.pageSize == 12}">selected</c:if>>12</option>
-          <option <c:if test="${pageVO.pageSize == 15}">selected</c:if>>15</option>
-          <option <c:if test="${pageVO.pageSize == 18}">selected</c:if>>18</option>
+          <option <c:if test="${pageVO.pageSize == 16}">selected</c:if>>16</option>
+          <option <c:if test="${pageVO.pageSize == 20}">selected</c:if>>20</option>
         </select> 건
       </td>
       <td>
@@ -122,7 +123,7 @@
   <div class="row mt-4">
    <c:forEach var="vo" items="${productVOS}">
    <c:set var="productDetail" value="${fn:split(vo.detail,'/')}" />
-     <div class="col-md-4">
+     <div class="mr-3">
        <div style="text-align:center">
          <a href="${ctp}/dbShop/dbProductContent?idx=${vo.idx}">
          	<c:if test="${vo.productStatus == '품절'}">
@@ -139,12 +140,12 @@
            	</div>
          </a>
            </c:if>
-           <div><font size="2" color="orange"><fmt:formatNumber value="${vo.mainPrice}" pattern="#,###"/>원</font></div>
+           <div><font size="2"><fmt:formatNumber value="${vo.mainPrice}" pattern="#,###"/>원</font></div>
            <div>
           	 <c:forEach var="i" begin="0" end="${fn:length(productDetail)-1}">
              <font size="2">
 	           	 <a href="${ctp}/dbShop/dbProductList?part=${part}&sort=상품명순&searchString=${productDetail[i]}">
-	           	  <span class="badge badge-light">#${productDetail[i]}</span>
+	           	  <span class="badge badge-light" style="background-color:#ded9d5;">#${productDetail[i]}</span>
 	             </a>
              </font>
 					  </c:forEach>
@@ -152,7 +153,7 @@
        </div>
       </div>
       <c:set var="cnt" value="${cnt+1}"/>
-      <c:if test="${cnt%3 == 0}">
+      <c:if test="${cnt%4 == 0}">
         </div>
         <div class="row mt-5">
       </c:if>

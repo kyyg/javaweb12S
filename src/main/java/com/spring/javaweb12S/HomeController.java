@@ -13,6 +13,7 @@ import java.util.Locale;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,7 +69,7 @@ public class HomeController {
 			) {
 		
 		if(todayIsDone.equals("on")) {
-			Cookie cookie = new Cookie("cEvent", "새창고만해");
+			Cookie cookie = new Cookie("cEvent", "popUpNo");
 			cookie.setMaxAge(60*60*24*1);
 			response.addCookie(cookie);
 		}
@@ -110,7 +111,14 @@ public class HomeController {
 		
 		out.flush();		
 		fos.close();
-		
 	}
+	
+	// 웹소켓
+	@RequestMapping(value = "/webSocket", method = RequestMethod.GET)
+	public String webSocketGet(HttpServletRequest req, HttpServletResponse resp, HttpSession session) {
+		return "webSocket/webSocket";
+	}
+	
+	
 	
 }

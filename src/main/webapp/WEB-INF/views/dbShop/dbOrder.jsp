@@ -9,6 +9,7 @@
   <title>dbOrder.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
   <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+  <link rel="stylesheet" href="${ctp}/font/font.css">
   <script>
 	  $(document).ready(function(){
 		  $(".nav-tabs a").click(function(){

@@ -98,6 +98,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">조회</h6>
                 <a class="collapse-item" href="${ctp}/dbShop/dbShopList">전체상품 조회</a>
+                <a class="collapse-item" href="${ctp}/dbShop/dbOptionStock">상품 재고 관리</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">등록</h6>
                 <a class="collapse-item" href="${ctp}/dbShop/dbCategory">카테고리 등록</a>

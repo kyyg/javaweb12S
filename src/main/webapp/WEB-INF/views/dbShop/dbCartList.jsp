@@ -7,6 +7,7 @@
 <head>
   <title>dbCartList.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
+  <link rel="stylesheet" href="${ctp}/font/font.css">
   <script>
     'use strict';
     

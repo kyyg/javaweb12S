@@ -12,7 +12,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>dbProductContent.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
+  <link rel="stylesheet" href="${ctp}/font/font.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="https://kit.fontawesome.com/fa3667321f.js" crossorigin="anonymous"></script>
  	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
   	'use strict';
@@ -196,6 +199,12 @@
  	
   </script>
   <style>
+
+   .w3-custom-button {
+    background-color: white;
+    padding : 5px 0px 5px 0;
+  }
+  
  	.button-fixed {
   position: fixed;
   bottom: 20px; /* 원하는 여백 값으로 조정 가능 */
@@ -241,13 +250,19 @@
    }
 
    #wish{
-   border: 1px solid skyblue;
+   border: 1px solid #e0a494;
    border-radius: 5px;
    padding: 16px 21px 16px 21px;
    margin : 11px 5px 10px 10px;
    display: inline-block;
-   background-color : skyblue;
+   background-color : #e0a494;
    color : white;
+   }
+   
+   .prod{
+   border : solid 1px #c0c0c2;
+   border-radius : 4px;
+   padding : 10px 15px 10px 15px;
    }
   </style>
 </head>
@@ -258,7 +273,6 @@
  <div class="row mt-4">
  
 	<div class="images" id="images">
-	
 		<div class="col pl-5 mt-3 text-right" id="image1">
 			<img src="${ctp}/dbShop/product/${productVO.FSName}" width=500px; height=500px;/>
 		</div>
@@ -276,47 +290,52 @@
 	</div>	
 	
 <div class="col pr-5">
+<div class="text-left mt-3 mb-2">
+<a href="${ctp}/dbShop/dbProductList">홈</a>
+&nbsp;>&nbsp; 
+<a href='${ctp}/dbShop/dbProductList?part=${mainVO.categoryMainName}'>${mainVO.categoryMainName}</a>
+</div>
+<div class="prod pb-4">
 <table class="table table-borderless">
 	<tr>
-		<td colspan="2">
-		<a href="${ctp}/dbShop/dbProductList">전체</a>
-		> 
-		<a href='${ctp}/dbShop/dbProductList?part=${mainVO.categoryMainName}'>${mainVO.categoryMainName}</a></td>
-	</tr>
-	<tr>
 		<c:if test="${productVO.productStatus == '품절'}">
-			<td colspan="2" class="text-right"><h3><b>${productVO.productName}<span class="badge badge-danger ml-1">품절</span></b></h3><hr/></td>
+			<td colspan="2" class="text-right mb-0 pb-0"><h3><b>${productVO.productName}<span class="badge badge-danger ml-1">품절</span></b></h3><hr/></td>
 		</c:if>
 		<c:if test="${productVO.productStatus != '품절'}">
 			<td colspan="2" class="text-right"><h3><b>${productVO.productName}</b></h3><hr/></td>
 		</c:if>
 	</tr>
 	<tr>
-		<td></td>
-		<td class="text-right"><h3><fmt:formatNumber value="${productVO.mainPrice}"/>원</h3></td>
+		<td colspan="2" class="text-right mt-0 pt-0"><h3><fmt:formatNumber value="${productVO.mainPrice}"/>원</h3></td>
 	</tr>	
 	<tr>
-		<td></td>
 		<c:set var="productDetail" value="${fn:split(productVO.detail,'/')}" />
-			<td class="text-right">
+			<td colspan="2" class="text-right">
 				<c:forEach var="i" begin="0" end="${fn:length(productDetail)-1}">
 					<span>#${productDetail[i]}</span>
 				</c:forEach>
 			</td>
 	</tr>	
 	<tr>
-		<td colspan="2" class="text-left">		
-		<div class="w3-panel w3-border pt-2" style="background-color:#eee;">
-  		<p>
-  		* 배송비 2,500원 <br/>
-			* 50,000원 이상 주문 시 배송비 무료!</td>
-  		</p>
-		</div>
+		<td colspan="2" class="text-right pt-0 pb-0">
+			배송비 2,500원 (50,000이상 구매 시 무료배송)
+		</td>
 	</tr>
+	<tr>
+		<td colspan="2" class="text-center mb-2">		
+			<div class="w3-panel w3-border" style="background-color:#fff;">
+			<div class="w3-panel w3-border pt-3 pb-3" style="background-color:#dcdee3;">
+  			<span><i class="fas fa-exclamation-circle"> 구매 적립 포인트 ${productVO.mainPrice*0.01} Point</i></span><br/>
+				<span><i class="fas fa-exclamation-circle"> 리뷰 작성시 500 Point 추가 적립!</i></span>
+	  	</div>
+	  	</div>
+  	</td>	
+	</tr>
+		</div>
 </table>
  
  <!-- 상품주문을 위한 옵션정보 출력 -->
-  <div class="form-group">
+  <div class="form-group" style="width:95%; margin:0 auto;">
     <form name="optionForm">  <!-- 옵션의 정보를 보여주기위한 form -->
       <select size="1" class="form-control" id="selectOption">
         <option value="" disabled selected>상품옵션선택</option>
@@ -370,120 +389,136 @@
           <c:if test="${empty wishVO}"><font color="black"><span id="wish2">❤</span></font></c:if>
         </a>
         <c:if test="${productVO.productStatus == '품절'}">
-			    <button class="btn btn-secondary pt-3 pb-3 pr-5 pl-5" ">&nbsp;&nbsp;&nbsp;장바구니&nbsp;&nbsp;&nbsp;</button>&nbsp;
-			    <button class="btn btn-secondary pt-3 pb-3 pr-5 pl-5" ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;품절&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>&nbsp;
+			    <button class="btn btn-outline-dark pt-3 pb-3" style="width:90px">장바구니</button>&nbsp;
+			    <button class="btn btn-outline-dark pt-3 pb-3 pr-5 pl-5" style="width:300px; background-color:#bcc3d2;">품절</button>&nbsp;
 		  	</c:if>
         <c:if test="${productVO.productStatus != '품절'}">
-			    <button class="btn btn-outline-dark pt-3 pb-3 pr-5 pl-5" onclick="cart()">&nbsp;&nbsp;&nbsp;장바구니&nbsp;&nbsp;&nbsp;</button>&nbsp;
-			    <button class="btn btn-outline-dark pt-3 pb-3 pr-5 pl-5" onclick="order()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;주문하기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>&nbsp;
+			    <button class="btn btn-outline-dark pt-3 pb-3" style="width:90px" onclick="cart()">장바구니</button>&nbsp;
+			    <button class="btn btn-outline-light text-dark pt-3 pb-3 pr-5 pl-5" style="width:300px; background-color:#ded9d5;" onclick="order()">바로 결제</button>&nbsp;
 		  	</c:if>
 		  </div>
 		</div>
   </div>
   <br/><br/>
  </div>
- 	
+ </div>
+ 	<p><br/></p>
+ 	<p><br/></p>
+ 	<p><br/></p>
  <div class="container-fluid"> 
   <!-- 상품설명/리뷰/배송안내사항 -->
-  <hr/>
-  <div class="text-center">
-  <button class="btn btn-outline-white btn-sm" onclick="scrollToSection1()">상품설명</button> |
-  <button class="btn btn-outline-white btn-sm" onclick="scrollToSection3()">리뷰</button> |
-  <button class="btn btn-outline-white btn-sm" onclick="scrollToSection2()">배송/교환/반품 안내</button>
-  </div>
-  <hr/>
   
-  <section id="target-section1" style="margin: 0 auto;">
-	  <div id="content" class="text-center"><br/>
-	    ${productVO.content}
+	<div class="w3-padding text-center" style="margin-bottom:20px; background-color:#ded9d5; width:1050px; margin:0 auto;">
+	  <div class="text-center">
+	  <button class="btn btn-outline-white btn-sm" onclick="scrollToSection1()"><b>상품설명</b></button> &nbsp;|&nbsp;
+	  <button class="btn btn-outline-white btn-sm" onclick="scrollToSection3()"><b>리뷰</b></button> &nbsp;|&nbsp;
+	  <button class="btn btn-outline-white btn-sm" onclick="scrollToSection2()"><b>배송/교환/반품 안내</b></button>
 	  </div>
-	</section>
+	</div>
+  
+ <section id="target-section1" style="margin: 0 auto;">
+  <div id="content" class="text-center" style="margin-top:50px;"><br/>
+    ${productVO.content}
+  </div>
+</section>
+
 </div>
-<div class="container">
+<div class="container" style="width:1100px;">
 	<p><br/>
-  <section id="target-section2">
-	  <div id="content" class="text-center"><br/>
-	   <!-- Nav tabs -->
-		<ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#guide1"><h6>상품결제정보</h6></a></li>
-	    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#guide2"><h6>배송정보</h6></a></li>
-	    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#guide3"><h6>교환 및 반품정보</h6></a></li>
-	  </ul>
+<section id="target-section2">
+<div class="w3-padding text-center pl-2 ml-2" style="margin-bottom:20px; background-color:#ded9d5; width:1050px; margin:0 auto;">
+  <div class="text-center">배송/교환/반품 안내</div>
+</div>
+<button onclick="myFunction('Demo1')" class="btn btn-outline-light text-dark w3-block w3-light w3-left-align w3-custom-button pt-3 pb-5 pl-2 ml-2" style="border-bottom:solid 1px #bca6a0; padding:5px 0px 5px 0px; background-color:#white; width:1050px;height:30px;"> &nbsp; 상품 결제 정보</button>
+<div id="Demo1" class="w3-container w3-hide">
+  <br/>
+  고액결제의 경우 안전을 위해 카드사에서 확인전화를 드릴 수도 있습니다.</br>
+	확인과정에서 도난 카드의 사용이나 타인 명의의 주문등 정상적인 주문이 아니라고 판단될 경우 임의로 주문을 보류 또는 취소할 수 있습니다.<br/>
+	무통장 입금은 상품 구매 대금은 PC뱅킹, 인터넷뱅킹, 텔레뱅킹 혹은 가까운 은행에서 직접 입금하시면 됩니다.  <br/>
+	주문 시 입력한 입금자명과 실제입금자의 성명이 반드시 일치하여야 하며, 7일 이내로 입금을 하셔야 하며 입금되지 않은 주문은 자동취소 됩니다.<br/>
+	품질보증기준: 전자상거래 소비자 보호법에 의거하여 소비자 청약철회 가능한 기준에 따름.<br/>
+	구매자가 미성년자일 경우 법정 대리인이 계약에 동의하지 않을 때 구매를 취소할 수 있습니다.<br/>
+	  <br/>
+</div>
+
+<button onclick="myFunction('Demo2')" class="btn btn-outline-light text-dark w3-block w3-light w3-left-align w3-custom-button pt-3 pb-5  pl-2 ml-2 " style="border-bottom:solid 1px #bca6a0; padding:5px 0px 5px 0px; background-color:#white; width:1050px;height:30px;"> &nbsp; 배송정보</button><div id="Demo2" class="w3-container w3-hide">
+  <br/> <p>
+	배송 방법 : 택배<br/>
+	배송 지역 : 전국지역<br/>
+	배송 비용 : 2,500원<br/>
+	배송 기간 : 2일 ~ 7일<br/>
+	대부분 출고 다음날에 바로 도착하며 (주말 제외)<br/>
+	지역 택배 기사님들의 일정과 기상상황에 따라 변동이 있을 수 있습니다.<br/>
+	기본 배송 준비일은 입고지연 상품 제외, 2~5일 정도가 소요되고 있습니다.<br/>
+	5만원 이상 결제시 무료배송 혜택이 추가됩니다.<br/>
+  </p>
+    <br/>
+</div>
+<button onclick="myFunction('Demo3')" class="btn btn-outline-light text-dark w3-block w3-light w3-left-align w3-custom-button pt-3 pb-5  pl-2 ml-2" style="border-bottom:solid 1px #bca6a0; padding:5px 0px 5px 0px; background-color:#white; width:1050px;height:30px;"> &nbsp; 교환 및 반품정보</button>
+<div id="Demo3" class="w3-container w3-hide">
+  <br/><p>
+	[교환/반품 안내]<br/>
+	물품 수령 후(택배 도착일자 기준) 7일 이내에 신청해주세요/<br/>
+	사전에 신청해 주신 상품에 한해서만 교환/반품이 가능합니다. <br/>
+	<p>
+	*패킹하여 보내실 때는 물품 수령시와 동일하게 포장해 주세요.<br/>
+	택에 손상이 있는 경우에는 반품과 교환이 모두 불가합니다.<br/>
+	성함,주소,전화번호,보내시는 상품,사유등 반품카드 양식에 맞게 적어 보내주셔야 처리가 가능합니다.<br/>
+	<br/>
+	[교환반품 불가사항]<br/>
+	-상품 수령 후 7일 이상 경과된 경우<br/>
+	-상품 구매시 교환/환불 불가능이 명시되어 있는경우<br/>
+	-사용 흔적(집냄새,향수냄새,체취) / 텍 제거 및 바코드 훼손, 오염이 발견된 상품<br/>
+	-라벨, 태그 등 상품의 포장재 또는 구성품이 훼손된 상품<br/>
+	*불량상품의 재발송 시 왕복배송비는 본사측에서 부담합니다.<br/>
+  </p>
+  <br/>
+</div>
+<script>
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+</section>
 	
-	  <!-- Tab panes -->
-	  <div class="tab-content">
-	    <div id="guide1" class="container tab-pane active text-left"><br/>
-	      <p>
-					고액결제의 경우 안전을 위해 카드사에서 확인전화를 드릴 수도 있습니다.</br>
-					확인과정에서 도난 카드의 사용이나 타인 명의의 주문등 정상적인 주문이 아니라고 판단될 경우 임의로 주문을 보류 또는 취소할 수 있습니다.<br/>
-					무통장 입금은 상품 구매 대금은 PC뱅킹, 인터넷뱅킹, 텔레뱅킹 혹은 가까운 은행에서 직접 입금하시면 됩니다.  <br/>
-					주문 시 입력한 입금자명과 실제입금자의 성명이 반드시 일치하여야 하며, 7일 이내로 입금을 하셔야 하며 입금되지 않은 주문은 자동취소 됩니다.<br/>
-					품질보증기준: 전자상거래 소비자 보호법에 의거하여 소비자 청약철회 가능한 기준에 따름.<br/>
-					구매자가 미성년자일 경우 법정 대리인이 계약에 동의하지 않을 때 구매를 취소할 수 있습니다.<br/>
-	      </p>
-	      <hr/>
-	    </div>
-	    <div id="guide2" class="container tab-pane fade text-left"><br>
-	      <p>
-				배송 방법 : 택배<br/>
-				배송 지역 : 전국지역<br/>
-				배송 비용 : 2,500원<br/>
-				배송 기간 : 2일 ~ 7일<br/>
-				대부분 출고 다음날에 바로 도착하며 (주말 제외)<br/>
-				지역 택배 기사님들의 일정과 기상상황에 따라 변동이 있을 수 있습니다.<br/>
-				기본 배송 준비일은 입고지연 상품 제외, 2~5일 정도가 소요되고 있습니다.<br/>
-				5만원 이상 결제시 무료배송 혜택이 추가됩니다.<br/>
-	      </p>
-	      <hr/>
-	    </div>
-	    <div id="guide3" class="container tab-pane fade text-left"><br>
-	      <p>
-			[교환/반품 안내]<br/>
-			물품 수령 후(택배 도착일자 기준) 7일 이내에 신청해주세요/<br/>
-			사전에 신청해 주신 상품에 한해서만 교환/반품이 가능합니다. <br/>
-			<p>
-			*패킹하여 보내실 때는 물품 수령시와 동일하게 포장해 주세요.<br/>
-			택에 손상이 있는 경우에는 반품과 교환이 모두 불가합니다.<br/>
-			성함,주소,전화번호,보내시는 상품,사유등 반품카드 양식에 맞게 적어 보내주셔야 처리가 가능합니다.<br/>
-			<br/>
-			[교환반품 불가사항]<br/>
-			-상품 수령 후 7일 이상 경과된 경우<br/>
-			-상품 구매시 교환/환불 불가능이 명시되어 있는경우<br/>
-			-사용 흔적(집냄새,향수냄새,체취) / 텍 제거 및 바코드 훼손, 오염이 발견된 상품<br/>
-			-라벨, 태그 등 상품의 포장재 또는 구성품이 훼손된 상품<br/>
-			*불량상품의 재발송 시 왕복배송비는 [별이 빛나는 날에]에서 부담합니다.<br/>
-	      </p>
-	    <hr/>
-	    </div>
-	    
-	   </div>
-	  </div>
-	</section>
 	<p><br/></p>
 	<p><br/></p>
 	<p><br/></p>
 	
 	<!-- 리뷰 항목 -->
 	<section id="target-section3" class="text-center">
-	
-	
-	<hr/>
-	<h2 class="text-center mb-5">Review</h2>
-	<div class="w3-panel w3-border w3-round w3-primary pt-4 pb-4" style="width:1100px; height:100px; background-color:#eee; margin:0 auto;">
-    <table>
-    <tr class="table-primary text-dark">
-	    악의 적인 리뷰는 사전 안내 없이 삭제 될 수 있습니다.<br/>
-			상품과 관련이 없는 사진의 경우 삭제 될 수 있습니다.<br/>
-			베스트 리뷰에 선정된 리뷰에는 1000point가 지급됩니다.<br/>
-			<p><br/></p>
-		</tr>
+	  <div class="text-center mb-3"><h1>Review</h1></div>
+	</div>
+	<div class="pt-4 pb-4" style="width:1050px; height:150px; background-color:#eee; margin:0 auto;">
+    <table class="table text-dark text-center">
+	    <tr class="table text-dark text-center">
+	    	<td>
+		    악의 적인 리뷰는 사전 안내 없이 삭제 될 수 있습니다.<br/>
+				상품과 관련이 없는 사진의 경우 삭제 될 수 있습니다.<br/>
+				베스트 리뷰에 선정된 리뷰에는 1000point가 지급됩니다.<br/>
+				<p><br/></p>
+				</td>
+			</tr>
 		</table>
   </div>
-  
-  
+ </section>
+ 
+
+ <c:if test="${empty reviewVOS}"><div class="text-center mb-3">
+ 
+ <div class="w3-padding text-center mt-3 mb-5" style="margin-bottom:20px; background-color:#ded9d5; width:1050px; height:40px; margin:0 auto;"></div>
+ 작성된 후기가 없습니다. 첫번째 후기를 남겨보세요!</div>
+ 
+ </c:if> 
  <c:forEach var="vo" items="${reviewVOS}">
  <c:if test="${vo.bestReview == 'OK'}">
- 	<div class="w3-panel w3-border w3-round mt-4" style="width:1100px; margin:0 auto;">
+ 	<div class="w3-padding text-center mt-3 mb-5" style="margin-bottom:20px; background-color:#ded9d5; width:1050px; height:40px; margin:0 auto;"></div>
+ 	<div class="w3-panel w3-border w3-round mt-4" style="width:1050px; margin:0 auto;">
  	<table class="table-borderless mb-5" style="width:1000px; margin:0 auto;">
  		<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3 text-center"><b>BEST REVIEW</b></td></tr>
  		<tr><td colspan="3" class="p-0 m-0 mb-4 pb-3" style="border-bottom :solid 1px lightgray"></td></tr>
@@ -509,7 +544,7 @@
  				</td>
  			</tr>
 		 	</div>
-	 	<tr><td colspan="3" class="m-0 p-0"><div id="demo${vo.idx}"  style="display:none">
+	 	<tr><td colspan="3" class="m-0 p-0 text-center"><div id="demo${vo.idx}"  style="display:none">
 	 		<c:forEach var="fSName" items="${fSNames}" varStatus="st">
  				<img src="${ctp}/review/${fSName}" width="300px" height="300"/>
  			</c:forEach>
@@ -525,7 +560,7 @@
  <c:forEach var="vo" items="${reviewVOS}">
  <c:if test="${vo.reportNum != 5}">
  <c:if test="${vo.bestReview == 'NO'}">
- 	<table class="table-borderless" style="width:1100px; margin:0 auto;">
+ 	<table class="table-borderless mb-5" style="width:1050px; margin:0 auto;">
  		<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3 pb-3 mb-3" style="border-bottom :solid 1px lightgray"></td></tr>
  		<tr><td colspan="3" class="text-right pr-0 mt-2 pt-2"><input type="button" value="신고" onclick="reportReview('${vo.idx}')" class="btn btn-outline-danger btn-sm" /></td></tr>
 	 		<tr class="text-dark" style="background-color:#fff;">
@@ -550,12 +585,12 @@
  				</td>
  			</tr>
 		 	</div>
-	 	<tr><td colspan="3" class="m-0 p-0"><div id="demo${vo.idx}"  style="display:none">
+	 	<tr><td colspan="3" class="m-0 p-0 text-center"><div id="demo${vo.idx}"  style="display:none">
 	 		<c:forEach var="fSName" items="${fSNames}" varStatus="st">
  				<img src="${ctp}/review/${fSName}" width="300px" height="300"/>
  			</c:forEach>
  			<br/>
- 			<input type="button" value="이미지 접기" onclick="imagesUp('${vo.idx}')" class="btn btn-outline-dark btn-sm text-right mt-3"/>
+ 			<input type="button" value="이미지 접기" onclick="imagesUp('${vo.idx}')" class="btn btn-outline-dark btn-sm text-center mt-3"/>
  			<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3" style="border-bottom :solid 1px lightgray"></td></tr>
 	 	</div></td></tr>
  	</table>
@@ -563,7 +598,7 @@
  </c:if>
  <c:if test="${vo.reportNum == 5}">
  <c:if test="${vo.bestReview == 'NO'}">
- 	<table class="table-borderless" style="width:1100px; margin:0 auto;">
+ 	<table class="table-borderless" style="width:1050px; margin:0 auto;">
  		<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3 pb-3 mb-3" style="border-bottom :solid 1px lightgray"></td></tr>
 	 		<tr class="text-dark" style="background-color:#fff;">
 	 			<td style="width:20%"; class="text-center">
@@ -598,7 +633,7 @@
  </c:forEach>
 
  
-	</section>
+
 	
 	
  <div id="productList" class="text-center pt-2" style="position: fixed; left: 20px; top: 60%; transform: translateY(-50%); width:100px; height:400px; background-color:#eee;">

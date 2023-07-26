@@ -199,6 +199,8 @@
 	          <option value="반품요청"  ${conditionOrderStatus == '환불요청' ? 'selected' : ''}>환불요청</option>
 	          <option value="반품"  ${conditionOrderStatus == '반품' ? 'selected' : ''}>반품</option>
 	          <option value="환불"  ${conditionOrderStatus == '환불' ? 'selected' : ''}>환불</option>
+	          <option value="결제취소"  ${conditionOrderStatus == '결제취소' ? 'selected' : ''}>결제취소</option>
+	          <option value="승인 불가"  ${conditionOrderStatus == '승인 불가' ? 'selected' : ''}>승인 불가</option>
 	        </select>
 	        <input type="button" class="btn btn-outline-dark btn-sm" value="조회하기" onclick="myOrderStatus()"/>
 	      </td>
@@ -249,7 +251,8 @@
 	      		<option value="환불요청/${vo.idx}" ${vo.status=="환불요청" ? "selected" : ""}>환불요청</option>
 	      		<option value="반품/${vo.idx}" ${vo.status=="반품" ? "selected" : ""}>반품</option>
 	      		<option value="환불/${vo.idx}" ${vo.status=="환불" ? "selected" : ""}>환불</option>
-	      		<option value="처리 불가/${vo.idx}" ${vo.status=="처리 불가" ? "selected" : ""}>처리 불가</option>
+	      		<option value="처리 불가/${vo.idx}" ${vo.status=="승인 불가" ? "selected" : ""}>승인 불가</option>
+	      		<option value="결제취소/${vo.idx}" ${vo.status=="결제취소" ? "selected" : ""}>결제취소</option>
 	      	</select>
 	      </font><br/></td>
 	      <td><input type="button" value="배송처리" onclick="shippingConfirm('${vo.productIdx}','${vo.optionName}','${vo.optionNum}','${vo.idx}')" class="btn btn-outline-dark btn-sm"></td>

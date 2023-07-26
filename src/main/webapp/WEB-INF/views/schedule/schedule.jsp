@@ -43,9 +43,9 @@
     				location.reload();
     			}
     			else{
-    				//alert("이미 출석체크 하셨습니다.");
+    				alert("이미 출석체크 하셨습니다.");
     				//location.reload();
-    				showImage();
+    				//showImage();
     			}
     		},
     		error: function() {

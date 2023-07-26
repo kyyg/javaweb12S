@@ -358,7 +358,7 @@ public class DbShopController {
 	@RequestMapping(value = "/dbProductList", method = RequestMethod.GET)
 	public String dbProductListGet(@RequestParam(name = "part", defaultValue = "전체", required = false) String part,
 			@RequestParam(name = "pag", defaultValue = "1", required = false) int pag,
-			@RequestParam(name = "pageSize", defaultValue = "9", required = false) int pageSize,
+			@RequestParam(name = "pageSize", defaultValue = "12", required = false) int pageSize,
 			@RequestParam(name = "sort", defaultValue = "신상품순", required = false) String sort,
 			@RequestParam(name = "searchString", defaultValue = "", required = false) String searchString, Model model) {
 
