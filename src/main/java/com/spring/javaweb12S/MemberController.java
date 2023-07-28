@@ -322,9 +322,9 @@ public class MemberController {
 		
 		// 메세지 보관함의 내용(content)에 필요한 정보를 추가로 담아서 전송시킬수 있도록 한다.
 	
-		content = "<br><hr><h3>임시 비밀번호는 <font color='red'>"+content+"</font></h3><hr><br>";
+		content = "<br><hr><h3>임시 비밀번호는 <font color='red'>"+content+"</font> 입니다.</h3><hr><br>";
 		content += "<p><img src=\"cid:mail.jpg\" width='500px'></p>";
-		content += "<p>방문하기 : <a href='https://49.142.157.251:9090/javaweb12S'>별 헤는 밤, 빛나는 밤</a></p>";
+		content += "<p> 바로가기 - <a href='https://49.142.157.251:9090/javaweb12S'>별 헤는 밤, 빛나는 밤</a></p>";
 		content += "<hr>";
 		messageHelper.setText(content, true);
 		

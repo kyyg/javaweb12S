@@ -9,16 +9,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>memberIdFindOk</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
-<div class="container">
-  <h2 class="text-center">아이디 찾기</h2>
+<div class="container" style="width:700px; margin:0 auto;">
+   <font size="5" class="text-center">
+   	<div class="w3-bottombar w3-sand w3-padding text-center" style="margin-bottom:20px;">
+	   		<span style="font-size:23px;">아이디 찾기 결과</span>
+	   </div>
+   
+   </font><br/>
   <table class="table table-bordered text-center">
-  	<tr>
-  		<td colspan="2">아이디 확인</td>
-  	</tr>
   	<tr>
   		<td>이메일</td>
   		<td>${vo.email}</td>
@@ -33,7 +36,9 @@
   		</td>
   	</tr>
   </table>
-  <a href="${ctp}/member/memberLogin" class="btn btn-outline-dark">로그인</a>
+  <div class="container text-center" style="width:700px; margin:0 auto;">
+  <a href="${ctp}/member/memberLogin" class="btn btn-outline-dark text-center">로그인으로</a>
+  </div>
 </div>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />

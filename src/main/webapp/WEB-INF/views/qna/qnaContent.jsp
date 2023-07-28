@@ -23,12 +23,11 @@
     	tempStr += '<h3 class="text-center">답변 작성</h3>';
     	tempStr += '<table class="table">';
     	tempStr += '<tr>';
-  		tempStr += '    <th class="text-center">글쓴이</th>';
+  		tempStr += '    <th class="text-center">작성자</th>';
 			tempStr += '  <td><input type="text" name="nickName" value="${sNickName}" readonly class="form-control"/></td>';
 			tempStr += '</tr>';
     	tempStr += '<tr>';
-    	tempStr += '  <th class="text-center">답변 제목</th>';
-    	/* tempStr += '  <td><input type="text" name="title" value="(Re) ${vo.title}" size="60" required class="form-control"/></td>'; */
+    	tempStr += '  <th class="text-center">답변글제목</th>';
     	tempStr += '  <td class="text-left">(Re) ${vo.title}</td>';
     	tempStr += '</tr>';
     	tempStr += '<tr>';
@@ -49,7 +48,7 @@
   		tempStr += '</tr>';
     	tempStr += '<tr>';
     	tempStr += '  <td colspan="2" style="text-align:center">';
-    	tempStr += '    <input type="button" value="답글올리기" onclick="fCheck()" class="btn btn-secondary"/> &nbsp;';
+    	tempStr += '    <input type="button" value="답글 등록" onclick="fCheck()" class="btn btn-secondary"/> &nbsp;';
     	tempStr += '    <input type="button" value="취소" onclick="location.reload();" class="btn btn-secondary"/> &nbsp;';
     	tempStr += '  </td>';
     	tempStr += '</tr>';
@@ -68,15 +67,15 @@
     	var content = myform.content.value;
     	
     	if(nickName=="") {
-    		alert("글올린이 닉네임을 입력하세요");
+    		alert("닉네임을 입력하세요");
     		myform.nickName.focus();
     	}
     	else if(title=="") {
-    		alert("글제목을 입력하세요");
+    		alert("제목을 입력하세요");
     		myform.title.focus();
     	}
     	else if(content=="") {
-    		alert("글내용을 입력하세요");
+    		alert("내용을 입력하세요");
     		myform.content.focus();
     	}
     	else {
@@ -120,7 +119,10 @@
     <tr>
       <td colspan="4" style="text-align:center;">
         <c:if test="${vo.qnaSw == 'q'}">
-          <input type="button" value="답변" onclick="answerCheck()" class="btn btn-outline-secondary"/> &nbsp;
+        <c:if test="${sLevel == 0}">
+          <input type="button" value="답변하기" onclick="answerCheck()" class="btn btn-outline-secondary"/> &nbsp;
+				</c:if>        
+        <c:if test="${sLevel != 0}"></c:if>        
         </c:if>
         <c:if test="${sNickName eq vo.nickName}">
           <c:if test="${vo.qnaSw == 'q'}">
@@ -128,7 +130,7 @@
 	        </c:if>
 	        <input type="button" value="삭제" onclick="delCheck(${vo.idx})" class="btn btn-secondary"/> &nbsp;
         </c:if>
-        <input type="button" value="돌아가기" onclick="location.href='qnaList?pag=${pag}&pageSize=${pageSize}';" class="btn btn-secondary"/>
+        <input type="button" value="목록으로" onclick="location.href='qnaList?pag=${pag}&pageSize=${pageSize}';" class="btn btn-secondary"/>
       </td>
     </tr>
   </table>

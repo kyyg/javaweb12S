@@ -23,8 +23,8 @@
 	  <a href="${ctp}/dbShop/dbMyOnedayClass" id="nav" class="w3-button w3-round-xlarge p-3" style="background-color:#c9aea2;">이벤트 참여내역</a>
 	  <a href="${ctp}/dbShop/dbPoint" id="nav" class="w3-button w3-round-xlarge p-3" style="background-color:#c9aea2;">포인트 내역</a>
 	  <a href="${ctp}/dbShop/dbWishList" id="nav" class="w3-button w3-round-xlarge p-3" style="background-color:#c9aea2;">위시리스트</a>
-	  <a href="${ctp}/dbShop/userReview" id="nav" class="w3-button w3-round-xlarge p-3" style="background-color:#c9aea2;">리뷰 관리</a>
-	  <a href="${ctp}/board/userBoard" id="nav" class="w3-button w3-round-xlarge p-3" style="background-color:#c9aea2;">제휴 문의</a>
+	  <a href="${ctp}/dbShop/userReview" id="nav" class="w3-button w3-round-xlarge p-3" style="background-color:#c9aea2;">나의 리뷰</a>
+	  <a href="${ctp}/board/userBoard" id="nav" class="w3-button w3-round-xlarge p-3" style="background-color:#c9aea2;">이벤트 후기</a>
 	  <a href="${ctp}/dbShop/memberShppingList" id="nav" class="w3-button w3-round-xlarge p-3" style="background-color:#c9aea2;">배송지 관리</a>
   </div>
 </div>

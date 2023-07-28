@@ -307,6 +307,10 @@ public class MessageController {
 			model.addAttribute("msg", "공지가 수정 되었습니다.");
 			model.addAttribute("url", "/admin/adminNoticeList");
 		}
+		else if(msgFlag.equals("qnaInputOk2")) {
+			model.addAttribute("msg", "답변이 등록 되었습니다.");
+			model.addAttribute("url", "/admin/adminQnaList");
+		}
 		
 		
 		return "include/message";

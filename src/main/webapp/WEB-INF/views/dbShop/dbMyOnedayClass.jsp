@@ -32,10 +32,10 @@
 <div class="container">
 <jsp:include page="/WEB-INF/views/include/nav2.jsp" />
 <hr/>
-<h3 class="text-center">이벤트(원데이 클래스) 내역</h3>
+<div class="text-center"><font size="5">이벤느 신청 내역</font></div>
 <hr/>
 	<table class="table-hover table-borderless text-center" style="width:1000px; margin:0 auto; ">
-		<tr class="table-dark text-dark">
+		<tr class="text-dark" style="background-color:#c9aea2">
 			<td>번호</td>
 			<td>응모날짜</td>
 			<td>예약날짜</td>

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.javaweb12S.common.JavawebProvide;
 import com.spring.javaweb12S.pagination.PageProcess;
 import com.spring.javaweb12S.pagination.PageVO;
 import com.spring.javaweb12S.service.AdminService;
@@ -68,6 +69,9 @@ public class AdminController {
 	
 	@Autowired
 	PageProcess pageProcess;
+	
+  @Autowired
+  JavawebProvide javawebProvide;
 	
 	
 	@RequestMapping(value = "/adminMain", method = RequestMethod.GET)
@@ -782,7 +786,7 @@ public class AdminController {
 	}
 	
 	
-	// 관리자 신고 리뷰 창
+	// 관리자 문의 창
 	@RequestMapping(value = "/adminQnaList", method = RequestMethod.GET)
 	public String adminQnaListGet(  		@RequestParam(name="pag", defaultValue = "1", required = false) int pag,
 			@RequestParam(name="pageSize", defaultValue = "20", required = false) int pageSize,
@@ -793,6 +797,51 @@ public class AdminController {
 		model.addAttribute("pageVO", pageVO);
 		return "admin/adminBoard/adminQnaList";
 	}
+	
+	// 관리자창 문의 내용
+	@RequestMapping(value = "/adminQnaContent", method = RequestMethod.GET)
+	public String adminQnaContentGet(int idx,Model model) {
+		QnaVO vo =  qnaService.getQnaContent(idx);
+		model.addAttribute("vo", vo);
+		return "admin/adminBoard/adminQnaContent";
+	}
+	
+	// 관리자창 문의 내용
+	@RequestMapping(value = "/adminQnaContent", method = RequestMethod.POST)
+  public String adminQnaContentPost(QnaVO vo, HttpSession session) {
+		// content에 이미지가 저장되어 있다면, 저장된 이미지만 골라서 /resources/data/qna/폴더에 저장시켜준다.
+  	if(vo.getContent().indexOf("src=\"/") != -1) {
+  		javawebProvide.imgCheck(vo.getContent(), "qna");	// 이미지를 ckeditor폴더에서 qna폴더로 복사하기
+  		
+  		// 이미지 복사작업이 끝나면, qna폴더에 실제로 저장된 파일명을 DB에 저장시켜준다.(/resources/data/ckeditor/  ==>> /resources/data/ckeditor/qna/)
+  		vo.setContent(vo.getContent().replace("/data/ckeditor/", "/data/ckeditor/qna/"));
+  	}
+  	
+		// 앞에서 ckeditor의 그림작업이 끝나고 일반작업들을 수행시킨다.
+		
+  	int level = (int) session.getAttribute("sLevel");
+  	
+  	// 먼저 idx 설정하기
+  	int newIdx = qnaService.getMaxIdx() + 1;
+  	vo.setIdx(newIdx);
+  	
+  	// qnaIdx 설정하기
+  	String qnaIdx = "";
+  	if(newIdx < 10) qnaIdx = "0"+ newIdx + "_2";
+  	else qnaIdx = newIdx + "_2";
+  	
+  	if(vo.getQnaSw().equals("a")) {  // qnaSw값과 qnaIdx값은 vo에 담겨서 넘어온다. 답변글(a)일 경우만 qnaIdx값을 편집처리한다.
+  		qnaIdx = vo.getQnaIdx().split("_")[0]+"_1";
+  		if(level == 0) vo.setTitle(vo.getTitle().replace("(Re)", "<font color='red'>(Re)</font>"));
+  	}
+  	vo.setQnaIdx(qnaIdx);
+  	
+  	qnaService.qnaInputOk(vo);
+  	
+  	return "redirect:/message/qnaInputOk2";
+	}
+	
+	
 	
 	
 	//ckeditor폴더의 파일 리스트 보여주기

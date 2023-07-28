@@ -21,7 +21,7 @@
 <div class="container">
 	<jsp:include page="/WEB-INF/views/include/nav2.jsp" />
 	<hr/> 
-  <h3 class="text-center">포인트 내역</h3>
+<div class="text-center"><font size="5">포인트 내역</font></div>
   <hr/>
   <table class="table table-borderless table-hover text-center">
   	<tr class="text-dark" style="background-color:#c9aea2">

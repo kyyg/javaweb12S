@@ -61,13 +61,15 @@
   		<td class="pb-5 pt-5" style="width:25%"><a href="${ctp}/dbShop/memberShppingList"><font size="4"><b><img src="${ctp}/images/mm8.jpg" width=50px;><br/>배송지 관리</b></font></a></td>
   	</tr>
   </table>
+  <div class="text-right"><a href="${ctp}/member/memberPwdUpdate"><font size="2">비밀번호 변경</font></a></div>
   <div class="text-right"><a href="javascript:memberDelete()"><font size="2">회원탈퇴</font></a></div>
   
   <c:if test="${!empty sImsiPwd}">
     <hr/>
+    <>
     현재 임시비밀번호를 발급받아 사용중이십니다.<br/>
     개인정보를 확인하시고 비밀번호를 변경해 주세요.<br/>
-    <a href="${ctp}/member/memberPwdUpdate" class="btn btn-success">비밀번호변경</a>
+    <a href="${ctp}/member/memberPwdUpdate" class="btn btn-outline-dark">비밀번호변경</a>
     <hr/>
   </c:if>
 </div>

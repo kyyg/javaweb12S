@@ -24,7 +24,7 @@
 	padding-bottom : 20px;
 	margin-left : 5px;
 	padding-left:15px;
-	height:380px;
+	height:350px;
 	}
   
   .bbtn{
@@ -340,11 +340,11 @@
 		    <font size="2px">5만원 이상 구매 시 배송비 무료!</font>
 		  </p>
 			<div class="text-center">
-			  <button class="bbtn p-3 pr-5 pl-5" onClick="order()" style="background-color:#c9c2bc">선택상품 주문</button> &nbsp;
+			  <button class="bbtn p-3 pr-5 pl-5" onClick="order()" style="background-color:#c9c2bc">주문하기</button> &nbsp;
 			</div>
-			<div class="text-center">
+			<!-- <div class="text-center">
 			  <button class="bbtn p-3 pr-5 pl-5 mt-2" onClick="order2()" style="background-color:#c9c2bc">전체상품 주문</button> &nbsp;
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>

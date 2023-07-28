@@ -8,39 +8,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>memberPwdFind.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
     th {
       text-align: center;
       background-color: #eee;
     }
+    
+    .inp{
+    item-align : center;
+  	border : solid 0px #ccc;
+  	width : 400px;
+  	height : 60px;
+  	background-color:#eee;
+  	margin-left : 30px;
+  	}
+    
   </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
-<div class="container">
-  <h2>비밀번호 찾기</h2>
-  <p>아이디와 이메일주소를 입력후 메일로 임시비밀번호를 발급 받으세요</p>
+
+
+<div class="container" style="width:500px; margin:0 auto;">
+  <div class="text-center">
+  <font size="5">   	<div class="w3-bottombar w3-sand w3-padding text-center" style="margin-bottom:20px;">
+	   		<span style="font-size:23px;">비밀번호 찾기</span>
+	   </div></font><br/>
+  
+  
+  <font size="2">아이디와 이메일주소를 입력후 메일로 임시비밀번호를 발급 받으세요</font>
+  </div>
+  
   <form method="post">
-    <table class="table table-bordered">
-      <tr>
-        <th>아이디</th>
-        <td><input type="text" name="mid" id="mid" class="form-control" autofocus required /></td>
-      </tr>
-      <tr>
-        <th>메일주소</th>
-        <td><input type="text" name="toMail" id="toMail" class="form-control" required /></td>
-      </tr>
-      <tr>
-        <td colspan="2" class="text-center">
-          <input type="submit" value="임시비밀번호발급" class="btn btn-success" />
-          <input type="reset" value="다시입력" class="btn btn-warning" />
-          <input type="button" value="돌아가기" onclick="location.href='${ctp}/member/memberLogin';" class="btn btn-secondary" />
-        </td>
-      </tr>
-    </table>
+  	<table class="table table-borderless" style="width:500px; margin:0 auto;">
+  		<tr>
+  			<td>
+  			<input type="text" class="w3-bottombar inp text-center" name="mid" id="mid" placeholder="아이디를 입력하세요." required autofocus />
+  			</td>
+  		</tr>
+  		<tr>
+  			<td>
+  			<input type="text" class="w3-bottombar inp text-center" name="toMail" id="toMail" placeholder="이메일을 입력하세요." required autofocus />
+  			</td>
+  		</tr>
+  		<tr>
+  			<td colspan="2" class="text-center">
+  				<input type="submit" value="비밀번호 찾기" class="btn btn-outline-dark" />
+  				<input type="button" value="돌아가기" onclick="location.href='${ctp}/member/memberLogin';" class="btn btn-outline-dark" />
+  			</td>
+  		</tr>
+  	</table>  
   </form>
 </div>
+
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>

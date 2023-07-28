@@ -191,7 +191,7 @@
 		 			<input type="checkbox" name="idxChecked" id="idxChecked" value="${vo.idx}" class="ml-5 mt-5"/>
 		 		</td>
 	 			<td style="width:20%"; class="text-center">
-	 				<img src="${ctp}/images/mu.jpg" class="w3-circle" alt="mu" style="width:70px">
+	 				<img src="${ctp}/images/member.png" class="w3-circle" alt="mu" style="width:70px">
 	 			</td>
 	 			<td colspan="1" class="text-left pt-3 pb-2" style="width:60%";>
 	 				<b>
@@ -208,17 +208,20 @@
 	 				<b>${vo.title}</b><br/>
 	 				${vo.content}
 				<td class="mt-3 mb-3" style="width:20%";>	
- 					<c:set var="fSNames" value="${fn:split(vo.FSName,'/')}"/>
- 						<img src="${ctp}/review/${fSNames[0]}" width="100px" class="w3-round" onclick="imagesClick('${vo.idx}')" /><br/>
- 				</td>
- 			</tr>
-		 	</div>
-	 	<tr><td colspan="4" class="m-0 p-0 text-center"><div id="demo${vo.idx}"  style="display:none">
-	 		<c:forEach var="fSName" items="${fSNames}" varStatus="st">
- 				<img src="${ctp}/review/${fSName}" width="200px" height="200"/>
- 			</c:forEach>
+ 					<c:if test="${!empty vo.FSName}">
+		 					<c:set var="fSNames" value="${fn:split(vo.FSName,'/')}"/>
+		 						<img src="${ctp}/review/${fSNames[0]}" width="100px" class="w3-round" onclick="imagesClick('${vo.idx}')" /><br/>
+		 				</td>
+		 			</tr>
+				 	</div>
+			 		<tr><td colspan="3" class="m-0 p-0 text-center"><div id="demo${vo.idx}"  style="display:none">
+			 		<c:forEach var="fSName" items="${fSNames}" varStatus="st">
+		 				<img src="${ctp}/review/${fSName}" width="200px" height="200"/>
+		 			</c:forEach>
  			<br/>
- 			<input type="button" value="이미지 접기" onclick="imagesUp('${vo.idx}')" class="btn btn-outline-dark btn-sm text-right mt-3"/>
+ 			<input type="button" value="이미지 접기" onclick="imagesUp('${vo.idx}')" class="btn btn-outline-dark btn-sm text-center mt-3"/>
+ 			</c:if>
+ 			<c:if test="${empty vo.FSName}"></c:if>
  			<tr><td colspan="4" class="p-0 m-0 mt-2 pt-3" style="border-bottom :solid 1px lightgray"></td></tr>
 	 	</div></td></tr>
  		</c:forEach>

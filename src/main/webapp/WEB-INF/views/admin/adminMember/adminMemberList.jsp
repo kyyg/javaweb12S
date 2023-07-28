@@ -24,8 +24,7 @@
 
     <!-- Custom styles for this template-->
     <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">table-primary
-
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 
 <body id="page-top">
@@ -137,27 +136,28 @@
       <th>포인트</th>
       <th>레벨</th>
       <th>가입일자</th>
-      <th>최종방문일</th>
+      <th>탈퇴 유무</th>
     </tr>
     <c:set var="curScrStartNo" value="${pageVO.curScrStartNo}"/>
     <c:forEach var="vo" items="${vos}" varStatus="st">
       <tr>
         <td>${curScrStartNo}</td>
         <c:if test="${vo.level == 0}"><c:set var="strLevel" value="관리자"/></c:if>
-        <c:if test="${vo.level == 1}"><c:set var="strLevel" value="운영자"/></c:if>
-        <c:if test="${vo.level == 2}"><c:set var="strLevel" value="우수회원"/></c:if>
-        <c:if test="${vo.level == 3}"><c:set var="strLevel" value="정회원"/></c:if>
-        <c:if test="${vo.level == 4}"><c:set var="strLevel" value="준회원"/></c:if>
+        <c:if test="${vo.level == 1}"><c:set var="strLevel" value="일반회원"/></c:if>
+
         <td><a href="#" onclick="memberView('${vo.mid}','${vo.nickName}','${vo.name}','${vo.tel}','${vo.address}','${vo.email}','${vo.userDel}','${vo.point}','${strLevel}','${vo.visitCnt}','${fn:substring(vo.startDate,0,10)}','${fn:substring(vo.lastDate,0,10)}','${vo.todayCnt}')" data-toggle="modal" data-target="#myModal">${vo.mid}</a></td>
         <td>${vo.nickName}</td>
-        <td>${vo.name}<c:if test="${sLevel == 0 && vo.userInfor == '비공개'}"><font color='red'>(비공개)</font></c:if></td>
+        <td>${vo.name}</td>
         <td>${vo.tel}</td>
         <td>${fn:replace(vo.address,'/','')}</td>
         <td>${vo.email}</td>
         <td>${vo.point}</td>
         <td>${vo.level}</td>
-        <td>${vo.startDate}</td>
-        <td>${vo.lastDate}</td>
+        <td>${fn:substring(vo.startDate,0,10)}</td>
+        <td>
+        <c:if test="${vo.userDel == 'OK'}"><font color="red">${vo.userDel}</font></c:if>
+        <c:if test="${vo.userDel != 'OK'}">${vo.userDel}</c:if>
+        </td>
       </tr>
       <c:set var="curScrStartNo" value="${curScrStartNo-1}"/>
     </c:forEach>

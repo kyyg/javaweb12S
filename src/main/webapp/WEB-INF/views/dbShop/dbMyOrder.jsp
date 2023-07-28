@@ -253,35 +253,7 @@
   <tr><td colspan="7" class="p-0 m-0"></td></tr>
   </table>
   <hr/>
-  <!-- 블록 페이징처리 시작(BS4 스타일적용) -->
-	<div class="container">
-		<ul class="pagination justify-content-center">
-			<c:if test="${pageVO.totPage == 0}"><p style="text-align:center"><b>-</b></p></c:if>
-			<c:if test="${pageVO.totPage != 0}">
-			  <c:if test="${pageVO.pag != 1}">
-			    <li class="page-item"><a href="${ctp}/dbShop/dbMyOrder?pag=1&startJumun=${startJumun}&endJumun=${endJumun}&conditionOrderStatus=${conditionOrderStatus}" title="첫페이지" class="page-link text-secondary">◁◁</a></li>
-			  </c:if>
-			  <c:if test="${pageVO.curBlock > 0}">
-			    <li class="page-item"><a href="${ctp}/dbShop/dbMyOrder?pag=${(pageVO.curBlock-1)*pageVO.blockSize + 1}&startJumun=${startJumun}&endJumun=${endJumun}&conditionOrderStatus=${conditionOrderStatus}" title="이전블록" class="page-link text-secondary">◀</a></li>
-			  </c:if>
-			  <c:forEach var="i" begin="${(pageVO.curBlock*pageVO.blockSize)+1}" end="${(pageVO.curBlock*pageVO.blockSize)+pageVO.blockSize}">
-			    <c:if test="${i == pageVO.pag && i <= pageVO.totPage}">
-			      <li class="page-item active"><a href='${ctp}/dbShop/dbMyOrder?pag=${i}&startJumun=${startJumun}&endJumun=${endJumun}&conditionOrderStatus=${conditionOrderStatus}' class="page-link text-light bg-secondary border-secondary">${i}</a></li>
-			    </c:if>
-			    <c:if test="${i != pageVO.pag && i <= pageVO.totPage}">
-			      <li class="page-item"><a href='${ctp}/dbShop/dbMyOrder?pag=${i}&startJumun=${startJumun}&endJumun=${endJumun}&conditionOrderStatus=${conditionOrderStatus}' class="page-link text-secondary">${i}</a></li>
-			    </c:if>
-			  </c:forEach>
-			  <c:if test="${pageVO.curBlock < pageVO.lastBlock}">
-			    <li class="page-item"><a href="${ctp}/dbShop/dbMyOrder?pag=${(pageVO.curBlock+1)*pageVO.blockSize + 1}&startJumun=${startJumun}&endJumun=${endJumun}&conditionOrderStatus=${conditionOrderStatus}" title="다음블록" class="page-link text-secondary">▶</a>
-			  </c:if>
-			  <c:if test="${pageVO.pag != pageVO.totPage}">
-			    <li class="page-item"><a href="${ctp}/dbShop/dbMyOrder?pag=${pageVO.totPage}&startJumun=${startJumun}&endJumun=${endJumun}&conditionOrderStatus=${conditionOrderStatus}" title="마지막페이지" class="page-link" style="color:#555">▷▷</a>
-			  </c:if>
-			</c:if>
-		</ul>
-	</div>
-	<!-- 블록 페이징처리 끝 -->
+<p><br/></p>
 <p><br/></p>
 </div>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>

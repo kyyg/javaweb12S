@@ -116,9 +116,9 @@
 		      <td style="text-align:left;">
 		        <c:if test="${vo.qnaSw == 'a'}"> &nbsp;&nbsp; └</c:if>
 		        <c:if test="${!empty vo.pwd}"><i class="fas fa-lock"></i></c:if>
-		        <c:if test="${vo.pwd == ''}"><a href="qnaContent?pag=${pageVO.pag}&idx=${vo.idx}&title=${vo.title}">${vo.title}</a></c:if> <!-- 비밀글이 아니면 모두가 볼 수 있다. -->
+		        <c:if test="${vo.pwd == ''}"><a href="${ctp}/admin/adminQnaContent?idx=${vo.idx}&title=${vo.title}">${vo.title}</a></c:if> <!-- 비밀글이 아니면 모두가 볼 수 있다. -->
 		        <c:if test="${vo.pwd != '' && (vo.nickName==sNickName || sLevel == 0)}">  <!-- 비밀글이면 '나'와 '관리자'만 볼 수 있다.(질문글은 당연히 본인 확인 가능) -->
-		          <a href="qnaContent?pag=${pageVO.pag}&idx=${vo.idx}&title=${vo.title}">${vo.title}</a>
+		          <a href="${ctp}/admin/adminQnaContent?idx=${vo.idx}&title=${vo.title}">${vo.title}</a>
 		          <c:set var="tempName" value="${vo.nickName}"/>
 		          <c:set var="tempSw" value="1"/>
 		        </c:if>
@@ -151,7 +151,7 @@
   
 <!-- 블록페이징처리 시작 -->
 <div class="container" style="text-align:center;">
-<c:if test="${pageVO.totPage == 0}"><p style="text-align:center"><font color="red"><b>후기가 존재하지 않습니다.</b></font></p></c:if>
+<c:if test="${pageVO.totPage == 0}"><p style="text-align:center"><font color="red"><b>문의가 존재하지 않습니다.</b></font></p></c:if>
 <c:if test="${pageVO.totPage != 0}">
   <ul class="pagination justify-content-center">
 	  <c:set var="startPageNum" value="${pageVO.pag - (pageVO.pag-1)%pageVO.blockSize}"/>

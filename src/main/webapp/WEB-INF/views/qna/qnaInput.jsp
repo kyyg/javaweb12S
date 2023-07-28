@@ -75,17 +75,14 @@
   <p><br/></p>
   <form name="myform" method="post">
     <table class="table table-borderless">
-      <tr>
-        <td><h2>QnA 글쓰기</h2></td>
-      </tr>
     </table>
     <table class="table">
       <tr>
-        <th>글쓴이</th>
+        <th>작성자</th>
         <td><input type="text" name="nickName" value="${sNickName}" readonly class="form-control"/></td>
       </tr>
       <tr>
-        <th>글제목</th>
+        <th>제목</th>
         <td><input type="text" name="title" placeholder="글제목을 입력하세요." size="60" autofocus required class="form-control"/></td>
       </tr>
       <tr>
@@ -93,7 +90,7 @@
         <td><input type="text" name="email" value="${email}" size="60" class="form-control" required/></td>
       </tr>
       <tr>
-        <th>글내용</th>
+        <th>내용</th>
         <td><textarea rows="6" name="content" id="CKEDITOR" class="form-control" required></textarea></td>
         <script>
           CKEDITOR.replace("content",{
@@ -113,10 +110,9 @@
       </tr>
       <tr>
         <td colspan="2" style="text-align:center">
-          <input type="button" value="글올리기" onclick="fCheck()" class="btn btn-secondary"/> &nbsp;
-          <input type="reset" value="다시쓰기" class="btn btn-secondary"/> &nbsp;
+          <input type="button" value="등록" onclick="fCheck()" class="btn btn-secondary"/> &nbsp;
           <c:if test="${vo.idx == sMid}">
-          	<input type="button" value="글수정하기" onclick="fCheck()" class="btn btn-secondary"/> &nbsp;
+          	<input type="button" value="수정하기" onclick="fCheck()" class="btn btn-secondary"/> &nbsp;
           </c:if>
           <input type="button" value="돌아가기" onclick="location.href='qnaList';" class="btn btn-secondary"/>
         </td>

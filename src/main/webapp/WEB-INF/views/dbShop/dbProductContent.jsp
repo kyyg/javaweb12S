@@ -561,7 +561,7 @@ function myFunction(id) {
  		<tr><td colspan="3" class="p-0 m-0 mb-4 pb-3" style="border-bottom :solid 1px lightgray"></td></tr>
 	 		<tr class="text-dark" style="background-color:#fff;">
 	 			<td style="width:20%"; class="text-center">
-	 				<img src="${ctp}/images/mu.jpg" class="w3-circle" alt="mu" style="width:70px">
+	 				<img src="${ctp}/images/member.png" class="w3-circle" style="width:70px">
 	 			</td>
 	 			<td colspan="1" class="text-left pt-3 pb-2" style="width:60%";>
 	 				<b>
@@ -576,17 +576,20 @@ function myFunction(id) {
 	 				<b>${vo.title}</b><br/>
 	 				${vo.content}
 				<td class="mt-3 mb-3" style="width:20%";>	
- 					<c:set var="fSNames" value="${fn:split(vo.FSName,'/')}"/>
- 						<img src="${ctp}/review/${fSNames[0]}" width="100px" class="w3-round" onclick="imagesClick('${vo.idx}')" /><br/>
- 				</td>
- 			</tr>
-		 	</div>
-	 	<tr><td colspan="3" class="m-0 p-0 text-center"><div id="demo${vo.idx}"  style="display:none">
-	 		<c:forEach var="fSName" items="${fSNames}" varStatus="st">
- 				<img src="${ctp}/review/${fSName}" width="300px" height="300"/>
- 			</c:forEach>
+					<c:if test="${!empty vo.FSName}">
+		 					<c:set var="fSNames" value="${fn:split(vo.FSName,'/')}"/>
+		 						<img src="${ctp}/review/${fSNames[0]}" width="100px" class="w3-round" onclick="imagesClick('${vo.idx}')" /><br/>
+		 				</td>
+		 			</tr>
+				 	</div>
+			 		<tr><td colspan="3" class="m-0 p-0 text-center"><div id="demo${vo.idx}"  style="display:none">
+			 		<c:forEach var="fSName" items="${fSNames}" varStatus="st">
+		 				<img src="${ctp}/review/${fSName}" width="300px" height="300"/>
+		 			</c:forEach>
  			<br/>
- 			<input type="button" value="이미지 접기" onclick="imagesUp('${vo.idx}')" class="btn btn-outline-dark btn-sm text-right mt-3"/>
+ 			<input type="button" value="이미지 접기" onclick="imagesUp('${vo.idx}')" class="btn btn-outline-dark btn-sm text-center mt-3"/>
+ 			</c:if>
+ 			<c:if test="${empty vo.FSName}"></c:if>
  			<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3" style="border-bottom :solid 1px lightgray"></td></tr>
 	 	</div></td></tr>
  	</table>
@@ -602,7 +605,7 @@ function myFunction(id) {
  		<tr><td colspan="3" class="text-right pr-0 mt-2 pt-2"><input type="button" value="신고" onclick="reportReview('${vo.idx}')" class="btn btn-outline-danger btn-sm" /></td></tr>
 	 		<tr class="text-dark" style="background-color:#fff;">
 	 			<td style="width:20%"; class="text-center">
-	 				<img src="${ctp}/images/member.png" class="w3-circle" alt="mu" style="width:100px">
+	 				<img src="${ctp}/images/member.png" class="w3-circle" style="width:100px">
 	 			</td>
 	 			<td colspan="1" class="text-left pt-3 pb-2" style="width:60%";>
 	 				<b>
@@ -642,7 +645,7 @@ function myFunction(id) {
  		<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3 pb-3 mb-3" style="border-bottom :solid 1px lightgray"></td></tr>
 	 		<tr class="text-dark" style="background-color:#fff;">
 	 			<td style="width:20%"; class="text-center">
-	 				<img src="${ctp}/images/member.png" class="w3-circle" alt="mu" style="width:100px">
+	 				<img src="${ctp}/images/member.png" class="w3-circle"  style="width:100px">
 	 			</td>
 	 			<td colspan="1" class="text-left pt-3 pb-2" style="width:60%";>
 	 				<b>
@@ -655,7 +658,7 @@ function myFunction(id) {
 	 				<b>${vo.mid}</b> &nbsp;&nbsp; <font color="brown"> ${fn:substring(vo.WDate,0,10)}</font><br/>
 	 				<span class="badge badge-light mr-2 mb-2">옵션</span><font size="2">${vo.productName}</font><br/>
 	 				<b></b><br/>
-	 				<font color="red">신고로 숨겨진 리뷰입니다.</font>
+	 				<font color="red">누적된 신고로 인해 숨김 처리 된 리뷰입니다.</font>
 				<td class="mt-3 mb-3" style="width:20%";>	
  				</td>
  			</tr>
