@@ -18,18 +18,12 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <p><br/></p>
 <div class="container">
-	<h3 style="text-align:center">제휴 문의</h3>
-	<br/>
-	<c:if test="${!empty sMid}">
-		<div style="text-align: right;" class="p-1">
-			<input type="button" onclick="location.href='${ctp}/contact/contactInput'" value="문의 작성" class="btn btn-outline-secondary w-15"/>
-		</div>
-	</c:if>
+<div class="text-center mb-5"><img src="${ctp}/images/bar3.jpg" /></div>
 	<div class="section">
-		<table class="table table-hover">
-			<tr class="text-dark table-primary"> 
-				<th class="text-center pl-5">제목</th>
+		<table class="table table-hover" style="width:900px; margin:0 auto;">
+			<tr class="text-dark" style="background-color:#c9c2bc;"> 
 				<th class="text-center pl-5"></th>
+				<th class="text-center pl-5">제목</th>
 				<th>작성일</th>
 				<th>답변상태</th>
 			</tr>
@@ -44,7 +38,7 @@
 				<c:forEach var="vo" items="${vos}" varStatus="st">
 					<tr>
 						<td>${st.count}</td>
-						<td style="text-align:center"><a href="${ctp}/contact/contactContent?idx=${vo.idx}">[${vo.part}] ${vo.title}</a></td>
+						<td style="text-align:left"><a href="${ctp}/contact/contactContent?idx=${vo.idx}">[${vo.part}] ${vo.title}</a></td>
 						<td>${fn:substring(vo.WDate,0,10)}</td>
 						<td>
 							<c:if test="${vo.reply=='답변대기중'}">
@@ -58,6 +52,11 @@
 				</c:forEach>
 				<tr><td colspan="4" class="p-0"></td></tr>
 			</c:if>
+			<tr><td colspan="4" class="text-right">
+			<c:if test="${!empty sMid}">
+			<input type="button" onclick="location.href='${ctp}/contact/contactInput'" value="제휴 문의 작성" class="btn btn-outline-secondary w-15"/>
+			</c:if>
+			</td></tr>
 		</table>
 		<br/>
 	</div>

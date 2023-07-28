@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>schedule.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp"></jsp:include>
+  <link rel="stylesheet" href="${ctp}/font/font.css">
   <style>
 	  #loadingImage {
 	    /* position 속성을 absolute로 설정하여 부모 요소를 기준으로 위치를 결정합니다. */
@@ -43,33 +44,30 @@
     				location.reload();
     			}
     			else{
-    				alert("이미 출석체크 하셨습니다.");
+    				//alert("이미 출석체크 하셨습니다.");
     				//location.reload();
-    				//showImage();
+    				showImage();
     			}
     		},
     		error: function() {
-    			alert("전숑오류오류오류..겐");
+    			alert("로그인을 해주세요!");
     		}
     	});
     }
   
-      function showImage() {
-  	    // 이미지를 보여줍니다.
-        document.getElementById("loadingImage").style.display = "block";
-
-        // 3초 후에 페이지를 리로드합니다.
-        setTimeout(function() {
-          location.reload();
-        }, 2000); // 3000ms (3초) 후에 리로드합니다.
-      }
+    function showImage() {
+      document.getElementById("loadingImage").style.display = "block";
+      setTimeout(function() {
+        location.reload();
+      }, 500); 
+    }
     
   </script>
   <style>
-    #td1,#td8,#td15,#td22,#td29,#td36 {color:#7c638f}
-    #td7,#td14,#td21,#td28,#td35 {color:#7c638f}
+    #td1,#td8,#td15,#td22,#td29,#td36 {color:#95827c}
+    #td7,#td14,#td21,#td28,#td35 {color:#95827c}
     .today {
-      background-color: #e4dbea;
+      background-color: #ded9d5;
       color: #fff;
       font-weight: bolder;
     }
@@ -83,12 +81,10 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
 <div class="container">
-<hr/>
-<div class="text-center"><h3>출석체크 이벤트</h3></div>
-<div class="text-center"><h6>한달 간 출석도장 20개를 찍으시면 3000point를 드립니다.</h6></div>
-<div class="text-center"><h6>이달의 출석도장은 <b><font color="#7c638f">${vosSize}</font></b> 개!</h6></div>
-<hr/>
-
+<div class="text-center"><img src="${ctp}/images/stamp5.png" width="120px" /></div>
+<div class="text-center"><font size="6">출석체크 이벤트</font></div>
+<div class="text-center"><font size="3">한달 간 출석도장 20개를 찍으시면 3000point를 드립니다.</font></div>
+<div class="text-center mb-4"><font size="3">이달의 출석도장은 <b><font color="#95827c">${vosSize}</font></b> 개!</font></div>
   <div class="text-center">
     <button type="button" onclick="location.href='${ctp}/schedule/schedule?yy=${yy-1}&mm=${mm}';" class="btn btn-light btn-sm" title="이전년도"><font color:#e4dbea>◁◁</font></button>
     <button type="button" onclick="location.href='${ctp}/schedule/schedule?yy=${yy}&mm=${mm-1}';" class="btn btn-light btn-sm" title="이전월"><font color:#e4dbea>◀</font></button>
@@ -100,7 +96,7 @@
   <br/>
   <div class="text-center">
     <table class="table table-bordered" style="height:450px">
-      <tr class="text-center" style="background-color:#e4dbea; color:#fff;">
+      <tr class="text-center" style="background-color:#ded9d5; color:#fff;">
         <th style="width:13%; vertical-align:middle">일</th>
         <th style="width:13%; vertical-align:middle">월</th>
         <th style="width:13%; vertical-align:middle">화</th>
@@ -126,7 +122,7 @@
             <c:if test="${todaySw!=1}">${st.count}</c:if>
             <br/>
             <c:forEach var="vo" items="${vos}">
-              <c:if test="${vo.ymd == ymd}"><img src="${ctp}/images/event.png" width="100px"/></c:if>
+              <c:if test="${vo.ymd == ymd}"><img src="${ctp}/images/eventStamp.png" width="100px"/></c:if>
             </c:forEach>
           </td>
           <c:if test="${cnt % 7 == 0}"></tr><tr></c:if>  <!-- 한주가 꽉차면 줄바꾸기 한다. -->
@@ -144,8 +140,8 @@
   </div>
 </div>
   <div id="loadingImage" style="display: none;">
-      <img src="${ctp}/images/kk.gif"/>
-    </div>
+    <img src="${ctp}/images/stamp4.gif" width=450px;/>
+  </div>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>

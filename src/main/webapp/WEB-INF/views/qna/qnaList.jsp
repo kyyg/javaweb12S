@@ -51,19 +51,10 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <div class="container">
   <p><br/></p>
+  <div class="text-center mb-5"><img src="${ctp}/images/bar4.jpg" /></div>
   <form name="tempForm">
-	  <table class="table table-borderless">
-	    <tr>
-	      <td colspan="3"><h2>나 문의</h2></td>
-	    </tr>
-	    <tr>
-	      <td style="text-align:right;padding:10px 0px">
-	        <input type="button" value="작성" onclick="location.href='qnaInput?qnaSw=q';" class="btn btn-outline-secondary"/>
-	      </td>
-	    </tr>
-	  </table>
-	  <table class="table table-hover">
-	    <tr class="table-primary text-dark text-center">
+	  <table class="table table-hover" style="width:900px; margin:0 auto;">
+	    <tr class="table text-dark text-center" style="background-color:#c9c2bc;">
 	      <th>번호</th>
 	      <th>제목</th>
 	      <th>작성자</th>
@@ -112,12 +103,19 @@
 	    <tr><td colspan="4" class="p-0"></td></tr>
 	  </table>
   </form>
+	<table class="table table-borderless" style="width:900px; margin:0 auto;">
+    <tr>
+      <td style="text-align:right;padding:10px 0px">
+        <input type="button" value="작성" onclick="location.href='qnaInput?qnaSw=q';" class="btn btn-outline-secondary"/>
+      </td>
+    </tr>
+  </table>
   <br/>
 </div>
   
 <!-- 블록페이징처리 시작 -->
 <div class="container" style="text-align:center;">
-<c:if test="${pageVO.totPage == 0}"><p style="text-align:center"><font color="red"><b>후기가 존재하지 않습니다.</b></font></p></c:if>
+<c:if test="${pageVO.totPage == 0}"><p style="text-align:center"><font color="red"><b>문의가 존재하지 않습니다.</b></font></p></c:if>
 <c:if test="${pageVO.totPage != 0}">
   <ul class="pagination justify-content-center">
 	  <c:set var="startPageNum" value="${pageVO.pag - (pageVO.pag-1)%pageVO.blockSize}"/>
@@ -144,22 +142,7 @@
 </div>
 <!-- 블록페이징처리 끝 -->
 <br/>
-<!-- 검색기 처리 시작 -->
-<div class="container" style="text-align:center">
-  <form name="searchForm" method="get" action="qnaSearch">
-    <b>검색 : </b>
-    <select name="search" onchange="sChange()">
-    	<option value="title" selected>글제목</option>
-    	<option value="nickName">글쓴이</option>
-    	<option value="content">글내용</option>
-    </select>
-    <input type="text" name="searchString"/>
-    <input type="button" value="검 색" onclick="sCheck()"/>
-    <input type="hidden" name="pag" value="${pageVO.pag}"/>
-    <input type="hidden" name="pageSize" value="${pageVO.pageSize}"/>
-  </form>
-</div>
-<!-- 검색기 처리 끝 -->
+
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>

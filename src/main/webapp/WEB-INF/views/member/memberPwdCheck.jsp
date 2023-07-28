@@ -25,8 +25,8 @@
 <jsp:include page="/WEB-INF/views/include/nav2.jsp" />
 <hr/>
 <div class="container">
-  <h3 class="text-center">회원정보 수정</h3>
-  <h6 class="text-center">회원정보 수정을 위해 비밀번호 입력해주세요.</h6>
+<div class="text-center"><font size="5">회원정보 수정</font></div>
+<div class="text-center"><font size="2">회원정보 수정을 위해 비밀번호 입력해주세요.</font></div>
   <hr/>
   <form name="myform" method="post" >
   	<div style="width:500px; text-align:center; margin: 0 auto;" >

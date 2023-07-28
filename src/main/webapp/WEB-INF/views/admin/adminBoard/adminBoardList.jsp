@@ -153,7 +153,7 @@
            <option ${pageVO.part=="전체" ? "selected" : ""}>전체</option>
             <option ${pageVO.part=="원데이클래스" ? "selected" : ""}>원데이클래스</option>
             <option ${pageVO.part=="전시회" ? "selected" : ""}>전시회</option>
-            <option ${pageVO.part=="기타" ? "selected" : ""}>취소</option>
+            <option ${pageVO.part=="기타" ? "selected" : ""}>기타</option>
           </select>
         </form>
       </td>

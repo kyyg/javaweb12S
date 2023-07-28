@@ -44,8 +44,8 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
 <div class="container">
-  <h2 class="text-center">이벤트 후기</h2>
-  <table class="table table-borderless">
+<div class="text-center mb-5"><img src="${ctp}/images/bar4.jpg" /></div>
+  <table class="table table-borderless" style="width:900px; margin:0 auto;">
       <tr>
       <td style="width:20%" class="text-left">
         <form name="partForm">
@@ -70,18 +70,18 @@
     </tr>
   </table>
   
-  <table class="table table-hover text-center">
-    <tr>
-      <th></th>
-      <th>분류</th>
-      <th>제목</th>
-      <th>작성자</th>
-      <th>작성날짜</th>
-      <th>조회수</th>
+  <table class="table table-hover text-center" style="width:900px; margin:0 auto;">
+    <tr style="background-color:#c9c2bc">
+      <th style="width:7%"></th>
+      <th style="width:13%">분류</th>
+      <th style="width:40%">제목</th>
+      <th style="width:15%">작성자</th>
+      <th style="width:10%">작성날짜</th>
+      <th style="width:10%">조회수</th>
     </tr>
 	<c:forEach var="vo" items="${vos}" varStatus="st">
     <c:if test="${vo.fixed == 'on'}">
-     <tr class="table-primary text-dark">
+     <tr class="table text-dark" style="background-color:#ded9d5">
        <td><span class="badge badge-danger">공지</span></td>
        <td></td>
        <td class="text-left">
@@ -109,7 +109,7 @@
 		       	<a href="${ctp}/board/boardContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}">${vo.title}</b></a>
 		       </c:if>
 		       <c:if test="${vo.openSw != 'OK' && sLevel != 0 && sMid != vo.mid}">
-		       	${vo.title} <span class="badge badge-secondary">비공개</span>
+		       	<font color="#c8c8c8">${vo.title}</font> <span class="badge badge-secondary">비공개 처리된 게시글 입니다.</span>
 		       </c:if>
 	       </td>
 	       <td>
@@ -128,9 +128,9 @@
 		     </tr>
 		    </c:if>
 	  </c:forEach>
-    <tr><td colspan="8" class="m-0 p-0"></td></tr>
+    <tr><td colspan="6" class="m-0 p-0"></td></tr>
+    <tr><td colspan="6" class="m-0 p-0 text-right mt-3"><c:if test="${sLevel < 3}"><a href="${ctp}/board/boardInput" class="btn btn-outline-dark btn-sm mt-2">게시글 작성</a></c:if></td></tr>
   </table>
-  <div class="text-right"><c:if test="${sLevel < 3}"><a href="${ctp}/board/boardInput" class="btn btn-outline-dark btn-sm">작성</a></c:if></div>
   
   
   <!-- 블록 페이징 처리 -->
@@ -146,23 +146,9 @@
 	    <c:if test="${pageVO.pag < pageVO.totPage}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/board/boardList?pageSize=${pageVO.pageSize}&pag=${pageVO.totPage}">마지막페이지</a></li></c:if>
 	  </ul>
   </div>
-  
-  <!-- 검색기 처리 -->
-  <div class="container text-center">
-    <form name="searchForm" method="get" action="${ctp}/board/boardSearch">
-      <b>검색 : </b>
-      <select name="search">
-        <option value="title" selected>글제목</option>
-        <option value="nickName">글쓴이</option>
-        <option value="content">글내용</option>
-      </select>
-      <input type="text" name="searchString" id="searchString"/>
-      <input type="button" value="검색" onclick="searchCheck()" class="btn btn-secondary btn-sm"/>
-      <input type="hidden" name="pag" value="${pageVO.pag}"/>
-      <input type="hidden" name="pageSize" value="${pageVO.pageSize}"/>
-    </form>
-  </div>
-</div>
+
+<p><br/></p>
+<p><br/></p>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>

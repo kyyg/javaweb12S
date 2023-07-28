@@ -5,7 +5,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+<link rel="stylesheet" href="${ctp}/font/font.css">
 <head>
 
     <meta charset="utf-8">
@@ -104,7 +104,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">주간 클래스 예약
+                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">주간 제휴문의
                                     </div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
@@ -144,29 +144,6 @@
 
             <!-- Content Row -->
             
-            
-    <div class="row container-fluid pb-5 mb-5 mt-5" style="width:1100px; margin:0 auto;" >
-			<table style="width:600px; height:200px" class="table table-bordered text-dark text-center">
- 			<tr class="w3-blue text-dark">
- 				<td colspan="3" class="text-center"><font color="white"><b>옵션 품절 / 재고 현황(10개 미만)</b></font></td>
- 			</tr>
-				<tr>
-					<td>상품명</td>
-					<td>옵션명</td>
-					<td>옵션 개수</td>
-				</tr>
-		  	<c:forEach var="vo" items="${optionVOS}"> 
-					<tr style="height:15px;">
-						<td style="height:15px;">${vo.productName}</td>
-						<td style="height:15px;">${vo.optionName}</td>
-						<td style="height:15px;"><font color="red">${vo.optionStock}</font></td>
-					</tr>
-		  	</c:forEach>
-			</table>
-    </div>
-            
-
-
 		<div class="row container-fluid pb-5 mb-5 mt-5" style="width:1500px; margin:0 auto;" >
 			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
 				<tr class="w3-indigo text-dark">
@@ -260,7 +237,7 @@
 			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
 				<tr class="w3-indigo text-dark">
 					<td colspan="4">
-						<b>최근 상품/회원 문의</b> <a href="${ctp}/admin/adminBoardList" class="badge badge-info text-right" >더보기</a> 
+						<b>최근 이벤트 후기</b> <a href="${ctp}/admin/adminBoardList" class="badge badge-info text-right" >더보기</a> 
 					</td>
 				</tr>			
 				<tr>
@@ -285,10 +262,27 @@
 				</tr>			
 				<tr><td class="p-0 m-0"></td></tr>			
 			</table>
-
-
 </div>
 
+<div class="container pb-5 ml-5 pl-5" style="width:1100px;">
+	<table class="table table-bordered">
+		<tr>
+			<td colspan="3"><div class="text-left"><font color="red"><b><span class="badge badge-danger text-left mr-2">알림</span>재고가 10개 미만인 옵션이 ${optionVOSsize}개 존재합니다.</b></font></div></td>
+		</tr>
+		<tr class="text-center table-dark text-dark">
+			<td>상품명</td>
+			<td>옵션명</td>
+			<td>옵션 개수</td>
+		</tr>
+	 	<c:forEach var="vo" items="${optionVOS}"> 
+			<tr class="text-center">
+				<td style="width:50%;">${vo.productName}</td>
+				<td style="width:25%;">${vo.optionName}</td>
+				<td style="width:25%;"><font color="red">${vo.optionStock}</font></td>
+			</tr>
+	 	</c:forEach>
+	</table>
+</div>
 
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">

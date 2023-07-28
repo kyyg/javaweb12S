@@ -37,7 +37,7 @@
 <p><br/></p>
 <div class="container">
 
-	<table class="table table-borderless pb-0">
+	<table class="table table-borderless" style="width:800px; margin:0 auto;">
 		<tr>
 			<td colspan="2">
 				<div style="align:right" class="text-right">
@@ -49,31 +49,26 @@
 			</td>
 		</tr>
 	</table>
-	<table class="table table-bordered">
-		<tr>
-			<th>제목</th>
-			<td colspan="3">[${vo.part}] ${vo.title}</td>
-		</tr>
-		<tr>
-			<th>상태</th>
-			<td colspan="3">
-				<c:if test="${vo.reply=='답변대기중'}">
+	
+	<table class="table table-borderless" style="width:800px; margin:0 auto;">
+  	<tr>
+  		<td colspan="3" class="text-left" style="border-bottom:5px solid #c9c2bc; background-color:#eee;"><font size="4"><b>
+  		${vo.title}</b></font>
+  		<c:if test="${vo.reply=='답변대기중'}">
 					<span class="badge badge-pill badge-secondary">${vo.reply}</span>						
 				</c:if>
 				<c:if test="${vo.reply=='답변완료'}">
 					<span class="badge badge-pill badge-danger">${vo.reply}</span>						
 				</c:if>
-			</td>
-		</tr>
-		<tr>
-			<th>작성일</th>
-			<td>${fn:substring(vo.WDate,0,10)}</td>
-		</tr>
-		<tr>
-			<td colspan="4" style="height:200px">
-	      <p>${fn:replace(vo.content,newLine,"<br/>")}</p>
-			</td>
-		</tr>
+  		</td>
+  	</tr>
+  	<tr style="border-bottom:2px solid #c9c2bc;">
+  		<td style="width:20%" class="text-left"><b>${vo.mid}</b></td>
+  		<td style="width:50%" class="text-right">${fn:substring(vo.WDate,0,fn:length(vo.WDate)-2)}</td>
+  	</tr>
+  	<tr  style="border-bottom:5px solid #c9c2bc;">
+  		<td colspan="2">${fn:replace(vo.content, newLine, "<br/>")}</td>
+  	</tr>
 		<tr>
 		 <th>첨부파일</th>
 		 <td>
@@ -87,20 +82,23 @@
 	</table>
 	
 	<!-- 관리자가 답변을 달았을때는 현재글을 수정/삭제 처리 못하도록 하고 있다. -->
- 	<div style="text-align: right" class="row">
-		<span class="col"></span>
-		<input type="button" value="목록으로" onclick="location.href='${ctp}/contact/contactList';" class="btn btn-outline-dark col form-control"/>
-		<span class="col"></span>
-	</div>
+	<table class="table table-borderless" style="width:800px; margin:0 auto;">
+  	<tr><td class="text-right">
+		<input type="button" value="목록으로" onclick="location.href='${ctp}/contact/contactList';" class="btn btn-outline-dark"/>
+		</td></tr>
+	</table>
 	
 	<hr/>
 	<!-- 관리자가 답변을 달았을때 보여주는 구역 -->
-	<c:if test="${!empty reVO.reContent}">
-		<form name="replyForm">
-			<label for="reContent">관리자 답변</label>
-			<textarea name="reContent" rows="5"  id="reContent" readonly="readonly" class="form-control">${reVO.reContent}</textarea>
-		</form>
-	</c:if>
+	<div style="width:800px; margin:0 auto;">
+		<c:if test="${!empty reVO.reContent}">
+			<form name="replyForm">
+				<label for="reContent">관리자 답변</label>
+				<textarea name="reContent" rows="5"  id="reContent" readonly="readonly" class="form-control">${reVO.reContent}</textarea>
+			</form>
+		</c:if>
+	</div>
+	
 </div>
 <br/>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>

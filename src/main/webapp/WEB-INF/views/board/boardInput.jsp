@@ -59,7 +59,7 @@
     		</td>
     	</tr>
       <tr>
-        <th>글제목</th>
+        <th>제목</th>
         <td><input type="text" name="title" id="title" placeholder="글제목을 입력하세요" autofocus required class="form-control"></td>
       </tr>
       <tr>
@@ -67,7 +67,7 @@
         <td><input type="text" name="email" id="email" placeholder="이메일을 입력하세요" class="form-control"/></td>
       </tr>
       <tr>
-        <th>글내용</th>
+        <th></th>
         <td><textarea rows="6" name="content" id="CKEDITOR" class="form-control" required></textarea></td>
      		<script>
      		CKEDITOR.replace("content",{
@@ -76,13 +76,6 @@
      			uploadUrl : "${ctp}/imageUpload" /* 여러개의 그림파일을 드래그&드롭해서 올리기 */
      		});
      		</script>
-      </tr>
-      <tr>
-        <th>공개여부</th>
-        <td>
-          <input type="radio" name="openSw" value="OK" checked />공개 &nbsp;
-          <input type="radio" name="openSw" value="NO" />비공개
-        </td>
       </tr>
       <tr>
       	<th>비밀번호</th>
@@ -100,6 +93,7 @@
     </table>
     <input type="hidden" name="mid" value="${sMid}"/>
     <input type="hidden" name="nickName" value="${sNickName}"/>
+    <input type="hidden" name="openSw" value="OK"/>
   </form>
 </div>
 <p><br/></p>

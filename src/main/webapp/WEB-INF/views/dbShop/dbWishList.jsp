@@ -97,8 +97,8 @@
 <div class="container">
 <jsp:include page="/WEB-INF/views/include/nav2.jsp" />
 <hr/>
- <h3 class="text-center">위시리스트</h3>
- <h6 class="text-center">위시리스트는 3개월 간 저장됩니다.</h6>
+ <div class="text-center"><font size="5">위시리스트</font></div>
+ <div class="text-center"><font size="2">위시리스트는 3개월 간 저장됩니다.</font></div>
  <input type="button" value="선택삭제" class="btn btn-outline-dark btn-sm ml-3" onclick="idxDelete()" />
  <hr/>
  <c:set var="cnt" value="0"/>

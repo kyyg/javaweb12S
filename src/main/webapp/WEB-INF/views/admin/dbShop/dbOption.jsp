@@ -40,6 +40,8 @@
     	strOption += '<div class="form-group">';
     	strOption += '상품옵션가격';
     	strOption += '<input type="text" name="optionPrice" id="optionPrice'+cnt+'" class="form-control"/>';
+    	strOption += '상품옵션재고';
+    	strOption += '<input type="text" name="optionStock" id="optionStock'+cnt+'" class="form-control"/>';
     	strOption += '</div>';
     	strOption += '</div>';
     	$("#optionType").append(strOption);

@@ -143,7 +143,7 @@
 	       <td></td>
 	       <td><span class="badge badge-danger">공지</span></td>
 	       <td class="text-left">
-	         <a href="${ctp}/notice/noticeContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}"><b>${vo.title}</b></a>
+	         <a href="${ctp}/admin/adminNoticeContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}"><b>${vo.title}</b></a>
 	       </td>
 	       <td>${vo.nickName}</td>
 	       <td>

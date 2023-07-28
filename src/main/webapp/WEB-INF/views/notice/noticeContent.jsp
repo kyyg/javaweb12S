@@ -32,39 +32,26 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
 <div class="container">
-  <h2 class="text-center">공지 상세내용</h2>
   <br/>
-  <table class="table table-borderless m-0 p-0">
-  </table>
-  <table class="table table-bordered">
+  <table class="table table-borderless" style="width:800px; margin:0 auto;">
+  	<tr>
+  		<td colspan="3" class="text-left" style="border-bottom:5px solid #c9c2bc; background-color:#eee;"><font size="4"><b>${vo.title}</b></font></td>
+  	</tr>
+  	<tr style="border-bottom:2px solid #c9c2bc;">
+  		<td style="width:20%" class="text-left"><b>${vo.nickName}</b></td>
+  		<td style="width:50%" class="text-left">${fn:substring(vo.WDate,0,fn:length(vo.WDate)-2)}</td>
+  		<td style="width:30%" class="text-right">조회&nbsp;${vo.readNum}</td>
+  	</tr>
+  	<tr  style="border-bottom:5px solid #c9c2bc;">
+  		<td colspan="3">${fn:replace(vo.content, newLine, "<br/>")}</td>
+  	</tr>
     <tr>
-      <th>글쓴이</th>
-      <td>${vo.nickName}</td>
-      <th>글쓴날짜</th>
-      <td>${fn:substring(vo.WDate,0,fn:length(vo.WDate)-2)}</td>
-    </tr>
-    <tr>
-      <th>글제목</th>
-      <td colspan="3">${vo.title}</td>
-    </tr>
-    <tr>
-
-      <th>조회수</th>
-      <td>${vo.readNum}</td>
-    </tr>
-    <tr>
-      <th>글내용</th>
-      <td colspan="3" style="height:220px">${fn:replace(vo.content, newLine, "<br/>")}</td>
-    </tr>
-    <tr>
-      <td colspan="4" class="text-center">
-        <c:if test="${flag == 'search'}"><input type="button" value="돌아가기" onclick="location.href='${ctp}/notice/noticeSearch?search=${search}&searchString=${searchString}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-primary"/></c:if>
-        <c:if test="${flag == 'searchMember'}"><input type="button" value="돌아가기" onclick="location.href='${ctp}/notice/noticeSearchMember?pag=${pag}&pageSize=${pageSize}';" class="btn btn-primary"/></c:if>
-        <c:if test="${flag != 'search' && flag != 'searchMember'}"><input type="button" value="돌아가기" onclick="location.href='${ctp}/notice/noticeList?pag=${pag}&pageSize=${pageSize}';" class="btn btn-primary"/></c:if>
+      <td colspan="3" class="text-right">
+        <input type="button" value="목록으로" onclick="location.href='${ctp}/notice/noticeList?pag=${pag}&pageSize=${pageSize}';" class="btn btn-outline-dark"/>
         &nbsp;
       	<c:if test="${sMid == vo.mid || sLevel == 0}">
-        	<input type="button" value="수정하기" onclick="location.href='${ctp}/notice/noticeUpdate?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-warning"/> &nbsp;
-        	<input type="button" value="삭제하기" onclick="noticeDelete()" class="btn btn-danger"/>
+        	<input type="button" value="수정하기" onclick="location.href='${ctp}/notice/noticeUpdate?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-outline-dark"/> &nbsp;
+        	<input type="button" value="삭제하기" onclick="noticeDelete()" class="btn btn-outline-dark"/>
       	</c:if>
       </td>
     </tr>
@@ -72,7 +59,7 @@
   
   <c:if test="${flag != 'search' && flag != 'searchMember'}">
 	  <!-- 이전글/ 다음글 처리 -->
-	  <table class="table table-borderless">
+	 <table class="table table-borderless" style="width:800px; margin:0 auto;">
 	    <tr>
 	      <td>
 	        <c:if test="${!empty pnVos[1]}">

@@ -21,10 +21,10 @@
 <div class="container">
 <jsp:include page="/WEB-INF/views/include/nav2.jsp" />
 	<hr/>
-	<h3 class="text-center">내 문의글 관리</h3>
+<div class="text-center"><font size="5">나의 이벤트 후기</font></div>
 	<hr/>
 	 <table class="table table-hover text-center">
-    <tr class="table-dark text-dark">
+    <tr class="text-dark" style="background-color:#c9aea2;">
       <th></th>
       <th>분류</th>
       <th style="width:40%">제목</th>

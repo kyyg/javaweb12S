@@ -27,6 +27,13 @@
   	    $("#imagesPlus").hide(); 
   	});
   	
+  	$(document).ready(function() {
+  	  $('#scrollButton2').click(function() {
+  	    $('html, body').animate({ scrollTop: 0 }, 'slow');
+  	  });
+  	    $("#imagesPlus").hide(); 
+  	});
+  	
   	
     let cnt = 1;
   	// 옵션박스에서, 옵션항목을 선택하였을때 처리하는 함수
@@ -159,7 +166,8 @@
 				  mid  : '${sMid}'
 				},
     		success:function() {
-    			location.reload();
+    			showImage();
+    			//location.reload();
     		},
     		error : function() {
     			alert("전송 오류");
@@ -196,9 +204,30 @@
  	    document.getElementById("productList").html = productName;
  	  });
     
+ 	 
+ 	function showImage() {
+    document.getElementById("loadingImage").style.display = "block";
+    setTimeout(function() {
+      location.reload();
+    }, 400); 
+  }
+ 	 
  	
   </script>
   <style>
+  
+  #loadingImage {
+	    position: absolute;
+	    top: 80%;
+	    left: 50%;
+	    transform: translate(-50%, -50%);
+	  }
+  
+
+	a {
+  text-decoration: none !important; /* 밑줄 제거 */
+  color: inherit !important; /* 링크 기본 색상 유지 */
+	}
 
    .w3-custom-button {
     background-color: white;
@@ -234,8 +263,8 @@
    .totalPrice {
      text-align:right;
      margin-right:10px;
-     color:#f63;
-     font-size:1.5em;
+     color:black;
+     font-size:1.8em;
      font-weight: bold;
      border:0px;
      outline: none;
@@ -279,12 +308,15 @@
 		
 		<div id="image2" class="mt-2 pl-5">
 		<span><img src="${ctp}/dbShop/product/${productVO.FSName}" onmouseover="document.getElementById('image1').innerHTML='<img src=${ctp}/dbShop/product/${productVO.FSName} width=500px; height=500px; />'" width="70px" height="70px" /></span>
-		<c:set var="FSName2" value="${fn:split(productVO.FSName2,'/')}" />
-			<c:if test='${FSName2 != null || FSName2 != ""}'>
-				<c:forEach  var="i" begin="0" end="${fn:length(FSName2)-1}">
-					<span><img src="${ctp}/dbShop/product/${FSName2[i]}" onmouseover="document.getElementById('image1').innerHTML='<img src=${ctp}/dbShop/product/${FSName2[i]} width=500px; height=500px; />'" width="70px" height="70px" /></span>
-				</c:forEach>
-			</c:if>
+		<c:if test="${!empty productVO.FSName2}">
+			<c:set var="FSName2" value="${fn:split(productVO.FSName2,'/')}" />
+				<c:if test='${FSName2 != null || FSName2 != ""}'>
+					<c:forEach  var="i" begin="0" end="${fn:length(FSName2)-1}">
+						<span><img src="${ctp}/dbShop/product/${FSName2[i]}" onmouseover="document.getElementById('image1').innerHTML='<img src=${ctp}/dbShop/product/${FSName2[i]} width=500px; height=500px; />'" width="70px" height="70px" /></span>
+					</c:forEach>
+				</c:if>
+		</c:if>	
+		<c:if test="${empty productVO.FSName2}"></c:if>	
 		</div>
 		
 	</div>	
@@ -293,7 +325,7 @@
 <div class="text-left mt-3 mb-2">
 <a href="${ctp}/dbShop/dbProductList">홈</a>
 &nbsp;>&nbsp; 
-<a href='${ctp}/dbShop/dbProductList?part=${mainVO.categoryMainName}'>${mainVO.categoryMainName}</a>
+<a href='${ctp}/dbShop/dbProductList?part=${mainVO.categoryMainName}'><b>${mainVO.categoryMainName}</b></a>
 </div>
 <div class="prod pb-4">
 <table class="table table-borderless">
@@ -312,7 +344,11 @@
 		<c:set var="productDetail" value="${fn:split(productVO.detail,'/')}" />
 			<td colspan="2" class="text-right">
 				<c:forEach var="i" begin="0" end="${fn:length(productDetail)-1}">
-					<span>#${productDetail[i]}</span>
+					<span style="background-color:#ded9d5;" class="mr-2">
+					<a href="${ctp}/dbShop/dbProductList?part=${part}&sort=상품명순&searchString=${productDetail[i]}">
+					#${productDetail[i]}
+					</a>
+					</span>
 				</c:forEach>
 			</td>
 	</tr>	
@@ -324,7 +360,7 @@
 	<tr>
 		<td colspan="2" class="text-center mb-2">		
 			<div class="w3-panel w3-border" style="background-color:#fff;">
-			<div class="w3-panel w3-border pt-3 pb-3" style="background-color:#dcdee3;">
+			<div class="w3-panel w3-border pt-3 pb-3" style="background-color:#f4f4f4;">
   			<span><i class="fas fa-exclamation-circle"> 구매 적립 포인트 ${productVO.mainPrice*0.01} Point</i></span><br/>
 				<span><i class="fas fa-exclamation-circle"> 리뷰 작성시 500 Point 추가 적립!</i></span>
 	  	</div>
@@ -418,9 +454,9 @@
   
  <section id="target-section1" style="margin: 0 auto;">
   <div id="content" class="text-center" style="margin-top:50px;"><br/>
-    ${productVO.content}
+    <span style="margin:0 auto; width:800px;">${productVO.content}</span>
   </div>
-</section>
+ </section>
 
 </div>
 <div class="container" style="width:1100px;">
@@ -500,7 +536,8 @@ function myFunction(id) {
 	    	<td>
 		    악의 적인 리뷰는 사전 안내 없이 삭제 될 수 있습니다.<br/>
 				상품과 관련이 없는 사진의 경우 삭제 될 수 있습니다.<br/>
-				베스트 리뷰에 선정된 리뷰에는 1000point가 지급됩니다.<br/>
+				<span class="badge badge-warning mt-2">후기 이벤트</span><br/>
+				베스트 리뷰로 선정된 리뷰에는 1000point가 지급됩니다. (이벤트 기간 : ~별도 공지시까지)<br/>
 				<p><br/></p>
 				</td>
 			</tr>
@@ -580,17 +617,20 @@ function myFunction(id) {
 	 				<b>${vo.title}</b><br/>
 	 				${vo.content}
 				<td class="mt-3 mb-3" style="width:20%";>	
- 					<c:set var="fSNames" value="${fn:split(vo.FSName,'/')}"/>
- 						<img src="${ctp}/review/${fSNames[0]}" width="100px" class="w3-round" onclick="imagesClick('${vo.idx}')" /><br/>
- 				</td>
- 			</tr>
-		 	</div>
-	 	<tr><td colspan="3" class="m-0 p-0 text-center"><div id="demo${vo.idx}"  style="display:none">
-	 		<c:forEach var="fSName" items="${fSNames}" varStatus="st">
- 				<img src="${ctp}/review/${fSName}" width="300px" height="300"/>
- 			</c:forEach>
+ 					<c:if test="${!empty vo.FSName}">
+		 					<c:set var="fSNames" value="${fn:split(vo.FSName,'/')}"/>
+		 						<img src="${ctp}/review/${fSNames[0]}" width="100px" class="w3-round" onclick="imagesClick('${vo.idx}')" /><br/>
+		 				</td>
+		 			</tr>
+				 	</div>
+			 		<tr><td colspan="3" class="m-0 p-0 text-center"><div id="demo${vo.idx}"  style="display:none">
+			 		<c:forEach var="fSName" items="${fSNames}" varStatus="st">
+		 				<img src="${ctp}/review/${fSName}" width="300px" height="300"/>
+		 			</c:forEach>
  			<br/>
  			<input type="button" value="이미지 접기" onclick="imagesUp('${vo.idx}')" class="btn btn-outline-dark btn-sm text-center mt-3"/>
+ 			</c:if>
+ 			<c:if test="${empty vo.FSName}"></c:if>
  			<tr><td colspan="3" class="p-0 m-0 mt-2 pt-3" style="border-bottom :solid 1px lightgray"></td></tr>
 	 	</div></td></tr>
  	</table>
@@ -632,12 +672,18 @@ function myFunction(id) {
  </c:if>
  </c:forEach>
 
- 
+   <div id="loadingImage" style="display: none;">
+    <img src="${ctp}/images/haert5.gif"/>
+  </div>
 
 	
 	
  <div id="productList" class="text-center pt-2" style="position: fixed; left: 20px; top: 60%; transform: translateY(-50%); width:100px; height:400px; background-color:#eee;">
-	<div class="text-center mb-3">
+	<span class="text-center pt-1 pb-1 mt-0" style="background-color:black; color:#fff;">
+	  <font size="3">
+	  <span id="scrollButton2">&nbsp;&nbsp;TOP&nbsp;&nbsp;</span>
+	</span>
+	<div class="text-center mb-2">
 	  <font size="1">[최근 본 상품]</font>
 	</div>
 	<c:forEach var="item" items="${proList2}">

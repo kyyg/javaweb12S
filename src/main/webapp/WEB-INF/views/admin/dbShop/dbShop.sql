@@ -53,6 +53,8 @@ create table dbProduct (
 	mainPrice		int not null,							/* 상품의 기본가격 */
 	fSName			varchar(200) not null,		/* 상품의 기본사진(1장이상 처리시에는 '/'로 구분 저장한다. */
 	content			text not null,						/* 상품의 상세설명 - ckeditor를 이용한 이미지 1장으로 처리한다. */
+	productStatus varchar(10) default '판매중',
+	wDate datetime default now(),
 	primary key(idx),
 	unique  key(productCode,productName),
   foreign key(categoryMainCode) references categoryMain(categoryMainCode),
@@ -141,6 +143,7 @@ create table dbBaesong (
   payment			varchar(10)  not null,	/* 결재도구 */
   payMethod   varchar(50)  not null,  /* 결재도구에 따른 방법(카드번호) */
   orderStatus varchar(10)  not null default '결제완료', /* 주문순서(결제완료->배송중->배송완료->구매완료) 전체적인 배송에 대한 여부! 오더에 있는 status의 큰집합*/
+  usingPing int not null default 0,
   primary key(idx),
   unique key(orderIdx),
   foreign key(oIdx) references dbOrder(idx) on update cascade on delete cascade

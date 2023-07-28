@@ -144,7 +144,7 @@ public class BoardController {
 	@RequestMapping(value = "/boardSearch", method = RequestMethod.GET)
 	public String boardSearchGet(String search, String searchString,
 			@RequestParam(name="pag", defaultValue = "1", required=false) int pag,
-			@RequestParam(name="pageSize", defaultValue = "5", required=false) int pageSize,
+			@RequestParam(name="pageSize", defaultValue = "10", required=false) int pageSize,
 			Model model) {		// search = search+"/"+searchString
 		PageVO pageVO = pageProcess.totRecCnt(pag, pageSize, "board", search, searchString);
 		
@@ -186,7 +186,7 @@ public class BoardController {
 	public String boardUpdateGet(Model model,
 			@RequestParam(name="idx", defaultValue = "0", required=false) int idx,
 			@RequestParam(name="pag", defaultValue = "1", required=false) int pag,
-			@RequestParam(name="pageSize", defaultValue = "5", required=false) int pageSize
+			@RequestParam(name="pageSize", defaultValue = "10", required=false) int pageSize
 		) {
 		// 수정창으로 이동시에는 먼저 원본파일에 그림파일이 있다면, 현재폴더(board)의 그림파일들을 ckeditor폴더로 복사시켜둔다.
 		BoardVO vo = boardService.getBoardContent(idx);
@@ -204,7 +204,7 @@ public class BoardController {
 	@RequestMapping(value = "/boardUpdate", method = RequestMethod.POST)
 	public String boardUpdatePost(BoardVO vo,
 			@RequestParam(name="pag", defaultValue = "1", required=false) int pag,
-			@RequestParam(name="pageSize", defaultValue = "5", required=false) int pageSize,
+			@RequestParam(name="pageSize", defaultValue = "10", required=false) int pageSize,
 			Model model) {
 		// 수정된 자료가 원본자료와 완전히 동일하다면 수정할 필요가 없기에, 먼저 DB에 저장된 원본자료를 불러와서 비교처리한다.
 		BoardVO origVO = boardService.getBoardContent(vo.getIdx());

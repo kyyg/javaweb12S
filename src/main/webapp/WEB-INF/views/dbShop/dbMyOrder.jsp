@@ -149,7 +149,7 @@
   <c:if test="${conditionDate=='30'}"><c:set var="condition" value="한달 이내 조회"/></c:if>
   <c:if test="${conditionDate=='90'}"><c:set var="condition" value="석달 이내 조회"/></c:if>
   <hr/> 
-  <h3 class="text-center">주문 목록</h3>
+  <div class="text-center"><font size="5">주문내역</font></div>
   <hr/>
   <table class="table table-borderless">
     <tr>
@@ -189,12 +189,9 @@
 	        <input type="button" class="btn btn-outline-dark btn-sm" value="조회하기" onclick="myOrderStatus()"/>
 	      </td>
 	    </tr>
-	    <tr>
-	    	<td>3개월간의 주문내역입니다.</td>
-	    </tr>
   </table>
   <table class="table table-hover table-borderless">
-    <tr style="text-align:center;background-color:#ccc;">
+    <tr style="text-align:center;background-color:#c9aea2;">
       <th>주문번호</th>
       <th>주문일시</th>
       <th>이미지</th>

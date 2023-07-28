@@ -149,15 +149,15 @@
   <form name="myform" method="post">
     <table class="table table-bordered">
       <tr>
-        <th>글쓴이</th>
+        <th>작성자</th>
         <td>${sNickName}</td>
       </tr>
       <tr>
-        <th>글제목</th>
-        <td><input type="text" name="title" id="title" value="${vo.title}" placeholder="글제목을 입력하세요" autofocus required class="form-control"></td>
+        <th>제목</th>
+        <td><input type="text" name="title" id="title" value="${vo.title}" autofocus required class="form-control"></td>
       </tr>
       <tr>
-        <th>글내용</th>
+        <th></th>
         <td><textarea rows="6" name="content" id="CKEDITOR" class="form-control" required>${vo.content}</textarea></td>
      		<script>
      		CKEDITOR.replace("content",{
@@ -175,8 +175,8 @@
       </tr>
       <tr>
         <td colspan="2" class="text-center">
-          <input type="button" value="수정" onclick="fCheck()" class="btn btn-primary"/> &nbsp;
-          <input type="button" value="돌아가기" onclick="location.href='${ctp}/admin/adminNoticeList?pag=${pag}&pageSize=${pageSize}';" class="btn btn-secondary"/>
+          <input type="button" value="수정" onclick="fCheck()" class="btn btn-outline-dark"/> &nbsp;
+          <input type="button" value="돌아가기" onclick="location.href='${ctp}/admin/adminNoticeList?pag=${pag}&pageSize=${pageSize}';" class="btn btn-outline-dark"/>
         </td>
       </tr>
     </table>

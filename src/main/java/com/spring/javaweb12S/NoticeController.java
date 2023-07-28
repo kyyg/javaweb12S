@@ -217,7 +217,7 @@ public class NoticeController {
 	// 오시는길 페이지
 	@RequestMapping(value = "/offlineStore", method = RequestMethod.GET)
 	public String offlineStoreGet(Model model,
-			@RequestParam(name="store_name", defaultValue = "공원", required=false) String store_name) {
+			@RequestParam(name="store_name", defaultValue = "그린 아트 스튜디오", required=false) String store_name) {
 		
 		KakaoAddressVO vo = adminService.getKakaoAddressName(store_name);
 		List<KakaoAddressVO> vos = adminService.getKakaoAddressList();

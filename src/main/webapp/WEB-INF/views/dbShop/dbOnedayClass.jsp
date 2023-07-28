@@ -191,7 +191,7 @@ margin-bottom:10px;
  <div>
   <div class="search__box">
     <div class="search__title mb-4">
-     명화 비누 제작 원데이 클래스
+     원데이 클래스 추첨 이벤트
     </div>
     <table>
       <tr>
@@ -205,8 +205,8 @@ margin-bottom:10px;
        <td colspan="2"> 
          <select class="form-control" name="store" id="store">
          	<option>매장 선택</option>
-         	<option>매장1</option>
-         	<option>매장2</option>
+         	<option>그린 아트 스튜디오 4층</option>
+         	<option>그린 그라운드 1층</option>
          </select>
        </td>
       </tr>

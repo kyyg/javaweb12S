@@ -117,7 +117,7 @@ nav li {
   	
 
 	<div class="text-center text-dark ml-4" class="title">
-		<a href="${ctp}/"><img src="${ctp}/images/title.jpg" width=500px; /></a>
+		<a href="${ctp}/"><img src="${ctp}/images/titleLogo.png" width=300px; /></a>
 	</div>
 
   <p></br></p>
@@ -125,9 +125,6 @@ nav li {
 <span>
 <nav id="mainnav" class="navbar-light bg-white">
   <ul class="nav justify-content-center">
-	 <li class="nav-item dropdown">
-	    <div class="nav-link dropbtn mr-5" ><a href="${ctp}/notice/about">별,빛</a></div>
-	  </li>
 	   <li class="nav-item dropdown">
 	    <div class="nav-link dropbtn ml-4 mr-5 text-center">&nbsp;&nbsp;<a href="${ctp}/dbShop/dbProductList">상점</a></div>
 	    <div class="dropdown-menu dropdown-content">
@@ -150,10 +147,12 @@ nav li {
 	    <div class="dropdown-menu dropdown-content">
 	      <a class="dropdown-item text-center" href="${ctp}/notice/noticeList">공지 게시판</a>
 	      <a class="dropdown-item text-center" href="${ctp}/qna/qnaList">문의 게시판</a>
-	      <a class="dropdown-item text-center" href="${ctp}/notice/offlineStore">오프라인 매장</a>
 	      <a class="dropdown-item text-center" href="${ctp}/contact/contactList">제휴 문의</a>
 	   </div>
 	   </li>
+	   	 <li class="nav-item dropdown">
+	    <div class="nav-link dropbtn ml-5" ><a href="${ctp}/notice/offlineStore">오시는 길</a></div>
+	  </li>
 	</ul>
 </nav>
 </span>

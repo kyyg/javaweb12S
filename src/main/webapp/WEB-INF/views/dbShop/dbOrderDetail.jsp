@@ -54,9 +54,8 @@
 				<td colspan="2" style="width:80%">
 					제품 : ${orderVO.productName}
 					<div id="optionName" name="optionName">옵션 : ${orderVO.optionName}</div>
-					<div id="optionPrice" name="optionPrice">금액 : ${orderVO.optionPrice}</div>
-					<div id="optionNum" name="optionNum">수량 : ${orderVO.optionNum}</div>
-					<div id="status" name="status">주문상태 : ${orderVO.status}</div>
+					<div id="optionPrice" name="optionPrice">금액 : ${orderVO.optionPrice}원</div>
+					<div id="optionNum" name="optionNum">수량 : ${orderVO.optionNum}개</div>
 				</td>
 				</tr>
 				<tr><td class="p-0 m-0"></td></tr>

@@ -98,7 +98,6 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">조회</h6>
                 <a class="collapse-item" href="${ctp}/dbShop/dbShopList">전체상품 조회</a>
-                <a class="collapse-item" href="${ctp}/dbShop/dbOptionStock">상품 재고 관리</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">등록</h6>
                 <a class="collapse-item" href="${ctp}/dbShop/dbCategory">카테고리 등록</a>
@@ -196,6 +195,29 @@
 		                <h6 class="collapse-header">오프라인 매장</h6>
 		                <a class="collapse-item" href="${ctp}/admin/kakaomap/storeRegistration">매장 등록</a>
 		                <a class="collapse-item" href="${ctp}/admin/kakaomap/kakaoStoreList">매장 조회/삭제</a>
+		            </div>
+		        </div>
+		    </li>
+		    
+		<!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        File
+    </div>
+		<!-- Nav Item - Pages Collapse Menu -->
+		    <li class="nav-item">
+		        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages8"
+		            aria-expanded="true" aria-controls="collapsePages8">
+		            <i class="fas fa-fw fa-folder"></i>
+		            <span>시스템 파일 관리</span>
+		        </a>
+		        <div id="collapsePages8" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+		            <div class="bg-white py-2 collapse-inner rounded">
+		                <h6 class="collapse-header">파일 관리</h6>
+		                <a class="collapse-item" href="${ctp}/admin/fileList">파일 관리</a>
 		            </div>
 		        </div>
 		    </li>

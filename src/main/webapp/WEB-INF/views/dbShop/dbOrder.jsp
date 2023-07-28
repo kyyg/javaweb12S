@@ -153,18 +153,18 @@
 <p><br/></p>
 <div class="container">
 <p><br/></p>
-<table class="table table-borderless text-center" style="margin: 0 auto; width:900px; padding-left:30px; margin-left:30px;">
-	<div class="text-left" style="padding-left:50px; margin-left:60px; margin-bottom:15px;">장바구니 > <b>결제</b> > 완료</div>
+<table class="table table-borderless text-center" style="margin: 0 auto; width:800px; padding-left:30px; margin-left:30px;">
+	<div class="text-left" style="padding-left:90px; margin-left:60px; margin-bottom:15px;">장바구니&nbsp;&nbsp;>&nbsp;&nbsp;<b>결제</b>&nbsp;&nbsp;>&nbsp;&nbsp;완료</div>
 	</table>
 <form name="myform" method="post">
-  <table class="table table-borderless text-center" style="margin: 0 auto; width:900px">
+  <table class="table table-borderless text-center" style="margin: 0 auto; width:800px">
   	<tr>
   		<td class="text-right" colspan="2">
 	  		<input type="button" value="배송지 목록" onclick="shippingListNew()" class="btn btn-outline-dark btn-sm" />
 	  		<input type="button" value="배송지 추가" onclick="shippingAddNew()" class="btn btn-outline-dark btn-sm" />
   		</td>
   	</tr>
-    <tr class="table-dark text-dark">
+    <tr class="text-dark mb-2" style="background-color:#c9c2bc;">
       <th colspan="2">배송 정보</th>
     </tr>
     <tr>
@@ -172,7 +172,7 @@
 		  <td><input type="text" name="buyer_name" id="buyer_name" value="${memberVO.name}" class="form-control"/></td>
 		</tr>
     <tr>
-		  <th>메일</th>
+		  <th>이메일</th>
 		  <td><input type="text" name="buyer_email" id="buyer_email" value="${memberVO.email}" class="form-control"/></td>
 		</tr>
     <tr>
@@ -196,30 +196,27 @@
 		      <option>부재중 현관문 앞에 놓아주세요.</option>
 		      <option>부재중 전달해주지 마세요.</option>
 		    </select>
-		    <hr/>
 		  </td>
 		</tr>
 	</table>
 	<p><br/></p>
 	
 <!-- 상품/옵션 내역 -->	
-	<table class="table-borderless text-center table-hover" style="margin: 0 auto; width:900px">
-	  <tr class="table-dark text-dark">
-	    <th style="width:30%">상품 </th>
-	    <th>옵션 정보</th>
-	    <th>금액</th>
+	<table class="table-borderless text-center table-hover" style="margin: 0 auto; width:800px">
+	  <tr class="text-dark" style="background-color:#c9c2bc;">
+	    <th colspan="3" class="text-center">상품</th>
 	  </tr>
 	  <!-- 주문서 목록출력 -->
 	  <c:forEach var="vo" items="${sOrderVOS}">  <!-- 세션에 담아놓은 sOrderVos의 품목내역들을 화면에 각각 보여주는 작업처리 -->
 	    <tr align="center" style="width:20%">
 	      <td><img src="${ctp}/dbShop/product/${vo.thumbImg}" width="70px"/></td>
-	      <td align="left">
+	      <td align="left" style="width:50%">
 	        <div class="text-left ml-4">
 	          <span font-weight:bold;"><b>${vo.productName}</b></span><br/>
-	       	<span class="badge badge-dark">옵션</span> ${vo.optionName} / ${vo.optionNum}개 / ${vo.optionPrice}원 
+	       	<span class="badge badge-outline-dark">옵션</span> ${vo.optionName} / ${vo.optionNum}개 / ${vo.optionPrice}원 
 	        <div>
 	      </td>
-	      <td>
+	      <td style="width:30%">
 	        <b>
 	        <c:set var="opPrice" value="${vo.optionNum*vo.optionPrice}" />
 	        <fmt:formatNumber value="${opPrice}" pattern='#,###원'/></b><br/><br/>
@@ -227,18 +224,17 @@
 	    </tr>
 	  </c:forEach>
 	</table>
-	<hr/>
 	<p><br/></p>
 	
 	<!--  결제 정보 --> 
 	
 	<!-- 포인트 사용  -->
-	<table class="table-borderless text-center table-hover" style="margin: 0 auto; width:900px">
-	  <tr class="table-dark text-dark mb-2">
-	  	 <th colspan="2">할인 / 제휴</th>
+	<table class="table-borderless text-center table-hover" style="margin: 0 auto; width:800px">
+	  <tr class="text-dark mb-2" style="background-color:#c9c2bc;">
+	  	 <th colspan="2" class="mb-2">할인 / 제휴</th>
 	  </tr>
 	  <tr>
-	  	<td>내 포인트 : ${memberVO.point} point </td>
+	  	<td class="text-right">보유 포인트 : ${memberVO.point} point </td>
 	  	<td class="text-right">
 		  	<input type="number" value="0" name="point" id="point"/>
 				<input type="button" value="포인트사용" name="pointUse" id="pointUse" onclick="pointUsing()" class="btn btn-outline-dark btn-sm" />
@@ -247,8 +243,8 @@
 	</table>
 	<p><br/></p>
 	
-	<table style="margin: 0 auto; width:900px; background-color:#eee;" class="text-right">
-		<tr class="table-dark text-dark mb-2">
+	<table style="margin: 0 auto; width:800px; background-color:#eee;" class="text-right pb-3 mb-2" >
+		<tr class="text-dark mb-2" style="background-color:#c9c2bc;">
 	  	<th colspan="2" class="text-center">결제</th>
 	  </tr>
 	  <c:set var="tempTotal" value="${orderTotal}" />
@@ -262,28 +258,27 @@
 	  <tr>
 	  	<td>배송비</td>
 	  	<td><fmt:formatNumber value="${sOrderVOS[0].baesong}" pattern='#,###원'/></td>
-	  	<hr/>
 	  </tr>
 	  <tr>
 	  	<td colspan="2"><span id="spendPoint"></span></td>
 	  </tr>
 	  <tr>
-	  	<td><b>총 결제금액</b></td>
-	  	<td><font size="4" color="orange"><b><span id="temp2">${tempTotal + tempbs}</span></b></font>원</td>
+	  	<td><b>
+	  	총 결제금액</b><br/></td>
+	  	<td><font size="4"><b><span id="temp2">${tempTotal + tempbs}</span></b></font>원</td>
 	  </tr>
-	  <hr/>
   </table>
 		
 	  <!-- Nav tabs -->
-		<ul class="nav nav-tabs mt-4" role="tablist" style="margin: 0 auto; width:900px">
+		<ul class="nav nav-tabs mt-4" role="tablist" style="margin: 0 auto; width:800px">
       <li class="nav-item"><a class="nav-link active form-control" data-toggle="tab" href="#card">카드결제</a></li>
 	    <li class="nav-item"><a class="nav-link form-control" data-toggle="tab" href="#bank">무통장입금</a></li>
 	  </ul>
 	
 	  <!-- Tab panes -->
-	  <div class="tab-content" style="margin: 0 auto; width:900px">
+	  <div class="tab-content" style="margin: 0 auto; width:800px">
 	    <div id="card" class="container tab-pane active"><br>
-	      <p>카드사 선택
+	      카드사 선택
 	        <select name="paymentCard" id="paymentCard">
 	          <option value="">카드사 선택</option>
 	          <option>국민카드</option>
@@ -295,13 +290,12 @@
 	          <option>삼성카드</option>
 	          <option>LG카드</option>
 	        </select>
-	      </p>
-				<p>카드번호  <input type="text" name="payMethodCard" id="payMethodCard"/></p>
+				&nbsp;&nbsp;&nbsp;&nbsp;카드번호  <input type="text" name="payMethodCard" id="payMethodCard"/>
 				<hr/>
-			  <button type="button" class="btn btn-secondary form-control mt-4 p-3 pb-5" onClick="order()"><b><font size="4">결제하기</font></b></button> &nbsp;
+			  <button type="button" class="btn form-control mt-4 p-3 pb-5" style="background-color:#c9c2bc;" onClick="order()"><b><font size="4">결제하기</font></b></button> &nbsp;
 	    </div>
 	    <div id="bank" class="container tab-pane fade"><br>
-	      <p>은행 선택
+	     은행 선택
 	        <select name="paymentBank" id="paymentBank">
 	          <option value="">은행선택</option>
 	          <option value="국민은행">국민(111-111-111)</option>
@@ -310,10 +304,9 @@
 	          <option value="농협">농협(444-444-444)</option>
 	          <option value="신협">신협(555-555-555)</option>
 	        </select>
-	      </p>
-				<p>입금자명  <input type="text" name="payMethodBank" id="payMethodBank"/></p>
+				 &nbsp;&nbsp;&nbsp;&nbsp;입금자명<input type="text" name="payMethodBank" id="payMethodBank"/>
 				<hr/>
-			  <button type="button" class="btn btn-secondary form-control mt-4 p-3 pb-5" onClick="order2()"><b><font size="4">결제하기</font></b></button> &nbsp;
+			  <button type="button" class="btn form-control mt-4 p-3 pb-5" style="background-color:#c9c2bc;" onClick="order2()"><b><font size="4">결제하기</font></b></button> &nbsp;
 	    </div>
 	  </div>
 		<hr/>

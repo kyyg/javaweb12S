@@ -24,7 +24,7 @@
   <h3 class="text-center">포인트 내역</h3>
   <hr/>
   <table class="table table-borderless table-hover text-center">
-  	<tr class="table-dark text-dark">
+  	<tr class="text-dark" style="background-color:#c9aea2">
   		<th>날짜</th>
   		<th>내역</th>
   		<th>적립 포인트</th>

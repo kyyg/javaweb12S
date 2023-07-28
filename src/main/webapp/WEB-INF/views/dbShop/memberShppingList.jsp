@@ -68,11 +68,12 @@
 <div class="container">
 <jsp:include page="/WEB-INF/views/include/nav2.jsp" />
 	<hr/>
-	<div class="text-center"><h3>배송지목록</h3></div>
+	<div class="text-center"><font size="5">배송지 목록</font></div>
 	<hr/>
 	<c:if test="${!empty vos}">
-  <table class="table table-bordered text-center" style="margin: 0 auto; width:1200px">
-  	<tr>
+  <table class="table table-borderless table-hover text-center" style="margin: 0 auto; width:1200px">
+  	<tr><td class="text-left"><input type="button" value="배송지 추가" onclick="shippingAddNew()" class="btn btn-outline-dark btn-sm" /></td></tr>
+  	<tr style="background-color:#c9c2bc;">
   		<th style="width:15%">배송지명</th>
   		<th style="width:10%">이름</th>
   		<th style="width:15%">전화번호</th>
@@ -105,10 +106,12 @@
 	</table>
 	</c:if>
 	<c:if test="${empty vos}">
-	배송목록이 없습니다.
+	<table class="table table-borderless table-hover text-center" style="margin: 0 auto; width:1200px">
+		<tr><td class="text-center">나의 배송목록이 없습니다.</td></tr>
+  	<tr><td class="text-left"><input type="button" value="배송지 추가" onclick="shippingAddNew()" class="btn btn-outline-dark btn-sm" /></td></tr>
+  	</table>
 	</c:if>
 </div>
-<div class="text-right" style="width:1500px"><input type="button" value="배송지 추가" onclick="shippingAddNew()" class="btn btn-outline-dark btn-sm" /></div>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>

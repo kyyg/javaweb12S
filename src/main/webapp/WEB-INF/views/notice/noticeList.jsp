@@ -37,10 +37,9 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
 <div class="container">
-  <h2 class="text-center">공지</h2>
-  <table class="table table-borderless">
+<div class="text-center"><img src="${ctp}/images/bar1.jpg" /></div>
+  <table class="table table-borderless pb-0" style="width:1000px;">
     <tr>
-     <%--  <td><c:if test="${sLevel == 0}"><a href="${ctp}/notice/noticeInput" class="btn btn-outline-dark btn-sm">공지 작성</a></c:if></td> --%>
       <td class="text-right">
         <!-- 한페이지 분량처리 -->
         <select name="pageSize" id="pageSize" onchange="pageCheck()">
@@ -54,20 +53,20 @@
     </tr>
   </table>
   
-  <table class="table table-hover text-center">
-    <tr>
-      <th></th>
-      <th>제목</th>
-      <th>작성자</th>
-      <th>작성날짜</th>
-      <th>조회수</th>
+  <table class="table table-hover text-center" style="width:900px; margin:0 auto;">
+    <tr style="background-color:#c9c2bc">
+      <th style="width:10%"></th>
+      <th style="width:40%">제목</th>
+      <th style="width:15%">작성자</th>
+      <th style="width:15%">작성날짜</th>
+      <th style="width:25%">조회수</th>
     </tr>
     
 	<c:forEach var="vo" items="${vos}" varStatus="st">
 	    <c:if test="${vo.fixed == 'on'}">
-	     <tr  class="table-primary text-dark">
+	     <tr class="table text-dark" style="background-color:#ded9d5">
 	       <td><span class="badge badge-danger">공지</span></td>
-	       <td class="text-center">
+	       <td class="text-left">
 	         <a href="${ctp}/notice/noticeContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}"><b>${vo.title}</b></a>
 	       </td>
 	       <td>${vo.nickName}</td>
@@ -87,7 +86,7 @@
   	  <c:set var="curScrStartNo" value="${vo.idx}" />
 	     <tr>
 	       <td>${curScrStartNo}</td>
-	       <td class="text-center" style="width:50%">
+	       <td class="text-left" style="width:50%">
 	         <a href="${ctp}/notice/noticeContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}">${vo.title}</a>
 	       </td>
 	       <td>${vo.nickName}</td>

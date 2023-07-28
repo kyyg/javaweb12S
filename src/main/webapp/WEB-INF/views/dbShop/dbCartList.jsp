@@ -8,6 +8,32 @@
   <title>dbCartList.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
   <link rel="stylesheet" href="${ctp}/font/font.css">
+  <style>
+
+ .tbb {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin-left:50px;
+	} 
+
+	.tb{
+	margin-top : 60px;
+	background-color:#eee;
+	border-radius : 5px;
+	padding-top : 20px;
+	padding-bottom : 20px;
+	margin-left : 5px;
+	padding-left:15px;
+	height:380px;
+	}
+  
+  .bbtn{
+  background-color:#c9c2bc;
+  border : 0px solid;
+  border-radius : 5px;
+  
+  }
+  </style>
   <script>
     'use strict';
     
@@ -118,6 +144,26 @@
         document.myform.submit();
       }
     }
+		
+		// 장바구니에서 전체주문
+    function order2(){
+			
+      for(let i=0; i<myform.idxChecked.length; i++) {
+        myform.idxChecked[i].checked = !myform.idxChecked[i].checked;
+      }
+      onTotal();
+
+      document.getElementById("idxs").value = idxs;
+      document.myform.baesong.value=document.getElementById("baesong").value;
+      
+      if(document.getElementById("lastPrice").value==0){
+        alert("장바구니에서 주문처리할 상품을 선택해주세요!");
+        return false;
+      } 
+      else {
+        document.myform.submit();
+      }
+    }
     
 		// 천단위마다 쉼표처리
     function numberWithCommas(x) {
@@ -126,8 +172,7 @@
 		
 		
 		function numChange(idx){
-			var num = document.getElementById("optionNum"+idx).value;
-			//alert(idx + "/" + num);
+			let num = document.getElementById("optionNum"+idx).value;
 			$.ajax({
 				type : "post",
 				url : "${ctp}/dbShop/dbCartNumChange",
@@ -135,13 +180,10 @@
 					idx : idx,
 					num : num
 				},
-				success:function(res) {
-					if(res == "1"){
+				success:function() {
+					
 						location.reload();
-					}
-					else{
-						alert("변경실패");
-					}
+			
 				},
 				error:function(){
 					//alert("전송오류인데 값은 바뀜??");
@@ -222,21 +264,20 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <p><br/></p>
 <div class="container">
-  <h2 class="text-center">CART</h2>
-  <h6 class="text-center">장바구니는 1개월 간 보관됩니다.</h6>
-  
-	<br/>
+  <div class="text-center" style="font-size:25px;">장바구니</div>
+	
+	<div class="tbb">  
 	<form name="myform" method="post">
-	<table class="table text-center" style="margin: auto; width:90%">
+	<table class="table text-center" style="width:800px">
 		<tr>
 			<td><input type="button" id="idxCheck" class="btn btn-outline-dark" value="선택삭제" onclick="idxDelete()" /></td>
 		</tr>
-	  <tr class="table-dark text-dark">
-	    <th><input type="checkbox" id="allcheck" onClick="allCheck()" class="m-2"/></th>
-	    <th colspan="2">상품정보</th>
-	    <th>수량</th>
-	    <th>주문금액</th>
-	    <th></th>
+	  <tr class="text-dark bbtn" style="background-color:#c9c2bc">
+	    <th style="width:10%"><input type="checkbox" id="allcheck" onClick="allCheck()" class="m-2"/></th>
+	    <th style="width:45%" colspan="2">상품</th>
+	    <th style="width:10%">수량</th>
+	    <th style="width:25%">금액</th>
+	    <th style="width:10%"></th>
 	  </tr>
 	  <tr><td class="p-0 m-0"></td></tr>  
 	  <!-- 장바구니 목록출력 -->
@@ -244,20 +285,20 @@
 	  <c:forEach var="listVO" items="${cartListVOS}">
 	    <tr align="center">
 	      <td><input type="checkbox" name="idxChecked" id="idx${listVO.idx}" value="${listVO.idx}" onClick="onCheck()" /></td>
-	      <td><a href="${ctp}/dbShop/dbProductContent?idx=${listVO.productIdx}"><img src="${ctp}/dbShop/product/${listVO.thumbImg}" width="50px"/></a></td>
-	      <td align="left">
+	      <td><a href="${ctp}/dbShop/dbProductContent?idx=${listVO.productIdx}"><img src="${ctp}/dbShop/product/${listVO.thumbImg}" width="50px"/></a></td>     <td align="left">
+	 
 	        <div class="contFont">
-	          <span><a href="${ctp}/dbShop/dbProductContent?idx=${listVO.productIdx}">${listVO.productName}</a></span><br/></div>
+	         	<span><a href="${ctp}/dbShop/dbProductContent?idx=${listVO.productIdx}"><font size="2"><b>${listVO.productName}</b></font></a></span><br/></div>
 	        <div style="font-size:12px">
-	            &nbsp;&nbsp;ㆍ${listVO.optionName} 
+	            &nbsp;옵션&nbsp;[${listVO.optionName}] 
 	        </div>
 	      </td>
-	      <td style= width:20%>
+	      <td >
 	      	 <input type="number" class="optionNum" id="optionNum${listVO.idx}" value="${listVO.optionNum}" size="1" min="1" max="10" onchange="numChange(${listVO.idx})"/>
 	      </td>
 	      <td>
 	        <div class="text-center">
-		        <input type="number" class="optionPrice" id="optionPrice${listVO.idx}" value="${listVO.optionPrice*listVO.optionNum}" readonly/>원<br/><br/>
+		        <input type="number" class="optionPrice" id="optionPrice${listVO.idx}" value="${listVO.optionPrice*listVO.optionNum}" readonly/>원&nbsp;&nbsp;&nbsp;<br/><br/>
 		        <input type="hidden" id="totalPrice${listVO.idx}" value="${listVO.totalPrice}"/>
 	        </div>
 	      </td>
@@ -276,28 +317,40 @@
     <input type="hidden" name="baesong"/>
     <input type="hidden" name="idxs" id="idxs" />
 	</form>
-  <p class="text-center">
-    5만원 이상 구매 시 배송비 무료!
-  </p>
-	<table class="table-borderless text-right" style="margin:auto">
-	  <tr>
-	    <th>상품금액</th>
-	    <td><input type="text" id="total" value="0" class="totSubBox form-control" readonly/></td>
-	  </tr>
-	  <tr>
-	    <th>배송비</th>
-	    <td><input type="text" id="baesong" value="0" class="totSubBox form-control" readonly/></td>
-	  </tr>
-	  <tr>
-	    <th>총 결제금액</th>
-	    <td><input type="text" id="lastPrice" value="0" class="totSubBox form-control" readonly/></td>
-	  </tr>
-	</table>
-	<br/>
-	<div class="text-center">
-	  <button class="btn btn-outline-dark p-3 pr-5 pl-5" onClick="order()">주문하기</button> &nbsp;
+ <div class="tb">
+	  <div class="tb1">
+			<table class="table-borderless text-right" style="margin:auto">
+			  <tr>
+			    <th>상품금액</th>
+			    <td><input type="text" id="total" value="0" class="totSubBox form-control" readonly/></td>
+			  </tr>
+			  <tr>
+			    <th>배송비</th>
+			    <td><input type="text" id="baesong" value="0" class="totSubBox form-control" readonly/></td>
+			  </tr>
+			  <tr>
+			    <th>총 결제금액</th>
+			    <td><input type="text" id="lastPrice" value="0" class="totSubBox form-control" readonly/></td>
+			  </tr>
+			</table>
+		</div>
+		<p><br/></p>
+		<div class="tb2">
+		  <p class="text-center">
+		    <font size="2px">5만원 이상 구매 시 배송비 무료!</font>
+		  </p>
+			<div class="text-center">
+			  <button class="bbtn p-3 pr-5 pl-5" onClick="order()" style="background-color:#c9c2bc">선택상품 주문</button> &nbsp;
+			</div>
+			<div class="text-center">
+			  <button class="bbtn p-3 pr-5 pl-5 mt-2" onClick="order2()" style="background-color:#c9c2bc">전체상품 주문</button> &nbsp;
+			</div>
+		</div>
 	</div>
 </div>
+</div>
+<p><br/></p>
+<p><br/></p>
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>

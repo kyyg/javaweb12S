@@ -68,13 +68,13 @@
   </table>
   <table class="table table-bordered">
     <tr>
-      <th>글쓴이</th>
+      <th>작성자</th>
       <td>${vo.nickName}</td>
-      <th>글쓴날짜</th>
+      <th>작성날짜</th>
       <td>${fn:substring(vo.WDate,0,fn:length(vo.WDate)-2)}</td>
     </tr>
     <tr>
-      <th>글제목</th>
+      <th>제목</th>
       <td colspan="3">${vo.title}</td>
     </tr>
     <tr>
@@ -83,7 +83,7 @@
       <td>${vo.readNum}</td>
     </tr>
     <tr>
-      <th>글내용</th>
+      <th>내용</th>
       <td colspan="3" style="height:220px">${fn:replace(vo.content, newLine, "<br/>")}</td>
     </tr>
     <tr>

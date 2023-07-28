@@ -10,13 +10,26 @@
   <title>paymentResult.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
   <style>
-  	#orderOk{
-  		width: 600px;
-  		height:300px;
-  		border : solid 1px gray;
-  		border-radius : 10px;
-  		background-color:#eee;
-  	}
+  
+	#orderOk{
+		width: 680px;
+		height:400px;
+		border : solid 1px #bdb0a3;
+		border-radius : 10px;
+		padding-bottom : 60px;
+		background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(229, 221, 214));
+		margin-right:10px;
+	}
+	
+  .bbtn{
+  background-color:#fff;
+  border:0px;
+  border-radius: 5px;
+  width:200px;
+  height : 40px;
+  }
+	  	
+  	
   </style>
   <script>
 	  function nWin(orderIdx) {
@@ -34,15 +47,11 @@
 	  <tr style="margin:0 auto;">
 			<td style="width:700px; height:100px;" class="text-center">
 				<div id="orderOk" class="mb-5 mt-5 pt-5">
-				<br/>
-					<hr/>
-					<font size="5">소중한 주문이 접수되었습니다.</font><br/>
+					<div class="text-center mt-5 mb-5"><img src="${ctp}/images/titleLogo.png" width="350px;" /></div>
+					<font size="4">고객님의 소중한 주문이 접수되었습니다.</font><br/>
 					<br/>
-					<hr/>
-					
-					<p class="text-center"><a href="${ctp}/dbShop/dbProductList" class="btn btn-outline-dark">메인화면으로</a> &nbsp;
-			    <a href="${ctp}/dbShop/dbMyOrder" class="btn btn-outline-dark">주문목록으로</a>
-			  </p>
+			    <button type="button" onclick="location.href='${ctp}/dbShop/dbProductList';" class="bbtn">메인화면</button>
+			    <button type="button" onclick="location.href='${ctp}/dbShop/dbMyOrder';" class="bbtn">주문목록</button>
 			  <br/>
 				</div>
 			</td>
@@ -50,10 +59,10 @@
   </table>
   
   <table class="table table-borderless" style="width:700px; margin:0 auto;">
-    <tr style="text-align:center;background-color:#ccc;">
+    <tr style="text-align:center;background-color:#ded9d5;">
       <th style="width:15%">주문번호</th>
-      <th style="width:25%">상품</th>
-      <th style="width:35%">상품/옵션 내역</th>
+      <th style="width:30%">상품</th>
+      <th style="width:30%">옵션</th>
       <th style="width:15%">금액</th>
     </tr>
     <c:forEach var="vo" items="${orderVOS}">

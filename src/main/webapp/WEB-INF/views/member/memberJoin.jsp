@@ -174,9 +174,9 @@
 <body>
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
-<div class="container">
+<div class="container" style="width:700px; margin:0 auto;">
   <form name="myform" method="post" class="was-validated">
-    <h2>회 원 가 입</h2>
+    <div class="text-center"><font size="5">회원가입</font></div>
     <br/>
     <div class="form-group">
       <label for="mid">아이디 : &nbsp; &nbsp;<input type="button" value="아이디 중복체크" id="midBtn" class="btn btn-secondary btn-sm" onclick="idCheck()"/></label>

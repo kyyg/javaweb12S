@@ -17,9 +17,10 @@
 	<style>
 	
 	#category{
-	background-color:black;
-	color:white;
-	padding : 0px 2px 0px 2px;
+	background-color:white;
+	color:black;
+	border : solid 1px black;
+	padding : 3px 3px 3px 3px;
 	}
 	
 	a {
@@ -35,6 +36,18 @@
   bottom: 20px; /* 원하는 여백 값으로 조정 가능 */
   right: 20px; /* 원하는 여백 값으로 조정 가능 */
 	}
+	
+	 .bestBtn-wrapper{
+    position: relative;
+    display: inline-block;
+    margin-top: 0px; 
+  }
+  #bestBtn{
+    position: absolute;
+    top: 444px;
+    left: 50;
+  } 
+	
 
 	</style>
 	<script>
@@ -79,7 +92,7 @@
 		 	</c:forEach> 
 		  <h3 class="text-center">
 		  <c:if test="${part == '전체'}"></c:if>
-		  <c:if test="${part != '전체'}">${part}</c:if>
+		  <c:if test="${part != '전체'}"></c:if>
 		  </h3>
 		</c:if>
 		<c:if test="${searchString != ''}">
@@ -125,12 +138,17 @@
    <c:set var="productDetail" value="${fn:split(vo.detail,'/')}" />
      <div class="mr-3">
        <div style="text-align:center">
+       
          <a href="${ctp}/dbShop/dbProductContent?idx=${vo.idx}">
+         
+         
          	<c:if test="${vo.productStatus == '품절'}">
            	<img src="${ctp}/dbShop/product/${vo.FSName}" class="w3-grayscale-max" width="330px" height="330px" style="opacity:40%" />
             	<div class="mt-2"><font size="2">${vo.productName}<span class="badge badge-danger ml-1">품절</span></font></div>
            </c:if>
+           
          	<c:if test="${vo.productStatus != '품절'}">
+         		<!-- <button class="w3-button w3-red bestBtn" id="bestBtn">Best</button> -->
            	<img src="${ctp}/dbShop/product/${vo.FSName}" width="330px" height="330px"/>
            	<div class="mt-2">
             	<font size="2"><b>${vo.productName}</b>
@@ -138,9 +156,11 @@
 								<c:if test="${vo.day_diff > 10}"></c:if>
             	</font>
            	</div>
+         </c:if>
+         
          </a>
-           </c:if>
            <div><font size="2"><fmt:formatNumber value="${vo.mainPrice}" pattern="#,###"/>원</font></div>
+           <div style="border-bottom:solid 2px gray" class="pt-1 pb-1 mb-1"></div>
            <div>
           	 <c:forEach var="i" begin="0" end="${fn:length(productDetail)-1}">
              <font size="2">

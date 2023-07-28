@@ -295,6 +295,18 @@ public class MessageController {
 			model.addAttribute("msg", "QnA에 글이 삭제되었습니다.");
 			model.addAttribute("url", "/qna/qnaList");
 		}
+		else if(msgFlag.equals("boardDeletePwdNo")) {
+			model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
+			model.addAttribute("url", "/board/boardList");
+		}
+		else if(msgFlag.equals("adminNoticeDeleteOk")) {
+			model.addAttribute("msg", "공지가 삭제되었습니다.");
+			model.addAttribute("url", "/admin/adminNoticeList");
+		}
+		else if(msgFlag.equals("adminNoticeUpdateOk")) {
+			model.addAttribute("msg", "공지가 수정 되었습니다.");
+			model.addAttribute("url", "/admin/adminNoticeList");
+		}
 		
 		
 		return "include/message";

@@ -9,6 +9,7 @@
   <title>memberLogin.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
 </head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>		<!-- 카카오로그인 js파일 -->
   <script>
 		// 카카로그인을 위한 자바스크립트 키
@@ -35,38 +36,65 @@
 		}
 
   </script>
+  
+  <style>
+  
+  .inp{
+    item-align : center;
+  	border : solid 0px #ccc;
+  	width : 300px;
+  	height : 45px;
+  	background-color:#eee;
+  	margin-left : 70px;
+  }
+  
+  .loginBtn{
+  background-color:#ded9d5;
+  border:0px;
+  border-radius: 5px;
+  width:300px;
+  height : 50px;
+  }
+  
+  .finds{
+  border : 1px solid #bfb6b2;
+  border-radius : 4px;
+  padding : 5px;
+  }
+  
+  </style>
 <body>
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
 <div class="container">
   <div class="modal-dialog">
-	  <div class="modal-content p-4">
-		  <h2 class="text-center">로그인</h2>
+	  <div class="modal-content p-4" style="background-color:#f8f8f8">
+		  <div class="text-center mt-5 mb-5"><img src="${ctp}/images/titleLogo.png" width="250px;" /></div>
 		  <form name="myform" method="post" class="was-validated">
 		    <div class="form-group">
-		      <label for="mid">회원 아이디</label>
-		      <input type="text" class="form-control" name="mid" id="mid" value="${mid}" placeholder="아이디를 입력하세요." required autofocus />
-		      <div class="valid-feedback">Ok!!!</div>
-		      <div class="invalid-feedback">아이디를 입력해 주세요.</div>
+		      <label for="mid"></label>
+		      <input type="text" class="w3-bottombar inp text-center" name="mid" id="mid" value="${mid}" placeholder="아이디를 입력하세요." required autofocus />
+		      <div class="valid-feedback"></div>
+		      <div class="invalid-feedback"></div>
 		    </div>
 		    <div class="form-group">
-		      <label for="pwd">비밀번호</label>
-		      <input type="password" class="form-control" name="pwd" id="pwd" value="1234" placeholder="Enter email" required />
-		      <div class="valid-feedback">Ok!!!</div>
-		      <div class="invalid-feedback">비밀번호를 입력해 주세요.</div>
+		      <label for="pwd"></label>
+		      <input type="password" class="w3-bottombar inp text-center" name="pwd" id="pwd" value="1234" placeholder="Enter email" required />
+		      <div class="valid-feedback"></div>
+		      <div class="invalid-feedback"></div>
 		    </div>
+		    <div style="width:370px;" class="text-right mt-0 pt-0"><input type="checkbox" name="idSave" checked />&nbsp;<font size="2">아이디 저장</font></div>
  				<div class="form-group text-center">
-		    	<button type="submit" class="btn btn-outline-dark mr-1">로그인</button>
-		    	<button type="button" onclick="location.href='${ctp}/member/memberJoin';" class="btn btn-outline-dark">회원가입</button>
+		    	<button type="submit" class="mr-1 mt-3 loginBtn">로그인</button>
+		    	<%-- <button type="button" onclick="location.href='${ctp}/member/memberJoin';" class="btn btn-outline-dark">회원가입</button> --%>
 		    </div>
 		    <div class="text-center mb-3">
-		      <div><a href="javascript:kakaoLogin();"><img src="${ctp}/images/kakao_login_medium_narrow.png" width="150px" /></a></div>			      
+		      <div><a href="javascript:kakaoLogin();"><img src="${ctp}/images/kakaoLogin2.png" width="65px" /></a></div>			      
 			  </div>	
 		    <div class="row text-center" style="font-size:12px">
-		      <span class="col"><input type="checkbox" name="idSave" checked />아이디 저장</span>
 		      <span class="col">
-		        [<a href="${ctp}/member/memberIdFind">아이디찾기</a>] /
-		        [<a href="${ctp}/member/memberPwdFind">비밀번호찾기</a>]
+		       <a href="${ctp}/member/memberIdFind"><span class="finds">아이디 찾기</span></a>
+		       <a href="${ctp}/member/memberPwdFind"><span class="finds">비밀번호 찾기</span></a>
 		      </span>
 		    </div>
 		  </form>

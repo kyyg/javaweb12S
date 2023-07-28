@@ -68,7 +68,9 @@
 <p><br/></p>
 <div class="container">
 <jsp:include page="/WEB-INF/views/include/nav2.jsp" />
-	<hr/><h3 class="text-center">내 리뷰글 관리</h3><hr/>
+<hr/>
+<div class="text-center"><font size="5">나의 리뷰</font></div>
+<hr/>
 	 <!-- 리뷰 항목 -->
 	<div class="text-right mb-2" style="width:1000px;">
 	</div>

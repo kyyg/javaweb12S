@@ -20,14 +20,14 @@
     
     function answerCheck() {
     	let tempStr = '<br/>';
-    	tempStr += '<h3 class="text-center">답 변 글 달 기</h3>';
+    	tempStr += '<h3 class="text-center">답변 작성</h3>';
     	tempStr += '<table class="table">';
     	tempStr += '<tr>';
   		tempStr += '    <th class="text-center">글쓴이</th>';
 			tempStr += '  <td><input type="text" name="nickName" value="${sNickName}" readonly class="form-control"/></td>';
 			tempStr += '</tr>';
     	tempStr += '<tr>';
-    	tempStr += '  <th class="text-center">답변글제목</th>';
+    	tempStr += '  <th class="text-center">답변 제목</th>';
     	/* tempStr += '  <td><input type="text" name="title" value="(Re) ${vo.title}" size="60" required class="form-control"/></td>'; */
     	tempStr += '  <td class="text-left">(Re) ${vo.title}</td>';
     	tempStr += '</tr>';
@@ -36,7 +36,7 @@
     	tempStr += '  <td><input type="text" name="email" value="${email}" size="60" class="form-control" required/></td>';
     	tempStr += '  </tr>';
     	tempStr += '<tr>';
-    	tempStr += '  <th class="text-center">글내용</th>';
+    	tempStr += '  <th class="text-center">내용</th>';
     	tempStr += '  <td><textarea rows="6" name="content" required class="form-control"></textarea></td>';
     	tempStr += '</tr>';
     	tempStr += '<tr>';
@@ -98,41 +98,25 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp"/>
 <div class="container">
   <p><br/></p>
-  <h2 class="text-center">글 내 용 보 기</h2>
   <br/>
-  <table class="table table-bordered">
-    <tr>
-      <th class="text-center">글쓴이</th>
-      <td>${vo.nickName}</td>
-      <th class="text-center">글쓴날짜</th>
-      <td>${fn:substring(vo.WDate,0,fn:length(vo.WDate)-3)}</td>
-    </tr>
-    <tr>
-      <th class="text-center">Email</th>
-      <td colspan="3" class="text-left">${vo.email}</td>
-    </tr>
+  <table class="table table-borderless" style="width:800px; margin:0 auto;">
+  	<tr>
+  		<td colspan="3" class="text-left" style="border-bottom:5px solid #c9c2bc; background-color:#eee;"><font size="4"><b>${vo.title}</b></font></td>
+  	</tr>
+  	<tr style="border-bottom:2px solid #c9c2bc;">
+  		<td style="width:20%" class="text-left"><b>${vo.nickName}</b></td>
+  		<td style="width:50%" class="text-left">${fn:substring(vo.WDate,0,fn:length(vo.WDate)-2)}</td>
+  		<td style="width:30%" class="text-right">${vo.email}</td>
+  	</tr>
     <c:if test="${vo.qnaSw == 'a'}">
 	    <tr>
 	      <th class="text-center">원본글제목</th>
 	      <td colspan="3" style="text-align:left;">${title}</td>
 	    </tr>
     </c:if>
-    <tr>
-      <th class="text-center">글제목</th>
-      <td colspan="3" style="text-align:left;">${vo.title}</td>
-    </tr>
-    <tr>
-      <th class="text-center">글내용</th>
-      <td colspan="3" style="height:200px; text-align:left;">${fn:replace(vo.content,newLine,"<br/>")}</td>
-    </tr>
-    <%-- 
-    <c:if test="${!empty vo.pwd}">
-	    <tr>
-	      <th class="text-center">비밀번호</th>
-	      <td colspan="3" style="text-align:left;"><input type="password" name="pwd"/></td>
-	    </tr>
-    </c:if>
-     --%>
+  	<tr style="border-bottom:5px solid #c9c2bc;">
+  		<td colspan="3">${fn:replace(vo.content, newLine, "<br/>")}</td>
+  	</tr>
     <tr>
       <td colspan="4" style="text-align:center;">
         <c:if test="${vo.qnaSw == 'q'}">

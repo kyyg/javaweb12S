@@ -1,5 +1,6 @@
 package com.spring.javaweb12S;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,9 +108,10 @@ public class AdminController {
 		model.addAttribute("weekBoard",weekBoard);
 		model.addAttribute("weekClass",weekClass);
 		
-		// 재고현황
+		// 재고현황(10개 미만)
 		List<DbOptionVO> optionVOS = adminService.getAllOptionList(); 
 		model.addAttribute("optionVOS",optionVOS);
+		model.addAttribute("optionVOSsize",optionVOS.size());
 		
 		return "admin/index";
 	}
@@ -569,7 +571,7 @@ public class AdminController {
 	// 카카오맵 저장한거 보기, 삭제하기...
 	@RequestMapping(value = "/kakaomap/kakaoStoreList", method = RequestMethod.GET)
 	public String storeListGet(Model model,
-			@RequestParam(name="store_name", defaultValue = "공원", required=false) String store_name) {
+			@RequestParam(name="store_name", defaultValue = "그린 아트 스튜디오", required=false) String store_name) {
 		KakaoAddressVO vo = adminService.getKakaoAddressName(store_name);
 		List<KakaoAddressVO> vos = adminService.getKakaoAddressList();
 		
@@ -792,6 +794,39 @@ public class AdminController {
 		return "admin/adminBoard/adminQnaList";
 	}
 	
+	
+	//ckeditor폴더의 파일 리스트 보여주기
+	@SuppressWarnings("deprecation")
+	@RequestMapping(value = "/fileList", method = RequestMethod.GET)
+	public String fileListGet(HttpServletRequest request, Model model) {
+		String realPath = request.getRealPath("/resources/data/ckeditor/");
+		
+		String[] files = new File(realPath).list();
+		
+		model.addAttribute("files", files);
+		
+		return "admin/fileList";
+	}
+	
+	
+	//선택된 파일 삭제처리하기
+	@SuppressWarnings("deprecation")
+	@ResponseBody
+	@RequestMapping(value = "/fileSelectDelete", method = RequestMethod.POST)
+	public String fileSelectDeleteGet(HttpServletRequest request, String delItems) {
+		// System.out.println("delItems : " + delItems);
+		String realPath = request.getRealPath("/resources/data/ckeditor/");
+		delItems = delItems.substring(0, delItems.length()-1);
+		
+		String[] fileNames = delItems.split("/");
+		
+		for(String fileName : fileNames) {
+			String realPathFile = realPath + fileName;
+			new File(realPathFile).delete();
+		}
+		
+		return "1";
+	}
 	
 	
 	
