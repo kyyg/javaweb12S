@@ -96,7 +96,7 @@
   </update>
   
   <update id="setAdminBoardAnswerChange">
-  	 update board set answer=#{answer} where idx = #{idx};
+  	 update board set openSw=#{openSw} where idx = #{idx};
   </update>
 
   

@@ -32,7 +32,7 @@
 <div class="container">
 <jsp:include page="/WEB-INF/views/include/nav2.jsp" />
 <hr/>
-<div class="text-center"><font size="5">이벤느 신청 내역</font></div>
+<div class="text-center"><font size="5">이벤트 신청 내역</font></div>
 <hr/>
 	<table class="table-hover table-borderless text-center" style="width:1000px; margin:0 auto; ">
 		<tr class="text-dark" style="background-color:#c9aea2">

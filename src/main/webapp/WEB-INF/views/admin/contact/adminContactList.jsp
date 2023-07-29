@@ -22,7 +22,7 @@
 <link
     href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-
+<link rel="stylesheet" href="${ctp}/font/font.css">
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -87,7 +87,7 @@
 	</form>
   <br/>
 	<table class="table table-hover">
-		<tr class="table-dark text-dark"> 
+		<tr class="text-dark" style="background-color:#c9c2bc;"> 
 			<th>번호</th>
 			<th>제목</th>
 			<th>작성자</th>

@@ -57,7 +57,7 @@ public interface BoardDAO {
 
 	public void setBoardReplyUpdate(@Param("idx") int idx, @Param("content") String content, @Param("hostIp") String hostIp);
 
-	public String setAdminBoardAnswerChange(@Param("answer")String answer, @Param("idx") int idx);
+	public String setAdminBoardAnswerChange(@Param("openSw")String openSw, @Param("idx") int idx);
 
 	public List<BoardVO> getUserBoard(@Param("mid") String mid);
 }

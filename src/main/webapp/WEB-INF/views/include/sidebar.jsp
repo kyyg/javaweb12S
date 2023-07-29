@@ -16,10 +16,9 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+        <div class="pt-2 pb-2">
+            <img src="${ctp}/images/titleLogo2.png" width=170px; />
         </div>
-        <div class="sidebar-brand-text mx-3">관리자</div>
     </a>
 
     <!-- Divider -->
@@ -29,7 +28,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="${ctp}/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>메인화면으로</span></a>
+            <span>홈페이지로 이동</span></a>
     </li>
 
     <!-- Divider -->
@@ -101,8 +100,8 @@
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">등록</h6>
                 <a class="collapse-item" href="${ctp}/dbShop/dbCategory">카테고리 등록</a>
-                <a class="collapse-item" href="${ctp}/dbShop/dbOption">옵션 등록</a>
-                <a class="collapse-item" href="${ctp}/dbShop/dbProduct">상품 등록</a>
+                <a class="collapse-item" href="${ctp}/dbShop/dbProduct">상품 등록/관리</a>
+                <a class="collapse-item" href="${ctp}/dbShop/dbOption">상품옵션 등록/관리</a>
             </div>
         </div>
     </li>
@@ -124,9 +123,9 @@
 		        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 		            <div class="bg-white py-2 collapse-inner rounded">
 		                <h6 class="collapse-header">게시판</h6>
-		                <a class="collapse-item" href="${ctp}/admin/adminNoticeList">공지 관리</a>
-		                <a class="collapse-item" href="${ctp}/admin/adminQnaList">문의 관리</a>
-		                <a class="collapse-item" href="${ctp}/admin/adminBoardList">이벤트 후기 관리</a>
+		                <a class="collapse-item" href="${ctp}/admin/adminNoticeList">공지 게시판</a>
+		                <a class="collapse-item" href="${ctp}/admin/adminQnaList">문의 게시판</a>
+		                <a class="collapse-item" href="${ctp}/admin/adminBoardList">이벤트 후기 게시판</a>
 		            </div>
 		        </div>
 		    </li>

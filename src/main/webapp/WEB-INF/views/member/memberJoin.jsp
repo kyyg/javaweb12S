@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>memberJoin.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="${ctp}/js/woo.js"></script>
   <script>
@@ -170,6 +171,17 @@
     }
     
   </script>
+  <style>
+    
+  .inp{
+    item-align : center;
+  	border : solid 0px #ccc;
+  	width : 300px;
+  	height : 45px;
+  	background-color:#eee;
+  	margin-left : 70px;
+  }
+  </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />

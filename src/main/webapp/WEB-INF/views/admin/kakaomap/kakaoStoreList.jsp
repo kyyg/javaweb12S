@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>kakaoEx2.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+  <link rel="stylesheet" href="${ctp}/font/font.css">
   	<style>
 		#menu {
 		  position: fixed;
@@ -56,9 +57,9 @@
 <p><br/></p>
 <div class="menu" id="menu">
 	<div class="text-center card-hover" id="accordion">
-  <h5 class="text-white"><a href="${ctp}/admin/index">관리자</a></h5>
+  <h5 class="text-white">관리자 페이지</h5>
   <hr/>
-  <p><a href="${ctp}/" target="_top" class="text-white">메인화면으로</a></p>
+  <p><a href="${ctp}/" target="_top" class="text-white">홈페이지로 이동</a></p>
 	<br/>
 
   <div class="card">
@@ -82,10 +83,10 @@
     </div>
     <div id="collapse2" class="collapse" data-parent="#accordion">	
       <div class="card-body m-2 p-1">
-        <a href="${ctp}/admin/adminOrder" target="adminContent">전체 주문목록</a>
+        <a href="${ctp}/admin/adminOrder" target="adminContent">전체주문 조회</a>
       </div>
       <div class="card-body m-2 p-1">
-        <a href="${ctp}/admin/adminCancelOrder" target="adminContent">취소/환불 목록</a>
+        <a href="${ctp}/admin/adminCancelOrder" target="adminContent">취소/환불 조회</a>
       </div>
     </div>
   </div>
@@ -97,17 +98,17 @@
       </a>
     </div>
     <div id="collapse3" class="collapse" data-parent="#accordion">	
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/dbShop/dbProduct" target="adminContent">상품 등록/관리</a>
+      </div>
      <div class="card-body m-2 p-1">
-        <a href="${ctp}/dbShop/dbCategory" target="adminContent">상품분류등록</a>
+        <a href="${ctp}/dbShop/dbCategory" target="adminContent">카테고리 등록</a>
       </div>
       <div class="card-body m-2 p-1">
-        <a href="${ctp}/dbShop/dbProduct" target="adminContent">상품등록관리</a>
+        <a href="${ctp}/dbShop/dbShopList" target="adminContent">상품등록 조회</a>
       </div>
       <div class="card-body m-2 p-1">
-        <a href="${ctp}/dbShop/dbShopList" target="adminContent">상품등록조회</a>
-      </div>
-      <div class="card-body m-2 p-1">
-        <a href="${ctp}/dbShop/dbOption" target="adminContent">옵션등록관리</a>
+        <a href="${ctp}/dbShop/dbOption" target="adminContent">상품옵션 등록/관리</a>
       </div>
     </div>
   </div>
@@ -118,15 +119,45 @@
         게시판 관리
       </a>
     </div>
-    <div id="collapse4" class="collapse" data-parent="#accordion">	<!-- 처음부터 메뉴 보이게 하려면?  class="collapse show" -->
+    <div id="collapse4" class="collapse" data-parent="#accordion">	
       <div class="card-body m-2 p-1">
         <a href="${ctp}/admin/adminNoticeList" target="adminContent">공지 게시판</a>
       </div>
       <div class="card-body m-2 p-1">
-        <a href="${ctp}/admin/adminBoardList" target="adminContent">문의 게시판</a>
+        <a href="${ctp}/admin/adminQnaList" target="adminContent">문의 게시판</a>
       </div>
       <div class="card-body m-2 p-1">
-        <a href="${ctp}/admin/adminReviewList" target="adminContent">리뷰 게시판</a>
+        <a href="${ctp}/admin/adminBoardList" target="adminContent">이벤트 후기 게시판</a>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="card-header bg-white m-0 p-2">
+      <a class="card-link" data-toggle="collapse" href="#collapse10">
+        리뷰 관리
+      </a>
+    </div>
+    <div id="collapse10" class="collapse" data-parent="#accordion">	
+      <div class="card-body m-2 p-1">
+         <a href="${ctp}/admin/adminReviewList" target="adminContent">일반 리뷰 관리</a>
+      </div>
+      <div class="card-body m-2 p-1">
+        <a href="${ctp}/admin/adminReportReviewList" target="adminContent">신고 리뷰 관리</a>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="card">
+    <div class="card-header bg-white m-0 p-2">
+      <a class="card-link" data-toggle="collapse" href="#collapse12">
+        제휴 문의
+      </a>
+    </div>
+    <div id="collapse12" class="collapse" data-parent="#accordion">	
+      <div class="card-body m-2 p-1">
+         <a href="${ctp}/admin/adminContactList" target="adminContent">제휴 문의 목록</a>
       </div>
     </div>
   </div>
@@ -148,8 +179,24 @@
       </div>
     </div>
   </div>
+    
+  
+   <div class="card">
+    <div class="card-header bg-white m-0 p-2">
+      <a class="card-link" data-toggle="collapse" href="#collapse11">
+        파일 관리
+      </a>
+    </div>
+    <div id="collapse11" class="collapse" data-parent="#accordion">	
+      <div class="card-body m-2 p-1">
+         <a href="${ctp}/admin/fileList" target="adminContent">파일 관리</a>
+      </div>
+    </div>
+  </div>
 </div>
 </div>
+
+
 <div class="container">
 	<hr/>
 	<div>

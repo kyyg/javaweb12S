@@ -86,7 +86,6 @@
 		    <div style="width:370px;" class="text-right mt-0 pt-0"><input type="checkbox" name="idSave" checked />&nbsp;<font size="2">아이디 저장</font></div>
  				<div class="form-group text-center">
 		    	<button type="submit" class="mr-1 mt-3 loginBtn">로그인</button>
-		    	<%-- <button type="button" onclick="location.href='${ctp}/member/memberJoin';" class="btn btn-outline-dark">회원가입</button> --%>
 		    </div>
 		    <div class="text-center mb-3">
 		      <div><a href="javascript:kakaoLogin();"><img src="${ctp}/images/kakaoLogin2.png" width="65px" /></a></div>			      

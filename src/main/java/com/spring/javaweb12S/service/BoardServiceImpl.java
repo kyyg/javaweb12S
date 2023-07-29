@@ -259,8 +259,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void setAdminBoardAnswerChange(String answer, int idx) {
-		boardDAO.setAdminBoardAnswerChange(answer, idx);
+	public void setAdminBoardAnswerChange(String openSw, int idx) {
+		boardDAO.setAdminBoardAnswerChange(openSw, idx);
 	}
 
 	@Override

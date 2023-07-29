@@ -19,7 +19,7 @@
 <link
     href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-
+<link rel="stylesheet" href="${ctp}/font/font.css">
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -29,7 +29,7 @@
   // part선택시 해당 part만 불러오기
   function partCheck() {
   	let part = partForm.part.value;
-  	location.href = "${ctp}/board/boardList?part="+part;
+  	location.href = "${ctp}/admin/adminBoardList?part="+part;
   }
   
   
@@ -116,7 +116,37 @@
     })  
 	}
   
-  
+
+    function changeAnswer(e){
+   	  let ans = confirm("선택한 게시글을 비공개로 변경하시겠습니까?");
+   	  	if(!ans) {
+   	  		location.reload();
+   	  		return false;
+   	  	}
+   		let item = e.value.split("/");
+    	
+    	$.ajax({
+    		type : "post",
+    		url : "${ctp}/admin/adminBoardAnswerChange",
+    		data : {
+    			openSw : item[0],
+    			idx : 	 item[1]
+    			},
+    		success : function(res){
+    			if(res == "1") {
+    				alert("상태가 변경되었습니다.");
+    				location.reload();
+    			}
+    			else{
+    				alert("상태 변경 실패.");
+    				location.reload();
+    			}
+    		},
+    		error:function(){
+    			location.reload();		
+    		}
+    	});
+    }
   </script>
 </head>
 <body id="page-top">
@@ -157,32 +187,22 @@
           </select>
         </form>
       </td>
-      <td class="text-right">
-        <!-- 한페이지 분량처리 -->
-        <select name="pageSize" id="pageSize" onchange="pageCheck()">
-          <option <c:if test="${pageVO.pageSize == 3}">selected</c:if>>3</option>
-          <option <c:if test="${pageVO.pageSize == 5}">selected</c:if>>5</option>
-          <option <c:if test="${pageVO.pageSize == 10}">selected</c:if>>10</option>
-          <option <c:if test="${pageVO.pageSize == 15}">selected</c:if>>15</option>
-          <option <c:if test="${pageVO.pageSize == 20}">selected</c:if>>20</option>
-        </select> 건
-      </td>
     </tr>
   </table>
- <input type="button" value="선택삭제" class="btn btn-outline-dark btn-sm ml-3" onclick="idxDelete()" />
+ <input type="button" value="선택삭제" class="btn btn-outline-dark btn-sm ml-3 mb-3" onclick="idxDelete()" />
   <table class="table table-hover text-center">
-    <tr>
+    <tr style="background-color:#c9c2bc">
       <th></th>
       <th></th>
       <th>분류</th>
       <th>제목</th>
       <th>작성자</th>
       <th>작성날짜</th>
-      <th>조회수</th>
+      <th>공개여부</th>
     </tr>
 	<c:forEach var="vo" items="${vos}" varStatus="st">
     <c:if test="${vo.fixed == 'on'}">
-     <tr  class="table-primary text-dark">
+     <tr  class="table text-dark" style="background-color:#ded9d5">
      	 <td></td>
        <td><span class="badge badge-danger">공지</span></td>
        <td></td>
@@ -196,7 +216,6 @@
            ${vo.day_diff == 0 ? fn:substring(vo.WDate,11,19) : fn:substring(vo.WDate,0,16)}
          </c:if>
        </td>
-       <td>${vo.readNum}</td>
        <td></td>
 	     </tr>
 	   </c:if>
@@ -212,10 +231,7 @@
 	         <a href="${ctp}/admin/adminBoardContent?idx=${vo.idx}&pag=${pageVO.pag}&pageSize=${pageVO.pageSize}">${vo.title}</a>
 	       </td>
 	       <td>
-	         <c:forEach var="i" begin="0" end="${fn:length(vo.mid)-1}">
-	         <c:if test="${i > 2}">${fn:replace(fn:substring(vo.mid,i,i+1),fn:substring(vo.mid,i,i+1),'*')}</c:if>
-	         <c:if test="${i < 2}">${fn:substring(vo.mid,i,i+1)}</c:if>
-	         </c:forEach>
+	       ${vo.mid}
 	       </td> 
 	       <td>
 	         <c:if test="${vo.hour_diff > 24}">${fn:substring(vo.WDate,0,10)}</c:if>
@@ -223,7 +239,14 @@
 	           ${vo.day_diff == 0 ? fn:substring(vo.WDate,11,19) : fn:substring(vo.WDate,0,16)}
 	         </c:if>
 	       </td>
-	       <td>${vo.readNum}</td>
+	       <td>
+		       <select name="answer" id="answer" onchange="changeAnswer(this)">
+		       		<option value="OK/${vo.idx}" ${vo.openSw=="OK" ? "selected" : ""}>공개
+		       		</option>
+		       		<option value="NO/${vo.idx}" ${vo.openSw=="NO" ? "selected" : ""}>비공개
+		       		</option>
+		       	</select>
+	       </td>
 		     </tr>
 		    </c:if>
 	  </c:forEach>

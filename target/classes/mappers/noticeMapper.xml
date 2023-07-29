@@ -32,7 +32,7 @@
   
   
   <insert id="setNoticeInput">
-    insert into notice values (default,#{vo.mid},#{vo.nickName},#{vo.title},#{vo.content},default,default,default);
+    insert into notice values (default,#{vo.mid},#{vo.nickName},#{vo.title},#{vo.content},default,default,#{vo.fixed});
   </insert>
  
   <update id="setNoticeReadNum">

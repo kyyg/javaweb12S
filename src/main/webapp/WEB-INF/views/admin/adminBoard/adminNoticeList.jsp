@@ -19,7 +19,7 @@
 <link
     href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-
+<link rel="stylesheet" href="${ctp}/font/font.css">
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -112,23 +112,13 @@
     <tr>
       <td>
 	      <a href="${ctp}/admin/adminNoticeInput" class="btn btn-outline-dark btn-sm">공지 작성</a>
-<input type="button" value="선택삭제" class="btn btn-outline-dark btn-sm ml-3" onclick="idxDelete()" />
-      </td>
-      <td class="text-right">
-        <!-- 한페이지 분량처리 -->
-        <select name="pageSize" id="pageSize" onchange="pageCheck()">
-          <option <c:if test="${pageVO.pageSize == 3}">selected</c:if>>3</option>
-          <option <c:if test="${pageVO.pageSize == 5}">selected</c:if>>5</option>
-          <option <c:if test="${pageVO.pageSize == 10}">selected</c:if>>10</option>
-          <option <c:if test="${pageVO.pageSize == 15}">selected</c:if>>15</option>
-          <option <c:if test="${pageVO.pageSize == 20}">selected</c:if>>20</option>
-        </select> 건
+					<input type="button" value="선택삭제" class="btn btn-outline-dark btn-sm ml-3" onclick="idxDelete()" />
       </td>
     </tr>
   </table>
   
   <table class="table table-hover text-center">
-    <tr>
+    <tr style="background-color:#c9c2bc">
       <th></th>
       <th></th>
       <th>제목</th>
@@ -139,7 +129,7 @@
     
 	<c:forEach var="vo" items="${vos}" varStatus="st">
 	    <c:if test="${vo.fixed == 'on'}">
-	     <tr  class="table-primary text-dark">	
+	     <tr class="text-dark" style="background-color:#ded9d5">	
 	       <td></td>
 	       <td><span class="badge badge-danger">공지</span></td>
 	       <td class="text-left">

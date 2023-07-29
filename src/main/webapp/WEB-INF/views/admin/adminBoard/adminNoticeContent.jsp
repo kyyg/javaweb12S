@@ -19,7 +19,7 @@
 <link
     href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-
+<link rel="stylesheet" href="${ctp}/font/font.css">
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -62,36 +62,23 @@
 <!-- End of Topbar -->
 <!-- Main Content -->
 <div id="content">
-	<div class="container">
+<div class="container">
   <br/>
-  <table class="table table-borderless m-0 p-0">
-  </table>
-  <table class="table table-bordered">
-    <tr>
-      <th>작성자</th>
-      <td>${vo.nickName}</td>
-      <th>작성날짜</th>
-      <td>${fn:substring(vo.WDate,0,fn:length(vo.WDate)-2)}</td>
-    </tr>
-    <tr>
-      <th>제목</th>
-      <td colspan="3">${vo.title}</td>
-    </tr>
-    <tr>
-
-      <th>조회수</th>
-      <td>${vo.readNum}</td>
-    </tr>
-    <tr>
-      <th>내용</th>
-      <td colspan="3" style="height:220px">${fn:replace(vo.content, newLine, "<br/>")}</td>
-    </tr>
+  <table class="table table-borderless" style="width:1100px; margin:0 auto;">
+  	<tr>
+  		<td colspan="3" class="text-left" style="border-bottom:5px solid #c9c2bc; background-color:#eee;"><font size="4"><b>${vo.title}</b></font></td>
+  	</tr>
+  	<tr style="border-bottom:2px solid #c9c2bc;">
+  		<td style="width:20%" class="text-left"><b>${vo.nickName}</b></td>
+  		<td style="width:50%" class="text-left">${fn:substring(vo.WDate,0,fn:length(vo.WDate)-2)}</td>
+  		<td style="width:30%" class="text-right">조회&nbsp;${vo.readNum}</td>
+  	</tr>
+  	<tr  style="border-bottom:5px solid #c9c2bc;">
+  		<td colspan="3">${fn:replace(vo.content, newLine, "<br/>")}</td>
+  	</tr>
     <tr>
       <td colspan="4" class="text-center">
-        <c:if test="${flag == 'search'}"><input type="button" value="돌아가기" onclick="location.href='${ctp}/notice/noticeSearch?search=${search}&searchString=${searchString}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-outline-dark"/></c:if>
-        <c:if test="${flag == 'searchMember'}"><input type="button" value="돌아가기" onclick="location.href='${ctp}/notice/noticeSearchMember?pag=${pag}&pageSize=${pageSize}';" class="btn btn-outline-dark"/></c:if>
-        <c:if test="${flag != 'search' && flag != 'searchMember'}"><input type="button" value="돌아가기" onclick="location.href='${ctp}/notice/noticeList?pag=${pag}&pageSize=${pageSize}';" class="btn btn-outline-dark"/></c:if>
-        &nbsp;
+        <input type="button" value="돌아가기" onclick="location.href='${ctp}/admin/adminNoticeList'" class="btn btn-outline-dark"/>
       	<c:if test="${sMid == vo.mid || sLevel == 0}">
         	<input type="button" value="수정하기" onclick="location.href='${ctp}/admin/adminNoticeUpdate?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-outline-dark"/> &nbsp;
         	<input type="button" value="삭제하기" onclick="noticeDelete()" class="btn btn-outline-dark"/>
@@ -99,25 +86,6 @@
       </td>
     </tr>
   </table>
-  
-  <c:if test="${flag != 'search' && flag != 'searchMember'}">
-	  <!-- 이전글/ 다음글 처리 -->
-	  <table class="table table-borderless">
-	    <tr>
-	      <td>
-	        <c:if test="${!empty pnVos[1]}">
-	          ☝ <a href="${ctp}/notice/noticeContent?idx=${pnVos[1].idx}&pag=${pag}&pageSize=${pageSize}">다음글 : ${pnVos[1].title}</a><br/>
-	        </c:if>
-	        <c:if test="${vo.idx < pnVos[0].idx}">
-	        	☝ <a href="${ctp}/notice/noticeContent?idx=${pnVos[0].idx}&pag=${pag}&pageSize=${pageSize}">다음글 : ${pnVos[0].title}</a><br/>
-	        </c:if>
-	        <c:if test="${vo.idx > pnVos[0].idx}">
-	        	👇 <a href="${ctp}/notice/noticeContent?idx=${pnVos[0].idx}&pag=${pag}&pageSize=${pageSize}">이전글 : ${pnVos[0].title}</a><br/>
-	        </c:if>
-	      </td>
-	    </tr>
-	  </table>
-  </c:if>
 </div>
 </div>
 <!-- End of Content Wrapper -->

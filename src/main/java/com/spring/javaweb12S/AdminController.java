@@ -425,9 +425,9 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value = "/adminBoardAnswerChange", method = RequestMethod.POST)
 	public String adminBoardAnswerChangePost(
-			@RequestParam(name="answer", defaultValue = "", required=false) String answer,
+			@RequestParam(name="openSw", defaultValue = "", required=false) String openSw,
 			@RequestParam(name="idx", defaultValue = "0", required=false) int idx) {
-		boardService.setAdminBoardAnswerChange(answer, idx);
+		boardService.setAdminBoardAnswerChange(openSw, idx);
 		return "1";
 	}
 	

@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>adminCancleNew.jsp</title>
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp" />
+	<link rel="stylesheet" href="${ctp}/font/font.css">
   <style>
   </style>
   <script>

@@ -19,7 +19,7 @@
 <link
     href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-
+<link rel="stylesheet" href="${ctp}/font/font.css">
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -149,31 +149,25 @@
 <div id="content">
 	<div class="container">
 
-<table class="table table-bordered">
-		<tr>
-			<th style="width:20%">제목</th>
-			<td colspan="3">[${vo.part}] ${vo.title}</td>
-		</tr>
-		<tr>
-			<th>상태</th>
-			<td colspan="3">
-				<c:if test="${vo.reply=='답변대기중'}">
+<table class="table table-borderless" style="width:1100px; margin:0 auto;">
+  	<tr>
+  		<td colspan="3" class="text-left" style="border-bottom:5px solid #c9c2bc; background-color:#eee;"><font size="4"><b>
+  		${vo.title}</b></font>
+  		<c:if test="${vo.reply=='답변대기중'}">
 					<span class="badge badge-pill badge-secondary">${vo.reply}</span>						
 				</c:if>
 				<c:if test="${vo.reply=='답변완료'}">
 					<span class="badge badge-pill badge-danger">${vo.reply}</span>						
 				</c:if>
-			</td>
-		</tr>
-		<tr>
-			<th>작성일</th>
-			<td>${fn:substring(vo.WDate,0,10)}</td>
-		</tr>
-		<tr>
-			<td colspan="4" style="height:200px">
-	      <p>${fn:replace(vo.content,newLine,"<br/>")}</p>
-			</td>
-		</tr>
+  		</td>
+  	</tr>
+  	<tr style="border-bottom:2px solid #c9c2bc;">
+  		<td style="width:20%" class="text-left"><b>${vo.mid}</b></td>
+  		<td style="width:50%" class="text-right">${fn:substring(vo.WDate,0,fn:length(vo.WDate)-2)}</td>
+  	</tr>
+  	<tr  style="border-bottom:5px solid #c9c2bc;">
+  		<td colspan="2">${fn:replace(vo.content, newLine, "<br/>")}</td>
+  	</tr>
 		<tr>
 		 <th>첨부파일</th>
 		 <td>
@@ -186,17 +180,18 @@
 		</tr>
 	</table>
 	
-	
-	<div style="text-align: right">
-		<c:if test="${sMid==vo.mid || sLevel == 0}">	<!-- 작성글이 자신의 글이거나 관리자라면 삭제처리할수 있다. -->
-			<input type="button" value="삭제" onclick="deleteCheck()" class="btn btn-outline-dark btn-sm"/>
-		</c:if>
-		<input type="button" value="목록으로" onclick="location.href='${ctp}/admin/adminContactList'" class="btn btn-outline-dark btn-sm"/>
+	<div style="width:1100px; margin:0 auto;">
+		<div style="text-align: right" >
+			<c:if test="${sMid==vo.mid || sLevel == 0}">	<!-- 작성글이 자신의 글이거나 관리자라면 삭제처리할수 있다. -->
+				<input type="button" value="삭제" onclick="deleteCheck()" class="btn btn-outline-dark btn-sm"/>
+			</c:if>
+			<input type="button" value="목록으로" onclick="location.href='${ctp}/admin/adminContactList'" class="btn btn-outline-dark btn-sm"/>
+		</div>
 	</div>
-	
 	<hr/>
 	<!-- 답변서가 작성되어 있을때 수행하는 곳 -->
 	<c:if test="${!empty reVO.reContent}">
+		<div style="width:1100px; margin:0 auto;">
 		<form name="replyForm">
 			<label for="reContent"><h5>답변내용</h5></label>
 			<c:if test="${empty sReplySw || sReplySw != '1'}">	<!-- 답변서 작성되어 있고, 수정가능상태는 readonly로 처리후 '수정'버튼 누르면 'readonly'해제후 '수정완료'버튼으로 바꾼다. -->
@@ -214,10 +209,12 @@
 				</div>
 			</c:if>
 		</form>
+		</div>
 	</c:if>
 
 	<!-- 답변서가 작성되어 있지 않을때 수행하는 곳 -->
 	<c:if test="${empty reVO.reContent}">
+		<div style="width:800px; margin:0 auto;">
 		<form name="replyForm">
 			<label for="reContent"></label>
 			<textarea name="reContent" rows="5" class="form-control" placeholder="답변 작성해주세요."></textarea>
@@ -225,6 +222,7 @@
 				<input type="button" value="등록" onclick="contactReply()" class="btn btn-outline-dark btn-sm mt-2"/>
 			</div>
 		</form>
+		</div>
 	</c:if>
 
 </div>

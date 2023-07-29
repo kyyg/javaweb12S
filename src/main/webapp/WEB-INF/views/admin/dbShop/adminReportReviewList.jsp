@@ -19,7 +19,7 @@
 <link
     href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-
+<link rel="stylesheet" href="${ctp}/font/font.css">
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -186,6 +186,9 @@
 		</div>
 	 		<tr><td colspan="4" class="p-0 m-0 mt-2 pt-3 pb-3 mb-3" style="border-bottom :solid 1px lightgray"></td></tr>
  		<c:forEach var="vo" items="${vos}">
+ 			<tr>
+ 				<td colspan="3"><font color="red"><b>신고횟수 : ${vo.reportNum}회</b></font> / 분류 : ${vo.reportMemo1} / 상세 사유 : ${vo.reportMemo2}</td>
+ 			</tr>
 	 		<tr class="text-dark" style="background-color:#fff;">
 	 			<td>
 		 			<input type="checkbox" name="idxChecked" id="idxChecked" value="${vo.idx}" class="ml-5 mt-5"/>

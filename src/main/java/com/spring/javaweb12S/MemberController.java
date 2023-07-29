@@ -345,9 +345,9 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberPwdUpdate", method = RequestMethod.POST)
 	public String memberPwdUpdatePost(
-			@RequestParam(name="mid",defaultValue = "", required=false) String mid,
 			@RequestParam(name="newPwd",defaultValue = "", required=false) String newPwd,
 			HttpSession session) {
+		String mid = (String) session.getAttribute("sMid");
 		newPwd = passwordEncoder.encode(newPwd);
 		
 		memberService.setMemberPwdUpdate(mid, newPwd);

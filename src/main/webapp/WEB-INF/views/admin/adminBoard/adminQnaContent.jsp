@@ -19,7 +19,7 @@
 <link
     href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-
+<link rel="stylesheet" href="${ctp}/font/font.css">
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -34,7 +34,7 @@
   
   function answerCheck() {
   	let tempStr = '<br/>';
-  	tempStr += '<h3 class="text-center">답변 작성</h3>';
+  	tempStr += '<div class="text-center mb-5"><font size="3">답변 작성</font></div>';
   	tempStr += '<table class="table">';
   	tempStr += '<tr>';
 		tempStr += '    <th class="text-center">글쓴이</th>';
@@ -135,7 +135,7 @@
 <div class="container">
   <p><br/></p>
   <br/>
-  <table class="table table-borderless" style="width:800px; margin:0 auto;">
+  <table class="table table-borderless" style="width:1100px; margin:0 auto;">
   	<tr>
   		<td colspan="3" class="text-left" style="border-bottom:5px solid #c9c2bc; background-color:#eee;"><font size="4"><b>${vo.title}</b></font></td>
   	</tr>
@@ -161,17 +161,18 @@
 				</c:if>        
         <c:if test="${sLevel != 0}"></c:if>        
         </c:if>
+        
         <c:if test="${sNickName eq vo.nickName}">
           <c:if test="${vo.qnaSw == 'q'}">
 	        	<input type="button" value="수정" onclick="location.href='${ctp}/qna/qnaUpdate?idx=${vo.idx}';" class="btn btn-secondary"/> &nbsp;
 	        </c:if>
 	        <input type="button" value="삭제" onclick="delCheck(${vo.idx})" class="btn btn-secondary"/> &nbsp;
         </c:if>
-        <input type="button" value="목록으로" onclick="location.href='qnaList?pag=${pag}&pageSize=${pageSize}';" class="btn btn-secondary"/>
+        <input type="button" value="목록으로" onclick="location.href='${ctp}/admin/adminQnaList?pag=${pag}&pageSize=${pageSize}';" class="btn btn-secondary"/>
       </td>
     </tr>
   </table>
-  <form name="myform" method="post" action="qnaInput">
+  <form name="myform" method="post" action="${ctp}/admin/adminQnaContent">
     <div id="reply"></div>
 	  <input type="hidden" name="pag" value="${pag}"/>
 	  <input type="hidden" name="pageSize" value="${pageSize}"/>

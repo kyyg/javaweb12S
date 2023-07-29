@@ -102,10 +102,11 @@
 	</select>
 	
 	<select id="getReportReview" resultType="com.spring.javaweb12S.vo.DbReviewVO">
-		select * from dbreview where reportNum=5 order by idx desc;;
-		<!-- select rv.*, rp.*, rp.idx as reportIdx 
+		select rv.*, rp.*, rp.idx as reportIdx 
 		from dbreview rv, reportReview rp 
-		where rv.idx = rp.reviewIdx and rv.reportNum=5 order by rv.idx desc;  -->
+		where rv.idx = rp.reviewIdx and rv.reportNum !=0 
+		group by rv.idx
+		order by rv.idx desc;
 	</select>
 	
 	

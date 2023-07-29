@@ -19,7 +19,7 @@
 <link
     href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
-
+<link rel="stylesheet" href="${ctp}/font/font.css">
 <!-- Custom styles for this template-->
 <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -86,18 +86,11 @@
 	<div class="container">
   <p><br/></p>
   <form name="tempForm">
-	  <table class="table table-borderless">
 		<div class="w3-bottombar w3-indigo w3-padding text-center" style="margin-bottom:20px;">
 	   		<span style="font-size:23px;">문의 게시판</span>
 	   </div>
-	    <tr>
-	      <td style="text-align:right;padding:10px 0px">
-	        <input type="button" value="작성" onclick="location.href='qnaInput?qnaSw=q';" class="btn btn-outline-secondary"/>
-	      </td>
-	    </tr>
-	  </table>
 	  <table class="table table-hover">
-	    <tr class="table-primary text-dark text-center">
+	    <tr class="text-dark text-center" style="background-color:#c9c2bc;">
 	      <th>번호</th>
 	      <th>제목</th>
 	      <th>작성자</th>

@@ -208,7 +208,7 @@
 			<table style="width:600px; height:200px" class="table table-borderless table-hover mr-5">
 				<tr class="w3-indigo text-dark">
 					<td colspan="4">
-						<b>최근 제휴문의</b> <a href="${ctp}/admin/adminOnedayClass" class="badge badge-info text-right" >더보기</a> 
+						<b>이벤트 신청</b> <a href="${ctp}/admin/adminOnedayClass" class="badge badge-info text-right" >더보기</a> 
 					</td>
 				</tr>			
 				<tr>
@@ -244,21 +244,18 @@
 					<td>${fn:substring(baord4VOS[0].WDate,0,10)}</td>
 					<td>${baord4VOS[0].mid}</td>
 					<td>${baord4VOS[0].title}</td>
-					<td>${baord4VOS[0].answer}</td>
 				</tr>
 				<tr><td class="p-0 m-0"></td></tr>			
 				<tr>
 					<td>${fn:substring(baord4VOS[1].WDate,0,10)}</td>
 					<td>${baord4VOS[1].mid}</td>
 					<td>${baord4VOS[1].title}</td>
-					<td>${baord4VOS[1].answer}</td>
 				</tr>			
 				<tr><td class="p-0 m-0"></td></tr>			
 				<tr>
 					<td>${fn:substring(baord4VOS[2].WDate,0,10)}</td>
 					<td>${baord4VOS[2].mid}</td>
 					<td>${baord4VOS[2].title}</td>
-					<td>${baord4VOS[2].answer}</td>
 				</tr>			
 				<tr><td class="p-0 m-0"></td></tr>			
 			</table>
@@ -271,7 +268,7 @@
 		</tr>
 		<tr class="text-center table-dark text-dark">
 			<td>상품명</td>
-			<td>옵션명</td>
+			<td>옵션명${chart3VOS[0].cancelMonthPrice}, ${chart3VOS[1].cancelMonthPrice}, ${chart3VOS[2].cancelMonthPrice}</td>
 			<td>옵션 개수</td>
 		</tr>
 	 	<c:forEach var="vo" items="${optionVOS}"> 
@@ -312,16 +309,24 @@
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-      var data = google.visualization.arrayToDataTable([
+ /*      var data = google.visualization.arrayToDataTable([
           ['month', '${chart2VOS[0].salesMonth}월', '${chart2VOS[1].salesMonth}월', '${chart2VOS[2].salesMonth}월'],
           ['월별 매출액', ${chart2VOS[0].salesMonthPrice}, ${chart2VOS[1].salesMonthPrice}, ${chart2VOS[2].salesMonthPrice}],
           ['월별 환불/액반품', ${chart3VOS[0].cancelMonthPrice}, ${chart3VOS[1].cancelMonthPrice}, ${chart3VOS[2].cancelMonthPrice}]
-        ]);
+        ]); */
 
+      var data = google.visualization.arrayToDataTable([
+          ['3개월간 매출액', '매출액', { role: 'style' }],
+          ['${chart2VOS[0].salesMonth}월', ${chart2VOS[0].salesMonthPrice}, '#b87333'],            // RGB value
+          ['${chart2VOS[1].salesMonth}월', ${chart2VOS[1].salesMonthPrice}, 'silver'],            // English color name
+          ['${chart2VOS[2].salesMonth}월', ${chart2VOS[2].salesMonthPrice}, 'gold'],
+       ]);
+      
+      
         var options = {
           chart: {
-            title: '월별 매출액 / 취소환불액',
-            subtitle: '3개월 치',
+            title: '월별 매출액',
+            subtitle: '3개월 간',
           }
         };
 

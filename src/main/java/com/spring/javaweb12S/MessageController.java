@@ -311,6 +311,10 @@ public class MessageController {
 			model.addAttribute("msg", "답변이 등록 되었습니다.");
 			model.addAttribute("url", "/admin/adminQnaList");
 		}
+		else if(msgFlag.equals("memberEmailFindNo")) {
+			model.addAttribute("msg", "이메일이 존재하지 않습니다.");
+			model.addAttribute("url", "/member/memberIdFind");
+		}
 		
 		
 		return "include/message";

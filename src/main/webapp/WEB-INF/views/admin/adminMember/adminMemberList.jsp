@@ -8,23 +8,23 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-    <title>SB Admin 2 - Blank</title>
+<title></title>
 
-     <!-- Custom fonts for this template-->
-    <link href="../resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+ <!-- Custom fonts for this template-->
+<link href="../resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="../resources/https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- Custom styles for this template-->
+  <link href="../resources/css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="${ctp}/font/font.css">
 </head>
 
 <body id="page-top">
@@ -155,8 +155,8 @@
         <td>${vo.level}</td>
         <td>${fn:substring(vo.startDate,0,10)}</td>
         <td>
-        <c:if test="${vo.userDel == 'OK'}"><font color="red">${vo.userDel}</font></c:if>
-        <c:if test="${vo.userDel != 'OK'}">${vo.userDel}</c:if>
+        <c:if test="${vo.userDel == 'OK'}"><font color="red">탈퇴신청</font></c:if>
+        <c:if test="${vo.userDel != 'OK'}">활동중</c:if>
         </td>
       </tr>
       <c:set var="curScrStartNo" value="${curScrStartNo-1}"/>
