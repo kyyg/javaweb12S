@@ -409,23 +409,23 @@ public class MemberController {
 	}
 	
 	//아이디 찾기
-		@RequestMapping(value = "/memberIdFind", method = RequestMethod.GET)
-		public String memberIdFindGet() {
-			return "member/memberIdFind";
+	@RequestMapping(value = "/memberIdFind", method = RequestMethod.GET)
+	public String memberIdFindGet() {
+		return "member/memberIdFind";
+	}
+	
+	@RequestMapping(value = "/memberIdFind", method = RequestMethod.POST)
+	public String memberIdFindPost(String email, Model model ) {
+		MemberVO vo = memberService.getEmailSearch(email);
+		if(vo != null) {
+			model.addAttribute("vo",vo);
+			return "member/memberIdFindOk";
 		}
-		
-		@RequestMapping(value = "/memberIdFind", method = RequestMethod.POST)
-		public String memberIdFindPost(String email, Model model ) {
-			MemberVO vo = memberService.getEmailSearch(email);
-			if(vo != null) {
-				model.addAttribute("vo",vo);
-				return "member/memberIdFindOk";
-			}
-			else {
-				return "redirect:/message/memberEmailFindNo";
-			}
+		else {
+			return "redirect:/message/memberEmailFindNo";
 		}
-		
+	}
+	
 		
 	
 	

@@ -40,7 +40,7 @@
   </update>
   
   <update id="setNoticeUpdate">
-    update notice set title=#{vo.title},content=#{vo.content},wDate=now() where idx = #{vo.idx};
+    update notice set title=#{vo.title},content=#{vo.content},wDate=now(),fixed=#{vo.fixed} where idx = #{vo.idx};
   </update>
  
   

@@ -31,7 +31,6 @@
       <th>작성자</th>
       <th>작성날짜</th>
       <th>조회수</th>
-      <th>답변여부</th>
     </tr>
    <c:forEach var="vo" items="${VOS}" varStatus="st">
   	  <c:set var="curScrStartNo" value="${st.count}" />
@@ -51,7 +50,6 @@
 	         </c:if>
 	       </td>
 	       <td>${vo.readNum}</td>
-	       <td>${vo.answer}</td>
 		     </tr>
 	  </c:forEach>
     <tr><td colspan="8" class="m-0 p-0"></td></tr>

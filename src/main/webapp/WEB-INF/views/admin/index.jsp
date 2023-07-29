@@ -268,7 +268,7 @@
 		</tr>
 		<tr class="text-center table-dark text-dark">
 			<td>상품명</td>
-			<td>옵션명${chart3VOS[0].cancelMonthPrice}, ${chart3VOS[1].cancelMonthPrice}, ${chart3VOS[2].cancelMonthPrice}</td>
+			<td>옵션명</td>
 			<td>옵션 개수</td>
 		</tr>
 	 	<c:forEach var="vo" items="${optionVOS}"> 

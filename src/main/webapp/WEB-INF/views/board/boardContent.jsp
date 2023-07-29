@@ -246,7 +246,7 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
 <div class="container">
-  <table class="table table-borderless m-0 p-0">
+    <table class="table table-borderless" style="width:800px; margin:0 auto;">
   	<tr>
       <td colspan="4" class="text-right">
       	<c:if test="${sMid == vo.mid || sLevel == 0}">

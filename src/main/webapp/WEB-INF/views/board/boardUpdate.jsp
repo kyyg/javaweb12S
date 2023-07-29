@@ -21,17 +21,16 @@
     function fCheck() {
     	let title = myform.title.value;
     	let content = myform.content.value;
+    	let pwd = myform.pwd.value;
     	
     	if(title.trim() == "") {
     		alert("게시글 제목을 입력하세요");
     		myform.title.focus();
     	}
-    	/* 
-    	else if(content.trim() == "") {
-    		alert("게시글 내용을 입력하세요"); 
-    		myform.content.focus();
+    	else if(pwd.trim() == "") {
+    		alert("비밀번호를 입력하세요"); 
+    		myform.pwd.focus();
     	}
-    	 */
     	else {
     		myform.submit();
     	}

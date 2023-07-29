@@ -18,13 +18,13 @@
 
 	.tb{
 	margin-top : 60px;
-	background-color:#eee;
+	background-color:#e9ecef;
 	border-radius : 5px;
 	padding-top : 20px;
 	padding-bottom : 20px;
 	margin-left : 5px;
 	padding-left:15px;
-	height:350px;
+	height:320px;
 	}
   
   .bbtn{

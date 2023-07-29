@@ -265,7 +265,7 @@
 		join dbbaesong bs on mem.mid = bs.mid
 		where bs.orderDate >= date_sub(now(), interval 3 month)
 		group by mem.mid
-		having sum(bs.orderTotalPrice) >= 1000;
+		having sum(bs.orderTotalPrice) >= 100000;
 	</select>
 	
 	<select id="getOnedayClassOne" resultType="com.spring.javaweb12S.vo.DbOnedayClassVO">

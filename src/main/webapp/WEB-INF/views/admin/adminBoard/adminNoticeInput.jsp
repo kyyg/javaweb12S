@@ -32,6 +32,12 @@
     	let title = myform.title.value;
     	let content = myform.content.value;
     	
+    	let fixed = myform.content.value;
+    	if(fixed == ""){
+    		document.getElementById("fixed").value = 'off';
+    	}
+    	
+    	
     	if(title.trim() == "") {
     		alert("게시글 제목을 입력하세요");
     		myform.title.focus();
@@ -227,6 +233,7 @@
     </table>
     <input type="hidden" name="mid" value="${sMid}"/>
     <input type="hidden" name="nickName" value="${sNickName}"/>
+    <input type="hidden" name="fixed" id="fixed"/>
   </form>
 </div>
 <p><br/></p>

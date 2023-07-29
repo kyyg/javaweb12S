@@ -214,7 +214,7 @@
 
 	<!-- 답변서가 작성되어 있지 않을때 수행하는 곳 -->
 	<c:if test="${empty reVO.reContent}">
-		<div style="width:800px; margin:0 auto;">
+		<div style="width:1100px; margin:0 auto;">
 		<form name="replyForm">
 			<label for="reContent"></label>
 			<textarea name="reContent" rows="5" class="form-control" placeholder="답변 작성해주세요."></textarea>

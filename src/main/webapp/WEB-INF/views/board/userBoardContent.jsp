@@ -247,7 +247,7 @@
 <p><br/></p>
 <div class="container">
 <jsp:include page="/WEB-INF/views/include/nav2.jsp" />
-  <table class="table table-borderless m-0 p-0">
+    <table class="table table-borderless" style="width:800px; margin:0 auto;">
   	<tr>
       <td colspan="4" class="text-right">
       	<c:if test="${sMid == vo.mid || sLevel == 0}">
@@ -258,47 +258,37 @@
     </tr>
   </table>
   
-  <table class="table table-bordered">
+  
+  <table class="table table-borderless" style="width:800px; margin:0 auto;">
+  	<tr>
+  		<td colspan="3" class="text-left" style="border-bottom:5px solid #c9c2bc; background-color:#eee;"><font size="4"><b>${vo.title}</b></font></td>
+  	</tr>
+  	<tr style="border-bottom:2px solid #c9c2bc;">
+  		<td style="width:20%" class="text-left"><b>${vo.nickName}</b></td>
+  		<td style="width:50%" class="text-left">${fn:substring(vo.WDate,0,fn:length(vo.WDate)-2)}</td>
+  		<td style="width:30%" class="text-right">조회&nbsp;${vo.readNum}</td>
+  	</tr>
+  	<tr  style="border-bottom:5px solid #c9c2bc;">
+  		<td colspan="3">${fn:replace(vo.content, newLine, "<br/>")}</td>
+  	</tr>
     <tr>
-      <th>글쓴이</th>
-      <td>${vo.nickName}</td>
-      <th>글쓴날짜</th>
-      <td>${fn:substring(vo.WDate,0,fn:length(vo.WDate)-2)}</td>
-    </tr>
-    <tr>
-      <th>글제목</th>
-      <td colspan="3">${vo.title}</td>
-    </tr>
-    <tr>
-      <th>전자메일</th>
-      <td>${vo.email}</td>
-      <th>조회수</th>
-      <td>${vo.readNum}</td>
-    </tr>
-    <tr>
-      <th>좋아요</th>
-      <td>
+      <td colspan="3">
         <a href="javascript:goodDBCheck(${goodVo.idx})">
           <c:if test="${!empty goodVo}"><font color="red">❤</font></c:if>
           <c:if test="${empty goodVo}">❤</c:if>이 글이 도움이 되었나요?
         </a>
       </td>
     </tr>
-    <tr>
-      <th>글내용</th>
-      <td colspan="3" style="height:220px">${fn:replace(vo.content, newLine, "<br/>")}</td>
-    </tr>
   </table>
- 	<div class="text-right mb-5"><input type="button" value="돌아가기" onclick="location.href='${ctp}/board/userBoard';" class="btn btn-outline-dark btn-sm"/></div>
   
   <!-- 댓글 리스트보여주기 -->
-  <div id="reply" class="container">
-    <table class="table table-hover text-left">
+  <div id="reply" class="container mt-5">
+    <table class="table table-borderless" style="width:800px; margin:0 auto;">
       <tr>
         <th> &nbsp;작성자</th>
-        <th>댓글내용</th>
-        <th>작성일자</th>
-        <th>답글</th>
+        <th>내용</th>
+        <th>작성일</th>
+        <th></th>
       </tr>
       <c:forEach var="replyVO" items="${replyVOS}" varStatus="st">
         <tr>
@@ -317,7 +307,7 @@
           <td class="text-center">${fn:substring(replyVO.WDate,0,10)}</td>
           <td class="text-center">
             <c:set var="content" value="${fn:replace(replyVO.content, newLine, '<br/>')}" />
-            <a href="javascript:insertReply('${replyVO.idx}','${replyVO.groupId}','${replyVO.level}','${replyVO.nickName}')" id="replyBoxOpenBtn${replyVO.idx}" class="badge badge-success">답글</a>
+            <a href="javascript:insertReply('${replyVO.idx}','${replyVO.groupId}','${replyVO.level}','${replyVO.nickName}')" id="replyBoxOpenBtn${replyVO.idx}" class="badge badge-dark">답글</a>
             <input type="button" value="접기" onclick="closeReply(${replyVO.idx})" id="replyBoxCloseBtn${replyVO.idx}" class="btn btn-warning btn-sm" style="display:none;" />
           </td>
         </tr>
@@ -330,19 +320,28 @@
   
   <!-- 댓글 입력창 -->
   <form name="replyForm">
-  	<table class="table tbale-center">
+		<table class="table table-borderless" style="width:800px; margin:0 auto;">
   	  <tr>
-  	    <td style="width:85%" class="text-left">
+  	    <td style="width:80%" class="text-left">
   	      <textarea rows="4" name="content" id="content" class="form-control"></textarea>
   	    </td>
-  	    <td style="width:15%">
+  	    <td style="width:20%">
   	    	<br/>
-  	      <p>작성자 : ${sNickName}</p>
-  	      <p><input type="button" value="댓글달기" onclick="replyCheck()" class="btn btn-primary btn-sm"/></p>
+  	      <p>${sNickName}</p>
+  	      <p><input type="button" value="작성" onclick="replyCheck()" class="btn btn-outline-dark btn-sm"/></p>
   	    </td>
   	  </tr>
   	</table>
   </form>
+  
+  <table class="table table-borderless" style="width:800px; margin:0 auto;">
+	  <tr>
+  		<td colspan="3" class="text-left" style="border-bottom:5px solid #c9c2bc;"></td>
+  	</tr>
+  	<tr><td>
+  	<div class="text-right"><input type="button" value="목록으로" onclick="location.href='${ctp}/board/userBoard';" class="btn btn-outline-dark btn-sm"/></div>
+  	</td></tr>
+  </table>
   
 <!-- The Modal(폼태그로 비밀번호 처리하기 위한 모달창) -->
 <div class="modal fade" id="myPwdModal">
@@ -351,7 +350,7 @@
     
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">문의글 삭제 시 비밀번호를 입력하세요.</h4>
+        <h4 class="modal-title">게시글 삭제 시 비밀번호를 입력하세요.</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       
