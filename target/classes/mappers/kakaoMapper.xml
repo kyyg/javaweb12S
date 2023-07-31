@@ -17,6 +17,6 @@
   
   
   <delete id="setKakaoAddressDelete">
-  	delete from kakaoAddress where store_name = #{store_name};
+  	delete from kakaoAddress where store_name = #{address};
   </delete>
 </mapper>

@@ -33,11 +33,11 @@
   }
   
   
-  if(${pageVO.pag} > ${pageVO.totPage}) location.href="${ctp}/board/boardList?pag=${pageVO.totPage}&pageSize=${pageVO.pageSize}";
+  if(${pageVO.pag} > ${pageVO.totPage}) location.href="${ctp}/admin/adminBoardList?pag=${pageVO.totPage}&pageSize=${pageVO.pageSize}";
   
   function pageCheck() {
   	let pageSize = document.getElementById("pageSize").value;
-  	location.href = "${ctp}/board/boardList?pag=${pageVO.pag}&pageSize="+pageSize;
+  	location.href = "${ctp}/admin/adminBoardList?pag=${pageVO.pag}&pageSize="+pageSize;
   }
   
   function searchCheck() {
@@ -201,7 +201,7 @@
       <th>공개여부</th>
     </tr>
 	<c:forEach var="vo" items="${vos}" varStatus="st">
-    <c:if test="${vo.fixed == 'on'}">
+    <c:if test="${vo.fixed == 'on' && vo.fixed != null}">
      <tr  class="table text-dark" style="background-color:#ded9d5">
      	 <td></td>
        <td><span class="badge badge-danger">공지</span></td>
@@ -221,7 +221,7 @@
 	   </c:if>
 	 </c:forEach>
    <c:forEach var="vo" items="${vos}" varStatus="st">
-	    <c:if test="${vo.fixed != 'on'}">
+	    <c:if test="${vo.fixed != 'on' || vo.fixed == null}">
   	  <c:set var="curScrStartNo" value="${vo.idx}" />
 	     <tr>
 	     	 <td><input type="checkbox" name="idxChecked" id="idxChecked" value="${vo.idx}"/></td>
@@ -257,14 +257,14 @@
   <!-- 블록 페이징 처리 -->
   <div class="text-center m-4">
 	  <ul class="pagination justify-content-center pagination-sm">
-	    <c:if test="${pageVO.pag > 1}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/board/boardList?pageSize=${pageVO.pageSize}&pag=1">첫페이지</a></li></c:if>
-	    <c:if test="${pageVO.curBlock > 0}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/board/boardList?pageSize=${pageVO.pageSize}&pag=${(pageVO.curBlock-1)*pageVO.blockSize + 1}">이전블록</a></li></c:if>
+	    <c:if test="${pageVO.pag > 1}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/admin/adminBoardList?pageSize=${pageVO.pageSize}&pag=1">첫페이지</a></li></c:if>
+	    <c:if test="${pageVO.curBlock > 0}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/admin/adminBoardList?pageSize=${pageVO.pageSize}&pag=${(pageVO.curBlock-1)*pageVO.blockSize + 1}">이전블록</a></li></c:if>
 	    <c:forEach var="i" begin="${pageVO.curBlock*pageVO.blockSize + 1}" end="${pageVO.curBlock*pageVO.blockSize + pageVO.blockSize}" varStatus="st">
-	      <c:if test="${i <= pageVO.totPage && i == pageVO.pag}"><li class="page-item active"><a class="page-link text-white bg-secondary border-secondary" href="${ctp}/board/boardList?pageSize=${pageVO.pageSize}&pag=${i}">${i}</a></li></c:if>
-	      <c:if test="${i <= pageVO.totPage && i != pageVO.pag}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/board/boardList?pageSize=${pageVO.pageSize}&pag=${i}">${i}</a></li></c:if>
+	      <c:if test="${i <= pageVO.totPage && i == pageVO.pag}"><li class="page-item active"><a class="page-link text-white bg-secondary border-secondary" href="${ctp}/admin/adminBoardList?pageSize=${pageVO.pageSize}&pag=${i}">${i}</a></li></c:if>
+	      <c:if test="${i <= pageVO.totPage && i != pageVO.pag}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/admin/adminBoardList?pageSize=${pageVO.pageSize}&pag=${i}">${i}</a></li></c:if>
 	    </c:forEach>
-	    <c:if test="${pageVO.curBlock < pageVO.lastBlock}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/board/boardList?pageSize=${pageVO.pageSize}&pag=${(pageVO.curBlock+1)*pageVO.blockSize + 1}">다음블록</a></li></c:if>
-	    <c:if test="${pageVO.pag < pageVO.totPage}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/board/boardList?pageSize=${pageVO.pageSize}&pag=${pageVO.totPage}">마지막페이지</a></li></c:if>
+	    <c:if test="${pageVO.curBlock < pageVO.lastBlock}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/admin/adminBoardList?pageSize=${pageVO.pageSize}&pag=${(pageVO.curBlock+1)*pageVO.blockSize + 1}">다음블록</a></li></c:if>
+	    <c:if test="${pageVO.pag < pageVO.totPage}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/admin/adminBoardList?pageSize=${pageVO.pageSize}&pag=${pageVO.totPage}">마지막페이지</a></li></c:if>
 	  </ul>
   </div>
 

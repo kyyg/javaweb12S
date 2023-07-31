@@ -572,7 +572,7 @@ public class AdminController {
 		return "1";
 	}
 	
-	// 카카오맵 저장한거 보기, 삭제하기...
+	// 카카오맵 저장한거 보기, 삭제
 	@RequestMapping(value = "/kakaomap/kakaoStoreList", method = RequestMethod.GET)
 	public String storeListGet(Model model,
 			@RequestParam(name="store_name", defaultValue = "그린 아트 스튜디오", required=false) String store_name) {

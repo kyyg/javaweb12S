@@ -79,7 +79,7 @@
 		    </div>
 		    <div class="form-group">
 		      <label for="pwd"></label>
-		      <input type="password" class="w3-bottombar inp text-center" name="pwd" id="pwd" value="1234" placeholder="Enter email" required />
+		      <input type="password" class="w3-bottombar inp text-center" name="pwd" id="pwd" placeholder="비밀번호를 입력하세요." required />
 		      <div class="valid-feedback"></div>
 		      <div class="invalid-feedback"></div>
 		    </div>

@@ -80,7 +80,7 @@
       <th style="width:10%">조회수</th>
     </tr>
 	<c:forEach var="vo" items="${vos}" varStatus="st">
-    <c:if test="${vo.fixed == 'on'}">
+    <c:if test="${vo.fixed == 'on' && vo.fixed != null}">
      <tr class="table text-dark" style="background-color:#ded9d5">
        <td><span class="badge badge-danger">공지</span></td>
        <td></td>
@@ -99,7 +99,7 @@
 	   </c:if>
 	 </c:forEach>
    <c:forEach var="vo" items="${vos}" varStatus="st">
-	    <c:if test="${vo.fixed != 'on'}">
+	    <c:if test="${vo.fixed != 'on' || vo.fixed == null}">
   	  <c:set var="curScrStartNo" value="${vo.idx}" />
 	     <tr>
 	       <td>${curScrStartNo}</td>

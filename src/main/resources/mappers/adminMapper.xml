@@ -69,7 +69,7 @@
 	</select>
 	
 	<select id="getNewProduct3" resultType="com.spring.javaweb12S.vo.DbProductVO">
-		select * from dbProduct order by idx desc limit 3; 
+		select * from dbProduct order by idx desc limit 8; 
 	</select>
 	
 	<select id="getEventToday" resultType="com.spring.javaweb12S.vo.EventVO">

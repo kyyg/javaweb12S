@@ -64,7 +64,7 @@ public class QnaController {
   		javawebProvide.imgCheck(vo.getContent(), "qna");	// 이미지를 ckeditor폴더에서 qna폴더로 복사하기
   		
   		// 이미지 복사작업이 끝나면, qna폴더에 실제로 저장된 파일명을 DB에 저장시켜준다.(/resources/data/ckeditor/  ==>> /resources/data/ckeditor/qna/)
-  		vo.setContent(vo.getContent().replace("/data/ckeditor/", "/data/ckeditor/qna/"));
+  		vo.setContent(vo.getContent().replace("/data/ckeditor/", "/data/qna/"));
   	}
   	
 		// 앞에서 ckeditor의 그림작업이 끝나고 일반작업들을 수행시킨다.

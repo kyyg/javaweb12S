@@ -35,7 +35,8 @@
   		</td>
   		<td class="pb-5 pt-5 text-left" style="width:25%; background-color:#eee">
   			<font size="5" class="pt-2 mt-2">${sMid}님</font><br/>
-  			<font size="3">[${sNickName}님]</font>
+  			<font size="3">[${vo.nickName}님]</font><br/>
+  			<font size="3">보유포인트 : ${vo.point}Point</font>
   		</td>
   		<td class="pb-5 pt-5" style="width:16%"><font size="5" color="#6b5a5a">${part2}</font><br/>결제완료</td>
   		<td class="pb-5 pt-5" style="width:16%"><font size="5" color="#6b5a5a">${part3}</font><br/>배송중</td>

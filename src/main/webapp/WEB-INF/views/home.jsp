@@ -21,7 +21,7 @@
 	<script>
 	'use strict'
 	
-	// 채팅 띄우기
+/* 	// 채팅 띄우기
 	function chatNew(){
 		let url = "${ctp}/webSocket";
 		let winName = "winName";
@@ -31,10 +31,10 @@
     let y = (screen.height/2) - (winHeight/2);
     let opt="width="+winWidth+", height="+winHeight+", left="+x+", top="+y;
     window.open(url,winName,opt);
-	}
+	} */
 	
 	// 새창띄우기
-	window.addEventListener("DOMContentLoaded", function() {
+/* 	window.addEventListener("DOMContentLoaded", function() {
 		let eventCheck = '${event}';
 		if(eventCheck !== 'popUpNo'){
 	    let url = "${ctp}/eventNew";
@@ -42,14 +42,14 @@
 	    let opt = "width=" + 350 + ", height=" + 400 + ", left=" + 150 + ", top=" + 100;
 	    window.open(url, winName, opt);
 		}
-	});
+	}); */
 
 	</script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 <jsp:include page="/WEB-INF/views/include/header_home.jsp" />
-<img src="${ctp}/images/mu.jpg" width=100px; height=100px; id="chatImage" class="w3-circle" onclick="chatNew()" />
+<%-- <img src="${ctp}/images/mu.jpg" width=100px; height=100px; id="chatImage" class="w3-circle" onclick="chatNew()" /> --%>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>

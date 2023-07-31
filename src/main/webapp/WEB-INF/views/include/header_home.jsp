@@ -105,39 +105,61 @@ display : grid;
 </div>
 <p><br/></p>
 <p><br/></p>
-<div class="container text-center" style="width:1000px; margin:0 auto;">
-	<h3 class="mb-5">NEW ITEM</h3>
-	<table> 
-		<tr>
-		<c:forEach var="vo" items="${newVOS3}">
-			<td class="mr-5">
-		 		<img src="${ctp}/dbShop/product/${vo.FSName}" class="w3-round mb-2" width=300px; height=300px; /><br/>
-		 		<span class="text-center">${vo.productName}</span><br/>
-		 		<span class="text-center">${vo.mainPrice}원</span><br/>
-			</td>
-			<td class="mr-5 pr-5"></td>
-  	</c:forEach>
-		</tr>		
-	</table>
+<div class="text-center"><font size="6">NEW ITEM</font></div>
+<div class="text-center" style="margin-left:275px;">
+<c:set var="cnt" value="0"/>
+  <div class="row mt-4">
+   <c:forEach var="vo" items="${newVOS3}">
+   <c:set var="productDetail" value="${fn:split(vo.detail,'/')}" />
+     <div class="mr-3">
+       <div style="text-align:center">
+       
+         <a href="${ctp}/dbShop/dbProductContent?idx=${vo.idx}">
+         
+         
+         	<c:if test="${vo.productStatus == '품절'}">
+           	<img src="${ctp}/dbShop/product/${vo.FSName}" class="w3-grayscale-max" width="330px" height="330px" style="opacity:40%" />
+            	<div class="mt-2"><font size="2">${vo.productName}<span class="badge badge-danger ml-1">품절</span></font></div>
+           </c:if>
+           
+         	<c:if test="${vo.productStatus != '품절'}">
+         		<!-- <button class="w3-button w3-red bestBtn" id="bestBtn">Best</button> -->
+           	<img src="${ctp}/dbShop/product/${vo.FSName}" width="330px" height="330px"/>
+           	<div class="mt-2">
+            	<font size="2"><b>${vo.productName}</b>
+								<c:if test="${vo.day_diff < 10}"><span class="badge badge-warning ml-1">NEW</span></c:if>
+								<c:if test="${vo.day_diff > 10}"></c:if>
+            	</font>
+           	</div>
+         </c:if>
+         
+         </a>
+           <div><font size="2">${vo.mainPrice}원</font></div>
+           <div style="border-bottom:solid 2px gray" class="pt-1 pb-1 mb-1"></div>
+           <div>
+          	 <c:forEach var="i" begin="0" end="${fn:length(productDetail)-1}">
+             <font size="2">
+	           	 <a href="${ctp}/dbShop/dbProductList?part=${part}&sort=상품명순&searchString=${productDetail[i]}">
+	           	  <span class="badge badge-light" style="background-color:#ded9d5;">#${productDetail[i]}</span>
+	             </a>
+             </font>
+					  </c:forEach>
+           </div>
+       </div>
+      </div>
+      <c:set var="cnt" value="${cnt+1}"/>
+      <c:if test="${cnt%4 == 0}">
+        </div>
+        <div class="row mt-5">
+      </c:if>
+    </c:forEach>
+  </div>
+</div>
 </div>
 <p><br/></p>
 <p><br/></p>
 
-<div class="container text-center" style="width:1000px; margin:0 auto;">
-	<h3 class="mb-5">BEST ITEM</h3>
-	<table> 
-		<tr>
-		<c:forEach var="vo" items="${newVOS3}">
-			<td class="mr-5">
-		 		<img src="${ctp}/dbShop/product/${vo.FSName}" class="w3-round mb-2" width=300px; height=300px; /><br/>
-		 		<span class="text-center">${vo.productName}</span><br/>
-		 		<span class="text-center">${vo.mainPrice}원</span><br/>
-			</td>
-			<td class="mr-5 pr-5"></td>
-  	</c:forEach>
-		</tr>		
-	</table>
-</div>
+
 <p><br/></p>
 <p><br/></p>
 <p><br/></p>

@@ -51,19 +51,19 @@ public class JavawebProvide {
 		if(content.indexOf("src=\"/") == -1) return;
 		
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-		String realPath = request.getSession().getServletContext().getRealPath("/resources/data/ckeditor/");
+		String realPath = request.getSession().getServletContext().getRealPath("/resources/data/");
 		
-		int position = 29;
+		int position = 31;
 		String nextImg = content.substring(content.indexOf("src=\"/") + position);
 		boolean sw = true;
 		
 		while(sw) {
 			String imgFile = nextImg.substring(0, nextImg.indexOf("\""));
 			
-			String origFilePath = realPath + imgFile;
-			String copyFilePath = realPath + flag + "/" + imgFile;
+			String origFilePath = realPath + "ckeditor/" + imgFile;
+			String copyFilePath = realPath + "qna/" + imgFile;
 			
-			fileCopyCheck(origFilePath, copyFilePath);  // board폴더에 파일을 복사하고자 한다.
+			fileCopyCheck(origFilePath, copyFilePath);  
 			
 			if(nextImg.indexOf("src=\"/") == -1) {
 				sw = false;

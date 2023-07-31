@@ -34,7 +34,7 @@ public class BoardController {
 	@RequestMapping(value = "/boardList", method = RequestMethod.GET)
 	public String boardListGet(
 			@RequestParam(name="pag", defaultValue = "1", required=false) int pag,
-			@RequestParam(name="pageSize", defaultValue = "10", required=false) int pageSize,
+			@RequestParam(name="pageSize", defaultValue = "15", required=false) int pageSize,
 			@RequestParam(name="part", defaultValue = "전체", required=false) String part,
 			Model model) {
 		PageVO pageVO = pageProcess.totRecCnt(pag, pageSize, "board", part, "");
