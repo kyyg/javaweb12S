@@ -36,7 +36,7 @@
 <div class="container">
 	<div class="text-center"><h4>배송지목록</h4></div>
 	<c:if test="${!empty vos}">
-  <table class="table table-bordered text-center" style="margin: 0 auto; width:700px; background-color:#c9aea2">
+  <table class="table table-bordered text-center" style="margin: 0 auto; width:700px;">
   	<tr style="background-color:#c9aea2">
   		<th style="width:20%">배송지명</td>
   		<th style="width:20%">이름</td>
