@@ -58,9 +58,8 @@
       document.getElementById("orderTotalPrice").value = lastPrice;
     }
 
-		// 상품 체크박스에 체크했을때 처리하는 함수
     function onCheck(){
-      let maxIdx = document.getElementById("maxIdx").value;				// 출력되어있는 상품중에서 가장 큰 idx값이 maxIdx변수에 저장된다.
+      let maxIdx = document.getElementById("maxIdx").value;			
       let cnt=0;
       for(let i=1;i<=maxIdx;i++){
         if($("#idx"+i).length != 0 && document.getElementById("idx"+i).checked==false){
@@ -74,28 +73,9 @@
       else {
         document.getElementById("allcheck").checked=true;
       }
-      onTotal();	// 체크박스의 사용후에는 항상 재계산해야 한다.
+      onTotal();	
     }
-    
-/* 		// allCheck 체크박스를 체크/해제할때 수행하는 함수
-    function allCheck(){
-      let maxIdx = document.getElementById("maxIdx").value;
-      if(document.getElementById("allcheck").checked){
-        for(let i=1;i<=maxIdx;i++){
-          if($("#idx"+i).length != 0){
-            document.getElementById("idx"+i).checked=true;
-          }
-        }
-      }
-      else {
-        for(let i=1;i<=maxIdx;i++){
-          if($("#idx"+i).length != 0){
-            document.getElementById("idx"+i).checked=false;
-          }
-        }
-      }
-      onTotal();	// 체크박스의 사용후에는 항상 재계산해야 한다.
-    } */
+
 		
     function allCheck() {
       for(let i=0; i<myform.idxChecked.length; i++) {
@@ -103,8 +83,7 @@
       }
       onTotal();
     }
-    
-		// 장바구니에서 구매한 상품에 대한 '삭제'처리...
+  
     function cartDelete(idx){
       let ans = confirm("선택하신 현재상품을 장바구니에서 제거 하시겠습니까?");
       if(!ans) return false;
@@ -121,8 +100,7 @@
         }
       });
     }
-    
-		// 장바구니에서 선택한 상품만 '주문'처리하기
+
     function order(){
     	let idxs = "";
         let checkIdxs = document.getElementsByName("idxChecked");
@@ -145,7 +123,7 @@
       }
     }
 		
-		// 장바구니에서 전체주문
+	
     function order2(){
 			
       for(let i=0; i<myform.idxChecked.length; i++) {
@@ -165,7 +143,7 @@
       }
     }
     
-		// 천단위마다 쉼표처리
+		
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
