@@ -42,7 +42,6 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		// 메인 owl 케로셀 / 뉴/베스트 상품 3개씩
 		List<DbProductVO> newVOS = adminService.getNewProduct();
 		List<DbProductVO> newVOS3 = adminService.getNewProduct3();
 		model.addAttribute("newVOS",newVOS);
@@ -62,7 +61,6 @@ public class HomeController {
 	}
 	
 	
-	// 이벤트 새창 닫기를 누르면 쿠키를 저장할라구...
 	@RequestMapping(value = "/eventCheck", method = RequestMethod.GET)
 	public String eventCheckGet(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(name="todayIsDone", defaultValue = "", required=false) String todayIsDone
@@ -77,7 +75,6 @@ public class HomeController {
 	}
 	
 	
-	// 페이지 처음 들어오면 이벤트 새창
 	@RequestMapping(value = "/eventNew", method = RequestMethod.GET)
 	public String eventNewGet(HttpServletRequest request) {
 
@@ -89,7 +86,7 @@ public class HomeController {
 	public void imageUploadGet(MultipartFile upload, 
 			HttpServletRequest request,
 			HttpServletResponse response) throws IOException {
-		response.setCharacterEncoding("utf-8"); // 한글처리
+		response.setCharacterEncoding("utf-8"); 
 		response.setContentType("text/html; charset=utf-8");
 		
 		String realPath = request.getSession().getServletContext().getRealPath("/resources/data/ckeditor/");
@@ -99,12 +96,10 @@ public class HomeController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
 		oFileName = sdf.format(date) + "_" + oFileName;
 		
-		// ckeditor에서 올린(전송)한 파일을 서버 파일시스템에 실제로 저장처리 시켜준다.
 		byte[] bytes = upload.getBytes();
 		FileOutputStream fos = new FileOutputStream(new File(realPath + oFileName));
 		fos.write(bytes);
 		
-		// 서버 파일시스템에 있는 그림파일을 브라우저 편집화면(textarea)에 보여주는 처리
 		PrintWriter out = response.getWriter(); 
 		String fileUrl = request.getContextPath() + "/data/ckeditor/" + oFileName;
 		out.println("{\"originalFilename\":\""+oFileName+"\",\"uploaded\":1,\"url\":\""+fileUrl+"\"}");
@@ -113,7 +108,7 @@ public class HomeController {
 		fos.close();
 	}
 	
-	// 웹소켓
+
 	@RequestMapping(value = "/webSocket", method = RequestMethod.GET)
 	public String webSocketGet(HttpServletRequest req, HttpServletResponse resp, HttpSession session) {
 		return "webSocket/webSocket";
