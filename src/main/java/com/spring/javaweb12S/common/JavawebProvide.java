@@ -30,7 +30,6 @@ public class JavawebProvide {
 		return res;
 	}
 
-	// urlPath 위치를 전송받아서 공통으로 파일저장하기
 	public void writeFile(MultipartFile fName, String saveFileName, String urlPath) throws IOException {
 		byte[] data = fName.getBytes();
 		
@@ -42,12 +41,8 @@ public class JavawebProvide {
 		fos.close();
 	}
 	
-	// 공통으로 사용하는 ckeditor폴더에 임시그림파일 저장하기(사용될 실제 파일이 저장될 경로를 flag에 받아온다.)
+
 	public void imgCheck(String content, String flag) {
-		//      0         1         2         3 3       4         5         6
-		//      01234567890123456789012345678901234567890123456789012345678901234567890
-		// <img src="/javawebS/data/ckeditor/230111121324_green2209J_06.jpg" style="height:967px; width:1337px" /></p>
-    // content안에 그림파일이 존재할때만 작업을 수행 할수 있도록 한다.(src="/_____~~)
 		if(content.indexOf("src=\"/") == -1) return;
 		
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -98,10 +93,6 @@ public class JavawebProvide {
 	}
 
 	public void imgDelete(String content, String flag) {
-		//      0         1         2         3         4         5         6
-		//      01234567890123456789012345678901234567890123456789012345678901234567890
-		// <img src="/javawebS/data/ckeditor/qna/230111121324_green2209J_06.jpg" style="height:967px; width:1337px" /></p>
-		// content안에 그림파일이 존재할때만 작업을 수행 할수 있도록 한다.(src="/_____~~)
 		if(content.indexOf("src=\"/") == -1) return;
 		
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -114,11 +105,11 @@ public class JavawebProvide {
 		boolean sw = true;
 		
 		while(sw) {
-			String imgFile = nextImg.substring(0, nextImg.indexOf("\""));	// 그림파일명 꺼내오기
+			String imgFile = nextImg.substring(0, nextImg.indexOf("\""));	
 			
 			String origFilePath = realPath + imgFile;
 			
-			fileDelete(origFilePath);  // board폴더에 파일을 삭제하고자 한다.
+			fileDelete(origFilePath);  
 			
 			if(nextImg.indexOf("src=\"/") == -1) {
 				sw = false;
@@ -134,13 +125,7 @@ public class JavawebProvide {
 		if(delFile.exists()) delFile.delete();
 	}
 	
-	// 원래 있던곳의 그림파일을 ckeditor폴더로 임시 저장하기(사용될 실제 파일이 저장되어있는 경로를 flag에 받아온다.)
 	public void imgCheck2(String content, String flag) {
-		//      0         1         2         3 3       4         5         6
-		//      01234567890123456789012345678901234567890123456789012345678901234567890
-		// <img src="/javawebS/data/ckeditor/230111121324_green2209J_06.jpg" style="height:967px; width:1337px" /></p>
-		// <img src="/javawebS/data/ckeditor/qna/230111121324_green2209J_06.jpg" style="height:967px; width:1337px" /></p>
-    // content안에 그림파일이 존재할때만 작업을 수행 할수 있도록 한다.(src="/_____~~)
 		if(content.indexOf("src=\"/") == -1) return;
 		
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -156,7 +141,7 @@ public class JavawebProvide {
 			String origFilePath = realPath + flag + "/" + imgFile;
 			String copyFilePath = realPath + imgFile;
 			
-			fileCopyCheck(origFilePath, copyFilePath);  // board폴더에 파일을 복사하고자 한다.
+			fileCopyCheck(origFilePath, copyFilePath); 
 			
 			if(nextImg.indexOf("src=\"/") == -1) {
 				sw = false;
