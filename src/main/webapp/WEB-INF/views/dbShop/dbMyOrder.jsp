@@ -7,55 +7,34 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>dbMyOrder.jsp(회원 주문확인)</title>
+  <title>dbMyOrder.jsp</title>
   <jsp:include page="/WEB-INF/views/include/bs4.jsp"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script>
-    // 배송지 정보보기
+
     function nWin(orderIdx) {
     	var url = "${ctp}/dbShop/dbOrderBaesong?orderIdx="+orderIdx;
     	window.open(url,"dbOrderBaesong","width=400px,height=450px");
     }
     
     $(document).ready(function() {
-    	// 주문 상태별 조회 : 전체/결제완료/배송중~~
     	$("#orderStatus").change(function() {
 	    	var orderStatus = $(this).val();
 	    	location.href="${ctp}/dbShop/orderStatus?orderStatus="+orderStatus+"&pag=${pageVO.pag}";
     	});
     });
-    
-    // 날짜별 주문 조건 조회(오늘/일주일이내/보름이내~~)
-    function orderCondition(conditionDate) {
-    	location.href="${ctp}/dbShop/orderCondition?conditionDate="+conditionDate+"&pag=${pageVO.pag}";
-    }
-    
-    // 날찌기간에 따른 조건검색
-    function myOrderStatus() {
-    	var startDateJumun = new Date(document.getElementById("startJumun").value);
-    	var endDateJumun = new Date(document.getElementById("endJumun").value);
-    	var conditionOrderStatus = document.getElementById("conditionOrderStatus").value;
-    	
-    	if((startDateJumun - endDateJumun) > 0) {
-    		alert("주문일자를 확인하세요!");
-    		return false;
-    	}
-    	
-    	startJumun = moment(startDateJumun).format("YYYY-MM-DD");
-    	endJumun = moment(endDateJumun).format("YYYY-MM-DD");
-    	location.href="${ctp}/dbShop/dbMyOrder?startJumun="+startJumun+"&endJumun="+endJumun+"&conditionOrderStatus="+conditionOrderStatus;
-    }
-    
+
+   
 
     function orderCondition(e) {
    	  let today = new Date();
-   	  today.setDate(today.getDate() - e); // e일 전 날짜로 설정
+   	  today.setDate(today.getDate() - e);
    	  let year = today.getFullYear();
-   	  let month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고, 2자리 숫자로 표현
-   	  let day = String(today.getDate()).padStart(2, '0'); // 2자리 숫자로 표현
+   	  let month = String(today.getMonth() + 1).padStart(2, '0');
+   	  let day = String(today.getDate()).padStart(2, '0'); 
    	  let startJumun = year + '-' + month + '-' + day;
    	  
-	   	 let today2 = new Date(); // 오늘 날짜 가져오기
+	   	 let today2 = new Date(); 
 	     let year2 = today2.getFullYear();
 	     let month2 = ('0' + (today2.getMonth() + 1)).slice(-2);
 	     let day2 = ('0' + today2.getDate()).slice(-2);
