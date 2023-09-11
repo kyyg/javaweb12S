@@ -24,12 +24,8 @@ public class MessageController {
 			model.addAttribute("url", "/");
 		}
 		else if(msgFlag.equals("mailSendOk")) {
-			model.addAttribute("msg", "메일 전송 완료!!!");
+			model.addAttribute("msg", "메일 전송 완료");
 			model.addAttribute("url", "/study/mail/mailForm");
-		}
-		else if(msgFlag.equals("mailSendOk2")) {
-			model.addAttribute("msg", "메일 전송2 완료!!!");
-			model.addAttribute("url", "/study/mail/mailForm2");
 		}
 		else if(msgFlag.equals("idCheckNo")) {
 			model.addAttribute("msg", "아이디가 중복되었습니다.");
@@ -84,7 +80,7 @@ public class MessageController {
 			model.addAttribute("url", "/member/memberLogin");
 		}
 		else if(msgFlag.equals("memberImsiPwdNo")) {
-			model.addAttribute("msg", "임시비밀번호가 발급 실패~~");
+			model.addAttribute("msg", "임시비밀번호가 발급");
 			model.addAttribute("url", "/member/memberPwdFind");
 		}
 		else if(msgFlag.equals("memberPwdUpdateOk")) {
@@ -104,7 +100,7 @@ public class MessageController {
 			model.addAttribute("url", "/study/fileUpload/fileUploadForm");
 		}
 		else if(msgFlag.equals("fileUploadNo")) {
-			model.addAttribute("msg", "파일이 업로드 실패~~");
+			model.addAttribute("msg", "파일이 업로드 실패");
 			model.addAttribute("url", "/study/fileUpload/fileUploadForm");
 		}
 		else if(msgFlag.equals("memberPwdCheckNo")) {
@@ -124,7 +120,7 @@ public class MessageController {
 			model.addAttribute("url", "/member/memberUpdate");
 		}
 		else if(msgFlag.equals("memberDeleteOk")) {
-			model.addAttribute("msg", mid+"님 회원에서 탈퇴되었습니다.\\n같은 아이디로 1달이내 재가입 하실수 없습니다.");
+			model.addAttribute("msg", mid+"님 회원에서 탈퇴처리 되었습니다.");
 			model.addAttribute("url", "/member/memberLogin");
 		}
 		else if(msgFlag.equals("boardInputOk")) {
@@ -151,32 +147,12 @@ public class MessageController {
 			model.addAttribute("msg", "게시글 수정을 실패하였습니다.");
 			model.addAttribute("url", "/board/boardUpdate?idx="+idx+"&pag="+pag+"&pageSize="+pageSize);
 		}
-		else if(msgFlag.equals("userInputOk")) {
-			model.addAttribute("msg", "유저등록 OK!!!");
-			model.addAttribute("url", "/study/validator/validatorList");
-		}
-		else if(msgFlag.equals("userInputNo")) {
-			model.addAttribute("msg", "유저등록 실패~~~");
-			model.addAttribute("url", "/study/validator/validatorForm");
-		}
-		else if(msgFlag.equals("userCheckNo")) {
-			model.addAttribute("msg", "유저정보를 확인하세요~~");
-			model.addAttribute("url", "/study/validator/validatorForm");
-		}
-		else if(msgFlag.equals("validatorDeleteOk")) {
-			model.addAttribute("msg", "유저정보가 삭제 되었습니다.");
-			model.addAttribute("url", "/study/validator/validatorList");
-		}
-		else if(msgFlag.equals("validatorError")) {
-			model.addAttribute("msg", "등록 실패~~ "+temp+"를 확인하세요...");
-			model.addAttribute("url", "/study/validator/validatorForm");
-		}
 		else if(msgFlag.equals("pdsInputOk")) {
 			model.addAttribute("msg", "파일이 업로드 되었습니다.");
 			model.addAttribute("url", "/pds/pdsList");
 		}
 		else if(msgFlag.equals("pdsInputNo")) {
-			model.addAttribute("msg", "파일 업로드 실패~~");
+			model.addAttribute("msg", "파일 업로드 실패");
 			model.addAttribute("url", "/pds/pdsInput");
 		}
 		else if(msgFlag.equals("dbProductInputOk")) {
@@ -186,18 +162,6 @@ public class MessageController {
 		else if(msgFlag.equals("dbOptionInputOk")) {
 			model.addAttribute("msg", "옵션 항목이 등록되었습니다.");
 			model.addAttribute("url", "/dbShop/dbOption");
-		}
-		else if(msgFlag.equals("dbOptionInput2Ok")) {
-			model.addAttribute("msg", "옵션 항목이 등록되었습니다.");
-			model.addAttribute("url", "/dbShop/dbOption2?productName="+temp);
-		}
-		else if(msgFlag.equals("thumbnailCreateOk")) {
-			model.addAttribute("msg", "썸네일 이미지가 생성되었습니다.");
-			model.addAttribute("url", "/study/thumbnail/thumbnailResult");
-		}
-		else if(msgFlag.equals("thumbnailCreateNo")) {
-			model.addAttribute("msg", "썸네일 이미지 생성 실패~~");
-			model.addAttribute("url", "/study/thumbnail/thumbnailForm");
 		}
 		else if(msgFlag.equals("cartOrderOk")) {
 			model.addAttribute("msg", "장바구니에 상품이 등록되었습니다.");
