@@ -53,12 +53,11 @@ public class ContactController {
 		else return "redirect:/message/contactInputNo";
 	}
 	
-	// 제휴 문의 상세보기
+
 	@RequestMapping(value = "/contactContent", method = RequestMethod.GET)
 	public String contactContentGet(int idx, Model model) {
 		ContactVO vo = contactService.getContactContent(idx);
 		
-		// 해당 문의글의 답변글 가져오기
 		ContactReplyVO reVO = contactService.getContactReply(idx);
 		
 		model.addAttribute("vo", vo);
@@ -67,7 +66,7 @@ public class ContactController {
 		return "contact/contactContent";
 	}
 	
- //문의 내용 삭제처리
+
 	@RequestMapping(value = "/contactDelete", method = RequestMethod.GET)
 	public String contactDeleteGet(int idx,
 			@RequestParam(name="fSName", defaultValue="", required=false) String fSName,Model model) {
@@ -76,7 +75,7 @@ public class ContactController {
 		return "redirect:/message/contactDeleteOk";
 	}
 	
-	//문의 내용 삭제처리
+
 	@RequestMapping(value = "/contactUpdate", method = RequestMethod.GET)
 	public String contactUpdateGet(int idx, Model model) {
 		ContactVO vo = contactService.getContactContent(idx);
