@@ -64,7 +64,6 @@ public class BoardController {
 		else return "redirect:/message/boardInputNo";
 	}
 
-	// 글내용 상세보기
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/boardContent", method = RequestMethod.GET)
 	public String boardContentGet(HttpSession session,
@@ -79,14 +78,14 @@ public class BoardController {
 		}
 		String imsiContentIdx = "board" + idx;
 		if(!contentIdx.contains(imsiContentIdx)) {
-			boardService.setBoardReadNum(idx);	// 조회수 1증가하기
+			boardService.setBoardReadNum(idx);	
 			contentIdx.add(imsiContentIdx);
 		}
 		session.setAttribute("sContentIdx", contentIdx);
 		
 		BoardVO vo = boardService.getBoardContent(idx);
 		
-		// 이전글/다음글 가져오기
+		// 이전글/다음글
 		ArrayList<BoardVO> pnVos = boardService.getPrevNext(idx);
 		model.addAttribute("pnVos", pnVos);
 		model.addAttribute("vo", vo);
@@ -310,14 +309,13 @@ public class BoardController {
  		}
  		String imsiContentIdx = "board" + idx;
  		if(!contentIdx.contains(imsiContentIdx)) {
- 			boardService.setBoardReadNum(idx);	// 조회수 1증가하기
+ 			boardService.setBoardReadNum(idx);	
  			contentIdx.add(imsiContentIdx);
  		}
  		session.setAttribute("sContentIdx", contentIdx);
  		
  		BoardVO vo = boardService.getBoardContent(idx);
- 		
- 		// 이전글/다음글 가져오기
+ 	
  		ArrayList<BoardVO> pnVos = boardService.getPrevNext(idx);
  		model.addAttribute("pnVos", pnVos);
  		model.addAttribute("vo", vo);
