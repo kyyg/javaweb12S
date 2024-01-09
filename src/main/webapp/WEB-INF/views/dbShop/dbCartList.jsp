@@ -10,22 +10,22 @@
   <link rel="stylesheet" href="${ctp}/font/font.css">
   <style>
 
- .tbb {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	margin-left:50px;
-	} 
+.tbb {
+display: grid;
+grid-template-columns: 1fr 1fr;
+margin-left:50px;
+} 
 
-	.tb{
-	margin-top : 60px;
-	background-color:#e9ecef;
-	border-radius : 5px;
-	padding-top : 20px;
-	padding-bottom : 20px;
-	margin-left : 5px;
-	padding-left:15px;
-	height:320px;
-	}
+.tb{
+margin-top : 60px;
+background-color:#e9ecef;
+border-radius : 5px;
+padding-top : 20px;
+padding-bottom : 20px;
+margin-left : 5px;
+padding-left:15px;
+height:320px;
+}
   
   .bbtn{
   background-color:#c9c2bc;
@@ -225,85 +225,82 @@ function idxDelete(){
 <p><br/></p>
 <div class="container">
   <div class="text-center" style="font-size:25px;">장바구니</div>
-	
-	<div class="tbb">  
-	<form name="myform" method="post">
-	<table class="table text-center" style="width:800px">
-		<tr>
-			<td><input type="button" id="idxCheck" class="btn btn-outline-dark" value="선택삭제" onclick="idxDelete()" /></td>
-		</tr>
-	  <tr class="text-dark bbtn" style="background-color:#c9c2bc">
-	    <th style="width:10%"><input type="checkbox" id="allcheck" onClick="allCheck()" class="m-2"/></th>
-	    <th style="width:45%" colspan="2">상품</th>
-	    <th style="width:10%">수량</th>
-	    <th style="width:25%">금액</th>
-	    <th style="width:10%"></th>
-	  </tr>
-	  <tr><td class="p-0 m-0"></td></tr>  
-	  <!-- 장바구니 목록출력 -->
-	  <c:set var="idxCnt" value="1"/>
-	  <c:forEach var="listVO" items="${cartListVOS}">
-	    <tr align="center">
-	      <td><input type="checkbox" name="idxChecked" id="idx${idxCnt}" value="${listVO.idx}" onClick="onCheck()" /></td>
-	      <td><a href="${ctp}/dbShop/dbProductContent?idx=${listVO.productIdx}"><img src="${ctp}/dbShop/product/${listVO.thumbImg}" width="50px"/></a></td>     <td align="left">
-	 
-	        <div class="contFont">
-	         	<span><a href="${ctp}/dbShop/dbProductContent?idx=${listVO.productIdx}"><font size="2"><b>${listVO.productName}</b></font></a></span><br/></div>
-	        <div style="font-size:12px">
-	            &nbsp;옵션&nbsp;[${listVO.optionName}] 
-	        </div>
-	      </td>
-	      <td >
-	      	 <input type="number" class="optionNum" id="optionNum${listVO.idx}" value="${listVO.optionNum}" size="1" min="1" max="10" onchange="numChange(${listVO.idx})"/>
-	      </td>
-	      <td>
-	        <div class="text-center">
-		        <input type="number" class="optionPrice" id="optionPrice${idxCnt}" value="${listVO.optionPrice*listVO.optionNum}" readonly/>원&nbsp;&nbsp;&nbsp;<br/><br/>
-		        <input type="hidden" id="totalPrice${listVO.idx}" value="${listVO.totalPrice}"/>
-	        </div>
-	      </td>
-	      <td>
-	      	<button type="button" onClick="cartDelete(${listVO.idx})" class="badge badge-outilne-dark m-1" style="border:0px;">X</button>
-	        <input type="hidden" name="mid" value="${sMid}"/>
-	      </td>
-	    </tr>
-	    <c:set var="idxCnt" value="${idxCnt+1}"/>	<!-- 가장 마지막 품목의 idx값이 가장 크다. -->
-	  </c:forEach>
-	  <tr><td colspan="6" class="p-0 m-0"></td></tr>
-	</table>
-	  <input type="hidden" id="maxIdx" name="maxIdx" value="${idxCnt}"/>
-	  <input type="hidden" name="orderTotalPrice" id="orderTotalPrice"/>
-	  <input type="hidden" name="orderTotal" id="orderTotal"/>
-    <input type="hidden" name="baesong"/>
-    <input type="hidden" name="idxs" id="idxs" />
-	</form>
+<div class="tbb">  
+<form name="myform" method="post">
+<table class="table text-center" style="width:800px">
+	<tr>
+		<td><input type="button" id="idxCheck" class="btn btn-outline-dark" value="선택삭제" onclick="idxDelete()" /></td>
+	</tr>
+  <tr class="text-dark bbtn" style="background-color:#c9c2bc">
+    <th style="width:10%"><input type="checkbox" id="allcheck" onClick="allCheck()" class="m-2"/></th>
+    <th style="width:45%" colspan="2">상품</th>
+    <th style="width:10%">수량</th>
+    <th style="width:25%">금액</th>
+    <th style="width:10%"></th>
+  </tr>
+  <tr><td class="p-0 m-0"></td></tr>  
+  <c:set var="idxCnt" value="1"/>
+  <c:forEach var="listVO" items="${cartListVOS}">
+    <tr align="center">
+      <td><input type="checkbox" name="idxChecked" id="idx${idxCnt}" value="${listVO.idx}" onClick="onCheck()" /></td>
+      <td><a href="${ctp}/dbShop/dbProductContent?idx=${listVO.productIdx}"><img src="${ctp}/dbShop/product/${listVO.thumbImg}" width="50px"/></a></td>     <td align="left">
+	<div class="contFont">
+		<span><a href="${ctp}/dbShop/dbProductContent?idx=${listVO.productIdx}"><font size="2"><b>${listVO.productName}</b></font></a></span><br/></div>
+	<div style="font-size:12px">
+	    &nbsp;옵션&nbsp;[${listVO.optionName}] 
+	</div>
+      </td>
+      <td >
+	 <input type="number" class="optionNum" id="optionNum${listVO.idx}" value="${listVO.optionNum}" size="1" min="1" max="10" onchange="numChange(${listVO.idx})"/>
+      </td>
+      <td>
+	<div class="text-center">
+		<input type="number" class="optionPrice" id="optionPrice${idxCnt}" value="${listVO.optionPrice*listVO.optionNum}" readonly/>원&nbsp;&nbsp;&nbsp;<br/><br/>
+		<input type="hidden" id="totalPrice${listVO.idx}" value="${listVO.totalPrice}"/>
+	</div>
+      </td>
+      <td>
+	<button type="button" onClick="cartDelete(${listVO.idx})" class="badge badge-outilne-dark m-1" style="border:0px;">X</button>
+	<input type="hidden" name="mid" value="${sMid}"/>
+      </td>
+    </tr>
+    <c:set var="idxCnt" value="${idxCnt+1}"/>
+  </c:forEach>
+  <tr><td colspan="6" class="p-0 m-0"></td></tr>
+</table>
+  <input type="hidden" id="maxIdx" name="maxIdx" value="${idxCnt}"/>
+  <input type="hidden" name="orderTotalPrice" id="orderTotalPrice"/>
+  <input type="hidden" name="orderTotal" id="orderTotal"/>
+<input type="hidden" name="baesong"/>
+<input type="hidden" name="idxs" id="idxs" />
+</form>
  <div class="tb">
-	  <div class="tb1">
-			<table class="table-borderless text-right" style="margin:auto">
-			  <tr>
-			    <th>상품금액</th>
-			    <td><input type="text" id="total" value="0" class="totSubBox form-control" readonly/></td>
-			  </tr>
-			  <tr>
-			    <th>배송비</th>
-			    <td><input type="text" id="baesong" value="0" class="totSubBox form-control" readonly/></td>
-			  </tr>
-			  <tr>
-			    <th>총 결제금액</th>
-			    <td><input type="text" id="lastPrice" value="0" class="totSubBox form-control" readonly/></td>
-			  </tr>
-			</table>
-		</div>
-		<p><br/></p>
-		<div class="tb2">
-		  <p class="text-center">
-		    <font size="2px">5만원 이상 구매 시 배송비 무료!</font>
-		  </p>
-			<div class="text-center">
-			  <button class="bbtn p-3 pr-5 pl-5" onClick="order()" style="background-color:#c9c2bc">주문하기</button> &nbsp;
-			</div>
+  <div class="tb1">
+		<table class="table-borderless text-right" style="margin:auto">
+		  <tr>
+		    <th>상품금액</th>
+		    <td><input type="text" id="total" value="0" class="totSubBox form-control" readonly/></td>
+		  </tr>
+		  <tr>
+		    <th>배송비</th>
+		    <td><input type="text" id="baesong" value="0" class="totSubBox form-control" readonly/></td>
+		  </tr>
+		  <tr>
+		    <th>총 결제금액</th>
+		    <td><input type="text" id="lastPrice" value="0" class="totSubBox form-control" readonly/></td>
+		  </tr>
+		</table>
+	</div>
+	<p><br/></p>
+	<div class="tb2">
+	  <p class="text-center">
+	    <font size="2px">5만원 이상 구매 시 배송비 무료!</font>
+	  </p>
+		<div class="text-center">
+		  <button class="bbtn p-3 pr-5 pl-5" onClick="order()" style="background-color:#c9c2bc">주문하기</button> &nbsp;
 		</div>
 	</div>
+</div>
 </div>
 </div>
 <p><br/></p>
