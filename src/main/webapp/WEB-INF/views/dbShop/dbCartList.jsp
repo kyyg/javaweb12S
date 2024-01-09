@@ -39,9 +39,9 @@
     
     function onTotal(){
       let total = 0;
-      let maxIdx = document.getElementById("maxIdx").value;
-      for(let i=1;i<=maxIdx;i++){
-        if($("#optionPrice"+i).length != 0 && document.getElementById("idx"+i).checked){  
+  		let checkIdxs = document.getElementsByName("idxChecked");
+      for(let i=1;i<=checkIdxs.length;i++){
+        if(document.getElementById("idx"+i).checked){  
           total += parseInt(document.getElementById("optionPrice"+i).value); 
         }
       }
@@ -59,21 +59,23 @@
     }
 
     function onCheck(){
-      let maxIdx = document.getElementById("maxIdx").value;			
-      let cnt=0;
-      for(let i=1;i<=maxIdx;i++){
-        if($("#idx"+i).length != 0 && document.getElementById("idx"+i).checked==false){
-          cnt++;
-          break;
-        }
-      }
-      if(cnt!=0){
-        document.getElementById("allcheck").checked=false;
-      } 
-      else {
-        document.getElementById("allcheck").checked=true;
-      }
-      onTotal();	
+	let total = 0;
+    	let checkIdxs = document.getElementsByName("idxChecked");
+        for (let i = 1; i <= checkIdxs.length; i++) {
+      	  if (document.getElementById("idx"+i).checked) {
+      		total += parseInt(document.getElementById("optionPrice"+i).value); 
+      		document.getElementById("total").value=numberWithCommas(total);
+          document.getElementById("orderTotal").value=total;
+      	  }
+      		if(total>=50000||total==0){
+            document.getElementById("baesong").value=0;
+          } else {
+            document.getElementById("baesong").value=2500;
+          }
+      	}   
+        let lastPrice=parseInt(document.getElementById("baesong").value)+total;
+        document.getElementById("lastPrice").value = numberWithCommas(lastPrice);
+        document.getElementById("orderTotalPrice").value = lastPrice;
     }
 
 		
@@ -85,7 +87,7 @@
     }
   
     function cartDelete(idx){
-      let ans = confirm("선택하신 현재상품을 장바구니에서 제거 하시겠습니까?");
+      let ans = confirm("선택하신 상품을 삭제 하시겠습니까?");
       if(!ans) return false;
       
       $.ajax({
@@ -115,64 +117,44 @@
       document.myform.baesong.value=document.getElementById("baesong").value;
       
       if(document.getElementById("lastPrice").value==0){
-        alert("장바구니에서 주문처리할 상품을 선택해주세요!");
+        alert("주문 할 상품을 선택해주세요!");
         return false;
       } 
       else {
         document.myform.submit();
       }
     }
-		
-	
-    function order2(){
-			
-      for(let i=0; i<myform.idxChecked.length; i++) {
-        myform.idxChecked[i].checked = !myform.idxChecked[i].checked;
-      }
-      onTotal();
-
-      document.getElementById("idxs").value = idxs;
-      document.myform.baesong.value=document.getElementById("baesong").value;
-      
-      if(document.getElementById("lastPrice").value==0){
-        alert("장바구니에서 주문처리할 상품을 선택해주세요!");
-        return false;
-      } 
-      else {
-        document.myform.submit();
-      }
-    }
-    
+		    
 		
     function numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 		
 		
-		function numChange(idx){
-			let num = document.getElementById("optionNum"+idx).value;
-			$.ajax({
-				type : "post",
-				url : "${ctp}/dbShop/dbCartNumChange",
-				data : {
-					idx : idx,
-					num : num
-				},
-				success:function() {
-					
-						location.reload();
+function numChange(idx){
+	let num = document.getElementById("optionNum"+idx).value;
+	$.ajax({
+		type : "post",
+		url : "${ctp}/dbShop/dbCartNumChange",
+		data : {
+			idx : idx,
+			num : num
+		},
+		success:function() {
 			
-				},
-				error:function(){
-					//alert("전송오류인데 값은 바뀜??");
-					location.reload();
-				}
-			});
+				location.reload();
+	
+		},
+		error:function(){
+			//alert("전송오류");
+			location.reload();
 		}
-		
-		// 선택한 것만 삭제하기
-		function idxDelete(){
-	 		let ans = confirm("선택하신 상품을 장바구니에서 삭제하시겠습니까?");
+	});
+}
+
+// 선택한 것만 삭제하기
+function idxDelete(){
+	let ans = confirm("선택하신 상품을 장바구니에서 삭제하시겠습니까?");
       if(!ans){
           location.reload();
           return false;
@@ -259,10 +241,10 @@
 	  </tr>
 	  <tr><td class="p-0 m-0"></td></tr>  
 	  <!-- 장바구니 목록출력 -->
-	  <c:set var="maxIdx" value="0"/>
+	  <c:set var="idxCnt" value="1"/>
 	  <c:forEach var="listVO" items="${cartListVOS}">
 	    <tr align="center">
-	      <td><input type="checkbox" name="idxChecked" id="idx${listVO.idx}" value="${listVO.idx}" onClick="onCheck()" /></td>
+	      <td><input type="checkbox" name="idxChecked" id="idx${idxCnt}" value="${listVO.idx}" onClick="onCheck()" /></td>
 	      <td><a href="${ctp}/dbShop/dbProductContent?idx=${listVO.productIdx}"><img src="${ctp}/dbShop/product/${listVO.thumbImg}" width="50px"/></a></td>     <td align="left">
 	 
 	        <div class="contFont">
@@ -276,7 +258,7 @@
 	      </td>
 	      <td>
 	        <div class="text-center">
-		        <input type="number" class="optionPrice" id="optionPrice${listVO.idx}" value="${listVO.optionPrice*listVO.optionNum}" readonly/>원&nbsp;&nbsp;&nbsp;<br/><br/>
+		        <input type="number" class="optionPrice" id="optionPrice${idxCnt}" value="${listVO.optionPrice*listVO.optionNum}" readonly/>원&nbsp;&nbsp;&nbsp;<br/><br/>
 		        <input type="hidden" id="totalPrice${listVO.idx}" value="${listVO.totalPrice}"/>
 	        </div>
 	      </td>
@@ -285,11 +267,11 @@
 	        <input type="hidden" name="mid" value="${sMid}"/>
 	      </td>
 	    </tr>
-	    <c:set var="maxIdx" value="${listVO.idx}"/>	<!-- 가장 마지막 품목의 idx값이 가장 크다. -->
+	    <c:set var="idxCnt" value="${idxCnt+1}"/>	<!-- 가장 마지막 품목의 idx값이 가장 크다. -->
 	  </c:forEach>
 	  <tr><td colspan="6" class="p-0 m-0"></td></tr>
 	</table>
-	  <input type="hidden" id="maxIdx" name="maxIdx" value="${maxIdx}"/>
+	  <input type="hidden" id="maxIdx" name="maxIdx" value="${idxCnt}"/>
 	  <input type="hidden" name="orderTotalPrice" id="orderTotalPrice"/>
 	  <input type="hidden" name="orderTotal" id="orderTotal"/>
     <input type="hidden" name="baesong"/>
@@ -320,9 +302,6 @@
 			<div class="text-center">
 			  <button class="bbtn p-3 pr-5 pl-5" onClick="order()" style="background-color:#c9c2bc">주문하기</button> &nbsp;
 			</div>
-			<!-- <div class="text-center">
-			  <button class="bbtn p-3 pr-5 pl-5 mt-2" onClick="order2()" style="background-color:#c9c2bc">전체상품 주문</button> &nbsp;
-			</div> -->
 		</div>
 	</div>
 </div>
