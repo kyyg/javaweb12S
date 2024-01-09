@@ -35,55 +35,51 @@
   	});
   	
   	
-    let cnt = 1;
-  	// 옵션박스에서, 옵션항목을 선택하였을때 처리하는 함수
-    $(function(){
-    	$("#selectOption").change(function(){
-    		let selectOption = $(this).val().split("/");
-    		let idx = selectOption[0];					
-    		let optionName = selectOption[1];	
-    		let optionPrice = selectOption[2];	
-    		let commaPrice = numberWithCommas(optionPrice);	
-    		let str = '';
-    		str += '<div class="orderBox row" id="orderBox'+cnt+'"><div class="col">'+optionName+'</div>';
-    		str += '<input type="number" class="text-center numBox" id="numBox'+cnt+'" name="optionNum" onchange="numChange('+cnt+')" value="1" min="1" max="10"/>&nbsp;';
-    		str += '<input type="text" id="price1'+cnt+'" class="price" value="'+commaPrice+'" readonly />';
-    		str += '<input type="hidden" id="price'+cnt+'" value="'+optionPrice+'"/> &nbsp;';	
-    		str += '<input type="button" class="btn btn-outline-dark btn-sm ml-3" onclick="remove('+cnt+')" value="X"/>';
-    		
-    		str += '<input type="hidden" name="statePrice" id="statePrice'+cnt+'" value="'+optionPrice+'"/>';		/* 계산을 위한 고정값 */
-    		str += '<input type="hidden" name="optionIdx" value="'+idx+'"/>';
-    		str += '<input type="hidden" name="optionName" value="'+optionName+'"/>';
-    		str += '<input type="hidden" name="optionPrice" value="'+optionPrice+'"/>';
-    		str += '</div>';
-    		$("#orders").append(str);
-    		onTotal();
-    		cnt++;
-    	});
-    });
-  	
+let cnt = 1;
+function selectOp(){
+let selectOption = document.getElementById("selectOption").value.split("/");
+	let idx = selectOption[0];					
+	let optionName = selectOption[1];	
+	let optionPrice = selectOption[2];	
+  
+  let str = '';
+  str += '<div class="optionBox row" id="optionBox'+cnt+'"><div class="col">'+optionName+'</div>';
+  str += '<input type="number" class="text-center numBox" id="numBox'+cnt+'" onchange="numChange('+cnt+')" value="1" min="1" max="10" />';
+  str += '<input type="text" id="price'+cnt+'" value='+optionPrice+' readonly />';
+  str += '<input type="button" class="btn btn-sm" onclick="optionRemove('+cnt+')" value="X" />';
+  str += '<input type="hidden" name="optionIdx" value="'+idx+'" />';
+  str += '<input type="hidden" name="optionName" value="'+optionName+'"/>';
+  str += '<input type="hidden" name="optionPrice" value="'+optionPrice+'"/>';
+  str += '<input type="hidden" name="optionNum" id="optionNum'+cnt+'" value="1"/>';
+  str += '<input type="hidden" name="statePrice" id="statePrice'+cnt+'" value="'+optionPrice+'"/>';
+  str += '</div>'; 
+  let orders = document.getElementById("orders");
+  let newDiv = document.createElement("div");
+  newDiv.innerHTML = str;
+  orders.append(newDiv);
+  totalCal();
+  cnt++;  
+};
+		  
+      
+function optionRemove(cnt){
+$("div").remove("#optionBox"+cnt);
+totalCal();
+}
+
+function totalCal(){
+let totalP= 0;
+for(let i=1; i<=cnt; i++) {
+	  if($("#optionBox"+i).length != 0) { 
+		  totalP +=  parseInt(document.getElementById("price"+i).value);
+		document.getElementById("totalPriceResult").value = totalP;  		  	
+		document.getElementById("orderTotal").value = totalP; 
+	  }
+ }
+document.getElementById("totalPrice").value = totalP;
+} 
     
-    // 등록(추가)시킨 옵션 상품 삭제
-    function remove(cnt) {
-  	  $("div").remove("#orderBox"+cnt);
-  	  if($(".price").length) onTotal();
-  	  else location.reload();
-    }
-    
-    // 상품의 총 금액 (재)계산하기
-    function onTotal() {
-  	  let total = 0;
-  	  for(let i=1; i<=cnt; i++) {
-  		  if($("#orderBox"+i).length != 0) { // 선택된 옵션이 하나라도 있을 시 계산
-  		  	total +=  parseInt(document.getElementById("price"+i).value);
-  		  	document.getElementById("totalPriceResult").value = total;  		  	
-  		  	document.getElementById("orderTotal").value = total; 
-  		  }
-  	  }
-  	  document.getElementById("totalPrice").value = numberWithCommas(total); // 밑에 찍기만 하는 값
-    }
-    
-    // 수량 변경
+
     function numChange(idx) {
     	let price = document.getElementById("statePrice"+idx).value * document.getElementById("numBox"+idx).value;
     	document.getElementById("price1"+idx).value = numberWithCommas(price);
@@ -91,7 +87,7 @@
     	onTotal();
     }
     
-    // 장바구니 호출
+
     function cart() {
     	if('${sMid}' == "") {
     		alert("로그인 후 이용 가능합니다.");
@@ -106,19 +102,19 @@
     	}
     }
     
-    // 직접 주문하기
+
     function order() {
     	let totalPrice = document.getElementById("totalPrice").value;
     	let totalPriceResult = document.getElementById("totalPriceResult").value;
     	
-     	if(totalPriceResult>=50000 || totalPriceResult==0){ // 바로 구매시 배송비 계산해서 심어주기
+     	if(totalPriceResult>=50000 || totalPriceResult==0){
         document.getElementById("baesong").value=0;
       } else {
         document.getElementById("baesong").value=2500;
       }
      	
       let baesong = document.getElementById("baesong").value 
-      document.getElementById("orderTotalPrice").value = Number(totalPriceResult) + Number(baesong); // 바로구매시 히든으로 보낼 총토탈값
+      document.getElementById("orderTotalPrice").value = Number(totalPriceResult) + Number(baesong); 
       
     	if('${sMid}' == "") {
     		alert("로그인 후 이용 가능합니다.");
@@ -134,12 +130,12 @@
     	}
     }
     
-    // 천단위마다 콤마를 표시해 주는 함수
+
     function numberWithCommas(x) {
     	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
     }
     
-    // 상세설명/리뷰/안내사항
+
     function scrollToSection1() {
    	  const section = document.getElementById('target-section1');
    	  section.scrollIntoView({ behavior: 'smooth' });
@@ -153,7 +149,7 @@
    	  section.scrollIntoView({ behavior: 'smooth' });
     }
    	  
-   	// 위시리스트 추가
+
    	function wishDBCheck(idx){
     	if(idx == "") idx = 0;
     	$.ajax({
@@ -196,13 +192,10 @@
    	
  	
  	
- 	 document.addEventListener("DOMContentLoaded", function () {
- 	    // 세션에서 상품 이름을 가져옵니다.
- 	    const productName = '<%= session.getAttribute("productName") %>';
-
- 	    // "productList" div에 상품 이름을 출력합니다.
- 	    document.getElementById("productList").html = productName;
- 	  });
+ document.addEventListener("DOMContentLoaded", function () { 
+    const productName = '<%= session.getAttribute("productName") %>';
+    document.getElementById("productList").html = productName;
+  });
     
  	 
  	function showImage() {
@@ -225,8 +218,8 @@
   
 
 	a {
-  text-decoration: none !important; /* 밑줄 제거 */
-  color: inherit !important; /* 링크 기본 색상 유지 */
+  text-decoration: none !important;
+  color: inherit !important; 
 	}
 
    .w3-custom-button {
@@ -236,8 +229,8 @@
   
  	.button-fixed {
   position: fixed;
-  bottom: 20px; /* 원하는 여백 값으로 조정 가능 */
-  right: 20px; /* 원하는 여백 값으로 조정 가능 */
+  bottom: 20px;
+  right: 20px; 
 	}
  
    .orderBox  {
@@ -370,47 +363,34 @@
 		</div>
 </table>
  
- <!-- 상품주문을 위한 옵션정보 출력 -->
-  <div class="form-group" style="width:95%; margin:0 auto;">
-    <form name="optionForm">  <!-- 옵션의 정보를 보여주기위한 form -->
-      <select size="1" class="form-control" id="selectOption">
-        <option value="" disabled selected>상품옵션선택</option>
-        	<c:if test="${empty optionVOS}">
-        		<option value="0/단일품목/${productVO.mainPrice}">단일품목</option>
-        	</c:if>
-        	<c:if test="${!empty optionVOS}">
-		        <c:forEach var="vo" items="${optionVOS}">
-		        	<c:if test="${vo.optionStock == 0}">
-		         	 <option value="${vo.idx}/${vo.optionName}/${vo.optionPrice}" disabled>${vo.optionName}[품절]</option>
-		          </c:if>
-		        	<c:if test="${vo.optionStock > 0}">
-		         	 <option value="${vo.idx}/${vo.optionName}/${vo.optionPrice}">${vo.optionName}</option>
-		          </c:if>
-		        </c:forEach>
-     	   </c:if>
-      </select>
-    </form>
-  </div>
-  <br/>
-  <div>
-	  <form name="myform" method="post">  <!-- 실제 상품의 정보를 넘겨주는 form -->
-	    <input type="hidden" name="mid" value="${sMid}"/>
-	    <input type="hidden" name="productIdx" value="${productVO.idx}"/>
-	    <input type="hidden" name="productName" value="${productVO.productName}"/>
-	    <input type="hidden" name="mainPrice" value="${productVO.mainPrice}"/>
-	    <input type="hidden" name="thumbImg" value="${productVO.FSName}"/>
-	    <input type="hidden" name="totalPrice" id="totalPriceResult"/>
-	    <input type="hidden" name="flag" id="flag"/> <!-- 장바구니인지 바로 구매인지 구분을 위한 flag -->
 
-		  <input type="hidden" name="orderTotalPrice" id="orderTotalPrice"/>
-	   	<input type="hidden" name="baesong" id="baesong" value="0"/>
-		 	<input type="hidden" name="orderTotal" id="orderTotal"/>
-		 	
-
-	    <div id="orders"></div>
-	  </form>
-  </div>
-		  <!-- 상품의 총가격(옵션포함가격) 출력처리 -->
+		  <div class="form-group" style="width:95%; margin:0 auto;">
+		    <form name="optionForm"> 
+		      <select size="1" class="form-control" id="selectOption" onchange="selectOp(this.value)">
+		        <option value="" disabled selected>옵션을 선택해 주세요.</option>
+			        <c:forEach var="vo" items="${optionVOS}">
+		         		<option value="${vo.idx}/${vo.optionName}/${vo.optionPrice}">${vo.optionName}</option>
+			        </c:forEach>
+		      </select>
+		    </form>
+		  </div>
+		  <br/>
+		  <div>
+		  <form name="myform" method="post"> 
+		    <input type="hidden" name="mid" value="${sMid}"/>
+		    <input type="hidden" name="productIdx" value="${productVO.idx}"/>
+		    <input type="hidden" name="productName" value="${productVO.productName}"/>
+		    <input type="hidden" name="mainPrice" value="${productVO.mainPrice}"/>
+		    <input type="hidden" name="thumbImg" value="${productVO.FSName}"/>
+		    <input type="hidden" name="totalPrice" id="totalPriceResult"/>
+		    <input type="hidden" name="flag" id="flag"/> 
+		
+			  <input type="hidden" name="orderTotalPrice" id="orderTotalPrice"/>
+			<input type="hidden" name="baesong" id="baesong" value="0"/>
+				<input type="hidden" name="orderTotal" id="orderTotal"/>
+				<div id="orders"></div>
+		  </form>
+		  </div>		
 		  <div>
 		    <hr/>
 		    <div class="text-right mr-3">
@@ -418,7 +398,6 @@
 		    </div>
 		  </div>
 		  <br/>
-		  <!-- 위시리스트/장바구니/주문하기 처리 -->
 		  <div class="text-center">
 			  <a href="javascript:wishDBCheck(${wishVO.idx})">
           <c:if test="${!empty wishVO}"><font color="red"><span id="wish">❤</span></font></c:if>
@@ -441,9 +420,7 @@
  	<p><br/></p>
  	<p><br/></p>
  	<p><br/></p>
- <div class="container-fluid"> 
-  <!-- 상품설명/리뷰/배송안내사항 -->
-  
+ <div class="container-fluid">   
 	<div class="w3-padding text-center" style="margin-bottom:20px; background-color:#ded9d5; width:1050px; margin:0 auto;">
 	  <div class="text-center">
 	  <button class="btn btn-outline-white btn-sm" onclick="scrollToSection1()"><b>상품설명</b></button> &nbsp;|&nbsp;
@@ -451,7 +428,6 @@
 	  <button class="btn btn-outline-white btn-sm" onclick="scrollToSection2()"><b>배송/교환/반품 안내</b></button>
 	  </div>
 	</div>
-  
  <section id="target-section1" style="margin: 0 auto;">
   <div id="content" class="text-center" style="margin-top:50px;"><br/>
     <span style="margin:0 auto; width:800px;">${productVO.content}</span>
@@ -521,12 +497,9 @@ function myFunction(id) {
 }
 </script>
 </section>
-	
 	<p><br/></p>
 	<p><br/></p>
 	<p><br/></p>
-	
-	<!-- 리뷰 항목 -->
 	<section id="target-section3" class="text-center">
 	  <div class="text-center mb-3"><h1>Review</h1></div>
 	</div>
