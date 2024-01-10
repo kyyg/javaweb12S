@@ -523,10 +523,8 @@ public class DbShopController {
 			@RequestParam(name = "orderTotal", defaultValue = "0", required = false) int orderTotal, String idxs) {
 		String mid = (String) session.getAttribute("sMid");
 
-		DbOrderVO maxIdx = dbShopService.getOrderMaxIdx();
-		int idx = 1;
-		if (maxIdx != null)
-			idx = maxIdx.getMaxIdx() + 1;
+		UUID uid = UUID.randomUUID();
+		String orderUid = uid.toString().substring(0,2);
 
 		Date today = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
