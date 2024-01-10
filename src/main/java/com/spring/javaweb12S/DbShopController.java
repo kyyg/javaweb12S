@@ -428,18 +428,15 @@ public class DbShopController {
 			}
 		} else {
 			
-			DbOrderVO maxIdx = dbShopService.getOrderMaxIdx();
-			int idx = 1;
-			if (maxIdx != null)
-				idx = maxIdx.getMaxIdx() + 1;
+			String mid = (String) session.getAttribute("sMid");
+			UUID uid = UUID.randomUUID();
+			String orderUid = uid.toString().substring(0,2);
 
 			Date today = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-			String orderIdx = sdf.format(today) + idx;
+			String orderIdx = sdf.format(today) + orderUid;
 
 			List<DbOrderVO> orderVOS = new ArrayList<DbOrderVO>();
-
-			// String[] voOptionIdxs = vo.getOptionIdx().split(",");
 			String[] voOptionNames = vo.getOptionName().split(",");
 			String[] voOptionPrices = vo.getOptionPrice().split(",");
 			String[] voOptionNums = vo.getOptionNum().split(",");
